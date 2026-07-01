@@ -1,0 +1,76 @@
+<style>
+  .pioneer-page-hero {
+    align-items: flex-end;
+    background:
+      linear-gradient(90deg, rgba(12, 8, 5, .94) 0%, rgba(12, 8, 5, .72) 46%, rgba(12, 8, 5, .26) 100%),
+      var(--page-hero-image) center / cover no-repeat;
+    box-sizing: border-box;
+    display: flex;
+    min-height: clamp(560px, 78vh, 760px);
+    overflow: hidden;
+    padding-top: 132px;
+    position: relative;
+  }
+
+  .pioneer-page-hero__content {
+    max-width: 760px;
+    padding: 0 0 88px;
+  }
+
+  .pioneer-page-hero__tag {
+    color: #c08860;
+    display: block;
+    font-size: 12px;
+    letter-spacing: .28em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+
+  .pioneer-page-hero__title {
+    color: #fff;
+    font-size: clamp(3.2rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 1.02;
+    margin: 0;
+  }
+
+  .pioneer-page-hero__text {
+    color: rgba(255, 255, 255, .72);
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 24px 0 0;
+    max-width: 580px;
+  }
+
+  .pioneer-page-hero__button {
+    margin-top: 34px;
+  }
+
+  @media (max-width: 575px) {
+    .pioneer-page-hero {
+      min-height: 520px;
+      padding-top: 112px;
+    }
+
+    .pioneer-page-hero__content {
+      padding-bottom: 54px;
+    }
+  }
+</style>
+
+<section class="pioneer-page-hero" style="--page-hero-image: url('<%= image %>');">
+  <div class="container-lg">
+    <div class="pioneer-page-hero__content fade-up">
+      <span class="pioneer-page-hero__tag"><%= tag %></span>
+      <h1 class="pioneer-page-hero__title elicyon"><%= title %></h1>
+      <% if (typeof text !== "undefined" && text) { %>
+        <p class="pioneer-page-hero__text"><%= text %></p>
+      <% } %>
+      <% if (typeof buttonText !== "undefined" && buttonText && typeof buttonLink !== "undefined" && buttonLink) { %>
+        <a class="btn-quinary pioneer-page-hero__button" href="<%= buttonLink %>">
+          <span class="btn-animated-text" data-text="<%= buttonText %>"><%= buttonText %></span>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</section>

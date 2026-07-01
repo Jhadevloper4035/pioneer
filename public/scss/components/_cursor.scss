@@ -1,0 +1,200 @@
+/* ==== 
+ --------- (3.04) custom cursor styles start ---------
+ ==== */
+
+.cursor-outer {
+    margin-left: -20px;
+    margin-top: -20px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #c9f31d;
+    box-sizing: border-box;
+    z-index: 10000000;
+    opacity: 1;
+    transition: all 0.43s ease-out;
+    mix-blend-mode: difference;
+
+    &.cursor-hover {
+        margin-left: -8px;
+        margin-top: -8px;
+        width: 16px;
+        height: 16px;
+        background-color: var(--primary-color);
+        opacity: 1;
+    }
+
+    &.cursor-big {
+        width: 160px;
+        height: 160px;
+        margin-left: -80px;
+        margin-top: -80px;
+        background-color: var(--template-bg);
+
+        &.drag-cursor,
+        &.view-cursor,
+        &.play-cursor {
+            opacity: 0;
+        }
+    }
+
+    &.cursor-hover {
+
+        &.drag-cursor,
+        &.view-cursor {
+            opacity: 1;
+        }
+    }
+
+    &.drag-cursor,
+    &.view-cursor,
+    &.not-cursor-outer {
+        opacity: 0;
+    }
+}
+
+.cursor-big {
+
+    &.play-cursor,
+    &.drag-cursor,
+    &.view-cursor {
+        width: 80px !important;
+        height: 80px !important;
+        margin-left: -40px !important;
+        margin-top: -40px !important;
+        mix-blend-mode: normal !important;
+    }
+
+    &.view-cursor {
+        width: 200px !important;
+        height: 200px !important;
+        margin-left: -100px !important;
+        margin-top: -100px !important;
+        mix-blend-mode: normal !important;
+        background-color: var(--primary-color);
+        opacity: 1 !important;
+
+        .view {
+            mix-blend-mode: unset !important;
+            z-index: 9;
+        }
+
+        i {
+            font-size: 60px;
+            color: #ffffff;
+        }
+    }
+
+    &.view-cursor.cursor-outer {
+        opacity: 0 !important;
+    }
+}
+
+.mouseCursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border-radius: 50%;
+    transform: translateZ(0);
+    visibility: hidden;
+    text-align: center;
+}
+
+.cursor-inner {
+    margin-left: -5px;
+    margin-top: -5px;
+    width: 10px;
+    height: 10px;
+    z-index: 10000001;
+    background-color: #c9f31d;
+    opacity: 1;
+    transition: all 0.26s ease-out;
+    mix-blend-mode: difference;
+
+    &.cursor-big {
+        opacity: 1;
+    }
+
+    &.cursor-hover {
+        opacity: 0;
+    }
+
+    &.not-cursor-outer {
+        opacity: 0;
+    }
+
+    &.play-cursor,
+    &.drag-cursor,
+    &.view-cursor {
+        width: 0;
+        height: 0;
+        margin: 0;
+    }
+
+    span {
+        width: 80px;
+        min-width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 4px;
+        margin-left: -40px;
+        margin-top: -40px;
+        color: var(--secondary-color);
+        line-height: 1;
+        opacity: 0;
+        font-size: 14px;
+        transform: scale(0);
+        text-transform: uppercase;
+        transition: all 0.4s ease-out;
+        letter-spacing: 1px;
+        mix-blend-mode: difference;
+        text-align: center;
+
+        i {
+            font-size: 24px;
+            margin-bottom: -8px;
+        }
+    }
+}
+
+.draggable-cursor {
+    cursor: grab !important;
+}
+
+.viewable-cursor {
+    cursor: pointer !important;
+}
+
+.drag-cursor .drag,
+.view-cursor .view,
+.play-cursor .play {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.cursor-none {
+
+    .cursor-inner,
+    .cursor-outer {
+        opacity: 0;
+    }
+}
+
+.cursor-inner span {
+    margin-left: 0;
+    margin-top: 0;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+/* ==== 
+ --------- (3.04) custom cursor styles end ---------
+ ==== */

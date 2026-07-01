@@ -1,0 +1,166 @@
+    <script>
+      (() => {
+        const tokenKey = "pioneer_admin_token";
+        const statusNodes = document.querySelectorAll("[data-admin-status]");
+
+        const setStatus = (message, isError = false) => {
+          statusNodes.forEach((node) => {
+            node.textContent = message || "";
+            node.classList.toggle("is-error", Boolean(isError));
+          });
+        };
+
+        const getToken = () => window.localStorage.getItem(tokenKey);
+        const setToken = (token) => window.localStorage.setItem(tokenKey, token);
+        const clearToken = () => window.localStorage.removeItem(tokenKey);
+
+        const requestJson = async (url, options = {}) => {
+          const headers = {
+            "Content-Type": "application/json",
+            ...(options.headers || {})
+          };
+          const token = getToken();
+
+          if (token) {
+            headers.Authorization = `Bearer ${token}`;
+          }
+
+          const response = await fetch(url, {
+            ...options,
+            headers
+          });
+          const payload = await response.json().catch(() => ({}));
+
+          if (!response.ok) {
+            throw new Error(payload.message || "Request failed");
+          }
+
+          return payload;
+        };
+
+        const redirectToLogin = () => {
+          if (window.location.pathname !== "/admin/login") {
+            window.location.href = "/admin/login";
+          }
+        };
+
+        const escapeHtml = (value) =>
+          String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+        const requireAdmin = async () => {
+          if (window.location.pathname === "/admin/login") return null;
+          if (!getToken()) {
+            redirectToLogin();
+            return null;
+          }
+
+          try {
+            const payload = await requestJson("/api/auth/me");
+            const user = payload.data.user;
+
+            if (!user.roles.includes("admin")) {
+              clearToken();
+              redirectToLogin();
+              return null;
+            }
+
+            const userNode = document.querySelector("[data-admin-user]");
+            if (userNode) userNode.textContent = user.email;
+            return user;
+          } catch (error) {
+            clearToken();
+            redirectToLogin();
+            return null;
+          }
+        };
+
+        document.querySelectorAll("[data-admin-logout]").forEach((button) => {
+          button.addEventListener("click", () => {
+            clearToken();
+            window.location.href = "/admin/login";
+          });
+        });
+
+        const loginForm = document.querySelector("[data-admin-login-form]");
+        if (loginForm) {
+          loginForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            setStatus("Signing in...");
+
+            try {
+              const payload = await requestJson("/api/auth/login", {
+                method: "POST",
+                body: JSON.stringify({
+                  email: loginForm.email.value,
+                  password: loginForm.password.value
+                })
+              });
+              const user = payload.data.user;
+
+              if (!user.roles.includes("admin")) {
+                throw new Error("This account does not have admin access");
+              }
+
+              setToken(payload.data.token);
+              window.location.href = "/admin/dashboard";
+            } catch (error) {
+              setStatus(error.message, true);
+            }
+          });
+        }
+
+        const loadDashboard = async () => {
+          const nodes = {
+            total: document.querySelector("[data-metric-total-users]"),
+            admins: document.querySelector("[data-metric-admin-users]"),
+            regular: document.querySelector("[data-metric-regular-users]")
+          };
+
+          if (!nodes.total) return;
+
+          try {
+            const payload = await requestJson("/api/admin/users");
+            const users = payload.data.users;
+            nodes.total.textContent = users.length;
+            nodes.admins.textContent = users.filter((user) => user.roles.includes("admin")).length;
+            nodes.regular.textContent = users.filter((user) => !user.roles.includes("admin")).length;
+          } catch (error) {
+            setStatus(error.message, true);
+          }
+        };
+
+        const loadUsers = async () => {
+          const tableBody = document.querySelector("[data-admin-users]");
+          if (!tableBody) return;
+
+          try {
+            const payload = await requestJson("/api/admin/users");
+            tableBody.innerHTML = payload.data.users
+              .map((user) => `
+                <tr>
+                  <td>${escapeHtml(user.name)}</td>
+                  <td>${escapeHtml(user.email)}</td>
+                  <td>${escapeHtml(user.mobileNumber)}</td>
+                  <td>${escapeHtml(user.roles.join(", "))}</td>
+                </tr>
+              `)
+              .join("");
+          } catch (error) {
+            setStatus(error.message, true);
+          }
+        };
+
+        requireAdmin().then((user) => {
+          if (!user) return;
+          loadDashboard();
+          loadUsers();
+        });
+      })();
+    </script>
+  </body>
+</html>

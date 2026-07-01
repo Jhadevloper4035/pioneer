@@ -1,0 +1,51 @@
+/* ==== 
+ --------- (1.02) variables start ---------
+ ==== */
+
+:root {
+  // font family
+  --inter: "Inter", sans-serif;
+  --fraunces: "Fraunces", serif;
+  --elicyon: "Elicyon", serif;
+  --maison-neue: "Maison Neue", sans-serif;
+
+  // template default
+  --template-font: var(--inter);
+  --heading-font: var(--maison-neue);
+  --template-bg: #F5F2EE;
+  --template-color: #481800;
+
+  // colors
+  --white: #ffffff;
+  --black: #000000;
+  --primary-color: #C08860;
+  --secondary-color: #f5f3f1;
+  --tertiary-color: #fdfcfa;
+  --quaternary-color: #98918f;
+  --quinary-color: #585858;
+  --senary-color: #481800bd;
+  --septenary-color: #48180070;
+  --octonary-color: #f3d000;
+  --nonary-color: #705c5c;
+  --border-color: #E3DFDA;
+  --txt-light: #4F4B47;
+  --txt-light-2: #afa8a1;
+  --txt-light-3: #706d6a;
+  --txt-light-4: #F5F2EE;
+  --txt-light-5: #B8B3AE;
+  --black-2: #481800;
+
+  // transitions
+  --transition: all 0.5s ease;
+
+  // box shadow
+  --shadow: 0px 4px 27px 0px rgba(0, 0, 0, 0.05);
+}
+
+.home-one {
+  --primary-color: #C08860;
+}
+
+/* ==== 
+ --------- (1.02) variables end ---------
+ ==== */

@@ -1,0 +1,145 @@
+/* ==== 
+ --------- (5.09) counter styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.counter {
+    position: relative;
+    z-index: 1;
+    background-color: #E9E6E0;
+    border-top: 1px solid var(--primary-color);
+
+    .cvv {
+        position: absolute;
+        inset-inline-start: 5%;
+        padding: 8px 20px;
+        background-color: #E9E6E0;
+        inset-block-start: -17px;
+    }
+
+    .divider {
+        border-color: #48180010;
+    }
+
+    .odometer-digit {
+        padding-inline-end: 0.05em;
+    }
+
+    .title-lg {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    p {
+        font-weight: 500;
+    }
+}
+
+.counter__inner-right,
+.counter__inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+
+    @include md-screen {
+        gap: 100px;
+
+    }
+}
+
+.counter__inner-right {
+    justify-content: flex-end;
+}
+
+// counter two styles start
+.counter-two {
+    overflow: hidden;
+}
+
+.counter-two__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    row-gap: 0px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: center;
+
+    @include md-screen {
+        flex-wrap: nowrap;
+        text-align: start;
+    }
+
+    @include xl-screen {
+        gap: 40px;
+    }
+
+    @include min-screen(1600px) {
+        gap: 80px;
+    }
+
+}
+
+.counter-two__wrapper {
+    margin-top: 40px;
+
+    @include md-screen {
+        margin-top: 60px;
+    }
+
+    @include xl-screen {
+        margin-top: 100px;
+    }
+}
+
+.counter-two__single {
+    flex-grow: 1;
+    width: 100%;
+    border-top: 1px solid #D2CEC8;
+    padding-block: 40px;
+
+    @include xs-screen {
+        width: calc(50% - 25px);
+    }
+
+    @include md-screen {
+        width: 100%;
+        padding-block: 20px 0px;
+    }
+
+    &:hover {
+        border-color: var(--primary-color);
+    }
+
+    .prefix {
+        line-height: 0;
+        margin-top: -5px;
+
+        @include xl-screen {
+            margin-top: -10px;
+        }
+    }
+
+    .title-xl {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: center;
+
+        @include md-screen {
+            justify-content: flex-start;
+        }
+
+    }
+
+    .odometer-digit {
+        padding-inline-end: 0.03em;
+    }
+}
+
+/* ==== 
+ --------- (5.09) counter styles end ---------
+ ==== */

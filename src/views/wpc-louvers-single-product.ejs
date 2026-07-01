@@ -1,0 +1,1249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.webp"
+      type="image/x-icon"
+    />
+    <title><%= product.title %> | Pioneer Flex</title>
+    <meta
+      name="description"
+      content="<%= getValue(product, "summary", `${product.title} single product detail page with available shades, specifications, and application images.`) %>"
+    />
+
+    <link rel="preload" href="assets/css/main.css" as="style" />
+    <link rel="preload" href="assets/css/louvers.css" as="style" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/all.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/tabler-icons.min.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/odometer.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/product.css" />
+    <link rel="stylesheet" href="assets/css/louvers.css" />
+    <link rel="stylesheet" href="assets/css/image-lightbox.css?v=1" />
+    <style>
+      .single-product-hero {
+        padding: 64px 0 76px;
+        background: #fff;
+      }
+
+      .single-product-breadcrumb-conatiner {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .single-product-breadcrumb {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        align-items: center;
+        width: 100%;
+        min-height: 36px;
+        margin: 10px 0px;
+        padding: 0;
+        color: var(--quinary-color, #585858);
+        font-family: var(--body-font, "Maison Neue", sans-serif);
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.08em;
+        font-style: italic;
+        text-transform: uppercase;
+      }
+
+      .single-product-breadcrumb a {
+        color: var(--template-color, #481800);
+        text-decoration: none;
+      }
+
+      .single-product-breadcrumb span {
+        color: var(--template-color, #481800);
+      }
+
+      .single-product-breadcrumb__divider {
+        color: var(--primary-color, #c08860);
+        font-weight: 700;
+      }
+
+      .single-product-grid {
+        display: grid;
+        grid-template-columns: minmax(430px, 0.96fr) minmax(360px, 1.04fr);
+        gap: clamp(36px, 4.4vw, 64px);
+        align-items: stretch;
+        padding: 0;
+        background: #fff;
+      }
+
+      .single-product-media {
+        display: flex;
+        align-self: stretch;
+        min-height: 0;
+        background: transparent;
+      }
+
+      .single-product-media-gallery {
+        display: grid;
+        grid-template-columns: 78px minmax(0, 1fr);
+        gap: 12px;
+        align-items: stretch;
+        width: 100%;
+        height: clamp(430px, 39vw, 520px);
+        min-height: 0;
+      }
+
+      .single-product-thumbs {
+        display: grid;
+        align-content: start;
+        gap: 10px;
+        height: 100%;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding-right: 2px;
+      }
+
+      .single-product-thumb {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1.18;
+        min-height: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid rgba(72, 24, 0, 0.16);
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .single-product-thumb:hover,
+      .single-product-thumb:focus-visible,
+      .single-product-thumb.is-active {
+        border-color: var(--primary-color, #c08860);
+        box-shadow: 0 0 0 2px rgba(192, 136, 96, 0.18);
+      }
+
+      .single-product-thumb:hover,
+      .single-product-thumb:focus-visible {
+        transform: translateY(-1px);
+      }
+
+      .single-product-thumb img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .single-product-main-image {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: clamp(22px, 3.4vw, 42px);
+        border: 1px solid rgba(72, 24, 0, 0.08);
+        border-radius: 8px;
+        background: #f8f6f3;
+        cursor: zoom-in;
+        transition:
+          border-color 0.25s ease,
+          background 0.25s ease;
+      }
+
+      .single-product-main-image:hover,
+      .single-product-main-image:focus-visible {
+        border-color: rgba(192, 136, 96, 0.42);
+        background: #f5f1ed;
+      }
+
+      .single-product-main-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: auto;
+        max-width: 560px;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        transform: scale(1);
+        opacity: 1;
+        transition:
+          opacity 0.26s ease,
+          transform 0.35s ease;
+      }
+
+      .single-product-main-image.is-changing img {
+        transform: scale(0.985);
+        opacity: 0;
+      }
+
+      .single-product-media-note {
+        display: flex;
+        gap: 7px;
+        align-items: flex-start;
+        padding: 10px 2px 0;
+        color: #756963;
+        font-size: 10px;
+        line-height: 1.45;
+      }
+
+      .single-product-media-note::before {
+        flex: 0 0 auto;
+        width: 6px;
+        height: 6px;
+        margin-top: 5px;
+        border-radius: 50%;
+        background: var(--primary-color, #c08860);
+        content: "";
+      }
+
+      .single-product-copy {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding-top: 0;
+      }
+
+      .single-product-category,
+      .single-product-section-label {
+        margin-bottom: 10px;
+        color: var(--primary-color, #c08860);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .single-product-title {
+        margin-bottom: 12px;
+        color: var(--template-color, #481800);
+        font-family: var(--elicyon, "Elicyon", serif);
+        font-size: clamp(44px, 5vw, 68px);
+        font-weight: 400;
+        line-height: 0.98;
+      }
+
+      .single-product-summary {
+        max-width: 640px;
+        margin-bottom: 22px;
+        color: var(--txt-light, #4f4b47);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .single-product-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+        margin-bottom: 22px;
+        color: #756963;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .single-product-meta strong {
+        color: var(--template-color, #481800);
+        font-weight: 600;
+      }
+
+      .single-product-selected {
+        margin-bottom: 18px;
+        color: var(--template-color, #481800);
+        font-size: 14px;
+      }
+
+      .single-product-selected strong {
+        font-weight: 600;
+      }
+
+      .single-product-shades {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 34px;
+      }
+
+      .single-product-shade {
+        display: block;
+        min-width: 0;
+        padding: 0;
+        border: 1px solid rgba(72, 24, 0, 0.12);
+        background: #fff;
+        color: inherit;
+        text-align: left;
+        text-decoration: none;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .single-product-shade:hover,
+      .single-product-shade:focus-visible,
+      .single-product-shade.is-selected {
+        border-color: var(--primary-color, #c08860);
+        box-shadow: 0 0 0 2px rgba(192, 136, 96, 0.18);
+      }
+
+      .single-product-shade img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        background: #f0ece8;
+      }
+
+      .single-product-shade span {
+        display: block;
+        padding: 8px 9px;
+        color: #4b3c36;
+        font-size: 11px;
+        line-height: 1.3;
+      }
+
+      .single-product-details {
+        display: block;
+        margin-bottom: 24px;
+        border-top: 1px solid rgba(72, 24, 0, 0.08);
+      }
+
+      .single-product-detail {
+        display: grid;
+        grid-template-columns: minmax(120px, 0.72fr) minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+        min-height: 52px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(72, 24, 0, 0.08);
+        background: #fff;
+      }
+
+      .single-product-detail dt {
+        margin-bottom: 0;
+        color: var(--primary-color, #c08860);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .single-product-detail dd {
+        margin: 0;
+        color: var(--template-color, #481800);
+        font-size: 15px;
+        font-weight: 500;
+        text-align: right;
+      }
+
+      .single-product-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .single-product-enquiry-button,
+      .single-product-enquiry-submit {
+        display: inline-flex;
+        min-height: 50px;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 30px;
+        border: 1px solid var(--template-color, #481800);
+        background: var(--template-color, #481800);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        transition:
+          background 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .single-product-enquiry-button:hover,
+      .single-product-enquiry-button:focus-visible,
+      .single-product-enquiry-submit:hover,
+      .single-product-enquiry-submit:focus-visible {
+        border-color: var(--primary-color, #c08860);
+        background: var(--primary-color, #c08860);
+        color: #fff;
+      }
+
+      .single-product-shade-section {
+        padding: 90px 0;
+        background: var(--secondary-color, #f5f3f1);
+      }
+
+      .single-product-shade-header {
+        margin-bottom: 32px;
+        text-align: center;
+      }
+
+      .single-product-shade-title {
+        margin: 0;
+        color: var(--template-color, #481800);
+        font-family: var(--elicyon, "Elicyon", serif);
+        font-size: clamp(34px, 4vw, 54px);
+        font-weight: 400;
+        line-height: 1.1;
+      }
+
+      .single-product-status {
+        padding: 24px;
+        background: #fff;
+        color: #756963;
+      }
+
+      .single-product-modal[hidden] {
+        display: none;
+      }
+
+      .single-product-modal,
+      .single-product-lightbox {
+        position: fixed;
+        z-index: 100000;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 20px;
+      }
+
+      .single-product-modal__backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(24, 10, 3, 0.65);
+        backdrop-filter: blur(3px);
+      }
+
+      .single-product-modal__dialog {
+        position: relative;
+        z-index: 1;
+        width: min(560px, 100%);
+        max-height: calc(100vh - 40px);
+        overscroll-behavior: contain;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 32px;
+        background: #fff;
+        box-shadow: 0 24px 70px rgba(24, 10, 3, 0.24);
+      }
+
+      .single-product-modal__close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 1px solid #e6ddd7;
+        border-radius: 50%;
+        background: #fbf8f6;
+        color: var(--template-color, #481800);
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .single-product-modal__title {
+        margin: 0 44px 8px 0;
+        color: var(--template-color, #481800);
+        font-family: var(--elicyon, "Elicyon", serif);
+        font-size: clamp(30px, 4vw, 42px);
+        font-weight: 400;
+        line-height: 1.1;
+      }
+
+      .single-product-modal__intro,
+      .single-product-enquiry-status {
+        color: #756963;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .single-product-enquiry-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 22px;
+      }
+
+      .single-product-enquiry-field--full {
+        grid-column: 1 / -1;
+      }
+
+      .single-product-enquiry-field label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--template-color, #481800);
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .single-product-enquiry-field input,
+      .single-product-enquiry-field textarea {
+        width: 100%;
+        padding: 12px 13px;
+        border: 1px solid #d9cec6;
+        border-radius: 0;
+        background: #fdfbf9;
+        color: #33231d;
+        font-size: 14px;
+      }
+
+      .single-product-enquiry-field textarea {
+        min-height: 92px;
+        resize: vertical;
+      }
+
+      .single-product-enquiry-footer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      body.single-product-modal-open {
+        overflow: hidden;
+      }
+
+      .single-product-lightbox[hidden] {
+        display: none;
+      }
+
+      .single-product-lightbox {
+        background: rgba(18, 9, 5, 0.9);
+      }
+
+      .single-product-lightbox__dialog {
+        position: relative;
+        z-index: 1;
+        width: min(1080px, 100%);
+      }
+
+      .single-product-lightbox__close {
+        position: fixed;
+        top: 20px;
+        right: 22px;
+        z-index: 3;
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        border-radius: 50%;
+        background: rgba(72, 24, 0, 0.8);
+        color: #fff;
+        font-size: 26px;
+        line-height: 1;
+      }
+
+      .single-product-lightbox .swiper {
+        width: 100%;
+      }
+
+      .single-product-lightbox .swiper-slide {
+        display: grid;
+        min-height: min(78vh, 720px);
+        place-items: center;
+      }
+
+      .single-product-lightbox img {
+        display: block;
+        max-width: 100%;
+        max-height: min(78vh, 720px);
+        object-fit: contain;
+        background: #fff;
+      }
+
+      .single-product-lightbox .swiper-button-next,
+      .single-product-lightbox .swiper-button-prev {
+        color: #fff;
+      }
+
+      .single-product-lightbox .swiper-pagination-bullet {
+        background: rgba(255, 255, 255, 0.75);
+      }
+
+      .single-product-lightbox .swiper-pagination-bullet-active {
+        background: var(--primary-color, #c08860);
+      }
+
+      @media (max-width: 1199px) {
+        .single-product-grid {
+          grid-template-columns: minmax(360px, 0.92fr) minmax(340px, 1.08fr);
+          gap: clamp(28px, 3.2vw, 44px);
+        }
+
+        .single-product-media-gallery {
+          grid-template-columns: 68px minmax(0, 1fr);
+          gap: 10px;
+          height: clamp(405px, 43vw, 500px);
+        }
+
+        .single-product-thumbs,
+        .single-product-main-image {
+          height: 100%;
+        }
+
+        .single-product-main-image {
+          padding: clamp(18px, 2.8vw, 32px);
+        }
+
+        .single-product-main-image img {
+          max-height: 100%;
+        }
+
+        .single-product-title {
+          font-size: clamp(42px, 5vw, 60px);
+        }
+
+        .single-product-detail {
+          min-height: 50px;
+          padding: 11px 0;
+        }
+      }
+
+      @media (max-width: 991px) {
+        .single-product-hero {
+          padding: 128px 0 64px;
+        }
+
+        .single-product-grid {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+
+        .single-product-copy {
+          margin-top: 0;
+          padding-top: 0;
+        }
+
+        .single-product-media-gallery {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          height: auto;
+          max-width: 720px;
+          min-height: 0;
+          margin: 0 auto;
+        }
+
+        .single-product-thumbs {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+          gap: 10px;
+          height: auto;
+          overflow: visible;
+          padding-right: 0;
+          order: 2;
+        }
+
+        .single-product-thumb {
+          aspect-ratio: 1 / 1.05;
+          height: auto;
+        }
+
+        .single-product-main-image {
+          height: auto;
+          aspect-ratio: 1 / 0.82;
+          padding: clamp(18px, 4vw, 34px);
+        }
+
+        .single-product-main-image img {
+          max-width: min(520px, 100%);
+          max-height: 460px;
+        }
+
+        .single-product-meta {
+          margin-bottom: 20px;
+        }
+
+        .single-product-details {
+          margin-bottom: 22px;
+        }
+
+        .single-product-actions {
+          justify-content: flex-start;
+        }
+
+        .single-product-shades {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 575px) {
+        .single-product-hero {
+          padding: 108px 0 52px;
+        }
+
+        .single-product-breadcrumb {
+          gap: 7px;
+          min-height: 32px;
+          margin: 10px 0px;
+          padding: 0;
+          font-size: 12px;
+          line-height: 1;
+          letter-spacing: 0.06em;
+        }
+
+        .single-product-shades,
+        .single-product-enquiry-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .single-product-grid {
+          gap: 24px;
+        }
+
+        .single-product-media-gallery {
+          gap: 10px;
+        }
+
+        .single-product-thumbs {
+          gap: 8px;
+        }
+
+        .single-product-thumb {
+          border-radius: 3px;
+        }
+
+        .single-product-main-image {
+          aspect-ratio: 1 / 1.08;
+          padding: 16px;
+          border-radius: 6px;
+        }
+
+        .single-product-main-image img {
+          max-height: 360px;
+        }
+
+        .single-product-title {
+          font-size: clamp(38px, 14vw, 52px);
+        }
+
+        .single-product-meta {
+          gap: 7px 14px;
+          margin-bottom: 18px;
+          font-size: 12px;
+        }
+
+        .single-product-section-label {
+          margin-bottom: 8px;
+        }
+
+        .single-product-detail {
+          grid-template-columns: 1fr;
+          gap: 5px;
+          min-height: 0;
+          padding: 11px 0;
+        }
+
+        .single-product-detail dd {
+          text-align: left;
+        }
+
+        .single-product-actions,
+        .single-product-enquiry-button {
+          width: 100%;
+        }
+
+      }
+    </style>
+  </head>
+
+  <body class="single-product-page">
+    <div class="page-wrapper">
+      <%- include('partials/header') %>
+      <%- include('partials/page-hero', {
+        tag: '(WPC Louver Detail)',
+        title: product.name,
+        text: getValue(product, 'summary', 'Explore product dimensions, shades, and application details.'),
+        image: mainImage,
+        buttonText: 'View Details',
+        buttonLink: '#product-title'
+      }) %>
+
+      <section>
+        <div class="container-lg">
+          <div class="row">
+            <div class="col single-product-breadcrumb-conatiner">
+              <nav class="single-product-breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="single-product-breadcrumb__divider">/</span>
+                <a href="/wpc-louvers">WPC Louvers</a>
+                <span class="single-product-breadcrumb__divider">/</span>
+                <span id="breadcrumb-product"><%= product.name %></span>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main>
+        
+        <section class="single-product-hero" aria-labelledby="product-title">
+          <div class="container-lg">
+            <div class="single-product-grid">
+              <div class="single-product-media">
+                <div class="single-product-media-gallery">
+                  <div
+                    class="single-product-thumbs"
+                    aria-label="Product images"
+                  >
+                    <% gallery.forEach((image, index) => { %>
+                      <button
+                        class="single-product-thumb<%= index === 0 ? ' is-active' : '' %>"
+                        type="button"
+                        data-lightbox-image
+                        data-lightbox-disabled
+                        data-lightbox-group="product-detail-gallery"
+                        data-gallery-index="<%= index %>"
+                        aria-label="View <%= product.name %> image <%= index + 1 %>"
+                      >
+                        <img
+                          src="<%= louverThumb(image) %>"
+                          data-full-image="<%= image %>"
+                          alt="<%= product.title %> image <%= index + 1 %>"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </button>
+                    <% }); %>
+                  </div>
+                  <a
+                    class="single-product-main-image"
+                    id="product-main-image-button"
+                    href="<%= mainImage %>"
+                    data-lightbox-image
+                    data-lightbox-proxy="true"
+                    data-lightbox-index="0"
+                    data-lightbox-group="product-detail-gallery"
+                    data-gallery-index="0"
+                    aria-label="Open product gallery"
+                  >
+                    <img
+                      id="product-main-image"
+                      src="<%= louverThumb(mainImage) %>"
+                      alt="<%= product.title %>"
+                      fetchpriority="high"
+                      decoding="async"
+                    />
+                  </a></div>
+              </div>
+
+              <article class="single-product-copy">
+                <h1 class="single-product-title" id="product-title"><%= product.name %></h1>
+                <div class="single-product-meta">
+                  <span>SKU: <strong id="product-sku"><%= product.sku %></strong></span>
+                  <span>Category: <strong id="product-meta-category"><%= product.category %></strong></span>
+                </div>
+
+                <section aria-labelledby="details-title">
+                  <p class="single-product-section-label" id="details-title">
+                    specifications
+                  </p>
+                  <dl class="single-product-details" id="product-details">
+                    <% productInfo.forEach((item) => { %>
+                      <div class="single-product-detail">
+                        <dt><%= getValue(item, "label", "") %></dt>
+                        <dd><%= getValue(item, "value", "") %></dd>
+                      </div>
+                    <% }); %>
+                  </dl>
+                </section>
+
+                <div class="single-product-actions">
+                  <button
+                    class="single-product-enquiry-button"
+                    type="button"
+                    id="open-enquiry-modal"
+                  >
+                    Product enquiry
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="single-product-shade-section"
+          aria-labelledby="shade-title"
+        >
+          <div class="container-lg">
+            <div class="single-product-shade-header">
+              <div>
+                <p class="single-product-section-label">Available shades</p>
+                <h2 class="single-product-shade-title" id="shade-title">
+                  Choose your finish
+                </h2>
+              </div>
+            </div>
+            <div
+              class="single-product-shades"
+              id="shade-options"
+              data-lightbox-gallery="shade-gallery"
+              aria-live="polite"
+            >
+              <% shades.forEach((shade, index) => { %>
+                <a
+                  class="single-product-shade<%= index === 0 ? ' is-selected' : '' %>"
+                  href="<%= getValue(shade, "image", "") %>"
+                  data-lightbox-image
+                  data-shade-name="<%= getValue(shade, "name", "") %>"
+                >
+                  <img
+                    src="<%= getValue(shade, "image", "") %>"
+                    alt="<%= getValue(shade, "name", "") %>"
+                    loading="lazy"
+                  />
+                  <span><%= getValue(shade, "name", "") %></span>
+                </a>
+              <% }); %>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <div
+        class="single-product-modal"
+        id="product-enquiry-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-enquiry-title"
+        hidden
+      >
+        <div class="single-product-modal__backdrop" data-enquiry-close></div>
+        <div class="single-product-modal__dialog">
+          <button
+            class="single-product-modal__close"
+            type="button"
+            data-enquiry-close
+            aria-label="Close enquiry form"
+          >
+            &times;
+          </button>
+          <h2 class="single-product-modal__title" id="product-enquiry-title">
+            Product enquiry
+          </h2>
+          <form id="product-enquiry-form">
+            <div class="single-product-enquiry-grid">
+              <div
+                class="single-product-enquiry-field single-product-enquiry-field--full"
+              >
+                <label for="enquiry-product">Product *</label>
+                <input
+                  id="enquiry-product"
+                  name="product"
+                  type="text"
+                  value="<%= product.title %>"
+                  readonly
+                />
+              </div>
+              <div class="single-product-enquiry-field">
+                <label for="enquiry-name">Name *</label>
+                <input id="enquiry-name" name="name" type="text" required />
+              </div>
+              <div class="single-product-enquiry-field">
+                <label for="enquiry-phone">Phone *</label>
+                <input id="enquiry-phone" name="phone" type="tel" required />
+              </div>
+              <div class="single-product-enquiry-field">
+                <label for="enquiry-email">Email *</label>
+                <input id="enquiry-email" name="email" type="email" required />
+              </div>
+              <div class="single-product-enquiry-field">
+                <label for="enquiry-city">City</label>
+                <input id="enquiry-city" name="city" type="text" />
+              </div>
+              <div
+                class="single-product-enquiry-field single-product-enquiry-field--full"
+              >
+                <label for="enquiry-message">Requirement</label>
+                <textarea
+                  id="enquiry-message"
+                  name="message"
+                  placeholder="Quantity, application area or any other details"
+                ></textarea>
+              </div>
+            </div>
+            <div class="single-product-enquiry-footer">
+              <button class="single-product-enquiry-submit" type="submit">
+                Send enquiry
+              </button>
+              <p
+                class="single-product-enquiry-status"
+                id="product-enquiry-status"
+                aria-live="polite"
+              ></p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="single-product-lightbox"
+        id="product-gallery-lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Product image gallery"
+        hidden
+      >
+        <button
+          class="single-product-lightbox__close"
+          type="button"
+          id="close-gallery-lightbox"
+          aria-label="Close product gallery"
+        >
+          &times;
+        </button>
+        <div class="single-product-lightbox__dialog">
+          <div class="swiper" id="product-gallery-swiper">
+            <div class="swiper-wrapper">
+              <% gallery.forEach((image, index) => { %>
+                <div class="swiper-slide">
+                  <img
+                    src="<%= image %>"
+                    alt="<%= product.title %> image <%= index + 1 %>"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              <% }); %>
+            </div>            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+      <%- include('partials/footer') %>
+
+      <div class="lines l-alt">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+
+      <div class="mouseCursor cursor-outer"></div>
+      <div class="mouseCursor cursor-inner">
+        <span class="drag">drag</span>
+        <span class="view">view</span>
+        <span class="play">play</span>
+      </div>
+
+      <button class="progress-wrap" aria-label="scroll indicator">
+        <span></span>
+        <svg
+          class="progress-circle svg-content"
+          width="100%"
+          height="100%"
+          viewBox="-1 -1 102 102"
+        >
+          <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+      </button>
+    </div>
+
+    <script src="assets/js/jquery-4.0.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <script src="assets/js/phosphor-icon.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/ScrollToPlugin.min.js"></script>
+    <script src="assets/js/lenis.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/image-lightbox.js?v=5"></script>
+    <script>
+      (function () {
+        const els = {
+          shadeOptions: document.getElementById("shade-options"),
+          selectedShadeName: document.getElementById("selected-shade-name"),
+          galleryThumbs: document.querySelectorAll(".single-product-thumb"),
+          mainImage: document.getElementById("product-main-image"),
+          mainImageButton: document.getElementById("product-main-image-button"),
+          lightbox: document.getElementById("product-gallery-lightbox"),
+          lightboxClose: document.getElementById("close-gallery-lightbox"),
+          copyrightYear: document.getElementById("copyrightYear"),
+          enquiryOpen: document.getElementById("open-enquiry-modal"),
+          enquiryModal: document.getElementById("product-enquiry-modal"),
+          enquiryForm: document.getElementById("product-enquiry-form"),
+          enquiryProduct: document.getElementById("enquiry-product"),
+          enquiryStatus: document.getElementById("product-enquiry-status"),
+        };
+        const productTitle = <%- JSON.stringify(product.title) %>;
+        const scrollLock = window.PioneerScrollLock || {
+          lock() {},
+          unlock() {},
+        };
+        let activeShade = <%- JSON.stringify(defaultShade) %>;
+        let lastFocusedElement = null;
+        let gallerySwiper = null;
+
+        if (els.copyrightYear) {
+          els.copyrightYear.textContent = new Date().getFullYear();
+        }
+
+        const selectShade = (item) => {
+          els.shadeOptions
+            .querySelectorAll(".single-product-shade")
+            .forEach((shade) => shade.classList.remove("is-selected"));
+          item.classList.add("is-selected");
+          activeShade = item.dataset.shadeName || item.textContent.trim();
+          if (els.selectedShadeName) {
+            els.selectedShadeName.textContent = activeShade;
+          }
+        };
+
+        if (els.selectedShadeName) {
+          els.selectedShadeName.textContent = activeShade;
+        }
+        els.shadeOptions
+          .querySelectorAll(".single-product-shade")
+          .forEach((item) =>
+            item.addEventListener("click", () => {
+              selectShade(item);
+            }),
+          );
+
+        const setGalleryImage = (button) => {
+          const index = Number(button.dataset.galleryIndex || 0);
+          const image = button.querySelector("img");
+          if (!image) return;
+
+          els.galleryThumbs.forEach((item) =>
+            item.classList.remove("is-active"),
+          );
+          button.classList.add("is-active");
+          const fullImage = image.dataset.fullImage || image.src;
+          els.mainImageButton.dataset.galleryIndex = String(index);
+          els.mainImageButton.dataset.lightboxIndex = String(index);
+          els.mainImageButton.href = fullImage;
+          els.mainImageButton.classList.add("is-changing");
+
+          window.setTimeout(() => {
+            els.mainImage.onload = () => {
+              els.mainImageButton.classList.remove("is-changing");
+            };
+            els.mainImage.src = image.src;
+            els.mainImage.alt = image.alt;
+            if (els.mainImage.complete) {
+              els.mainImageButton.classList.remove("is-changing");
+            }
+          }, 120);
+        };
+
+        const openGalleryLightbox = (index = 0) => {
+          lastFocusedElement = document.activeElement;
+          els.lightbox.hidden = false;
+          document.body.classList.add("single-product-modal-open");
+          scrollLock.lock();
+
+          if (!gallerySwiper) {
+            gallerySwiper = new Swiper("#product-gallery-swiper", {
+              loop: false,
+              slidesPerView: 1,
+              spaceBetween: 20,
+              navigation: {
+                nextEl: ".single-product-lightbox .swiper-button-next",
+                prevEl: ".single-product-lightbox .swiper-button-prev",
+              },
+              pagination: {
+                el: ".single-product-lightbox .swiper-pagination",
+                clickable: true,
+              },
+            });
+          }
+
+          gallerySwiper.update();
+          gallerySwiper.slideTo(index, 0);
+          els.lightboxClose.focus();
+        };
+
+        const closeGalleryLightbox = () => {
+          els.lightbox.hidden = true;
+          document.body.classList.remove("single-product-modal-open");
+          scrollLock.unlock();
+          if (lastFocusedElement) lastFocusedElement.focus();
+        };
+
+        els.galleryThumbs.forEach((button) => {
+          button.addEventListener("click", () => {
+            setGalleryImage(button);
+          });
+        });
+
+        els.lightboxClose.addEventListener("click", closeGalleryLightbox);
+        els.lightbox.addEventListener("click", (event) => {
+          if (event.target === els.lightbox) closeGalleryLightbox();
+        });
+
+        const openEnquiryModal = () => {
+          lastFocusedElement = document.activeElement;
+          const enquiryProduct = `${productTitle}${activeShade ? ` - ${activeShade}` : ""}`;
+          els.enquiryProduct.value = enquiryProduct;
+          els.enquiryStatus.textContent = "";
+          els.enquiryModal.hidden = false;
+          document.body.classList.add("single-product-modal-open");
+          scrollLock.lock();
+          document.getElementById("enquiry-name").focus();
+        };
+
+        const closeEnquiryModal = () => {
+          els.enquiryModal.hidden = true;
+          document.body.classList.remove("single-product-modal-open");
+          scrollLock.unlock();
+          if (lastFocusedElement) lastFocusedElement.focus();
+        };
+
+        els.enquiryOpen.addEventListener("click", openEnquiryModal);
+        els.enquiryModal
+          .querySelectorAll("[data-enquiry-close]")
+          .forEach((item) => item.addEventListener("click", closeEnquiryModal));
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !els.enquiryModal.hidden) {
+            closeEnquiryModal();
+          }
+          if (event.key === "Escape" && !els.lightbox.hidden) {
+            closeGalleryLightbox();
+          }
+        });
+
+        els.enquiryForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const formData = new FormData(els.enquiryForm);
+          const body = [
+            `Product: ${formData.get("product") || productTitle}`,
+            `Selected shade: ${activeShade || "-"}`,
+            `Name: ${formData.get("name")}`,
+            `Phone: ${formData.get("phone")}`,
+            `Email: ${formData.get("email")}`,
+            `City: ${formData.get("city") || "-"}`,
+            `Requirement: ${formData.get("message") || "-"}`,
+          ].join("\n");
+
+          window.location.href = `mailto:sks@pioneerflex.in?subject=${encodeURIComponent("WPC Louver Product Enquiry")}&body=${encodeURIComponent(body)}`;
+          els.enquiryStatus.textContent =
+            "Your email app has been opened with the enquiry details.";
+        });
+      })();
+    </script>
+  </body>
+</html>

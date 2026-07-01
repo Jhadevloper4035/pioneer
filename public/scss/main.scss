@@ -1,0 +1,116 @@
+/* ==============
+ ========= css table of contents =========
+
+ * template name: Archinex
+ * version: 1.0
+ * description: Modern Architecture & Interior Design HTML Template
+ * author: theme_sonic
+ * author-url: https://themeforest.net/user/theme_sonic
+
+ 01. abstracts
+     1.01 --> mixins
+     1.02 --> variables
+    
+ 02. base
+     2.01 --> reset
+     2.02 --> typography
+     2.03 --> global
+
+ 03. components
+     3.01 --> buttons
+     3.02 --> forms
+     3.03 --> preloader
+     3.04 --> cursor
+     3.05 --> scroll progress
+     3.06 --> widgets
+
+ 04. layout
+     4.01 --> header
+     4.02 --> banner
+     4.03 --> footer
+
+ 05. sections
+     5.01 --> overview
+     5.02 --> video
+     5.03 --> about
+     5.04 --> work
+     5.05 --> service
+     5.06 --> process
+     5.07 --> testimonial
+     5.08 --> field
+     5.09 --> counter
+     5.10 --> concept
+     5.11 --> team
+     5.12 --> transform
+     5.13 --> instagram feed
+     5.14 --> project
+     5.15 --> creative
+     5.16 --> news
+     5.17 --> contact
+     5.18 --> partner
+     5.19 --> vision
+     5.20 --> coming soon
+     5.21 --> error
+     5.22 --> dark mode
+     5.21 --> rtl mode
+
+ 06. dark mode
+
+ 07. rtl mode
+
+    ==================================
+============== */
+
+// abstract styles
+@use "./abstracts/mixins" as mixins;
+@use "./abstracts/variables" as variables;
+
+// base styles
+@use "./base/reset" as reset;
+@use "./base/typography" as typography;
+@use "./base/global" as global;
+
+// component styles
+@use "./components/buttons" as buttons;
+@use "./components/forms" as forms;
+@use "./components/preloader" as preloader;
+@use "./components/cursor" as cursor;
+@use "./components/scroll-progress" as scrollProgress;
+@use "./components/widgets" as widgets;
+
+// layout styles
+@use "./layout/header" as header;
+@use "./layout/banner" as banner;
+@use "./layout/footer" as footer;
+
+// section styles
+@use "./sections/overview" as overview;
+@use "./sections/video" as video;
+@use "./sections/about" as about;
+@use "./sections/work" as work;
+@use "./sections/service" as service;
+@use "./sections/process" as process;
+@use "./sections/testimonial" as testimonial;
+@use "./sections/field" as field;
+@use "./sections/counter" as counter;
+@use "./sections/concept" as concept;
+@use "./sections/team" as team;
+@use "./sections/transform" as transform;
+@use "./sections/insta-feed" as instaFeed;
+@use "./sections/project" as project;
+@use "./sections/creative" as creative;
+@use "./sections/news" as news;
+@use "./sections/contact" as contact;
+@use "./sections/partner" as partner;
+@use "./sections/vision" as vision;
+@use "./sections/coming-soon" as comingSoon;
+@use "./sections/error" as error;
+
+// dark mode
+@use "./dark-mode";
+
+// rtl mode
+@use "./rtl-mode";
+
+// final CTA state overrides
+@use "./components/cta-buttons" as ctaButtons;

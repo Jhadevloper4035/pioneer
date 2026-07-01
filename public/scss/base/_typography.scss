@@ -1,0 +1,448 @@
+/* ==== 
+ --------- (2.02) typography styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+// google fonts
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+// elicyon font source
+@font-face {
+  font-family: "Elicyon";
+  src: url("../fonts/Elicyon-Regular.woff2") format("woff2"), url('../fonts/Elicyon-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+// maison neue font source
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-Light.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-Book.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-Book.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-Medium.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-Demi.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-Demi.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-Bold.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// maison neue italic 
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-LightItalic.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-BookItalic.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-BookItalic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-MediumItalic.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-DemiItalic.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-DemiItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Maison Neue";
+  src: url("../fonts/MaisonNeue-BoldItalic.woff2") format("woff2"),
+    url("../fonts/MaisonNeue-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+}
+
+// paragraph and link styles
+p,
+th,
+td,
+li,
+input,
+textarea,
+select,
+label,
+blockquote,
+span,
+a,
+button {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  color: var(--template-color);
+  letter-spacing: -0.03em;
+}
+
+p {
+  margin-top: -4px;
+}
+
+.text-xxl {
+  font-size: 20px;
+  line-height: 26px;
+
+  @include xl-screen {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+.text-xl {
+  font-size: 16px;
+  line-height: 22px;
+
+  @include md-screen {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  @include xl-screen {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.text-lg {
+  font-size: 16px;
+  line-height: 22px;
+
+  @include xl-screen {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.text-md {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.text-sm {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.text-xs {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+// heading styles
+h1 {
+  font-size: 30px;
+  line-height: 36px;
+
+  @include sm-screen {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  @include md-screen {
+    font-size: 40px;
+    line-height: 46px;
+  }
+
+  @include lg-screen {
+    font-size: 60px;
+    line-height: 66px;
+  }
+
+  @include xl-screen {
+    font-size: 80px;
+    line-height: 86px;
+  }
+}
+
+.title-xxl {
+  font-size: clamp(30px, 10vw, 110px);
+  line-height: calc(100% + 6px);
+  letter-spacing: -0.05em;
+
+  @include md-screen {
+    font-size: clamp(100px, 13vw, 200px);
+  }
+
+  @include min-screen(1600px) {
+    font-size: clamp(200px, 13vw, 240px);
+  }
+}
+
+.title-xl {
+  font-size: clamp(30px, 9vw, 70px);
+  line-height: calc(100% + 6px);
+  letter-spacing: -0.05em;
+
+  @include md-screen {
+    font-size: clamp(60px, 10vw, 100px);
+  }
+
+  @include xl-screen {
+    font-size: clamp(110px, 10vw, 160px);
+  }
+
+  @include min-screen(1600px) {
+    font-size: clamp(160px, 10vw, 190px);
+
+  }
+}
+
+.title-lg {
+  font-size: clamp(24px, 4.5vw, 36px);
+  line-height: calc(100% + 6px);
+  letter-spacing: -0.05em;
+
+  @include md-screen {
+    font-size: clamp(36px, 4vw, 50px);
+  }
+
+  @include xl-screen {
+    font-size: clamp(50px, 5vw, 70px);
+  }
+
+  @include min-screen(1600px) {
+    font-size: clamp(80px, 12vw, 110px);
+  }
+}
+
+.title-md {
+  font-size: 26px;
+  line-height: 32px;
+
+  @include sm-screen {
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  @include md-screen {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  @include lg-screen {
+    font-size: 44px;
+    line-height: 50px;
+  }
+
+  @include xl-screen {
+    font-size: 80px;
+    line-height: 86px;
+  }
+}
+
+.title-sm {
+  font-size: 24px;
+  line-height: 30px;
+
+  @include sm-screen {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  @include md-screen {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  @include lg-screen {
+    font-size: 44px;
+    line-height: 50px;
+  }
+
+  @include xl-screen {
+    font-size: 60px;
+    line-height: 66px;
+  }
+}
+
+
+h2 {
+  font-size: 26px;
+  line-height: 32px;
+
+  @include sm-screen {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  @include md-screen {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  @include lg-screen {
+    font-size: 44px;
+    line-height: 50px;
+  }
+
+  @include xl-screen {
+    font-size: 60px;
+    line-height: 66px;
+  }
+}
+
+h3,
+.title-lg-sm {
+
+  font-size: 24px;
+  line-height: 30px;
+
+  @include sm-screen {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  @include md-screen {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  @include lg-screen {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  @include xl-screen {
+    font-size: 44px;
+    line-height: 50px;
+  }
+}
+
+h4 {
+  font-size: 22px;
+  line-height: 28px;
+
+  @include sm-screen {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  @include md-screen {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  @include xl-screen {
+    font-size: 40px;
+    line-height: 46px;
+  }
+}
+
+h5,
+.title-xs {
+  font-size: 20px;
+  line-height: 26px;
+
+  @include md-screen {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  @include xl-screen {
+    font-size: 34px;
+    line-height: 40px;
+  }
+}
+
+h6,
+.title-xxs {
+  font-size: 18px;
+  line-height: 24px;
+
+  @include md-screen {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  @include xl-screen {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+
+  a,
+  span {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    color: inherit;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading-font);
+  letter-spacing: -0.4%;
+}
+
+.neutral-top {
+  margin-block-start: -8px;
+}
+
+/* ==== 
+ --------- (2.02) typography styles end ---------
+ ==== */

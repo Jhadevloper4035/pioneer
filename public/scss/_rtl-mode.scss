@@ -1,0 +1,223 @@
+/* ==== 
+ --------- (7.00) rtl mode styles start ---------
+ ==== */
+
+@use "./abstracts/mixins" as *;
+
+.rtl {
+    direction: rtl;
+
+    .swiper {
+        direction: ltr;
+    }
+
+    .flip-img {
+        scale: -1 1;
+    }
+
+    .parallax-image-wrap {
+        scale: -1 1;
+    }
+
+    .color-palate {
+        .color-palate-inner {
+            direction: ltr;
+        }
+    }
+
+    .header .navbar__item--has-children>.navbar__sub-menu {
+        transform: translateX(30px) translateY(20px);
+    }
+
+    .header .navbar__item--has-children:hover>.navbar__sub-menu {
+        transform: translateX(30px) translateY(0px);
+    }
+
+    .header .navbar__item--has-children>.navbar__sub-menu.mega-menu {
+        transform: translateY(30px) translateX(43.5%) !important;
+
+        @include xxl-screen {
+            transform: translateY(30px) translateX(45%) !important;
+        }
+    }
+
+    .header .navbar__item--has-children:hover>.navbar__sub-menu.mega-menu {
+        transform: translateX(43.5%) translateY(0px) !important;
+
+        @include xxl-screen {
+            transform: translateX(45%) translateY(0px) !important;
+        }
+    }
+
+    .mobile-menu,
+    .mobile-menu__backdrop {
+        direction: ltr;
+    }
+
+    .title-animation,
+    .title-animation-lg {
+        direction: ltr;
+        text-align: end;
+
+        .split-parent {
+            text-align: end !important;
+        }
+    }
+
+    .text-end.title-animation-lg {
+        text-align: start !important;
+    }
+
+    .text-center.title-animation {
+        direction: ltr;
+        text-align: center;
+
+        .split-parent {
+            text-align: center !important;
+        }
+    }
+
+    .text-center {
+        .title-animation {
+            direction: ltr;
+            text-align: center;
+
+            .split-parent {
+                text-align: center !important;
+            }
+        }
+    }
+
+    .contact-banner__thumb-wrapper {
+        direction: rtl;
+    }
+
+    .hero-three__content {
+        p {
+            margin-inline-start: auto;
+            direction: ltr;
+            text-align: end;
+        }
+
+        h2,
+        h3 {
+            text-align: end;
+        }
+    }
+
+    .hero-three__cta {
+        direction: rtl;
+    }
+
+    .hero-four {
+        .title-xxl {
+            flex-direction: row-reverse;
+        }
+
+        .ltr-fix {
+            direction: ltr;
+        }
+    }
+
+    .service-four-thumb {
+        inset-inline-start: 80px;
+        inset-inline-end: unset;
+    }
+
+    .service {
+        .service__wrapper {
+            direction: ltr;
+        }
+    }
+
+    .service-two {
+        direction: ltr;
+
+        .title-animation .split-parent {
+            text-align: start !important;
+        }
+    }
+
+    .concept,
+    .team {
+        direction: ltr;
+
+        .title-animation .split-parent {
+            text-align: start !important;
+        }
+    }
+
+    .testimonial {
+
+        .swiper-slide {
+            text-align: end;
+        }
+
+        .slider-navigation {
+            flex-direction: row-reverse;
+        }
+
+        .testimonial__single {
+            margin-inline-end: auto !important;
+            display: inline-block;
+        }
+    }
+
+    .project__header {
+        direction: ltr;
+    }
+
+    .project-slider__box {
+        margin-inline-start: auto;
+    }
+
+    .team-two__lists li i,
+    .team-two__lists li .serial {
+        transform: translateX(100%);
+    }
+
+    .team-two__lists li:hover .serial,
+    .team-two__lists li:hover i {
+        transform: translateX(0px);
+    }
+
+
+    .team-two__lists li.active .serial,
+    .team-two__lists li.active i {
+        transform: translateX(0px);
+    }
+
+    .work-two__lists li .serial {
+        transform: translateX(100%);
+    }
+
+    .work-two__lists li:hover .serial {
+        transform: translateX(0px);
+    }
+
+
+    .work-two__lists li.active .serial {
+        transform: translateX(0px);
+    }
+
+    .service-four__single-right a i {
+        scale: -1 1;
+    }
+
+    .header-two .navbar__sub-menu .navbar__item--has-children::after,
+    .header-three .navbar__sub-menu .navbar__item--has-children::after {
+        scale: -1 1;
+    }
+
+    .hero-three .hero-three-pagination {
+        @include min-screen(1600px) {
+            margin-inline: unset;
+            margin-inline-end: auto;
+            width: unset !important;
+        }
+    }
+}
+
+/* ==== 
+ --------- (7.00) rtl mode styles end ---------
+ ==== */

@@ -1,0 +1,118 @@
+/* ==== 
+ --------- (5.19) vision styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.vision {
+    position: relative;
+    z-index: 1;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset-inline: 0px;
+        inset-block-end: 0px;
+        height: 20px;
+        background-color: #C08860;
+    }
+
+    .vision__inner {
+        position: relative;
+        margin-top: 160px;
+        overflow: hidden;
+        padding-inline: 12px;
+        padding-block: 80px;
+
+        @include md-screen {
+            padding-inline: 20px;
+            margin-top: 300px;
+        }
+
+        @include xl-screen {
+            margin-top: 520px;
+            padding-block: 100px;
+        }
+    }
+
+    .vision-blur-img {
+        position: absolute;
+        inset-inline: 0px;
+        bottom: 20px;
+        border: 1px solid #685f51;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+
+    h3 {
+        max-width: 320px;
+
+        @include md-screen {
+            max-width: 400px;
+        }
+
+        @include xl-screen {
+            max-width: 100%;
+        }
+    }
+
+    .vision__content {
+        .title-md {
+            line-height: 1;
+
+            span {
+                margin-top: -0.9em;
+            }
+        }
+    }
+
+    p {
+        max-width: 420px;
+        margin-top: 20px;
+
+        @include md-screen {
+            max-width: 700px;
+        }
+
+        @include xl-screen {
+            margin-top: 30px;
+            max-width: 760px;
+        }
+    }
+
+    .vision__cta {
+        @include lg-screen {
+            text-align: end;
+        }
+    }
+
+    .vision-bg {
+        position: absolute;
+        inset: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -3;
+
+        img {
+            max-height: 960px;
+        }
+
+        img,
+        .parallax-image-wrap,
+        .parallax-image-inner {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+/* ==== 
+ --------- (5.19) vision styles end ---------
+ ==== */

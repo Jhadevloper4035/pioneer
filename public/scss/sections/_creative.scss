@@ -1,0 +1,192 @@
+/* ==== 
+ --------- (5.15) creative styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.creative {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    .thumb {
+        img {
+            width: 100%;
+            min-height: 240px;
+        }
+    }
+
+    .parallax-image-inner,
+    .parallax-image-wrap {
+        width: 100%;
+        height: 100%;
+    }
+
+    .small-thumb-wrapper {
+        max-width: 320px;
+
+        a {
+            span {
+                position: relative;
+                font-weight: 400;
+                letter-spacing: 1px;
+                color: var(--txt-light);
+                transition: var(--transition);
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset-inline-start: 0px;
+                    inset-block-end: 0px;
+                    width: 100%;
+                    height: 1px;
+                    background-color: var(--txt-light);
+                    transition: var(--transition);
+                }
+            }
+
+            i {
+                font-size: 24px;
+                font-weight: 500;
+                margin-bottom: -3px;
+                color: var(--txt-light);
+            }
+
+            &:hover {
+                color: var(--primary-color);
+
+                span {
+                    color: var(--primary-color);
+
+                    &::before {
+                        width: 100%;
+                        background-color: var(--primary-color);
+                    }
+
+                }
+
+                i {
+                    color: var(--primary-color);
+                }
+            }
+        }
+    }
+
+    .divider {
+        max-width: 150px;
+    }
+
+    .large-thumb-wrapper {
+        img {
+            min-height: 460px;
+        }
+    }
+
+    .content-cta {
+        margin-top: 30px;
+
+        @include sm-screen {
+            margin-top: 80px;
+        }
+    }
+}
+
+.creative__text {
+    max-width: 340px;
+
+    @include md-screen {
+        margin-inline-start: auto;
+    }
+
+    span {
+        color: #C08860;
+    }
+}
+
+.creative__link {
+    @include md-screen {
+        text-align: end;
+
+    }
+
+    a {
+        &:hover {
+            &::before {
+                background-color: var(--primary-color);
+            }
+
+            color: var(--primary-color);
+        }
+    }
+}
+
+.creative__wrapper {
+    @include lg-screen {
+        margin-block-start: 200px;
+    }
+
+    .hover-line-bottom-two {
+        color: var(--txt-light);
+
+        &:hover {
+            &::before {
+                background-color: var(--primary-color);
+            }
+        }
+
+        &::before {
+            width: 100%;
+            background-color: var(--txt-light);
+        }
+    }
+}
+
+.creative-four__intro {
+    position: relative;
+
+    @include max-screen(1399px) {
+        max-width: 630px;
+        margin-inline: auto;
+    }
+
+    @include max-screen(991px) {
+        max-width: 380px;
+    }
+
+    @include max-screen(767px) {
+        margin-inline: unset;
+        max-width: 430px;
+    }
+
+    .title-sm {
+        @include xl-screen {
+            line-height: 54px;
+        }
+
+        @include xxl-screen {
+            max-width: 630px;
+            margin-inline: auto;
+        }
+
+    }
+
+    .fraunces {
+        display: inline;
+    }
+
+    .subtle {
+        margin-bottom: 30px;
+
+        @include xxl-screen {
+            position: absolute;
+            inset-inline-start: 0px;
+            inset-block-start: 6px;
+            margin-bottom: 0px;
+        }
+    }
+
+}
+
+/* ==== 
+ --------- (5.15) creative styles end ---------
+ ==== */

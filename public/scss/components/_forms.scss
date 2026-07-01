@@ -1,0 +1,128 @@
+/* ==== 
+ --------- (3.02) form styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+
+    .input-single {
+        margin-bottom: 0px;
+    }
+}
+
+.input-single {
+    width: 100%;
+    margin-bottom: 12px;
+
+    input,
+    textarea,
+    .select {
+        width: 100%;
+        padding: 16px 24px;
+        background-color: #F5F2EE;
+        color: #481800;
+        transition: var(--transition);
+        border-radius: 6px;
+        border: 0px solid transparent;
+
+        &::placeholder {
+            opacity: 0.5;
+            color: #481800;
+        }
+    }
+
+    textarea {
+        min-height: 170px;
+        border-radius: 6px;
+    }
+}
+
+.check-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+
+    input {
+        pointer-events: none;
+        opacity: 0;
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+    }
+
+    label {
+        position: relative;
+        padding-inline-start: 12px;
+        margin-inline-start: 8px;
+        cursor: pointer;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset-inline-end: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--border-color);
+            background-color: transparent;
+            border-radius: 4px;
+        }
+
+        &::after {
+            content: "\ea5e";
+            font-family: "tabler-icons";
+            position: absolute;
+            inset-inline-end: calc(100% + 2px);
+            top: 50%;
+            transform: translateY(-50%);
+            top: 50%;
+            font-size: 0px;
+        }
+    }
+
+    input:checked+label::after {
+        font-size: 18px;
+    }
+}
+
+// review form
+.review__form {
+
+    input,
+    textarea {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background-color: transparent;
+        color: var(--template-color);
+
+        &::placeholder {
+            color: var(--template-color);
+            opacity: 0.5;
+        }
+
+        &:focus {
+            border: 1px solid var(--primary-color);
+        }
+    }
+
+    .input-group {
+        .input-single {
+            width: 100%;
+
+            @include sm-screen {
+                width: calc(50% - 12px);
+            }
+        }
+    }
+}
+
+/* ==== 
+ --------- (3.02) form styles end ---------
+ ==== */

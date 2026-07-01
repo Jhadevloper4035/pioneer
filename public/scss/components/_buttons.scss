@@ -1,0 +1,508 @@
+/* ==== 
+ --------- (3.01) buttons styles start ---------
+ ==== */
+
+//  primary button
+.btn-primary {
+    gap: 0px;
+    overflow: hidden;
+    transition: 0.5s;
+
+    .btn-animated-text {
+        padding: 12px 24px 14px;
+        background-color: transparent;
+        border-radius: 30px;
+        font-size: 14px;
+        transition: 0.5s;
+        line-height: 1;
+        position: relative;
+        direction: ltr;
+        width: 100%;
+        border: 1px solid var(--senary-color);
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+
+        span {
+            color: var(--txt-light);
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            font-weight: 500;
+
+            &:nth-child(odd) {
+                transform: translateY(-50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(50px);
+                    left: 0;
+                }
+            }
+
+            &:nth-child(even) {
+                transform: translateY(50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(-50px);
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        .btn-animated-text {
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+
+            span {
+                color: var(--white);
+
+                &:nth-child(odd) {
+                    transform: translateY(0);
+                }
+
+                &:nth-child(even) {
+                    transform: translateY(0);
+                }
+            }
+
+        }
+    }
+}
+
+// secondary button
+.btn-secondary {
+    gap: 0px;
+    overflow: hidden;
+    transition: 0.5s;
+
+    .btn-animated-text {
+        padding: 16px 30px 18px;
+        background-color: var(--white);
+        border-radius: 30px;
+        font-size: 14px;
+        transition: 0.5s;
+        line-height: 1;
+        position: relative;
+        direction: ltr;
+        width: 100%;
+        border: 1px solid var(--white);
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+
+        span {
+            color: var(--black);
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            font-weight: 500;
+
+            &:nth-child(odd) {
+                transform: translateY(-50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(50px);
+                    left: 0;
+                }
+            }
+
+            &:nth-child(even) {
+                transform: translateY(50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(-50px);
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        .btn-animated-text {
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+
+            span {
+                color: var(--white);
+
+                &:nth-child(odd) {
+                    transform: translateY(0);
+                }
+
+                &:nth-child(even) {
+                    transform: translateY(0);
+                }
+            }
+
+        }
+    }
+}
+
+//  tertiary button
+.btn-tertiary {
+    gap: 0px;
+    overflow: hidden;
+    transition: 0.5s;
+
+    .btn-animated-text {
+        padding: 14px 24px 16px;
+        border-radius: 30px;
+        font-size: 16px;
+        transition: 0.5s;
+        line-height: 1;
+        position: relative;
+        direction: ltr;
+        width: 100%;
+        border: 1px solid var(--template-color);
+        background-color: var(--template-color);
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+
+        span {
+            color: var(--template-bg);
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            font-weight: 500;
+
+            &:nth-child(odd) {
+                transform: translateY(-50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(50px);
+                    left: 0;
+                }
+            }
+
+            &:nth-child(even) {
+                transform: translateY(50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(-50px);
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        .btn-animated-text {
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+
+            span {
+                color: var(--white);
+
+                &:nth-child(odd) {
+                    transform: translateY(0);
+                }
+
+                &:nth-child(even) {
+                    transform: translateY(0);
+                }
+            }
+
+        }
+    }
+}
+
+// quaternary button
+.btn-quaternary {
+    gap: 0px;
+    overflow: hidden;
+    transition: 0.5s;
+
+    .btn-animated-text {
+        padding: 16px 24px 18px;
+        background-color: var(--primary-color);
+        border-radius: 30px;
+        font-size: 14px;
+        transition: 0.5s;
+        line-height: 1;
+        position: relative;
+        direction: ltr;
+        width: 100%;
+        border: 1px solid var(--primary-color);
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+
+        span {
+            color: var(--white);
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            font-weight: 500;
+
+            &:nth-child(odd) {
+                transform: translateY(-50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(50px);
+                    left: 0;
+                }
+            }
+
+            &:nth-child(even) {
+                transform: translateY(50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(-50px);
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        .btn-animated-text {
+
+
+            span {
+
+                &:nth-child(odd) {
+                    transform: translateY(0);
+                }
+
+                &:nth-child(even) {
+                    transform: translateY(0);
+                }
+            }
+
+        }
+    }
+}
+
+//  quinary button
+.btn-quinary {
+    gap: 0px;
+    overflow: hidden;
+    transition: 0.5s;
+
+    .btn-animated-text {
+        padding: 12px 24px 14px;
+        background-color: transparent;
+        border-radius: 30px;
+        font-size: 14px;
+        transition: 0.5s;
+        line-height: 1;
+        position: relative;
+        direction: ltr;
+        width: 100%;
+        border: 1px solid #4818002c;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+
+        span {
+            color: var(--template-color);
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            font-weight: 500;
+
+            &:nth-child(odd) {
+                transform: translateY(-50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(50px);
+                    left: 0;
+                }
+            }
+
+            &:nth-child(even) {
+                transform: translateY(50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(-50px);
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        .btn-animated-text {
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+
+            span {
+                color: var(--white);
+
+                &:nth-child(odd) {
+                    transform: translateY(0);
+                }
+
+                &:nth-child(even) {
+                    transform: translateY(0);
+                }
+            }
+
+        }
+    }
+}
+
+// light button
+.btn-light {
+    gap: 0px;
+    overflow: hidden;
+    transition: 0.5s;
+
+    .btn-animated-text {
+        background-color: transparent;
+        transition: 0.5s;
+        line-height: 1;
+        position: relative;
+        direction: ltr;
+        width: 100%;
+        letter-spacing: -0.03em;
+
+        span {
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            font-weight: 500;
+            color: #f5f2ee;
+
+            &:nth-child(odd) {
+                transform: translateY(-50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(50px);
+                    left: 0;
+                }
+            }
+
+            &:nth-child(even) {
+                transform: translateY(50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(-50px);
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        .btn-animated-text {
+            span {
+                color: var(--primary-color);
+
+                &:nth-child(odd) {
+                    transform: translateY(0);
+                }
+
+                &:nth-child(even) {
+                    transform: translateY(0);
+                }
+            }
+
+        }
+    }
+}
+
+//  light 2 button
+.btn-light-2 {
+    gap: 0px;
+    overflow: hidden;
+    transition: 0.5s;
+
+    .btn-animated-text {
+        padding: 14px 24px 16px;
+        border-radius: 30px;
+        font-size: 16px;
+        transition: 0.5s;
+        line-height: 1;
+        position: relative;
+        direction: ltr;
+        width: 100%;
+        border: 1px solid #F5F2EE50;
+        background-color: transparent;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+
+        span {
+            color: #F5F2EE;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+            font-weight: 500;
+
+            &:nth-child(odd) {
+                transform: translateY(-50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(50px);
+                    left: 0;
+                }
+            }
+
+            &:nth-child(even) {
+                transform: translateY(50px);
+
+                &::before {
+                    content: attr(data-text);
+                    position: absolute;
+                    transform: translateY(-50px);
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    &:hover {
+
+        .btn-animated-text {
+            background-color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+
+            span {
+                color: var(--white);
+
+                &:nth-child(odd) {
+                    transform: translateY(0);
+                }
+
+                &:nth-child(even) {
+                    transform: translateY(0);
+                }
+            }
+
+        }
+    }
+}
+
+/* ==== 
+ --------- (3.01) buttons styles end ---------
+ ==== */

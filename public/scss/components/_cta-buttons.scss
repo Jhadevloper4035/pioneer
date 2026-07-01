@@ -1,0 +1,23 @@
+/* === CTA solid/inverse states === */
+
+.page-wrapper :is(.btn-primary, .btn-secondary, .btn-tertiary, .btn-quaternary, .btn-quinary, .btn-light-2) {
+  .btn-animated-text {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+
+    span {
+      color: var(--white);
+    }
+  }
+
+  &:hover {
+    .btn-animated-text {
+      background-color: transparent;
+      border-color: var(--white);
+
+      span {
+        color: var(--white);
+      }
+    }
+  }
+}

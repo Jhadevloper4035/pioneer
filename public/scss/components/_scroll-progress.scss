@@ -1,0 +1,119 @@
+/* ==== 
+ --------- (3.05) scroll porgress button styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.progress-wrap {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    height: 50px;
+    width: 50px;
+    padding: 6px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50px;
+    background-color: #cae6f7;
+    box-shadow: inset 0 0 0 8px #cae6f7;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 200ms linear;
+    z-index: 99;
+    overflow: hidden;
+
+    @include lg-screen {
+        bottom: 80px;
+    }
+
+    span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 34px;
+        height: 34px;
+        background-color: var(--white);
+        border-radius: 50%;
+        overflow: hidden;
+
+        &::after {
+            content: "\f60e";
+            font-family: "tabler-icons";
+            position: absolute;
+            text-align: center;
+            line-height: 34px;
+            font-size: 32px;
+            border-radius: 50%;
+            color: var(--primary-color);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, 200%);
+            height: 34px;
+            width: 34px;
+            cursor: pointer;
+            display: block;
+            z-index: 1;
+            transition: all 300ms linear;
+            margin-top: -2px;
+        }
+
+        &::before {
+            position: absolute;
+            content: "\f60e";
+            font-family: "tabler-icons";
+            text-align: center;
+            line-height: 34px;
+            font-size: 32px;
+            border-radius: 50%;
+            color: var(--primary-color);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            height: 34px;
+            width: 34px;
+            cursor: pointer;
+            display: block;
+            margin-top: -2px;
+            z-index: 2;
+            transition: all 300ms linear;
+        }
+    }
+
+    &:hover {
+        span {
+            &::before {
+                transform: translate(-50%, -200%);
+            }
+
+            &::after {
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
+
+    path {
+        fill: none;
+    }
+
+    .progress-circle {
+        path {
+            stroke: var(--primary-color);
+            stroke-width: 4;
+            box-sizing: content-box;
+            transition: all 200ms linear;
+        }
+    }
+}
+
+.active-progress {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* ==== 
+ --------- (3.05) scroll porgress button styles end ---------
+ ==== */

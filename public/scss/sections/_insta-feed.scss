@@ -1,0 +1,122 @@
+/* ==== 
+ --------- (5.13) instagram feed styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.insta-feed {
+    .insta-feed__title {
+        @include sm-screen {
+            text-align: end;
+        }
+
+        p {
+            position: relative;
+            display: inline-block;
+            padding-inline-start: 12px;
+            color: var(--txt-light);
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                inset-inline-start: 0px;
+                width: 6px;
+                height: 6px;
+                background-color: var(--primary-color);
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .insta-feed__inner {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        user-select: none;
+        gap: 0px;
+        direction: ltr;
+
+        &:hover {
+            .insta-feed__slider {
+                animation-play-state: paused;
+            }
+        }
+    }
+
+    .insta-feed__slider {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        direction: ltr;
+        min-width: max-content;
+        justify-content: space-between;
+        animation: scroll 15s linear infinite;
+    }
+
+}
+
+.insta-feed__single {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    flex: 0 0 auto;
+    margin-inline: 12px;
+    max-width: 280px;
+
+    @include sm-screen {
+        max-width: 350px;
+    }
+
+    @include sm-screen {
+        max-width: 430px;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        inset: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: #48180050;
+        transition: var(--transition);
+        transform: translateY(-100%);
+    }
+
+    &:hover {
+        &::before {
+            transform: translateY(0px);
+        }
+
+        a {
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .parallax-image-wrap,
+    .parallax-image-inner {
+        width: 100%;
+        height: 100%;
+    }
+
+    a {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        font-size: 36px;
+        color: var(--white);
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
+/* ==== 
+ --------- (5.13) instagram feed styles end ---------
+ ==== */

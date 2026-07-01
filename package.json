@@ -1,0 +1,22 @@
+{
+  "name": "pioneer",
+  "version": "1.0.0",
+  "description": "Minimal Express and EJS starter app.",
+  "main": "src/server.js",
+  "scripts": {
+    "check": "node --check src/server.js && node --check api/index.js && node --check public/js/main.js",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed:louvers": "node src/scripts/seedLouverProducts.js",
+    "vercel-build": "npm run check"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-validator": "^7.3.2",
+    "mongoose": "^9.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/images/favicon.webp" type="image/x-icon" />
+    <link rel="icon" href="assets/images/favicon.webp" type="image/x-icon" />
+    <title>About Pioneer Flex | Decorative PVC, WPC & Signage Materials</title>
+    <meta
+      name="description"
+      content="Pioneer Flex manufactures PVC decorative films, WPC louvers, wall panels, signage media, tapes, and industrial laminated products with a Make in India manufacturing focus."
+    />
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/all.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/tabler-icons.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <style>
+      .about-company-page {
+        --about-bg: #EEE9E2;
+        --about-panel: #F8F4EF;
+        --about-deep: #481800;
+        --about-accent: #C08860;
+        --about-line: rgba(72, 24, 0, .13);
+        --about-muted: rgba(72, 24, 0, .7);
+        background: var(--about-bg);
+        color: var(--about-deep);
+        overflow: hidden;
+      }
+
+      .about-company-page img {
+        max-width: 100%;
+      }
+
+      .about-company-page *,
+      .about-company-page *::before,
+      .about-company-page *::after {
+        box-sizing: border-box;
+      }
+
+      .about-hero {
+        align-items: end;
+        background:
+          linear-gradient(90deg, rgba(16, 10, 6, .92) 0%, rgba(16, 10, 6, .58) 48%, rgba(16, 10, 6, .2) 100%),
+          url("assets/images/banner/about-us.avif") center / cover no-repeat;
+        display: flex;
+        min-height: clamp(560px, 76vh, 720px);
+        padding: 140px 0 68px;
+      }
+
+      .about-hero__content {
+        max-width: 820px;
+      }
+
+      .about-kicker {
+        color: var(--about-accent);
+        display: inline-block;
+        font-family: var(--maison-neue);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .22em;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+      }
+
+      .about-hero h1 {
+        color: #fff;
+        font-size: clamp(48px, 6.8vw, 92px);
+        font-weight: 300;
+        line-height: 1;
+        margin: 0;
+        max-width: 760px;
+      }
+
+      .about-hero p {
+        color: rgba(255, 255, 255, .78);
+        font-size: clamp(16px, 1.6vw, 21px);
+        line-height: 1.8;
+        margin: 30px 0 0;
+        max-width: 650px;
+      }
+
+      .about-hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 36px;
+      }
+
+      .about-breadcrumb {
+        align-items: center;
+        border-bottom: 1px solid #E6D8CC;
+        display: flex;
+        gap: 10px;
+        padding: 18px 0;
+      }
+
+      .about-breadcrumb a,
+      .about-breadcrumb span {
+        color: rgba(72, 24, 0, .72);
+        font-family: var(--maison-neue);
+        font-size: 14px;
+        letter-spacing: .02em;
+      }
+
+      .about-breadcrumb a:hover,
+      .about-breadcrumb .current {
+        color: var(--about-deep);
+      }
+
+      .about-section {
+        padding: clamp(78px, 8vw, 120px) 0;
+      }
+
+      .about-section--panel {
+        background: var(--about-panel);
+      }
+
+      .about-editorial {
+        display: grid;
+        gap: clamp(36px, 5vw, 72px);
+        grid-template-columns: minmax(0, .85fr) minmax(0, .95fr);
+        align-items: start;
+      }
+
+      .about-display {
+        color: var(--about-deep);
+        font-size: clamp(36px, 4.2vw, 62px);
+        font-weight: 300;
+        line-height: 1.08;
+        margin: 0;
+        overflow-wrap: break-word;
+      }
+
+      .about-title {
+        color: var(--about-deep);
+        font-size: clamp(30px, 3.2vw, 48px);
+        font-weight: 300;
+        line-height: 1.12;
+        margin: 0;
+        overflow-wrap: break-word;
+      }
+
+      .about-copy {
+        color: var(--about-muted);
+        font-size: 15px;
+        line-height: 1.78;
+        margin: 0;
+        overflow-wrap: break-word;
+      }
+
+      .about-copy + .about-copy {
+        margin-top: 20px;
+      }
+
+      .about-facts {
+        border-top: 1px solid var(--about-line);
+        display: grid;
+        gap: 0;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 46px;
+      }
+
+      .about-fact {
+        border-bottom: 1px solid var(--about-line);
+        border-right: 1px solid var(--about-line);
+        min-height: 132px;
+        padding: 24px 22px;
+      }
+
+      .about-fact:nth-child(4n) {
+        border-right: 0;
+      }
+
+      .about-fact strong {
+        color: var(--about-deep);
+        display: block;
+        font-family: var(--elicyon);
+        font-size: clamp(30px, 3.1vw, 42px);
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      .about-fact span {
+        color: rgba(72, 24, 0, .66);
+        display: block;
+        font-size: 13px;
+        line-height: 1.55;
+        margin-top: 14px;
+        overflow-wrap: break-word;
+      }
+
+      .about-story {
+        display: grid;
+        gap: clamp(54px, 7vw, 96px);
+      }
+
+      .about-story-row {
+        align-items: center;
+        display: grid;
+        gap: clamp(34px, 6vw, 86px);
+        grid-template-columns: minmax(0, .9fr) minmax(0, .75fr);
+      }
+
+      .about-story-row:nth-child(even) {
+        grid-template-columns: minmax(0, .75fr) minmax(0, .9fr);
+      }
+
+      .about-story-row:nth-child(even) .about-story-media {
+        order: 2;
+      }
+
+      .about-story-media {
+        background: #DED1C5;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .about-story-media img {
+        aspect-ratio: 4 / 5;
+        display: block;
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .about-story-row--wide .about-story-media img {
+        aspect-ratio: 16 / 10;
+      }
+
+      .about-story-content {
+        border-top: 1px solid var(--about-line);
+        padding-top: 28px;
+      }
+
+      .about-story-index {
+        color: var(--about-accent);
+        display: block;
+        font-family: var(--maison-neue);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .18em;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+      }
+
+      .about-story-content h3 {
+        color: var(--about-deep);
+        font-size: clamp(28px, 3.2vw, 44px);
+        font-weight: 300;
+        line-height: 1.12;
+        margin: 0 0 22px;
+        overflow-wrap: break-word;
+      }
+
+      .about-leadership {
+        display: grid;
+        gap: 34px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        margin-top: 62px;
+      }
+
+      .director-card {
+        background: var(--about-bg);
+        border: 1px solid var(--about-line);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .director-card__image {
+        background: #DED1C5;
+      }
+
+      .director-card__image img {
+        aspect-ratio: 16 / 11;
+        display: block;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .director-card__body {
+        padding: clamp(26px, 3vw, 40px);
+      }
+
+      .director-card__role {
+        color: var(--about-accent);
+        display: block;
+        font-family: var(--maison-neue);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .16em;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+      }
+
+      .director-card h3 {
+        color: var(--about-deep);
+        font-size: clamp(28px, 2.8vw, 40px);
+        font-weight: 300;
+        line-height: 1.12;
+        margin: 0;
+      }
+
+      .director-card p {
+        color: var(--about-muted);
+        font-size: 15px;
+        line-height: 1.8;
+        margin: 22px 0 0;
+      }
+
+      .director-card__meta {
+        align-items: center;
+        border-top: 1px solid var(--about-line);
+        color: rgba(72, 24, 0, .68);
+        display: flex;
+        font-size: 13px;
+        gap: 10px;
+        margin-top: 28px;
+        padding-top: 22px;
+      }
+
+      .director-card__meta i {
+        color: var(--about-accent);
+        font-size: 20px;
+      }
+
+      .about-large-image {
+        background: var(--about-deep);
+        min-height: clamp(520px, 70vw, 820px);
+        position: relative;
+      }
+
+      .about-large-image img {
+        display: block;
+        height: clamp(520px, 70vw, 820px);
+        object-fit: cover;
+        opacity: .86;
+        width: 100%;
+      }
+
+      .about-large-image__caption {
+        background: rgba(238, 233, 226, .94);
+        border: 1px solid rgba(255, 255, 255, .26);
+        border-radius: 8px;
+        bottom: clamp(22px, 5vw, 70px);
+        left: clamp(16px, 6vw, 86px);
+        max-width: 560px;
+        padding: clamp(24px, 3.6vw, 44px);
+        position: absolute;
+      }
+
+      .about-large-image__caption h2 {
+        color: var(--about-deep);
+        font-size: clamp(30px, 3.2vw, 46px);
+        font-weight: 300;
+        line-height: 1.12;
+        margin: 0;
+      }
+
+      .about-large-image__caption p {
+        color: var(--about-muted);
+        line-height: 1.8;
+        margin: 18px 0 0;
+      }
+
+      .about-values {
+        display: grid;
+        gap: 1px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 60px;
+      }
+
+      .about-value {
+        background: var(--about-panel);
+        border: 1px solid var(--about-line);
+        border-radius: 8px;
+        min-height: 300px;
+        padding: clamp(28px, 3vw, 42px);
+      }
+
+      .about-value i {
+        align-items: center;
+        background: var(--about-accent);
+        border-radius: 999px;
+        color: #fff;
+        display: inline-flex;
+        font-size: 22px;
+        height: 46px;
+        justify-content: center;
+        margin-bottom: 30px;
+        width: 46px;
+      }
+
+      .about-value h3 {
+        color: var(--about-deep);
+        font-family: var(--maison-neue);
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.35;
+        margin: 0 0 15px;
+      }
+
+      .about-value p {
+        color: rgba(72, 24, 0, .68);
+        font-size: 15px;
+        line-height: 1.75;
+        margin: 0;
+      }
+
+      .about-form-card {
+        background: var(--about-bg);
+        border: 1px solid var(--about-line);
+        border-radius: 8px;
+        display: grid;
+        gap: clamp(34px, 6vw, 72px);
+        grid-template-columns: minmax(0, .58fr) minmax(0, .9fr);
+        padding: clamp(28px, 5vw, 62px);
+      }
+
+      .about-field label {
+        color: var(--about-deep);
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .08em;
+        margin-bottom: 7px;
+        text-transform: uppercase;
+      }
+
+      .about-field .form-control,
+      .about-field .form-select {
+        background-color: var(--about-panel);
+        border: 1px solid rgba(72, 24, 0, .12);
+        border-radius: 8px;
+        box-shadow: none;
+        color: var(--about-deep);
+        font-size: 15px;
+        min-height: 54px;
+        padding: 14px 16px;
+      }
+
+      .about-field .form-control::placeholder {
+        color: rgba(72, 24, 0, .45);
+      }
+
+      .about-field .form-control:focus,
+      .about-field .form-select:focus {
+        background-color: #fff;
+        border-color: var(--about-accent);
+        box-shadow: 0 0 0 3px rgba(192, 136, 96, .14);
+      }
+
+      .about-field textarea.form-control {
+        min-height: 180px;
+        resize: vertical;
+      }
+
+      .about-submit-row {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 14px;
+      }
+
+      .about-submit {
+        background: transparent;
+        border: 0;
+        display: inline-flex;
+        justify-content: center;
+        min-width: 178px;
+        padding: 0;
+      }
+
+      .about-submit .btn-animated-text {
+        background: var(--about-accent);
+        border-color: var(--about-accent);
+        border-radius: 999px;
+        color: #fff;
+        display: inline-flex;
+        justify-content: center;
+        letter-spacing: .12em;
+        padding: 17px 28px;
+      }
+
+      .about-submit:hover .btn-animated-text {
+        background: var(--about-deep);
+        border-color: var(--about-deep);
+      }
+
+      .about-note {
+        color: rgba(72, 24, 0, .62);
+        font-size: 14px;
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      @media (max-width: 991px) {
+        .about-hero {
+          min-height: 560px;
+          padding: 128px 0 52px;
+        }
+
+        .about-editorial,
+        .about-story-row,
+        .about-story-row:nth-child(even),
+        .about-form-card {
+          grid-template-columns: 1fr;
+        }
+
+        .about-story-row:nth-child(even) .about-story-media {
+          order: 0;
+        }
+
+        .about-facts,
+        .about-leadership,
+        .about-values {
+          grid-template-columns: 1fr;
+        }
+
+        .about-fact,
+        .about-fact:nth-child(4n) {
+          border-right: 0;
+        }
+      }
+
+      @media (max-width: 575px) {
+        .about-hero {
+          min-height: 520px;
+          padding-bottom: 44px;
+        }
+
+        .about-hero h1 {
+          font-size: 40px;
+          max-width: 330px;
+        }
+
+        .about-hero p {
+          font-size: 15px;
+          max-width: 310px;
+        }
+
+        .about-display {
+          font-size: 31px;
+          max-width: 320px;
+        }
+
+        .about-title,
+        .about-story-content h3,
+        .director-card h3,
+        .about-large-image__caption h2 {
+          font-size: 27px;
+          max-width: 320px;
+        }
+
+        .about-copy {
+          font-size: 15px;
+          max-width: 320px;
+        }
+
+        .about-fact {
+          min-height: 126px;
+          padding: 24px 16px;
+        }
+
+        .about-fact span {
+          max-width: 300px;
+        }
+
+        .about-story-media img,
+        .about-story-row--wide .about-story-media img {
+          aspect-ratio: 4 / 4.8;
+        }
+
+        .about-large-image,
+        .about-large-image img {
+          min-height: 620px;
+        }
+
+        .about-large-image__caption {
+          bottom: 16px;
+          left: 12px;
+          max-width: calc(100% - 24px);
+        }
+
+        .about-submit {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page-wrapper about-company-page">
+      <%- include('partials/header') %>
+
+      <section class="about-hero">
+        <div class="container-lg">
+          <div class="about-hero__content fade-up">
+            <span class="about-kicker">About Pioneer Flex</span>
+            <h1 class="elicyon">Materials shaped for modern Indian spaces.</h1>
+            <p>
+              We manufacture PVC, WPC, decorative, signage, and laminated surface products with a focus on finish, repeatability, and practical project support.
+            </p>
+            <div class="about-hero__actions">
+              <a class="btn-quinary" href="#about-enquiry">
+                <span class="btn-animated-text" data-text="Discuss Requirement">Discuss Requirement</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="template-bg">
+        <div class="container-lg">
+          <div class="about-breadcrumb">
+            <a href="/">Home</a>
+            <span class="sep">/</span>
+            <span class="current">About Company</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="about-section">
+        <div class="container-lg">
+          <div class="about-editorial">
+            <div class="fade-up">
+              <span class="about-kicker">Company Profile</span>
+              <h2 class="about-display elicyon">Manufactured surfaces for modern projects.</h2>
+            </div>
+            <div class="fade-up" data-delay="140">
+              <p class="about-copy">
+                Pioneer Flex brings together manufacturing, finishing, and material knowledge for PVC decorative films, PVC/WPC louvers, wall panels, doors and frames, signage media, tapes, tarpaulins, awnings, and laminated industrial products.
+              </p>
+              <p class="about-copy">
+                Built around the Make in India vision, our work is guided by consistent quality, responsive product development, and dependable supply for architects, fabricators, interior contractors, OEMs, dealers, and brand owners.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-facts fade-up">
+            <div class="about-fact">
+              <strong>1986</strong>
+              <span>Decades of PVC processing and material-market experience.</span>
+            </div>
+            <div class="about-fact">
+              <strong>PVC</strong>
+              <span>Decorative, signage, flexible, tape, and laminated applications.</span>
+            </div>
+            <div class="about-fact">
+              <strong>WPC</strong>
+              <span>Interior louvers, wall systems, door frames, and decor profiles.</span>
+            </div>
+            <div class="about-fact">
+              <strong>360</strong>
+              <span>Support from selection and samples to production and dispatch.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section about-section--panel">
+        <div class="container-lg">
+          <div class="about-story">
+            <article class="about-story-row">
+              <div class="about-story-media fade-up">
+                <img src="assets/images/projects/pvc-decorative-films.jpeg" alt="PVC decorative film being applied on a wood finish surface" />
+              </div>
+              <div class="about-story-content fade-up" data-delay="140">
+                <span class="about-story-index">01 / Decorative Surfaces</span>
+                <h3 class="elicyon">Finish language for furniture, panels, doors, and modular interiors.</h3>
+                <p class="about-copy">
+                  Our decorative film and laminate ranges help fabricators and interior manufacturers deliver coordinated visual finishes with dependable shade consistency and everyday usability.
+                </p>
+              </div>
+            </article>
+
+            <article class="about-story-row about-story-row--wide">
+              <div class="about-story-media fade-up">
+                <img src="assets/images/banner/5.jpeg" alt="Interior wall finished with Pioneer decorative louvers" />
+              </div>
+              <div class="about-story-content fade-up" data-delay="140">
+                <span class="about-story-index">02 / Architectural Profiles</span>
+                <h3 class="elicyon">PVC and WPC profiles for spaces that need rhythm, warmth, and durability.</h3>
+                <p class="about-copy">
+                  Louvers, wall panels, doors, and frames are developed for residential, commercial, and hospitality environments where installation clarity matters as much as surface appeal.
+                </p>
+              </div>
+            </article>
+
+            <article class="about-story-row">
+              <div class="about-story-media fade-up">
+                <img src="assets/images/banner/signage.jpeg" alt="Pioneer signage and large format media material" />
+              </div>
+              <div class="about-story-content fade-up" data-delay="140">
+                <span class="about-story-index">03 / Signage & Industry</span>
+                <h3 class="elicyon">Materials built for visibility, handling, and repeat production.</h3>
+                <p class="about-copy">
+                  From frontlit and backlit flex to vinyl, tapes, tarpaulins, awnings, mattress covers, and laminated products, our industrial range is made for practical performance.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <div class="container-lg">
+          <div class="about-editorial">
+            <div class="fade-up">
+              <span class="about-kicker">Leadership</span>
+              <h2 class="about-title elicyon">Director-led focus on quality, scale, and customer trust.</h2>
+            </div>
+            <div class="fade-up" data-delay="140">
+              <p class="about-copy">
+                Pioneer Flex stays close to its customers through leadership that understands product applications, manufacturing discipline, and the realities of project delivery.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-leadership">
+            <article class="director-card fade-up">
+              <div class="director-card__image">
+                <img src="assets/images/team/five.webp" alt="Managing director portrait" />
+              </div>
+              <div class="director-card__body">
+                <span class="director-card__role">Managing Director</span>
+                <h3 class="elicyon">Vision, market direction, and long-term growth.</h3>
+                <p>
+                  Guides Pioneer Flex with a focus on durable categories, customer confidence, and steady expansion across decorative, signage, and industrial material segments.
+                </p>
+                <div class="director-card__meta">
+                  <i class="ti ti-chair-director"></i>
+                  <span>Strategy, portfolio, and dealer relationships</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="director-card fade-up" data-delay="140">
+              <div class="director-card__image">
+                <img src="assets/images/team/tm-one.webp" alt="Operations director portrait" />
+              </div>
+              <div class="director-card__body">
+                <span class="director-card__role">Director, Operations</span>
+                <h3 class="elicyon">Manufacturing systems, dispatch, and  discipline.</h3>
+                <p>
+                  Leads coordination across production, quality checks, sampling, and order fulfilment so projects receive reliable materials with clear communication.
+                </p>
+                <div class="director-card__meta">
+                  <i class="ti ti-building-factory-2"></i>
+                  <span>Production, quality checks, and project coordination</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-large-image">
+        <img src="assets/images/manufactring/banner1.png" alt="Pioneer Flex manufacturing floor and production team" />
+        <div class="about-large-image__caption fade-up">
+          <span class="about-kicker">Team & Manufacturing</span>
+          <h2 class="elicyon">A production mindset behind every surface.</h2>
+          <p>
+            Every finish is supported by application-led detailing, careful handling, and repeatable production practice, so the material performs beyond the sample stage.
+          </p>
+        </div>
+      </section>
+
+      <section class="about-section">
+        <div class="container-lg">
+          <div class="about-editorial">
+            <div class="fade-up">
+              <span class="about-kicker">What We Stand For</span>
+              <h2 class="about-title elicyon">Quietly refined products, made for real-world use.</h2>
+            </div>
+            <div class="fade-up" data-delay="140">
+              <p class="about-copy">
+                Our products are selected by teams who need coordinated finishes, practical technical support, and dependable availability across multiple PVC and WPC applications.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-values">
+            <article class="about-value fade-up">
+              <i class="ti ti-palette"></i>
+              <h3>Finish Consistency</h3>
+              <p>Coordinated textures, shades, and product families help buyers maintain visual continuity across interior and commercial applications.</p>
+            </article>
+            <article class="about-value fade-up" data-delay="120">
+              <i class="ti ti-settings-check"></i>
+              <h3>Manufacturing Discipline</h3>
+              <p>Production, sampling, and dispatch are handled with repeatable processes so product quality is easier to trust at scale.</p>
+            </article>
+            <article class="about-value fade-up" data-delay="240">
+              <i class="ti ti-headset"></i>
+              <h3>Project Support</h3>
+              <p>From product selection to application questions, the team supports dealers, contractors, fabricators, architects, and OEM buyers.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <%- include('partials/footer') %>
+    </div>
+
+    <script src="assets/js/jquery-4.0.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <script src="assets/js/phosphor-icon.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/ScrollToPlugin.min.js"></script>
+    <script src="assets/js/lenis.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

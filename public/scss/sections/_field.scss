@@ -1,0 +1,108 @@
+/* ==== 
+ --------- (5.08) field styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.field {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    p {
+        margin-bottom: 30px;
+
+        @include xl-screen {
+            inset-block-start: 190px;
+            position: absolute;
+            inset-inline-start: 5%;
+            z-index: 1;
+        }
+
+        @include min-screen(1600px) {
+            inset-inline-start: 3%;
+        }
+    }
+}
+
+.field__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+
+    @include xl-screen {
+        max-width: 56rem;
+        margin-inline: auto;
+    }
+
+    @include min-screen(1600px) {
+        max-width: 70rem;
+    }
+
+    .title-lg {
+        a {
+            color: #B8B3AE;
+            font-weight: 500 !important;
+        }
+    }
+
+    .divide-cs {
+        width: 8px;
+        height: 8px;
+        background-color: #B8B3AE;
+        margin-top: 10px;
+        border-radius: 50%;
+        display: none;
+
+        @include sm-screen {
+            display: block;
+        }
+    }
+
+    .field__single {
+        position: relative;
+        z-index: 1;
+
+        &:hover {
+            z-index: 10;
+
+            .field-thumb {
+                opacity: 1;
+            }
+
+            .title-lg a {
+                color: #481800;
+                position: relative;
+                z-index: 9;
+            }
+        }
+    }
+
+    .field-thumb {
+        width: 200px;
+        height: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+        z-index: 2;
+
+        @include xxl-screen {
+            width: 400px;
+            height: 500px;
+        }
+    }
+}
+
+/* ==== 
+ --------- (5.08) field styles end ---------
+ ==== */

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Pioneer Flex | Product Enquiries</title>
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/fonts/css/all.min.css" />
+  <link rel="stylesheet" href="assets/fonts/css/tabler-icons.min.css" />
+  <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+
+  <style>
+    .contact-section {
+      padding: 140px 0;
+      background: #EEE9E2;
+    }
+
+    .contact-breadcrumb {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+      padding: 18px 0;
+    }
+
+    .contact-breadcrumb a,
+    .contact-breadcrumb span {
+      color: rgba(72, 24, 0, .72);
+      font-size: 14px;
+      letter-spacing: .02em;
+    }
+
+    .contact-breadcrumb a:hover,
+    .contact-breadcrumb .current {
+      color: #481800;
+    }
+
+    .contact-info-card {
+      background: #F8F4EF;
+      border: 1px solid rgba(72, 24, 0, .1);
+      border-radius: 8px;
+      height: 100%;
+      padding: 30px;
+      transition: border-color .25s ease, transform .25s ease;
+    }
+
+    .contact-info-card:hover {
+      border-color: rgba(192, 136, 96, .5);
+      transform: translateY(-4px);
+    }
+
+    .contact-info-card h6 {
+      color: #481800;
+      font-family: var(--maison-neue);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .contact-info-card p {
+      color: rgba(72, 24, 0, .72);
+      font-size: 15px;
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .contact-info-card strong {
+      color: #481800;
+      font-weight: 600;
+    }
+
+    .contact-info-card a {
+      color: rgba(72, 24, 0, .72);
+    }
+
+    .contact-info-card a:hover {
+      color: #C08860;
+    }
+
+    .contact-info-card__icon {
+      align-items: center;
+      background: #C08860;
+      border-radius: 999px;
+      color: #fff;
+      display: inline-flex;
+      height: 42px;
+      justify-content: center;
+      margin-bottom: 24px;
+      width: 42px;
+    }
+
+    .contact-info-card__icon i {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .contact-form-card {
+      background: #F8F4EF;
+      border: 1px solid rgba(72, 24, 0, .1);
+      border-radius: 8px;
+      margin-top: 42px;
+      padding: 44px;
+    }
+
+    .contact-map-area {
+      background: #EEE9E2;
+      padding: 0 clamp(16px, 4vw, 64px) 140px;
+    }
+
+    .contact-map-list {
+      display: grid;
+      gap: 40px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-map-card {
+      background: #F8F4EF;
+      border: 1px solid rgba(72, 24, 0, .1);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .contact-map-card__body {
+      align-items: center;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      padding: 26px;
+      text-align: center;
+    }
+
+    .contact-map-card h6 {
+      color: #481800;
+      font-family: var(--maison-neue);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .contact-map-card p {
+      color: rgba(72, 24, 0, .68);
+      font-size: 15px;
+      line-height: 1.65;
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-map-card__frame {
+      aspect-ratio: 16 / 9;
+      background: #E6D8CC;
+      min-height: 300px;
+      width: 100%;
+    }
+
+    .contact-map-card__frame iframe {
+      border: 0;
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+
+    .contact-map-link {
+      align-items: center;
+      background: #C08860;
+      border-radius: 999px;
+      color: #fff;
+      display: inline-flex;
+      font-size: 14px;
+      font-weight: 600;
+      gap: 8px;
+      letter-spacing: .04em;
+      margin-top: 18px;
+      padding: 13px 22px;
+      text-transform: uppercase;
+    }
+
+    .contact-map-link:hover {
+      background: #481800;
+      color: #fff;
+    }
+
+    .contact-form-card h2 {
+      color: #481800;
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 300;
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .contact-form-card p {
+      color: rgba(72, 24, 0, .68);
+      font-size: 16px;
+      line-height: 1.65;
+      margin: 16px 0 0;
+      max-width: 520px;
+    }
+
+    .contact-field label {
+      color: #481800;
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .contact-field .form-control,
+    .contact-field .form-select {
+      background-color: #EEE9E2;
+      border: 1px solid rgba(72, 24, 0, .12);
+      border-radius: 8px;
+      color: #481800;
+      font-size: 15px;
+      min-height: 54px;
+      padding: 14px 16px;
+      box-shadow: none;
+    }
+
+    .contact-field .form-control::placeholder {
+      color: rgba(72, 24, 0, .45);
+    }
+
+    .contact-field .form-control:focus,
+    .contact-field .form-select:focus {
+      background-color: #fff;
+      border-color: #C08860;
+      box-shadow: 0 0 0 3px rgba(192, 136, 96, .14);
+    }
+
+    .contact-field textarea.form-control {
+      min-height: 180px;
+      resize: none;
+    }
+
+    .contact-submit-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .contact-submit {
+      background: transparent;
+      border: 0;
+      display: inline-flex;
+      justify-content: center;
+      min-width: 170px;
+      padding: 0;
+    }
+
+    .contact-submit .btn-animated-text {
+      background: #C08860;
+      border-color: #C08860;
+      border-radius: 999px;
+      color: #fff;
+      display: inline-flex;
+      justify-content: center;
+      letter-spacing: .12em;
+      padding: 17px 28px;
+    }
+
+    .contact-submit .btn-animated-text span {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .contact-submit:hover .btn-animated-text {
+      background: #481800;
+      border-color: #481800;
+      color: #fff;
+    }
+
+    .contact-note {
+      color: rgba(72, 24, 0, .62);
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    @media (max-width: 991px) {
+      .contact-section {
+        padding: 90px 0 42px;
+      }
+
+      .contact-form-card {
+        padding: 30px 22px;
+      }
+
+      .contact-map-area {
+        padding-bottom: 90px;
+      }
+
+      .contact-map-list {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-map-card__body {
+        padding: 22px;
+      }
+
+      .contact-submit {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <%- include('partials/header') %>
+    <%- include('partials/page-hero', {
+      tag: '(Contact)',
+      title: 'Get in touch',
+      text: 'Have a question, project enquiry, or want a quote? Fill out the form and our team will respond shortly.',
+      image: 'assets/images/banner/1.jpeg',
+      buttonText: 'Send a Message',
+      buttonLink: '#contact-form'
+    }) %>
+
+    <div class="template-bg" style="border-bottom: 0.5px solid #E6D8CC;">
+      <div class="container-lg">
+        <div class="contact-breadcrumb">
+          <a href="/">Home</a>
+          <span class="sep">/</span>
+          <span class="current">Contact Us</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="contact-section" id="contact-form">
+      <div class="container-lg">
+        <div class="row gutter-40">
+          <div class="col-lg-4 col-md-6">
+            <div class="contact-info-card fade-up">
+              <span class="contact-info-card__icon"><i class="ti ti-map-pin"></i></span>
+              <h6>Showroom Address</h6>
+              <p>
+                <strong>Pioneer Flex</strong><br>
+                Unit No.102, Tower-D S-1 Floor,<br>
+                Urbtech Trade Centre Sector-132,<br>
+                Noida - 201304<br><br>
+                <strong>Timing</strong><br>
+                Mon - Sat: 8:30 AM - 5:00 PM
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="contact-info-card fade-up">
+              <span class="contact-info-card__icon"><i class="ti ti-building-factory-2"></i></span>
+              <h6>Factory Unit</h6>
+              <p>
+                <strong>Pioneer Flex Factory</strong><br>
+                74-76, Sector-4, IIE Pantnagar,<br>
+                Rudrapur, Uttarakhand - 263153<br><br>
+                <strong>Production Support</strong><br>
+                For material, dispatch, and factory coordination.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12">
+            <div class="contact-info-card fade-up">
+              <span class="contact-info-card__icon"><i class="ti ti-phone-call"></i></span>
+              <h6>Contact Number & Email</h6>
+              <p>
+                <strong>Domestic Business</strong><br>
+                <a href="tel:+919821396373">+91-9821396373</a><br>
+                <a href="tel:+918588845645">+91-8588845645</a><br><br>
+                <strong>International Business</strong><br>
+                <a href="tel:+918586981749">+91-8586981749</a><br>
+                <a href="tel:+919810353032">+91-9810353032</a><br><br>
+                <a href="mailto:sales@pioneerflex.in">sales@pioneerflex.in</a><br>
+                <a href="mailto:export@pioneerflex.in">export@pioneerflex.in</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card fade-up">
+          <div class="row align-items-end g-4 mb-4">
+            <div class="col-lg-7">
+              <h2 class="elicyon">Tell us about your project.</h2>
+              <p>Please fill out the form and our team will get back to you shortly.</p>
+            </div>
+          </div>
+
+          <form action="/api/contact" method="post">
+            <div class="row g-4">
+              <div class="col-md-6 contact-field">
+                <label for="contact-name">Your Name</label>
+                <input id="contact-name" name="name" type="text" class="form-control" placeholder="Enter your name" required>
+              </div>
+
+              <div class="col-md-6 contact-field">
+                <label for="contact-email">Your Email</label>
+                <input id="contact-email" name="email" type="email" class="form-control" placeholder="Enter your email" required>
+              </div>
+
+              <div class="col-md-6 contact-field">
+                <label for="contact-phone">Phone Number</label>
+                <input id="contact-phone" name="phone" type="tel" class="form-control" placeholder="Enter your phone number">
+              </div>
+
+              <div class="col-md-6 contact-field">
+                <label for="service">Product Interest</label>
+                <select name="service" id="service" class="form-select">
+                  <option value="" disabled selected>Select Product</option>
+                  <option value="decorative-films">Decorative Films</option>
+                  <option value="louvers-wall-panels">Louvers / Wall Panels</option>
+                  <option value="pvc-tapes">PVC Tapes</option>
+                  <option value="signage-products">Signage Products</option>
+                </select>
+              </div>
+
+              <div class="col-12 contact-field">
+                <label for="contact-message">Tell Us More</label>
+                <textarea id="contact-message" name="message" class="form-control" placeholder="Write your requirements" required></textarea>
+              </div>
+
+              <div class="col-12">
+                <div class="contact-submit-row">
+                  <button type="submit" class="btn-quinary contact-submit">
+                    <span class="btn-animated-text" data-text="Submit Now">Submit Now</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-map-area">
+      <div class="container-lg">
+        <div class="contact-map-list">
+          <div>
+            <div class="contact-map-card fade-up">
+              <div class="contact-map-card__frame">
+                <iframe
+                  title="Pioneer Flex office location map"
+                  src="https://www.google.com/maps?q=Unit%20No.102%2C%20Tower-D%20S-1%20Floor%2C%20Urbtech%20Trade%20Centre%20Sector-132%2C%20Noida%20201304&output=embed"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="contact-map-card__body">
+                <h6>Office Location</h6>
+                <p>Unit No.102, Tower-D S-1 Floor, Urbtech Trade Centre Sector-132, Noida - 201304</p>
+                <a
+                  class="contact-map-link"
+                  href="https://www.google.com/maps/search/?api=1&query=Unit%20No.102%2C%20Tower-D%20S-1%20Floor%2C%20Urbtech%20Trade%20Centre%20Sector-132%2C%20Noida%20201304"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Get Direction <i class="ti ti-arrow-up-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="contact-map-card fade-up">
+              <div class="contact-map-card__frame">
+                <iframe
+                  title="Pioneer Flex manufacturing unit location map"
+                  src="https://www.google.com/maps?q=74-76%2C%20Sector-4%2C%20IIE%20Pantnagar%2C%20Rudrapur%2C%20Uttarakhand%20263153&output=embed"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="contact-map-card__body">
+                <h6>Manufacturing Unit</h6>
+                <p>74-76, Sector-4, IIE Pantnagar, Rudrapur, Uttarakhand - 263153</p>
+                <a
+                  class="contact-map-link"
+                  href="https://www.google.com/maps/search/?api=1&query=74-76%2C%20Sector-4%2C%20IIE%20Pantnagar%2C%20Rudrapur%2C%20Uttarakhand%20263153"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Get Direction <i class="ti ti-arrow-up-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <%- include('partials/footer') %>
+  </div>
+
+    <script src="assets/js/jquery-4.0.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="assets/js/jquery.nice-select.min.js"></script> -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <script src="assets/js/phosphor-icon.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/ScrollToPlugin.min.js"></script>
+    <script src="assets/js/lenis.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      document.getElementById('copyrightYear').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

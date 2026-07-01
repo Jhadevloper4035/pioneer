@@ -1,0 +1,50 @@
+/* ==== 
+ --------- (3.03) preloader styles start ---------
+ ==== */
+
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: #481800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+}
+
+.preloader-inner {
+    text-align: center;
+    width: 300px;
+}
+
+.preloader-logo {
+
+    span {
+        font-size: 18px;
+        letter-spacing: 6px;
+        color: #aaa;
+        margin-bottom: 30px;
+    }
+}
+
+.preloader-bar {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.22);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.preloader-progress {
+    height: 100%;
+    width: 0%;
+    background: #fff;
+}
+
+.preloader-count {
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* ==== 
+ --------- (3.03) preloader styles end ---------
+ ==== */

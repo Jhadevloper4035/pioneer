@@ -1,0 +1,238 @@
+/* ==== 
+ --------- (5.06) process styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+
+.process {
+    position: relative;
+}
+
+.process__intro {
+    span {
+        position: relative;
+        display: inline-block;
+        padding-inline-start: 12px;
+        color: var(--txt-light);
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            inset-inline-start: 0px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--txt-light);
+            border-radius: 50%;
+        }
+    }
+}
+
+.process__thumb {
+
+    img,
+    .parallax-image-wrap,
+    .parallax-image-inner {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+
+        @include xl-screen {
+            min-height: 600px;
+        }
+    }
+}
+
+.process__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+
+    @include xl-screen {
+        margin-inline-start: 40px;
+    }
+
+    .process__content {
+        width: 100%;
+    }
+
+    .divider {
+        border-color: #D2CEC8;
+    }
+}
+
+.process__inner {
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+
+    @include sm-screen {
+        flex-wrap: nowrap;
+    }
+}
+
+.process__inner-left {
+    width: 100%;
+
+    @include sm-screen {
+        max-width: 360px;
+    }
+}
+
+.process__inner-left-tab-wrapper {
+    position: relative;
+    height: 375px;
+
+    @include xl-screen {
+        height: 437px;
+    }
+}
+
+.proces__inner-left-tab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.proces__inner-left-tab.active {
+    display: block;
+}
+
+.process__inner-left-intro {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #D2CEC8;
+}
+
+.process__inner-left-content {
+    li {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-block: 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #D2CEC8;
+
+        &:nth-last-of-type(1) {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.process__inner-right {
+    width: 100%;
+
+
+    @include sm-screen {
+        max-width: 320px;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-block: 10px;
+        margin-bottom: 10px;
+        color: var(--txt-light);
+        transition: var(--transition);
+        position: relative;
+
+        .line {
+            position: absolute;
+            inset-block-end: 0px;
+            inset-inline: 0px;
+            width: 100%;
+            height: 1px;
+            background-color: #B8B3AE;
+
+            &::before {
+                content: '';
+                position: absolute;
+                height: 100%;
+                inset-inline: 0px;
+                inset-block-start: 0px;
+                background-color: #C08860;
+                width: 0%;
+            }
+        }
+
+        &:nth-last-of-type(1) {
+            margin-bottom: 0px;
+        }
+
+        i {
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        &:hover {
+            color: var(--template-color);
+
+            i {
+                transform: rotate(90deg);
+                color: #C08860;
+            }
+        }
+
+    }
+
+    .process-tab-btn.active {
+        .line {
+            &::before {
+
+                animation: serviceProgress 10s linear forwards;
+            }
+        }
+    }
+}
+
+.proces__inner-right-thumb {
+    height: 300px;
+    position: relative;
+
+    @include xl-screen {
+        height: 345px;
+    }
+}
+
+.process__inner-right-thumb-single {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        min-height: 260px;
+    }
+}
+
+.process__inner-right-thumb-single.active {
+    display: block;
+}
+
+.process-border-top {
+    border-top: 1px solid var(--txt-light);
+}
+
+/* ==== 
+ --------- (5.06) process styles end ---------
+ ==== */

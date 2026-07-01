@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/images/favicon.webp" type="image/x-icon" />
+    <title>E-Catalogue | Pioneer Flex</title>
+    <meta
+      name="description"
+      content="Download Pioneer Flex product catalogues after sharing your contact information."
+    />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/all.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/tabler-icons.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/product.css" />
+    <style>
+      .catalogue-section__eyebrow {
+        color: #c08860;
+        display: block;
+        font-size: 12px;
+        letter-spacing: .28em;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+      }
+
+      .catalogue-section {
+        background: #f5f2ee;
+        padding: 120px 0;
+      }
+
+      .catalogue-section__header {
+        margin-bottom: 48px;
+      }
+
+      .catalogue-section__title {
+        color: #4d3322;
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        font-weight: 300;
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      .catalogue-section__intro {
+        color: #77695f;
+        font-size: 15px;
+        line-height: 1.8;
+        margin: 0;
+      }
+
+      .catalogue-card {
+        background: #fff;
+        border: 1px solid rgba(120, 82, 54, .13);
+        border-radius: 8px;
+        cursor: pointer;
+        height: 100%;
+        overflow: hidden;
+        box-shadow: 0 22px 44px rgba(59, 38, 24, .08);
+        transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+      }
+
+      .catalogue-card:hover,
+      .catalogue-card:focus-visible {
+        border-color: rgba(184, 121, 69, .45);
+        box-shadow: 0 26px 54px rgba(59, 38, 24, .14);
+        outline: none;
+        transform: translateY(-4px);
+      }
+
+      .catalogue-card__image {
+        aspect-ratio: 4 / 3;
+        background: #d8c7b7;
+        overflow: hidden;
+      }
+
+      .catalogue-card__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .45s ease;
+      }
+
+      .catalogue-card:hover .catalogue-card__image img {
+        transform: scale(1.045);
+      }
+
+      .catalogue-card__body {
+        padding: 26px;
+      }
+
+      .catalogue-card__body span {
+        color: #b87945;
+        display: inline-block;
+        font-size: 11px;
+        letter-spacing: .22em;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+      }
+
+      .catalogue-card__body h3 {
+        color: #4d3322;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.25;
+        margin: 0 0 12px;
+      }
+
+      .catalogue-card__body p {
+        color: #74645a;
+        font-size: 14px;
+        line-height: 1.75;
+        margin: 0 0 22px;
+      }
+
+      .catalogue-card__body .catalogue-card__action {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .catalogue-card__action {
+        align-items: center;
+        background: #c08860;
+        border: 1px solid #c08860;
+        border-radius: 999px;
+        color: #fff;
+        display: inline-flex;
+        gap: 10px;
+        justify-content: center;
+        line-height: 1;
+        min-height: 42px;
+        min-width: 218px;
+        padding: 0 18px;
+        pointer-events: none;
+        transition: background-color .3s ease, border-color .3s ease, color .3s ease;
+      }
+
+      .catalogue-card__action i {
+        color: #fff;
+        font-size: 15px;
+        line-height: 1;
+        position: relative;
+        z-index: 1;
+        transition: color .3s ease;
+      }
+
+      .catalogue-card__action .btn-animated-text {
+        background: transparent !important;
+        border: 0 !important;
+        border-radius: 0;
+        display: inline-flex;
+        line-height: 1;
+        padding: 0;
+        transform: translateY(1px);
+        width: auto;
+      }
+
+      .catalogue-card__action .btn-animated-text span {
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: .2em;
+        line-height: 1;
+      }
+
+      .catalogue-card:hover .catalogue-card__action,
+      .catalogue-card:focus-visible .catalogue-card__action {
+        background: #9f6742;
+        border-color: #9f6742;
+      }
+
+      .catalogue-card:hover .catalogue-card__action i,
+      .catalogue-card:focus-visible .catalogue-card__action i,
+      .catalogue-card:hover .catalogue-card__action .btn-animated-text span,
+      .catalogue-card:focus-visible .catalogue-card__action .btn-animated-text span {
+        color: #fff;
+      }
+
+      .catalogue-form {
+        background: #221711;
+        border-radius: 8px;
+        box-shadow: 0 28px 60px rgba(45, 25, 12, .18);
+        color: #fff;
+        padding: 36px;
+      }
+
+      .catalogue-form h2 {
+        color: #fff;
+        font-size: 30px;
+        font-weight: 400;
+        margin: 0 0 10px;
+      }
+
+      .catalogue-form p {
+        color: rgba(255, 255, 255, .68);
+        font-size: 13px;
+        line-height: 1.7;
+        margin: 0 0 24px;
+      }
+
+      .catalogue-form label {
+        color: rgba(255, 255, 255, .78);
+        display: block;
+        font-size: 12px;
+        margin-bottom: 7px;
+      }
+
+      .catalogue-form input,
+      .catalogue-form select {
+        background: rgba(255, 255, 255, .08);
+        border: 1px solid rgba(255, 255, 255, .18);
+        color: #fff;
+        font-size: 14px;
+        min-height: 46px;
+        padding: 0 13px;
+        width: 100%;
+      }
+
+      .catalogue-form select option {
+        color: #221711;
+      }
+
+      .catalogue-form input:focus,
+      .catalogue-form select:focus {
+        border-color: #c08860;
+        outline: 2px solid rgba(192, 136, 96, .2);
+      }
+
+      .catalogue-form__grid {
+        display: grid;
+        gap: 15px;
+      }
+
+      .catalogue-form__submit {
+        background: #c08860;
+        border: 0;
+        color: #fff;
+        font-size: 12px;
+        letter-spacing: .12em;
+        min-height: 48px;
+        padding: 0 22px;
+        text-transform: uppercase;
+        width: 100%;
+      }
+
+      .catalogue-form__status {
+        color: rgba(255, 255, 255, .72);
+        font-size: 12px;
+        line-height: 1.6;
+        margin: 14px 0 0;
+        min-height: 20px;
+      }
+
+      .catalogue-modal[hidden] {
+        display: none;
+      }
+
+      .catalogue-modal {
+        align-items: center;
+        background: rgba(18, 12, 8, .72);
+        display: flex;
+        inset: 0;
+        justify-content: center;
+        padding: 24px;
+        position: fixed;
+        z-index: 9999;
+      }
+
+      .catalogue-modal__dialog {
+        max-height: calc(100vh - 48px);
+        max-width: 520px;
+        overflow: auto;
+        position: relative;
+        width: 100%;
+      }
+
+      .catalogue-modal__close {
+        align-items: center;
+        background: rgba(255, 255, 255, .1);
+        border: 1px solid rgba(255, 255, 255, .18);
+        color: #fff;
+        display: flex;
+        font-size: 20px;
+        height: 42px;
+        justify-content: center;
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        width: 42px;
+        z-index: 2;
+      }
+
+      .catalogue-form__selected {
+        background: rgba(192, 136, 96, .14);
+        border: 1px solid rgba(192, 136, 96, .28);
+        color: #f4d6bd;
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 18px;
+        padding: 12px 14px;
+      }
+
+      body.catalogue-modal-open {
+        overflow: hidden;
+      }
+
+      @media (max-width: 991px) {
+        .catalogue-section {
+          padding: 80px 0;
+        }
+
+      }
+
+      @media (max-width: 575px) {
+        .catalogue-form {
+          padding: 28px 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper catalogue-page" id="catalogue-page">
+      <%- include('partials/header') %>
+      <%- include('partials/page-hero', {
+        tag: '(E-Catalogue)',
+        title: 'Pioneeer catalogues',
+        text: 'Share your details once and unlock product catalogues for louvers, decorative surfaces, and Pioneer product ranges.',
+        image: 'assets/images/banner/banner-cta.avif',
+        buttonText: 'View Catalogues',
+        buttonLink: '#catalogue-library'
+      }) %>
+
+      <section class="catalogue-section" id="catalogue-library">
+        <div class="container-lg">
+          <div class="row align-items-end gutter-30 catalogue-section__header">
+            <div class="col-12 col-lg-7">
+              <span class="catalogue-section__eyebrow">(Download Library)</span>
+              <h2 class="catalogue-section__title elicyon">Choose the catalogue you need</h2>
+            </div>
+            <div class="col-12 col-lg-5">
+              <p class="catalogue-section__intro">
+                Download links are kept locked until your contact details are submitted.
+                This helps our team follow up with the right product support.
+              </p>
+            </div>
+          </div>
+
+          <div class="row gutter-30">
+            <% catalogues.forEach((catalogue) => { %>
+              <div class="col-12 col-md-6 col-xl-4">
+                <article
+                  class="catalogue-card fade-up"
+                  role="button"
+                  tabindex="0"
+                  data-catalogue-trigger
+                  data-catalogue-title="<%= catalogue.title %>"
+                  data-catalogue-slug="<%= catalogue.slug %>"
+                  data-catalogue-file="<%= catalogue.file %>"
+                >
+                  <div class="catalogue-card__image">
+                    <img src="<%= catalogue.coverImage %>" alt="<%= catalogue.title %>" loading="lazy" />
+                  </div>
+                  <div class="catalogue-card__body">
+                    <span>Catalogue</span>
+                    <h3><%= catalogue.title %></h3>
+                    <p><%= catalogue.description %></p>
+                    <span class="btn-quinary catalogue-card__action">
+                      <i class="ti ti-download"></i>
+                      <span class="btn-animated-text" data-text="Click to Download">Click to Download</span>
+                    </span>
+                  </div>
+                </article>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+
+      <div class="catalogue-modal" id="catalogue-lead-modal" role="dialog" aria-modal="true" aria-labelledby="catalogue-modal-title" hidden>
+        <div class="catalogue-modal__dialog">
+          <button class="catalogue-modal__close" type="button" aria-label="Close catalogue form" data-catalogue-close>
+            &times;
+          </button>
+          <aside class="catalogue-form">
+            <h2 class="elicyon" id="catalogue-modal-title">Unlock catalogue</h2>
+            <p>Share your details once. After submitting, your selected catalogue will download automatically.</p>
+            <div class="catalogue-form__selected">
+              Selected: <strong id="selected-catalogue-title">Catalogue</strong>
+            </div>
+            <form id="catalogue-lead-form">
+              <input id="catalogue-interest" name="interestedCatalogue" type="hidden" />
+              <div class="catalogue-form__grid">
+                <div>
+                  <label for="catalogue-full-name">Full Name *</label>
+                  <input id="catalogue-full-name" name="fullName" type="text" autocomplete="name" required />
+                </div>
+                <div>
+                  <label for="catalogue-email">Email *</label>
+                  <input id="catalogue-email" name="email" type="email" autocomplete="email" required />
+                </div>
+                <div>
+                  <label for="catalogue-phone">Phone *</label>
+                  <input id="catalogue-phone" name="phone" type="tel" autocomplete="tel" required />
+                </div>
+                <div>
+                  <label for="catalogue-company">Company</label>
+                  <input id="catalogue-company" name="company" type="text" autocomplete="organization" />
+                </div>
+                <div>
+                  <label for="catalogue-city">City</label>
+                  <input id="catalogue-city" name="city" type="text" autocomplete="address-level2" />
+                </div>
+                <button class="catalogue-form__submit" type="submit">Submit & Download</button>
+              </div>
+              <p class="catalogue-form__status" id="catalogue-form-status" role="status"></p>
+            </form>
+          </aside>
+        </div>
+      </div>
+
+      <%- include('partials/footer') %>
+    </div>
+
+    <script src="assets/js/jquery-4.0.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <script src="assets/js/phosphor-icon.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/ScrollToPlugin.min.js"></script>
+    <script src="assets/js/lenis.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      (function () {
+        const triggers = document.querySelectorAll("[data-catalogue-trigger]");
+        const modal = document.getElementById("catalogue-lead-modal");
+        const form = document.getElementById("catalogue-lead-form");
+        const status = document.getElementById("catalogue-form-status");
+        const selectedTitle = document.getElementById("selected-catalogue-title");
+        const selectedInput = document.getElementById("catalogue-interest");
+        const closeButtons = document.querySelectorAll("[data-catalogue-close]");
+        let selectedFile = "";
+        let lastTrigger = null;
+
+        if (!form || !modal) return;
+
+        function openModal(trigger) {
+          lastTrigger = trigger;
+          selectedFile = trigger.dataset.catalogueFile || "";
+          selectedTitle.textContent = trigger.dataset.catalogueTitle || "Catalogue";
+          selectedInput.value = trigger.dataset.catalogueSlug || "";
+          status.textContent = "";
+          modal.removeAttribute("hidden");
+          document.body.classList.add("catalogue-modal-open");
+          document.getElementById("catalogue-full-name").focus();
+        }
+
+        function closeModal() {
+          modal.setAttribute("hidden", "");
+          document.body.classList.remove("catalogue-modal-open");
+          if (lastTrigger) lastTrigger.focus();
+        }
+
+        function downloadCatalogue(file) {
+          if (!file) return;
+
+          const link = document.createElement("a");
+          link.href = file;
+          link.download = "";
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        }
+
+        triggers.forEach((trigger) => {
+          trigger.addEventListener("click", () => openModal(trigger));
+          trigger.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openModal(trigger);
+            }
+          });
+        });
+
+        closeButtons.forEach((button) => {
+          button.addEventListener("click", closeModal);
+        });
+
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) closeModal();
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
+            closeModal();
+          }
+        });
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          status.textContent = "Submitting details...";
+
+          const payload = Object.fromEntries(new FormData(form).entries());
+
+          try {
+            const response = await fetch("/api/e-catalogue-leads", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload)
+            });
+
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok || !data.success) {
+              throw new Error(data.message || "Unable to unlock catalogues right now.");
+            }
+
+            status.textContent = "Thank you. Download is starting...";
+            downloadCatalogue(selectedFile);
+            window.setTimeout(closeModal, 700);
+          } catch (error) {
+            status.textContent = error.message || "Something went wrong. Please try again.";
+          }
+        });
+      })();
+    </script>
+    <script>
+      document.getElementById("copyrightYear").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

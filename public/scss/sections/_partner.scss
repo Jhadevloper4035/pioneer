@@ -1,0 +1,177 @@
+/* ==== 
+ --------- (5.18) partner styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.partner {
+    overflow-x: clip;
+    direction: ltr;
+
+    .container-fluid {
+        padding-inline: 0px;
+    }
+
+    .partner__inner {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        user-select: none;
+        gap: 0px;
+        direction: ltr;
+
+        &:hover {
+            .partner__slider {
+                animation-play-state: paused;
+            }
+        }
+    }
+
+    img {
+        filter: brightness(0) saturate(100%) invert(100%) sepia(1%) saturate(5569%) hue-rotate(303deg) brightness(87%) contrast(61%);
+        transition: filter 0.2s ease;
+        max-width: 200px;
+
+        @include lg-screen {
+            max-width: 300px;
+        }
+    }
+
+    .partner__slider {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        direction: ltr;
+        min-width: max-content;
+        justify-content: space-between;
+        animation: scroll 15s linear infinite;
+    }
+
+    .partner__single {
+        flex: 0 0 auto;
+        padding-inline: 30px;
+
+        @include lg-screen {
+            padding-inline: 70px;
+        }
+
+        &:hover {
+            img {
+                filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(2%) hue-rotate(109deg) brightness(113%) contrast(100%);
+            }
+        }
+    }
+}
+
+// partner hover red
+.partner-hover-red {
+    border-bottom: 1px solid var(--txt-light);
+
+    .partner__single {
+
+        &:hover {
+            img {
+                filter: brightness(0) saturate(100%) invert(37%) sepia(53%) saturate(2071%) hue-rotate(336deg) brightness(98%) contrast(100%);
+            }
+        }
+    }
+}
+
+// partner hover black
+.partner-hover-black {
+    border-top: 1px solid #D2CEC8;
+
+    .partner__single {
+
+        &:hover {
+            img {
+                filter: brightness(0) saturate(100%) invert(3%) sepia(33%) saturate(920%) hue-rotate(323deg) brightness(105%) contrast(102%);
+            }
+        }
+    }
+}
+
+// partner two styles
+.partner-two {
+    border-bottom: 1px solid #E3DFDA;
+
+    .container-fluid {
+        padding-inline: 0px;
+    }
+
+    .partner__inner {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        user-select: none;
+        gap: 0px;
+        direction: ltr;
+
+        &:hover {
+            .partner__slider {
+                animation-play-state: paused;
+            }
+        }
+    }
+
+    .partner__slider {
+        display: flex;
+        align-items: center;
+        gap: 0px;
+        width: 100%;
+        flex-shrink: 0;
+        direction: ltr;
+        min-width: max-content;
+        justify-content: space-between;
+        animation: scroll 15s linear infinite;
+    }
+
+    .partner__single {
+        flex-grow: 1;
+        width: 100%;
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        border-right: 1px solid #E3DFDA;
+        transition: var(--transition);
+
+        @include lg-screen {
+            height: 300px;
+        }
+
+        &:hover {
+            background-color: var(--primary-color);
+
+            img {
+                filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7482%) hue-rotate(206deg) brightness(105%) contrast(97%);
+            }
+        }
+    }
+
+    img {
+        filter: brightness(0) saturate(100%) invert(86%) sepia(9%) saturate(168%) hue-rotate(349deg) brightness(86%) contrast(83%);
+        transition: filter 0.2s ease;
+        max-width: 70%;
+
+        @include lg-screen {
+            max-width: 80%;
+        }
+    }
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-100% - 0px));
+    }
+}
+
+/* ==== 
+ --------- (5.18) partner styles end ---------
+ ==== */

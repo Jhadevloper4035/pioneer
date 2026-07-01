@@ -1,0 +1,10 @@
+<div class="gallery_item fade-up">
+  <a
+    href="<%= item.image %>"
+    data-lightbox-image
+    <% if (typeof galleryGroup !== "undefined" && galleryGroup) { %>data-lightbox-group="<%= galleryGroup %>"<% } %>
+    aria-label="View <%= item.title %>"
+  >
+    <img src="<%= item.image %>" alt="<%= item.title %>" />
+  </a>
+</div>

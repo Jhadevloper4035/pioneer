@@ -1,0 +1,39 @@
+<%
+  const specs = getValue(product, "specifications", {});
+  const productUrl = `/wpc-louvers-single-product?product=${product.slug}`;
+%>
+<article class="louver-card is-visible">
+  <div class="louver-card__visual">
+    <a
+      class="louver-card__image-link"
+      href="<%= productUrl %>"
+      aria-label="View <%= product.name %>"
+    >
+      <img
+        class="louver-card__image"
+        src="<%= louverThumb(getValue(product, "image", "")) %>"
+        alt="<%= product.name %> WPC louver profile"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+  </div>
+  <h3 class="louver-card__name"><%= product.name %></h3>
+  <div class="louver-card__body">
+    <p class="louver-card__label">Specifications</p>
+    <dl class="louver-card__specs">
+      <div class="louver-card__spec"><dt>Width</dt><dd><%= getValue(specs, "width_mm", "-") %> mm</dd></div>
+      <div class="louver-card__spec"><dt>Height</dt><dd><%= getValue(specs, "height_mm", "-") %> mm</dd></div>
+      <div class="louver-card__spec"><dt>Length</dt><dd><%= getValue(specs, "length_mm", "-") %> mm</dd></div>
+      <div class="louver-card__spec"><dt>No. of flutes</dt><dd><%= getValue(specs, "no_of_flutes", "-") %></dd></div>
+      <div class="louver-card__spec"><dt>Approx. weight</dt><dd><%= getValue(specs, "approx_weight_per_panel_kg", "-") %> kg</dd></div>
+    </dl>
+    <div class="louver-card__price">
+      <span class="louver-card__price-symbol">₹</span>
+      <strong><%= getValue(specs, "price_per_panel_inr", "-") %></strong>
+      <small>per panel</small>
+    </div>
+    <p class="louver-card__note">Taxes, freight and installation extra.</p>
+    <a class="louver-card__enquiry" href="<%= productUrl %>">View details</a>
+  </div>
+</article>

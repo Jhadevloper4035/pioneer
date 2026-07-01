@@ -1,0 +1,122 @@
+/* ==== 
+ --------- (5.12) transform styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.transform {
+    position: relative;
+    z-index: 9;
+    overflow: hidden;
+
+
+    .transform__wrapper {
+        padding: 60px 20px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 120px;
+        max-width: 420px;
+        position: relative;
+        z-index: 9;
+
+        @include sm-screen {
+            padding: 60px 30px;
+        }
+
+        @include lg-screen {
+            gap: 190px;
+            max-width: 470px;
+        }
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            inset-inline-start: 0px;
+            width: 1px;
+            height: 100vh;
+            min-height: 200vh;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #F5F2EE;
+            opacity: 25%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        &::before {
+            inset-inline-start: unset;
+            inset-inline-end: 0px;
+        }
+
+        .line-cs {
+            position: absolute;
+            inset: 0px;
+            pointer-events: none;
+
+            &::after,
+            &::before {
+                content: '';
+                position: absolute;
+                inset-block-start: 0px;
+                width: 100vw;
+                min-width: 200vw;
+                height: 1px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #F5F2EE;
+                opacity: 25%;
+            }
+
+            &::before {
+                inset-block-start: unset;
+                inset-block-end: 0px;
+            }
+        }
+    }
+
+    .title-lg-sm,
+    .transform__cta {
+        max-width: 390px;
+    }
+
+    .transform-bg {
+        position: absolute;
+        inset: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: #481800;
+            opacity: 40%;
+            z-index: 1;
+
+            @include lg-screen {
+                opacity: 20%;
+            }
+        }
+
+        .parallax-image-wrap,
+        .parallax-image-inner {
+            width: 100%;
+            height: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+/* ==== 
+ --------- (5.12) transform styles end ---------
+ ==== */

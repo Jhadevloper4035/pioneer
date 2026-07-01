@@ -1,0 +1,16 @@
+  <body>
+    <div class="admin-shell">
+      <aside class="admin-sidebar">
+        <a class="admin-brand" href="/admin/dashboard"><%= appName %> Admin</a>
+        <nav class="admin-nav" aria-label="Admin navigation">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="/admin/users">Users</a>
+          <button type="button" data-admin-logout>Logout</button>
+        </nav>
+      </aside>
+      <main class="admin-main">
+        <header class="admin-topbar">
+          <h1><%= pageTitle %></h1>
+          <span class="muted" data-admin-user></span>
+        </header>
+        <div class="admin-content">

@@ -1,0 +1,173 @@
+/* ==== 
+ --------- (5.02) video styles start ---------
+ ==== */
+
+@use "../abstracts/mixins" as *;
+
+.video-container {
+    position: relative;
+
+    .container-fluid {
+        padding-inline: 0px;
+    }
+}
+
+.video-container__inner {
+    position: relative;
+
+    img {
+        min-height: 560px;
+        width: 100%;
+    }
+}
+
+.video-cta-wrapper {
+    position: absolute;
+    z-index: 1;
+    inset-inline-end: 0px;
+    inset-block-end: 0px;
+    width: calc(100% - 12px);
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+
+    @include md-screen {
+        justify-content: flex-end;
+        flex-direction: row;
+        max-width: 600px;
+    }
+}
+
+.discover {
+    padding: 30px 40px;
+    text-align: center;
+    background-color: #f5f2ee14;
+    border: 1px solid #f5f2ee14;
+    backdrop-filter: blur(7px);
+
+    @include md-screen {
+        max-width: 100px;
+        padding: 0px;
+    }
+
+    p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: var(--white);
+
+        @include md-screen {
+            transform: rotateZ(90deg) translateY(75px) translateX(65%);
+            min-width: max-content;
+            justify-content: flex-start;
+        }
+
+        span {
+            width: 60px;
+            height: 1px;
+            background-color: #f5f2ee75;
+            display: none;
+
+            @include xs-screen {
+                display: block;
+            }
+        }
+    }
+}
+
+.video__button-wrapper {
+    width: 100%;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #481800;
+    overflow: hidden;
+    padding-inline: 20px;
+    position: relative;
+    z-index: 1;
+
+    @include md-screen {
+        width: 400px;
+        min-width: 400px;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        inset-inline-start: 0px;
+        width: 4px;
+        height: 120px;
+        background-color: var(--white);
+    }
+
+    img {
+        position: absolute;
+        inset-inline-end: 0px;
+        inset-block-end: 0px;
+        z-index: -1;
+        min-height: auto;
+    }
+
+    a {
+        gap: 48px;
+        flex-direction: column;
+
+        @include sm-screen {
+            flex-direction: row;
+        }
+
+        &:hover {
+            .video-icon {
+                background-color: var(--primary-color);
+            }
+
+            span {
+                color: var(--primary-color);
+            }
+        }
+    }
+
+    .video-icon {
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #C08860;
+        border-radius: 50%;
+        animation: ripple 1s linear infinite;
+
+        &:hover {
+            background-color: var(--primary-color);
+        }
+
+        i {
+            color: var(--white);
+            font-size: 20px;
+        }
+    }
+
+    span {
+        transition: var(--transition);
+        color: var(--white);
+    }
+}
+
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 0 0 rgba(242, 1, 1, 0.3), 0 0 0 8px rgba(242, 1, 1, 0.3), 0 0 0 16px rgba(242, 1, 1, 0.3), 0 0 0 32px rgba(242, 1, 1, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 0 8px rgba(242, 1, 1, 0.3), 0 0 0 16px rgba(242, 1, 1, 0.3), 0 0 0 32px rgba(242, 1, 1, 0.3), 0 0 0 40px rgba(242, 1, 1, 0);
+    }
+}
+
+/* ==== 
+ --------- (5.02) video styles end ---------
+ ==== */
