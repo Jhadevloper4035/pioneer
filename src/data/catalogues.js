@@ -1,9 +1,9 @@
 module.exports = [
   {
     slug: "pvc-decorative-louvers",
-    title: "PVC Decorative Louvers",
-    description: "Profiles, dimensions, shades, and application ideas for decorative louver projects.",
-    coverImage: "assets/images/wpc-louvers/wpc-louvers.png",
+    title: "PVC Decorative Films",
+    description: "Surface finish options, shades, and application ideas for PVC decorative film projects.",
+    coverImage: "assets/images/projects/pvc-decorative-films.jpeg",
     file: "/catalogues/pvc-decorative-louvers.pdf"
   },
   {
