@@ -48,10 +48,10 @@ const fallbackProducts = louverProductsSeed.map((product) => ({
   slug: slugify(product.name),
   title: product.name,
   sku: `WPC-${String(product.id).padStart(3, "0")}`,
-  category: "WPC Louvers",
+  category: "PVC/WPC Interior Louvers",
   mainImage: product.image,
   summary:
-    "Premium WPC louver profile for decorative wall and ceiling applications with ready-to-install finish options."
+    "Premium PVC/WPC interior louver profile for decorative wall and ceiling applications with ready-to-install finish options."
 }));
 
 function getValue(source, key, fallback = null) {
@@ -95,7 +95,7 @@ function readCustomData() {
 
 function normalizeProduct(product, index, data) {
   const specs = getValue(product, "specifications", {});
-  const fallbackName = `WPC Louver ${getValue(specs, "width_mm", index + 1)} x ${getValue(specs, "height_mm", "-")} mm`;
+  const fallbackName = `PVC/WPC Interior Louver ${getValue(specs, "width_mm", index + 1)} x ${getValue(specs, "height_mm", "-")} mm`;
   const name = getValue(product, "name", fallbackName);
   const slug = getValue(product, "slug", slugify(name));
   const mainImage = getValue(product, "mainImage", getValue(product, "image", ""));
@@ -111,8 +111,8 @@ function normalizeProduct(product, index, data) {
     name,
     slug,
     sku: getValue(product, "sku", `WPC-${slug.replace(/-/g, "").toUpperCase()}`),
-    title: getValue(product, "title", `WPC Louvers ${name}`),
-    category: getValue(product, "category", "WPC Louvers"),
+    title: getValue(product, "title", `PVC/WPC Interior Louvers ${name}`),
+    category: getValue(product, "category", "PVC/WPC Interior Louvers"),
     image: getValue(product, "image", mainImage),
     mainImage,
     availableShades: getValue(product, "availableShades", data.shadeLibrary),
@@ -139,8 +139,8 @@ function getLouverData(products) {
   const customData = readCustomData() || {};
   const data = {
     page: getValue(customData, "page", {
-      title: "WPC/PVC Louvers | Pioneer Flex",
-      description: "Pioneer WPC/PVC Louvers premium wall cladding profiles."
+      title: "PVC/WPC Interior Louvers | Pioneer Flex",
+      description: "Pioneer PVC/WPC Interior Louvers premium wall cladding profiles."
     }),
     shadeLibrary: getValue(customData, "shadeLibrary", shadeLibrary),
     applicationLibrary: getValue(customData, "applicationLibrary", applicationLibrary),

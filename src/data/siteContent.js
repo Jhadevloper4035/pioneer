@@ -78,32 +78,32 @@ const infrastructureGalleryItems = [
 
 const blogPosts = [
   {
-    slug: "choosing-flex-banner",
-    category: "Products",
-    title: "Choosing the right flex banner for outdoor signage",
-    image: "assets/images/ideas/3.jpeg",
-    alt: "Outdoor signage material"
+    slug: "pvc-decorative-films",
+    category: "PVC Decorative Films",
+    title: "PVC decorative films for furniture, doors, and modular interiors",
+    image: "assets/images/projects/pvc-decorative-films.jpeg",
+    alt: "PVC decorative film being applied on a wood finish surface"
   },
   {
-    slug: "integrated-pvc-processing",
-    category: "Manufacturing",
-    title: "Inside Pioneer's integrated PVC processing plant",
-    image: "assets/images/ideas/13.jpeg",
-    alt: "PVC manufacturing process"
+    slug: "pvc-wpc-interior-louvers",
+    category: "PVC/WPC Interior Louvers",
+    title: "PVC/WPC interior louvers for feature walls and commercial interiors",
+    image: "assets/images/projects/pvc-wall-panel.jpeg",
+    alt: "PVC WPC interior louvers installed on an interior wall"
   },
   {
-    slug: "decorative-films",
-    category: "Home Decor",
-    title: "PVC decorative films for modular kitchens and doors",
-    image: "assets/images/ideas/19.jpeg",
-    alt: "Decorative interior film"
+    slug: "wpc-doors-and-frames",
+    category: "WPC Doors and Frames",
+    title: "WPC doors and frames built for moisture-resistant interior fitment",
+    image: "assets/images/projects/wpc-door-frame.jpeg",
+    alt: "WPC door and frame installed in a modern interior"
   },
   {
-    slug: "pvc-tape-solutions",
-    category: "PVC Tapes",
-    title: "Adhesive tape solutions for electrical and floor marking",
-    image: "assets/images/ideas/29.jpeg",
-    alt: "PVC tape application"
+    slug: "pvc-wpc-baffles",
+    category: "PVC/WPC Baffles",
+    title: "PVC/WPC baffles for linear screens, facades, and ceilings",
+    image: "assets/images/projects/cp-three.webp",
+    alt: "PVC WPC baffle screen used on an exterior facade"
   }
 ];
 

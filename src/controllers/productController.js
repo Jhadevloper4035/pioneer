@@ -12,7 +12,7 @@ const fallbackProduct = {
   name: "Product Not Found",
   title: "Product Not Found",
   sku: "-",
-  category: "WPC Louvers",
+  category: "PVC/WPC Interior Louvers",
   mainImage: "assets/images/products/product-1.png",
   gallery: ["assets/images/products/product-1.png"],
   availableShades: [],

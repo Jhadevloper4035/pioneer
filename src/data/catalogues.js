@@ -8,7 +8,7 @@ module.exports = [
   },
   {
     slug: "decorative-films-laminates",
-    title: "Decorative Films & Laminates",
+    title: "PVC Decorative Films",
     description: "Surface finish options for interiors, panels, laminates, and decorative applications.",
     coverImage: "assets/images/banner/2.jpeg",
     file: "/catalogues/decorative-films-laminates.pdf"

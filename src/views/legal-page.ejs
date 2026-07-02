@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/images/favicon.webp" type="image/x-icon" />
+    <title><%= pageTitle %></title>
+    <meta name="description" content="<%= pageDescription %>" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/all.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/tabler-icons.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      .legal-section {
+        background: #f5f2ee;
+        padding: 120px 0;
+      }
+
+      .legal-section__grid {
+        display: grid;
+        gap: 44px;
+        grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+      }
+
+      .legal-section__aside {
+        color: #77695f;
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .legal-section__aside strong {
+        color: #481800;
+        display: block;
+        font-size: 13px;
+        letter-spacing: .18em;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+      }
+
+      .legal-section__content {
+        display: grid;
+        gap: 22px;
+      }
+
+      .legal-card {
+        background: #fff;
+        border: 1px solid rgba(120, 82, 54, .12);
+        border-radius: 8px;
+        padding: clamp(26px, 4vw, 42px);
+        box-shadow: 0 22px 44px rgba(59, 38, 24, .06);
+      }
+
+      .legal-card h2 {
+        color: #481800;
+        font-size: clamp(1.45rem, 2vw, 2rem);
+        font-weight: 500;
+        line-height: 1.25;
+        margin: 0 0 16px;
+      }
+
+      .legal-card p {
+        color: #66584d;
+        font-size: 15px;
+        line-height: 1.85;
+        margin: 0;
+      }
+
+      .legal-card p + p {
+        margin-top: 12px;
+      }
+
+      @media (max-width: 991px) {
+        .legal-section {
+          padding: 90px 0;
+        }
+
+        .legal-section__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 575px) {
+        .legal-section {
+          padding: 70px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <%- include('partials/header') %>
+      <%- include('partials/page-hero', {
+        tag: hero.tag,
+        title: hero.title,
+        text: hero.text,
+        image: 'assets/images/infrastructure/banner.jpg',
+        buttonText: 'Contact Us',
+        buttonLink: '/contact-us'
+      }) %>
+
+      <main class="legal-section">
+        <div class="container-lg">
+          <div class="legal-section__grid">
+            <aside class="legal-section__aside">
+              <strong>Pioneer Flex</strong>
+              <p>
+                These pages are provided to clarify website use, enquiry handling,
+                and communication practices for Pioneer Flex visitors and customers.
+              </p>
+            </aside>
+            <div class="legal-section__content">
+              <% sections.forEach((section) => { %>
+                <article class="legal-card">
+                  <h2><%= section.title %></h2>
+                  <% section.body.forEach((paragraph) => { %>
+                    <p><%= paragraph %></p>
+                  <% }); %>
+                </article>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <%- include('partials/footer') %>
+    </div>
+
+    <script src="assets/js/jquery-4.0.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <script src="assets/js/phosphor-icon.js"></script>
+    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/ScrollToPlugin.min.js"></script>
+    <script src="assets/js/lenis.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
