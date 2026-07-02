@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/images/favicon.webp" type="image/x-icon" />
+    <title>Career | Pioneer Flex</title>
+    <meta
+      name="description"
+      content="Explore current openings at Pioneer Flex across sales, manufacturing, quality, and internship roles."
+    />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/all.min.css" />
+    <link rel="stylesheet" href="assets/fonts/css/tabler-icons.min.css" />
+    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/css/nice-select.css" />
+    <link rel="stylesheet" href="assets/css/odometer.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/product.css" />
+  </head>
+  <body>
+    <div class="page-wrapper career-page">
+      <%- include('partials/header') %>
+
+      <%- include('partials/page-hero', {
+        tag: '(Career)',
+        title: 'Build your future with Pioneer',
+        text: 'Join a manufacturing-led team working across PVC Decorative Films, PVC/WPC Interior Louvers, WPC Doors and Frames, and PVC/WPC Baffles.',
+        image: 'assets/images/infrastructure/banner.jpeg',
+        buttonText: 'Current Openings',
+        buttonLink: '#current-openings'
+      }) %>
+
+      <section class="career-intro pt-140 pb-100 bg-alt-2">
+        <div class="container-lg">
+          <div class="row gutter-40 align-items-end">
+            <div class="col-12 col-lg-7 fade-up">
+              <p class="sub-title mb-4">People at Pioneer</p>
+              <h2 class="career-title elicyon">Work with a team focused on quality, scale, and  supply.</h2>
+            </div>
+            <div class="col-12 col-lg-5 fade-up" data-delay="120">
+              <p class="career-copy">
+                Pioneer Polyleathers (P) Limited brings together sourcing, processing, coating, laminating,
+                finishing, and dispatch under one system. We look for people who care about details,
+                customer trust, and practical execution.
+              </p>
+            </div>
+          </div>
+
+          <div class="career-values mt-80">
+            <article class="career-value fade-up">
+              <span>01</span>
+              <h3>Manufacturing Mindset</h3>
+              <p>Hands-on production, finishing, packing, and dispatch discipline.</p>
+            </article>
+            <article class="career-value fade-up" data-delay="120">
+              <span>02</span>
+              <h3>Product Learning</h3>
+              <p>Learn decorative films, louvers, WPC doors, baffles, and interior markets.</p>
+            </article>
+            <article class="career-value fade-up" data-delay="240">
+              <span>03</span>
+              <h3>Steady Growth</h3>
+              <p>A stable environment for people who like clear responsibilities and long-term work.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="career-openings pt-100 pb-140" id="current-openings">
+        <div class="container-lg">
+          <div class="career-openings__header fade-up">
+            <p class="sub-title">Current Openings</p>
+            <h2 class="career-title elicyon">Find the right role at Pioneer.</h2>
+            <p class="career-copy">
+              Explore open positions and submit your profile directly from the role page.
+            </p>
+          </div>
+
+          <div class="career-openings__grid">
+            <% careerOpenings.forEach((opening, index) => { %>
+              <article class="career-card fade-up" data-delay="<%= index * 90 %>">
+                <div class="career-card__meta">
+                  <span><%= opening.department %></span>
+                  <span><%= opening.type %></span>
+                </div>
+                <h3 class="elicyon"><%= opening.title %></h3>
+                <p><%= opening.summary %></p>
+                <dl>
+                  <div>
+                    <dt>Location</dt>
+                    <dd><%= opening.location %></dd>
+                  </div>
+                  <div>
+                    <dt>Experience</dt>
+                    <dd><%= opening.experience %></dd>
+                  </div>
+                </dl>
+                <a class="btn-quinary career-card__link" href="/career/<%= opening.slug %>">
+                  <span class="btn-animated-text" data-text="View Opening">View Opening</span>
+                </a>
+              </article>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+
+      <%- include('partials/footer') %>
+    </div>
+  </body>
+</html>

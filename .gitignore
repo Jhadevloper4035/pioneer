@@ -22,6 +22,7 @@ pids/
 *.pid
 *.seed
 *.pid.lock
+uploads/
 
 # Coverage and build output
 coverage/

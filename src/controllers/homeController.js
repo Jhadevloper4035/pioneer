@@ -1,5 +1,6 @@
 const {
   blogPosts,
+  careerOpenings,
   galleryItems,
   infrastructureGalleryItems
 } = require("../data/siteContent");
@@ -42,6 +43,20 @@ function aboutCompany(req, res) {
 
 function infrastructure(req, res) {
   res.render("infrastructure", { galleryItems: infrastructureGalleryItems });
+}
+
+function career(req, res) {
+  res.render("career", { careerOpenings });
+}
+
+function careerOpening(req, res) {
+  const opening = careerOpenings.find((item) => item.slug === req.params.slug);
+
+  if (!opening) {
+    return res.redirect(302, "/career");
+  }
+
+  return res.render("career-opening", { opening, careerOpenings });
 }
 
 function termsAndConditions(req, res) {
@@ -150,6 +165,8 @@ function indexRedirect(req, res) {
 
 module.exports = {
   aboutCompany,
+  career,
+  careerOpening,
   home,
   homeGrid,
   homeZigzag,

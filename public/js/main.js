@@ -1041,7 +1041,9 @@
          * 20. nice select
          * ======================================
          */
-        $("select").niceSelect();
+        if ($.fn.niceSelect && $("select").length > 0) {
+            $("select").niceSelect();
+        }
 
         /**
          * ======================================
