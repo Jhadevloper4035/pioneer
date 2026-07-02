@@ -3,12 +3,17 @@ function contact(req, res) {
 }
 
 function submitContact(req, res) {
-  const { name, email, message } = req.body;
+  const { name, email, phone, message } = req.body;
+  const productCategories = Array.isArray(req.body.productCategories)
+    ? req.body.productCategories
+    : req.body.productCategories
+      ? [req.body.productCategories]
+      : [];
 
   res.status(201).json({
     success: true,
     message: "Contact request received",
-    data: { name, email, message }
+    data: { name, email, phone, productCategories, message }
   });
 }
 

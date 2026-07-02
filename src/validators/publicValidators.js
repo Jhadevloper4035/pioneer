@@ -1,6 +1,13 @@
 const { body } = require("express-validator");
 const handleValidation = require("./handleValidation");
 
+const productCategoryValues = new Set([
+  "PVC Decorative Films",
+  "PVC/WPC Interior Louvers",
+  "WPC Doors and Frames",
+  "PVC/WPC Baffles"
+]);
+
 const contactValidator = [
   body("name")
     .trim()
@@ -21,6 +28,11 @@ const contactValidator = [
     .withMessage("Message is required")
     .isLength({ min: 10, max: 1000 })
     .withMessage("Message must be between 10 and 1000 characters"),
+  body("productCategories")
+    .optional({ checkFalsy: true })
+    .customSanitizer((value) => (Array.isArray(value) ? value : [value]))
+    .custom((values) => values.every((value) => productCategoryValues.has(value)))
+    .withMessage("Please select valid product categories"),
   handleValidation
 ];
 
