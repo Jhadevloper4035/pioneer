@@ -1,11 +1,11 @@
 <article class="journal-card" id="<%= post.slug %>">
-  <a class="journal-card__thumb" href="/blog#<%= post.slug %>">
+  <a class="journal-card__thumb" href="/blog/<%= post.slug %>">
     <img src="<%= post.image %>" alt="<%= post.alt %>" />
   </a>
   <div class="journal-card__content">
     <span><%= post.category %></span>
     <h3>
-      <a href="/blog#<%= post.slug %>"><%= post.title %></a>
+      <a href="/blog/<%= post.slug %>"><%= post.title %></a>
     </h3>
   </div>
 </article>

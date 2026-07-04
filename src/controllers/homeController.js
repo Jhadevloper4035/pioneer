@@ -38,15 +38,15 @@ function homeZigzag(req, res) {
 }
 
 function aboutCompany(req, res) {
-  res.render("about-company");
+  res.render("about/about-company");
 }
 
 function infrastructure(req, res) {
-  res.render("infrastructure", { galleryItems: infrastructureGalleryItems });
+  res.render("about/infrastructure", { galleryItems: infrastructureGalleryItems });
 }
 
 function career(req, res) {
-  res.render("career", { careerOpenings });
+  res.render("career/all-career-page", { careerOpenings });
 }
 
 function careerOpening(req, res) {
@@ -56,7 +56,7 @@ function careerOpening(req, res) {
     return res.redirect(302, "/career");
   }
 
-  return res.render("career-opening", { opening, careerOpenings });
+  return res.render("career/single-career-page", { opening, careerOpenings });
 }
 
 function termsAndConditions(req, res) {

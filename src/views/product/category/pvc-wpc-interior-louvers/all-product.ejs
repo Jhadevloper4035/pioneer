@@ -35,19 +35,17 @@
 
   <body>
     <div class="page-wrapper">
-      <%- include('partials/header') %>
-      <%- include('partials/page-hero', {
+      <%- include('../../../partials/header') %>
+
+      <%- include('../../../partials/page-hero', {
         tag: '(PVC/WPC Interior Louvers)',
-        title: 'Pioneer PVC/WPC Interior Louvers',
+        title: 'PVC/WPC Interior Louvers',
         text: 'Premium wall louver profiles crafted for feature walls, partitions, retail interiors, and decorative cladding.',
         image: 'assets/images/wpc-louvers/1.jpeg',
         buttonText: 'View Profiles',
         buttonLink: '#product-container'
       }) %>
 
-
-
-      
       <!-- ==== louver composition section start ==== -->
       <section
         class="louver-composition"
@@ -79,12 +77,12 @@
             <div class="louver-composition__visual fade-up" data-delay="160">
               <a
                 class="louver-composition__image-link"
-                href="assets/images/products/product-1.png"
+                href="assets/images/category/interior-louvers/about.png"
                 data-lightbox-image
                 aria-label="View full Pioneer PVC WPC interior louver profile image"
               >
                 <img
-                  src="<%= louverThumb("assets/images/wpc-louvers/wpc-louvers.png") %>"
+                  src="<%= louverThumb("assets/images/category/interior-louvers/about.png") %>"
                   alt="Pioneer PVC WPC interior louver showing decorative laminate and composite core"
                   loading="lazy"
                 />
@@ -116,7 +114,7 @@
             aria-live="polite"
           >
             <% products.forEach((product) => { %>
-              <%- include("partials/louver-product-card", {
+              <%- include("../../../partials/louver-product-card", {
                 product,
                 getValue,
                 louverThumb
@@ -471,7 +469,7 @@
       </div>
 
       <!-- ===== FOOTER ===== -->
-      <%- include('partials/footer') %>
+      <%- include('../../../partials/footer') %>
 
       <div class="lines l-alt">
         <div class="line"></div>

@@ -22,8 +22,8 @@
   </head>
   <body>
     <div class="page-wrapper">
-      <%- include('partials/header') %>
-      <%- include('partials/page-hero', {
+      <%- include('../partials/header') %>
+      <%- include('../partials/page-hero', {
         tag: '(Blog)',
         title: 'Pioneer journal and insights',
         text: 'Read practical notes on signage media, PVC processing, decorative films, and industrial product applications.',
@@ -37,14 +37,14 @@
           <div class="row gutter-30">
             <% blogPosts.forEach((post) => { %>
               <div class="col-12 col-md-6 col-xl-3 fade-up">
-                <%- include('partials/blog-card', { post }) %>
+                <%- include('../partials/blog-card', { post }) %>
               </div>
             <% }); %>
           </div>
         </div>
       </section>
 
-      <%- include('partials/footer') %>
+      <%- include('../partials/footer') %>
     </div>
   </body>
 </html>

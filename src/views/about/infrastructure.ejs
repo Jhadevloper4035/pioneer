@@ -25,7 +25,7 @@
   <body>
     <div class="my-app infrastructure-page">
 
-      <%- include('partials/header') %>
+      <%- include('../partials/header') %>
 
       <section class="infra-hero">
         <div class="container-lg">
@@ -293,7 +293,7 @@
           <div class="row">
             <% galleryItems.forEach((item) => { %>
               <div class="col-lg-4">
-                <%- include('partials/gallery-card', { item, galleryGroup: 'infrastructure-gallery' }) %>
+                <%- include('../partials/gallery-card', { item, galleryGroup: 'infrastructure-gallery' }) %>
               </div>
             <% }); %>
           </div>
@@ -337,7 +337,7 @@
         </div>
       </section>
 
-      <%- include('partials/footer') %>
+      <%- include('../partials/footer') %>
     </div>
   </body>
 </html>

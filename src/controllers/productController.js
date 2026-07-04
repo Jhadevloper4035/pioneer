@@ -20,6 +20,30 @@ const fallbackProduct = {
   productInformation: []
 };
 
+const categoryPages = {
+  "pvc-decorative-films": {
+    title: "PVC Decorative Films",
+    tag: "(PVC Decorative Films)",
+    text: "Decorative PVC films for furniture, doors, wall panels, modular interiors, and profile wrapping applications.",
+    image: "/assets/images/category/pvc-decor-frame.webp",
+    anchor: "category-heading"
+  },
+  "wpc-doors-and-frames": {
+    title: "WPC Doors and Frames",
+    tag: "(WPC Doors and Frames)",
+    text: "Durable WPC doors and frames developed for moisture-resistant, termite-resistant interior fitment.",
+    image: "/assets/images/category/pvc-door-frame.jpeg",
+    anchor: "category-heading"
+  },
+  "pvc-wpc-baffles": {
+    title: "PVC/WPC Baffles",
+    tag: "(PVC/WPC Baffles)",
+    text: "Linear baffle systems for ceiling, partition, screen, facade, and decorative interior applications.",
+    image: "/assets/images/category/baffles.jpeg",
+    anchor: "category-heading"
+  }
+};
+
 async function getProducts() {
   if (mongoose.connection.readyState !== 1) {
     return null;
@@ -35,7 +59,7 @@ async function getProducts() {
 async function listLouvers(req, res) {
   const data = getLouverData(await getProducts());
 
-  res.render("wpc-louvers", {
+  res.render("product/category/pvc-wpc-interior-louvers/all-product", {
     page: data.page,
     products: data.products,
     getValue,
@@ -48,7 +72,7 @@ async function showLouver(req, res) {
   const product = getLouverProduct(slug, await getProducts());
 
   if (!product) {
-    return res.status(404).render("wpc-louvers-single-product", {
+    return res.status(404).render("product/category/pvc-wpc-interior-louvers/single-product", {
       product: fallbackProduct,
       gallery: fallbackProduct.gallery,
       shades: [],
@@ -63,7 +87,7 @@ async function showLouver(req, res) {
   const gallery = getValue(product, "gallery", [getValue(product, "mainImage", "")]);
   const shades = getValue(product, "availableShades", []);
 
-  return res.render("wpc-louvers-single-product", {
+  return res.render("product/category/pvc-wpc-interior-louvers/single-product", {
     product,
     gallery,
     shades,
@@ -75,7 +99,20 @@ async function showLouver(req, res) {
   });
 }
 
+function showCategory(categoryKey) {
+  return (req, res) => {
+    const category = categoryPages[categoryKey];
+
+    return res.render(`product/category/${categoryKey}/all-product`, {
+      category
+    });
+  };
+}
+
 module.exports = {
+  listDecorativeFilms: showCategory("pvc-decorative-films"),
   listLouvers,
+  listWpcDoorsAndFrames: showCategory("wpc-doors-and-frames"),
+  listPvcWpcBaffles: showCategory("pvc-wpc-baffles"),
   showLouver
 };

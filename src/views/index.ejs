@@ -53,7 +53,12 @@
       const hasCategoryGrid = typeof showCategoryGrid !== "undefined" ? showCategoryGrid : true;
       const hasDecorativeZigzag = typeof showDecorativeZigzag !== "undefined" ? showDecorativeZigzag : false;
       const productCtaTarget = "#products";
-      const categoryDetailBase = hasDecorativeZigzag ? "" : "/home-zigzag";
+      const productCategoryLinks = {
+        decorativeFilms: "/pvc-decorative-film",
+        interiorLouvers: "/pvc-wpc-interior-louvers",
+        doorsFrames: "/wpc-doors-and-frames",
+        baffles: "/pvc-wpc-baffles"
+      };
     %>
     <div class="page-wrapper">
       <%- include('partials/header') %>
@@ -236,7 +241,7 @@
           <div class="main-category-section__grid mt-60">
             <a
               class="main-category-section__item fade-up"
-              href="<%= categoryDetailBase %>#pvc-decorative-films"
+              href="<%= productCategoryLinks.decorativeFilms %>"
               aria-label="View PVC Decorative Films category"
             >
               <img
@@ -251,7 +256,7 @@
             </a>
             <a
               class="main-category-section__item fade-up"
-              href="<%= categoryDetailBase %>#pvc-wpc-wall-panels"
+              href="<%= productCategoryLinks.interiorLouvers %>"
               data-delay="100"
               aria-label="View PVC WPC Interior Louvers category"
             >
@@ -267,7 +272,7 @@
             </a>
             <a
               class="main-category-section__item fade-up"
-              href="<%= categoryDetailBase %>#wpc-door-frames"
+              href="<%= productCategoryLinks.doorsFrames %>"
               data-delay="200"
               aria-label="View WPC Doors and Frames category"
             >
@@ -283,7 +288,7 @@
             </a>
             <a
               class="main-category-section__item fade-up"
-              href="<%= categoryDetailBase %>#pvc-wpc-baffles"
+              href="<%= productCategoryLinks.baffles %>"
               data-delay="300"
               aria-label="View PVC WPC Baffles category"
             >
@@ -349,7 +354,7 @@
                 </p>
                 <a
                   class="btn-primary decorative-services__cta"
-                  href="/wpc-louvers"
+                  href="<%= productCategoryLinks.decorativeFilms %>"
                 >
                   <span class="btn-animated-text" data-text="View Details"
                     >View Details</span
@@ -382,7 +387,7 @@
                 </p>
                 <a
                   class="btn-primary decorative-services__cta"
-                  href="/wpc-louvers"
+                  href="<%= productCategoryLinks.interiorLouvers %>"
                 >
                   <span class="btn-animated-text" data-text="View Details"
                     >View Details</span
@@ -415,7 +420,7 @@
                 </p>
                 <a
                   class="btn-primary decorative-services__cta"
-                  href="#wpc-door-frames"
+                  href="<%= productCategoryLinks.doorsFrames %>"
                 >
                   <span class="btn-animated-text" data-text="View Details"
                     >View Details</span
@@ -448,7 +453,7 @@
                 </p>
                 <a
                   class="btn-primary decorative-services__cta"
-                  href="#pvc-wpc-baffles"
+                  href="<%= productCategoryLinks.baffles %>"
                 >
                   <span class="btn-animated-text" data-text="View Details"
                     >View Details</span

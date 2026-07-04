@@ -4,6 +4,12 @@ function notFoundHandler(req, res, next) {
   next(new AppError(`Route not found: ${req.method} ${req.originalUrl}`, 404));
 }
 
+function wantsJson(req) {
+  return req.originalUrl.startsWith("/api/")
+    || req.xhr
+    || req.accepts(["html", "json"]) === "json";
+}
+
 function errorHandler(err, req, res, next) {
   if (res.headersSent) {
     return next(err);
@@ -15,6 +21,12 @@ function errorHandler(err, req, res, next) {
 
   if (!isOperational) {
     console.error(err);
+  }
+
+  if (statusCode === 404 && !wantsJson(req)) {
+    return res.status(404).render("error/404", {
+      requestedUrl: req.originalUrl
+    });
   }
 
   const response = {

@@ -106,6 +106,16 @@
       padding: 44px;
     }
 
+    .contact-form-card__header {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .contact-form-card__header > div {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .contact-map-area {
       background: #EEE9E2;
       padding: 0 clamp(16px, 4vw, 64px) 140px;
@@ -201,8 +211,8 @@
       color: rgba(72, 24, 0, .68);
       font-size: 16px;
       line-height: 1.65;
-      margin: 16px 0 0;
-      max-width: 520px;
+      margin: 16px auto 0;
+      max-width: 640px;
     }
 
     .contact-field label {
@@ -439,7 +449,7 @@
               <div class="col-lg-4 col-md-6">
                 <div class="contact-info-card fade-up">
                   <span class="contact-info-card__icon"><i class="ti ti-map-pin"></i></span>
-                  <h6>Showroom Address</h6>
+                  <h6>Corporate office</h6>
                   <p>
                     <strong>Pioneer Flex</strong><br>
                     Unit No.102, Tower-D S-1 Floor,<br>
@@ -473,9 +483,7 @@
                     <strong>Domestic Business</strong><br>
                     <a href="tel:+919821396373">+91-9821396373</a><br>
                     <a href="tel:+918588845645">+91-8588845645</a><br><br>
-                    <strong>International Business</strong><br>
-                    <a href="tel:+918586981749">+91-8586981749</a><br>
-                    <a href="tel:+919810353032">+91-9810353032</a><br><br>
+                     <strong>Email</strong><br>
                     <a href="mailto:sales@pioneerflex.in">sales@pioneerflex.in</a><br>
                     <a href="mailto:export@pioneerflex.in">export@pioneerflex.in</a>
                   </p>
@@ -484,14 +492,14 @@
             </div>
 
             <div class="contact-form-card fade-up">
-              <div class="row align-items-end g-4 mb-4">
+              <div class="row align-items-end g-4 mb-4 contact-form-card__header">
                 <div class="col-lg-7">
                   <h2 class="elicyon">Tell us about your project.</h2>
-                  <p>Please fill out the form and our team will get back to you shortly.</p>
+                  <p>Do you have a question about Pioneer, a media inquiry, or other request? Fill out the form below and our representative will get back to you with more information.</p>
                 </div>
               </div>
 
-              <form action="/api/contact" method="post">
+              <form action="/api/contact" class="pt-4" method="post">
                 <div class="row g-4">
                   <div class="col-md-6 contact-field">
                     <label for="contact-name">Your Name</label>
