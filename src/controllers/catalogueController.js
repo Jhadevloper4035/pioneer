@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const catalogues = require("../data/catalogues");
 const CatalogueLead = require("../models/CatalogueLead");
+const { renderPublicPage } = require("../services/viewRenderer");
 
 function eCatalogue(req, res) {
-  res.render("e-catalogue", { catalogues });
+  return renderPublicPage(req, res, "public/pages/e-catalogue", { catalogues });
 }
 
 async function submitCatalogueLead(req, res) {

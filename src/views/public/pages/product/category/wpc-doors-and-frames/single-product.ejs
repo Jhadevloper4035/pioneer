@@ -1,0 +1,18 @@
+<%- include('../../../../partials/page-hero', {
+        tag: category.tag,
+        title: category.title,
+        text: category.text,
+        image: category.image,
+        buttonText: 'View Category',
+        buttonLink: '#' + (category.anchor || 'category-heading')
+      }) %>
+      <section class="pt-120 pb-120 bg-alt-2">
+        <div class="container-lg text-center">
+          <p class="section__content-sub-title">(Product Category)</p>
+          <h2 class="title-lg-sm elicyon fw-3 mt-12" id="<%= category.anchor || 'category-heading' %>"><%= category.title %></h2>
+          <p class="mt-24 mx-auto" style="max-width: 680px;"><%= category.text %></p>
+          <a class="btn-quinary mt-35" href="/contact-us?subject=<%= encodeURIComponent(category.title) %>">
+            <span class="btn-animated-text" data-text="Request Details">Request Details</span>
+          </a>
+        </div>
+      </section>

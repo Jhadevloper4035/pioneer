@@ -32,6 +32,7 @@
 
 .career-value,
 .career-card,
+.career-openings__empty,
 .career-detail__aside,
 .career-detail__panel {
   background: rgba(255, 255, 255, 0.76);
@@ -204,6 +205,40 @@
 .career-card__link:hover .btn-animated-text {
   background-color: var(--black-2);
   border-color: var(--black-2);
+}
+
+.career-openings__empty {
+  margin: 0 auto;
+  padding: clamp(30px, 4vw, 52px);
+  width: 100%;
+}
+
+.career-openings__grid + .career-openings__empty {
+  margin-top: 48px;
+}
+
+.career-openings__empty-intro {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  max-width: 680px;
+  text-align: center;
+}
+
+.career-openings__empty-intro h3 {
+  color: var(--black-2);
+  font-size: clamp(2.1rem, 3.2vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+
+.career-openings__empty-intro p:not(.sub-title) {
+  color: var(--txt-light);
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0;
+  text-align: center;
 }
 
 .career-detail-hero {

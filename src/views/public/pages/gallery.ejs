@@ -1,0 +1,20 @@
+<%- include('../partials/page-hero', {
+        tag: '(Gallery)',
+        title: 'Pioneer applications',
+        text: 'A closer look at signage materials, decorative PVC surfaces, interior applications, and industrial product finishes.',
+        image: 'assets/images/banner/5.jpeg',
+        buttonText: 'View Gallery',
+        buttonLink: '#gallery-list'
+      }) %>
+
+      <section class="ideas-inspiration pt-140 pb-140 bg-alt-2" id="gallery-list">
+        <div class="container-lg">
+          <div class="row">
+            <% galleryItems.forEach((item) => { %>
+              <div class="col-lg-4">
+                <%- include('../partials/gallery-card', { item, galleryGroup: 'gallery-page' }) %>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>

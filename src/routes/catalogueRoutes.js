@@ -5,7 +5,7 @@ const { catalogueLeadValidator } = require("../validators/publicValidators");
 
 const router = express.Router();
 
-router.get(["/e-catalogue", "/e-catalogue.php", "/e-catalog"], catalogueController.eCatalogue);
+router.get(["/e-catalogue", "/e-catalogue.php", "/e-catalog"], asyncHandler(catalogueController.eCatalogue));
 router.post(
   "/api/e-catalogue-leads",
   catalogueLeadValidator,

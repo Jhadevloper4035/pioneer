@@ -4,9 +4,10 @@ const {
   galleryItems,
   infrastructureGalleryItems
 } = require("../data/siteContent");
+const { renderPublicPage } = require("../services/viewRenderer");
 
-function renderHome(res, variantOptions = {}) {
-  res.render("index", {
+function renderHome(req, res, variantOptions = {}) {
+  return renderPublicPage(req, res, "public/pages/index", {
     blogPosts,
     galleryItems,
     ...variantOptions
@@ -14,7 +15,7 @@ function renderHome(res, variantOptions = {}) {
 }
 
 function home(req, res) {
-  renderHome(res, {
+  return renderHome(req, res, {
     homeVariant: "grid",
     showCategoryGrid: true,
     showDecorativeZigzag: false
@@ -22,7 +23,7 @@ function home(req, res) {
 }
 
 function homeGrid(req, res) {
-  renderHome(res, {
+  return renderHome(req, res, {
     homeVariant: "grid",
     showCategoryGrid: true,
     showDecorativeZigzag: false
@@ -30,7 +31,7 @@ function homeGrid(req, res) {
 }
 
 function homeZigzag(req, res) {
-  renderHome(res, {
+  return renderHome(req, res, {
     homeVariant: "zigzag",
     showCategoryGrid: false,
     showDecorativeZigzag: true
@@ -38,15 +39,15 @@ function homeZigzag(req, res) {
 }
 
 function aboutCompany(req, res) {
-  res.render("about/about-company");
+  return renderPublicPage(req, res, "public/pages/about/about-company");
 }
 
 function infrastructure(req, res) {
-  res.render("about/infrastructure", { galleryItems: infrastructureGalleryItems });
+  return renderPublicPage(req, res, "public/pages/about/infrastructure", { galleryItems: infrastructureGalleryItems });
 }
 
 function career(req, res) {
-  res.render("career/all-career-page", { careerOpenings });
+  return renderPublicPage(req, res, "public/pages/career/all-career-page", { careerOpenings });
 }
 
 function careerOpening(req, res) {
@@ -56,11 +57,11 @@ function careerOpening(req, res) {
     return res.redirect(302, "/career");
   }
 
-  return res.render("career/single-career-page", { opening, careerOpenings });
+  return renderPublicPage(req, res, "public/pages/career/single-career-page", { opening, careerOpenings });
 }
 
 function termsAndConditions(req, res) {
-  res.render("legal-page", {
+  return renderPublicPage(req, res, "public/pages/legal-page", {
     pageTitle: "Terms & Conditions | Pioneer Flex",
     pageDescription:
       "Read the website terms and conditions for Pioneer Flex product information, enquiries, catalogues, and website use.",
@@ -110,7 +111,7 @@ function termsAndConditions(req, res) {
 }
 
 function privacyPolicy(req, res) {
-  res.render("legal-page", {
+  return renderPublicPage(req, res, "public/pages/legal-page", {
     pageTitle: "Privacy Policy | Pioneer Flex",
     pageDescription:
       "Learn how Pioneer Flex handles website enquiry, catalogue, and contact information submitted through the website.",

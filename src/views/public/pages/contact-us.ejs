@@ -1,0 +1,210 @@
+<%- include('../partials/page-hero', { tag: '(Contact)' , title: 'Get in touch' ,
+        text: 'Have a question, project enquiry, or want a quote? Fill out the form and our team will respond shortly.'
+        , image: 'assets/images/banner/1.jpeg' , buttonText: 'Send a Message' , buttonLink: '#contact-form' }) %>
+
+        <div class="template-bg" style="border-bottom: 0.5px solid #E6D8CC;">
+          <div class="container-lg">
+            <div class="contact-breadcrumb">
+              <a href="/">Home</a>
+              <span class="sep">/</span>
+              <span class="current">Contact Us</span>
+            </div>
+          </div>
+        </div>
+
+        <section class="contact-section" id="contact-form">
+          <div class="container-lg">
+            <div class="row gutter-40">
+              <div class="col-lg-4 col-md-6">
+                <div class="contact-info-card fade-up">
+                  <span class="contact-info-card__icon"><i class="ti ti-map-pin"></i></span>
+                  <h6>Corporate office</h6>
+                  <p>
+                    <strong>Pioneer Flex</strong><br>
+                    Unit No.102, Tower-D S-1 Floor,<br>
+                    Urbtech Trade Centre Sector-132,<br>
+                    Noida - 201304<br><br>
+                    <strong>Timing</strong><br>
+                    Mon - Sat: 8:30 AM - 5:00 PM
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="contact-info-card fade-up">
+                  <span class="contact-info-card__icon"><i class="ti ti-building-factory-2"></i></span>
+                  <h6>Factory Unit</h6>
+                  <p>
+                    <strong>Pioneer Flex Factory</strong><br>
+                    74-76, Sector-4, IIE Pantnagar,<br>
+                    Rudrapur, Uttarakhand - 263153<br><br>
+                    <strong>Production Support</strong><br>
+                    For material, dispatch, and factory coordination.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-12">
+                <div class="contact-info-card fade-up">
+                  <span class="contact-info-card__icon"><i class="ti ti-phone-call"></i></span>
+                  <h6>Contact Number & Email</h6>
+                  <p>
+                    <strong>Phone Number</strong><br>
+                    <a href="tel:+919821396373">+91-9821396373</a><br>
+                    <a href="tel:+918588845645">+91-8588845645</a><br><br>
+                     <strong>Email</strong><br>
+                    <a href="mailto:sales@pioneerflex.in">sales@pioneerflex.in</a><br>
+                    <a href="mailto:export@pioneerflex.in">export@pioneerflex.in</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-form-card fade-up">
+              <div class="row align-items-end g-4 mb-4 contact-form-card__header">
+                <div class="col-lg-7">
+                  <h2 class="elicyon">Tell us about your project.</h2>
+                  <p>Do you have a question about Pioneer, a media inquiry, or other request? Fill out the form below and our representative will get back to you with more information.</p>
+                </div>
+              </div>
+
+              <form action="/api/contact" class="pt-4" method="post">
+                <div class="row g-4">
+                  <div class="col-md-6 contact-field">
+                    <label for="contact-name">Your Name</label>
+                    <input id="contact-name" name="name" type="text" class="form-control" placeholder="Enter your name"
+                      required>
+                  </div>
+
+                  <div class="col-md-6 contact-field">
+                    <label for="contact-email">Your Email</label>
+                    <input id="contact-email" name="email" type="email" class="form-control"
+                      placeholder="Enter your email" required>
+                  </div>
+
+                  <div class="col-md-6 contact-field">
+                    <label for="contact-phone">Phone Number</label>
+                    <input id="contact-phone" name="phone" type="tel" class="form-control"
+                      placeholder="Enter your phone number">
+                  </div>
+
+                  <div class="col-md-6 contact-field">
+                    <label id="product-category-label">Product Categories</label>
+                    <div class="contact-product-picker" data-product-picker>
+                      <details>
+                        <summary data-product-picker-summary>Select Product Categories</summary>
+                        <div class="contact-product-picker__menu" role="group" aria-labelledby="product-category-label">
+                          <label class="contact-product-picker__option">
+                            <input name="productCategories" type="checkbox" value="PVC Decorative Films">
+                            <span>PVC Decorative Films</span>
+                          </label>
+                          <label class="contact-product-picker__option">
+                            <input name="productCategories" type="checkbox" value="PVC/WPC Interior Louvers">
+                            <span>PVC/WPC Interior Louvers</span>
+                          </label>
+                          <label class="contact-product-picker__option">
+                            <input name="productCategories" type="checkbox" value="WPC Doors and Frames">
+                            <span>WPC Doors and Frames</span>
+                          </label>
+                          <label class="contact-product-picker__option">
+                            <input name="productCategories" type="checkbox" value="PVC/WPC Baffles">
+                            <span>PVC/WPC Baffles</span>
+                          </label>
+                        </div>
+                      </details>
+                    </div>
+                    <small class="contact-product-picker__hint">You can select more than one related product category.</small>
+                  </div>
+
+                  <div class="col-12 contact-field">
+                    <label for="contact-message">Tell Us More</label>
+                    <textarea id="contact-message" name="message" class="form-control"
+                      placeholder="Write your requirements" required></textarea>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="contact-submit-row">
+                      <button type="submit" class="btn-quinary contact-submit">
+                        <span class="btn-animated-text" data-text="Submit Now">Submit Now</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section class="contact-map-area">
+          <div class="container-lg">
+            <div class="contact-map-list">
+              <div>
+                <div class="contact-map-card fade-up">
+                  <div class="contact-map-card__frame">
+                    <iframe title="Pioneer Flex office location map"
+                      src="https://www.google.com/maps?q=Unit%20No.102%2C%20Tower-D%20S-1%20Floor%2C%20Urbtech%20Trade%20Centre%20Sector-132%2C%20Noida%20201304&output=embed"
+                      loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                  </div>
+                  <div class="contact-map-card__body">
+                    <h6>Office Location</h6>
+                    <p>Unit No.102, Tower-D S-1 Floor, Urbtech Trade Centre Sector-132, Noida - 201304</p>
+                    <a class="contact-map-link"
+                      href="https://www.google.com/maps/search/?api=1&query=Unit%20No.102%2C%20Tower-D%20S-1%20Floor%2C%20Urbtech%20Trade%20Centre%20Sector-132%2C%20Noida%20201304"
+                      target="_blank" rel="noopener">
+                      Get Direction <i class="ti ti-arrow-up-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="contact-map-card fade-up">
+                  <div class="contact-map-card__frame">
+                    <iframe title="Pioneer Flex manufacturing unit location map"
+                      src="https://www.google.com/maps?q=74-76%2C%20Sector-4%2C%20IIE%20Pantnagar%2C%20Rudrapur%2C%20Uttarakhand%20263153&output=embed"
+                      loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+                  </div>
+                  <div class="contact-map-card__body">
+                    <h6>Manufacturing Unit</h6>
+                    <p>74-76, Sector-4, IIE Pantnagar, Rudrapur, Uttarakhand - 263153</p>
+                    <a class="contact-map-link"
+                      href="https://www.google.com/maps/search/?api=1&query=74-76%2C%20Sector-4%2C%20IIE%20Pantnagar%2C%20Rudrapur%2C%20Uttarakhand%20263153"
+                      target="_blank" rel="noopener">
+                      Get Direction <i class="ti ti-arrow-up-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  
+  <script>
+    (() => {
+      const picker = document.querySelector("[data-product-picker]");
+      if (!picker) return;
+
+      const details = picker.querySelector("details");
+      const summary = picker.querySelector("[data-product-picker-summary]");
+      const inputs = [...picker.querySelectorAll("input[type='checkbox']")];
+      const defaultText = "Select Product Categories";
+
+      const updateSummary = () => {
+        const selected = inputs.filter((input) => input.checked).map((input) => input.value);
+
+        if (!selected.length) {
+          summary.textContent = defaultText;
+          return;
+        }
+
+        summary.textContent = selected.length === 1 ? selected[0] : `${selected.length} categories selected`;
+      };
+
+      inputs.forEach((input) => input.addEventListener("change", updateSummary));
+
+      document.addEventListener("click", (event) => {
+        if (!details.open || picker.contains(event.target)) return;
+        details.removeAttribute("open");
+      });
+    })();
+  </script>

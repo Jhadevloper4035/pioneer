@@ -47,7 +47,12 @@ function getMongoUri() {
   return process.env.MONGODB_URI || process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/pioneer";
 }
 
+const nodeEnv = process.env.NODE_ENV || "development";
+
 const env = {
+  allowAdminRegistration: process.env.ALLOW_ADMIN_REGISTRATION === "true",
+  allowPublicRegistration:
+    process.env.ALLOW_PUBLIC_REGISTRATION === "true" || nodeEnv !== "production",
   adminEmails: (process.env.ADMIN_EMAILS || "")
     .split(",")
     .map((email) => email.trim().toLowerCase())
@@ -60,8 +65,9 @@ const env = {
   jwtIssuer: process.env.JWT_ISSUER || "pioneer-api",
   jwtSecret: process.env.JWT_SECRET || "replace-this-development-secret",
   mongoUri: getMongoUri(),
-  nodeEnv: process.env.NODE_ENV || "development",
-  port: Number.parseInt(process.env.PORT || "3000", 10)
+  nodeEnv,
+  port: Number.parseInt(process.env.PORT || "3000", 10),
+  siteUrl: (process.env.SITE_URL || process.env.PUBLIC_SITE_URL || "").replace(/\/+$/, "")
 };
 
 if (!/^mongodb(\+srv)?:\/\//.test(env.mongoUri)) {

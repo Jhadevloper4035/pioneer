@@ -238,7 +238,7 @@
 
     button,
     span {
-        font-family: var(--fraunces);
+        font-family: var(--heading-font);
         color: var(--txt-light);
         font-style: italic;
         font-weight: 600;
@@ -460,7 +460,7 @@
             height: unset !important;
             margin: unset !important;
             font-size: 20px;
-            font-family: var(--elicyon);
+            font-family: var(--heading-font);
             color: #F5F2EE;
         }
     }

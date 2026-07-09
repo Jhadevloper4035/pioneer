@@ -1,18 +1,20 @@
 const env = require("../config/env");
 const AppError = require("../utils/AppError");
+const { getCookie } = require("../utils/adminSessionCookie");
 const { verifyJwt } = require("../utils/jwt");
 const { findUserById } = require("../services/userRepository");
 
 async function authenticate(req, res, next) {
   const header = req.get("authorization") || "";
   const [scheme, token] = header.split(" ");
+  const sessionToken = scheme === "Bearer" ? token : getCookie(req);
 
-  if (scheme !== "Bearer" || !token) {
-    return next(new AppError("Authorization bearer token is required", 401));
+  if (!sessionToken) {
+    return next(new AppError("Authorization token is required", 401));
   }
 
   try {
-    const payload = verifyJwt(token, {
+    const payload = verifyJwt(sessionToken, {
       audience: env.jwtAudience,
       issuer: env.jwtIssuer,
       secret: env.jwtSecret

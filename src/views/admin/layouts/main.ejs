@@ -1,0 +1,10 @@
+<%- include('../partials/head') %>
+<% if (useAdminShell === false) { %>
+  <body>
+    <%- body %>
+<% } else { %>
+  <%- include('../partials/shell-start') %>
+  <%- body %>
+  <%- include('../partials/shell-end') %>
+<% } %>
+<%- include('../partials/scripts') %>

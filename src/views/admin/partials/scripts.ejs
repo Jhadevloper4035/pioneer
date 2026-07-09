@@ -1,6 +1,5 @@
     <script>
       (() => {
-        const tokenKey = "pioneer_admin_token";
         const statusNodes = document.querySelectorAll("[data-admin-status]");
 
         const setStatus = (message, isError = false) => {
@@ -10,20 +9,11 @@
           });
         };
 
-        const getToken = () => window.localStorage.getItem(tokenKey);
-        const setToken = (token) => window.localStorage.setItem(tokenKey, token);
-        const clearToken = () => window.localStorage.removeItem(tokenKey);
-
         const requestJson = async (url, options = {}) => {
           const headers = {
             "Content-Type": "application/json",
             ...(options.headers || {})
           };
-          const token = getToken();
-
-          if (token) {
-            headers.Authorization = `Bearer ${token}`;
-          }
 
           const response = await fetch(url, {
             ...options,
@@ -54,17 +44,12 @@
 
         const requireAdmin = async () => {
           if (window.location.pathname === "/admin/login") return null;
-          if (!getToken()) {
-            redirectToLogin();
-            return null;
-          }
 
           try {
             const payload = await requestJson("/api/auth/me");
             const user = payload.data.user;
 
             if (!user.roles.includes("admin")) {
-              clearToken();
               redirectToLogin();
               return null;
             }
@@ -73,15 +58,14 @@
             if (userNode) userNode.textContent = user.email;
             return user;
           } catch (error) {
-            clearToken();
             redirectToLogin();
             return null;
           }
         };
 
         document.querySelectorAll("[data-admin-logout]").forEach((button) => {
-          button.addEventListener("click", () => {
-            clearToken();
+          button.addEventListener("click", async () => {
+            await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
             window.location.href = "/admin/login";
           });
         });
@@ -106,7 +90,6 @@
                 throw new Error("This account does not have admin access");
               }
 
-              setToken(payload.data.token);
               window.location.href = "/admin/dashboard";
             } catch (error) {
               setStatus(error.message, true);

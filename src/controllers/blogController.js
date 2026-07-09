@@ -1,7 +1,8 @@
 const { blogPosts } = require("../data/siteContent");
+const { renderPublicPage } = require("../services/viewRenderer");
 
 function blog(req, res) {
-  res.render("blog/all-blog-page", { blogPosts });
+  return renderPublicPage(req, res, "public/pages/blog/all-blog-page", { blogPosts });
 }
 
 function singleBlog(req, res) {
@@ -11,7 +12,7 @@ function singleBlog(req, res) {
     return res.redirect(302, "/blog");
   }
 
-  return res.render("blog/single-blog-page", {
+  return renderPublicPage(req, res, "public/pages/blog/single-blog-page", {
     post,
     relatedPosts: blogPosts.filter((item) => item.slug !== post.slug).slice(0, 3)
   });

@@ -1,7 +1,8 @@
 const { galleryItems } = require("../data/siteContent");
+const { renderPublicPage } = require("../services/viewRenderer");
 
 function gallery(req, res) {
-  res.render("gallery", { galleryItems });
+  return renderPublicPage(req, res, "public/pages/gallery", { galleryItems });
 }
 
 module.exports = {

@@ -1,0 +1,23 @@
+    <main class="admin-login-page">
+      <section class="admin-section">
+        <h1><%= appName %> Admin</h1>
+        <form class="admin-form" data-admin-login-form>
+          <div class="admin-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+          <div class="admin-field">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <button class="admin-button" type="submit">Login</button>
+          <p class="admin-status" data-admin-status aria-live="polite"></p>
+        </form>
+      </section>
+    </main>

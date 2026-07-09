@@ -26,7 +26,7 @@ function addMinutes(minutes) {
 }
 
 function getRoles(email) {
-  return env.adminEmails.includes(email) ? ["admin", "user"] : ["user"];
+  return env.allowAdminRegistration && env.adminEmails.includes(email) ? ["admin", "user"] : ["user"];
 }
 
 function sanitizeUser(user) {

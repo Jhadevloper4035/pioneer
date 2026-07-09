@@ -1,0 +1,188 @@
+<section class="career-detail-hero">
+        <div class="container-lg">
+          <nav class="career-breadcrumb fade-up" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="/career">Career</a>
+            <span>/</span>
+            <strong><%= opening.title %></strong>
+          </nav>
+          <div class="career-detail-hero__content fade-up" data-delay="100">
+            <p class="sub-title"><%= opening.department %></p>
+            <h1 class="elicyon"><%= opening.title %></h1>
+            <p><%= opening.summary %></p>
+            <div class="career-detail-hero__actions">
+              <a class="btn-quinary" href="#career-application">
+                <span class="btn-animated-text" data-text="Apply Now">Apply Now</span>
+              </a>
+              <a class="career-text-link" href="/career">View All Openings</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="career-detail pt-120 pb-140 bg-alt-2">
+        <div class="container-lg">
+          <div class="row gutter-40">
+            <div class="col-12 col-lg-4">
+              <aside class="career-detail__aside fade-up">
+                <h2>Role Details</h2>
+                <dl>
+                  <div>
+                    <dt>Department</dt>
+                    <dd><%= opening.department %></dd>
+                  </div>
+                  <div>
+                    <dt>Location</dt>
+                    <dd><%= opening.location %></dd>
+                  </div>
+                  <div>
+                    <dt>Job Type</dt>
+                    <dd><%= opening.type %></dd>
+                  </div>
+                  <div>
+                    <dt>Experience</dt>
+                    <dd><%= opening.experience %></dd>
+                  </div>
+                </dl>
+              </aside>
+            </div>
+
+            <div class="col-12 col-lg-8">
+              <div class="career-detail__panel fade-up" data-delay="120">
+                <section>
+                  <h2 class="elicyon">Responsibilities</h2>
+                  <ul>
+                    <% opening.responsibilities.forEach((item) => { %>
+                      <li><%= item %></li>
+                    <% }); %>
+                  </ul>
+                </section>
+
+                <section>
+                  <h2 class="elicyon">Requirements</h2>
+                  <ul>
+                    <% opening.requirements.forEach((item) => { %>
+                      <li><%= item %></li>
+                    <% }); %>
+                  </ul>
+                </section>
+
+                <section class="career-detail__apply" id="career-application">
+                  <h2 class="elicyon">Apply for this role</h2>
+                  <p>
+                    Submit your details and resume for <%= opening.title %>. The Pioneer team will review suitable
+                    applications and connect for the next step.
+                  </p>
+
+                  <form
+                    class="career-application-form"
+                    action="/api/career-application"
+                    method="post"
+                    enctype="multipart/form-data"
+                    data-career-application-form
+                  >
+                    <input type="hidden" name="role" value="<%= opening.title %>" />
+
+                    <div class="row g-4">
+                      <div class="col-md-6 career-application-form__field">
+                        <label for="career-role">Role Name</label>
+                        <input id="career-role" type="text" value="<%= opening.title %>" readonly />
+                      </div>
+
+                      <div class="col-md-6 career-application-form__field">
+                        <label for="career-name">Full Name</label>
+                        <input id="career-name" name="name" type="text" placeholder="Enter your full name" required />
+                      </div>
+
+                      <div class="col-md-6 career-application-form__field">
+                        <label for="career-email">Email Address</label>
+                        <input id="career-email" name="email" type="email" placeholder="Enter your email" required />
+                      </div>
+
+                      <div class="col-md-6 career-application-form__field">
+                        <label for="career-phone">Contact Number</label>
+                        <input id="career-phone" name="phone" type="tel" placeholder="Enter your contact number" required />
+                      </div>
+
+                      <div class="col-md-6 career-application-form__field">
+                        <label for="career-experience">Experience</label>
+                        <input id="career-experience" name="experience" type="text" placeholder="Example: 3 years" required />
+                      </div>
+
+                      <div class="col-md-6 career-application-form__field">
+                        <label for="career-city">Current City</label>
+                        <input id="career-city" name="city" type="text" placeholder="Enter your current city" required />
+                      </div>
+
+                      <div class="col-12 career-application-form__field">
+                        <label for="career-resume">Upload Resume</label>
+                        <input id="career-resume" name="resume" type="file" accept=".pdf,.doc,.docx" required />
+                        <small>Accepted formats: PDF, DOC, DOCX. Maximum file size: 5 MB.</small>
+                      </div>
+
+                      <div class="col-12 career-application-form__field">
+                        <label for="career-message">Additional Details</label>
+                        <textarea id="career-message" name="message" placeholder="Share anything else you want us to know"></textarea>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="career-application-form__actions">
+                          <button class="btn-quinary career-application-form__submit" type="submit">
+                            <span class="btn-animated-text" data-text="Submit Application">Submit Application</span>
+                          </button>
+                          <p class="career-application-form__status" data-career-application-status role="status" aria-live="polite"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+
+    <script>
+      (() => {
+        const form = document.querySelector("[data-career-application-form]");
+        if (!form) return;
+
+        const status = form.querySelector("[data-career-application-status]");
+        const button = form.querySelector("button[type='submit']");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          status.textContent = "Submitting your application...";
+          status.className = "career-application-form__status is-pending";
+          button.disabled = true;
+
+          try {
+            const response = await fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: {
+                Accept: "application/json"
+              }
+            });
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+              throw new Error(result.message || "Please check the form and try again.");
+            }
+
+            form.reset();
+            form.querySelector("#career-role").value = "<%= opening.title %>";
+            status.textContent = result.message || "Application submitted successfully.";
+            status.className = "career-application-form__status is-success";
+          } catch (error) {
+            status.textContent = error.message || "Unable to submit your application right now.";
+            status.className = "career-application-form__status is-error";
+          } finally {
+            button.disabled = false;
+          }
+        });
+      })();
+    </script>

@@ -613,7 +613,7 @@
 .pioneer-footer__brand {
     display: flex;
     justify-content: center;
-    margin-bottom: 34px;
+    margin-bottom: 44px;
 
     img {
         width: min(170px, 42vw);
@@ -634,7 +634,7 @@
     h2 {
         color: var(--template-bg);
         font-family: var(--template-font);
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
         line-height: 1.2;
         text-transform: uppercase;
@@ -648,7 +648,7 @@
     li,
     a {
         color: rgba(245, 242, 238, 0.86);
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.55;
     }
 
@@ -691,7 +691,7 @@
 
     p {
         color: rgba(245, 242, 238, 0.88);
-        font-size: 11px;
+        font-size: 14px;
         line-height: 1.45;
         margin: 0px;
     }
@@ -705,7 +705,7 @@
     padding: 0px 18px;
     border: 1px solid rgba(245, 242, 238, 0.7);
     color: var(--template-bg);
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1;
     text-transform: uppercase;

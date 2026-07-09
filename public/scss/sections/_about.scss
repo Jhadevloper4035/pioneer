@@ -462,6 +462,15 @@
             color: var(--primary-color);
         }
     }
+
+    .about-three__content-cta {
+        color: var(--white);
+        font-size: 16px;
+
+        &:hover {
+            color: var(--white);
+        }
+    }
 }
 
 // about four section styles

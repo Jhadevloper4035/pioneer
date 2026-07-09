@@ -51,7 +51,7 @@
 }
 
 .louvers-hero__title {
-	font-family: 'Elicyon', serif;
+	font-family: var(--heading-font);
 	font-size: clamp(2.4rem, 6vw, 5rem);
 	font-weight: 300;
 	line-height: 1.08;
@@ -137,7 +137,7 @@
 }
 
 .louvers-section__title {
-	font-family: 'Elicyon', serif;
+	font-family: var(--heading-font);
 	font-size: clamp(1.8rem, 3.5vw, 2.8rem);
 	font-weight: 300;
 	color: #ffffff;
@@ -177,7 +177,7 @@
 .louver-catalog__title {
 	margin-bottom: 14px;
 	color: var(--template-color, #481800);
-	font-family: 'Elicyon', serif;
+	font-family: var(--heading-font);
 	font-size: clamp(2.15rem, 4vw, 4rem);
 	font-weight: 400;
 	line-height: 1.08;
@@ -541,7 +541,7 @@ body.louver-lightbox-open { overflow: hidden; }
 .louver-story .decorative-services__title {
 	max-width: none;
 	color: var(--template-color, #481800);
-	font-family: var(--elicyon, 'Elicyon', serif);
+	font-family: var(--heading-font);
 }
 .louver-story .decorative-services__intro { margin-right: auto; margin-left: auto; }
 
@@ -592,7 +592,7 @@ body.louver-lightbox-open { overflow: hidden; }
 	max-width: 560px;
 	margin-bottom: 18px;
 	color: var(--template-color, #481800);
-	font-family: var(--elicyon, 'Elicyon', serif);
+	font-family: var(--heading-font);
 	font-size: clamp(28px, 3vw, 42px);
 	font-weight: 400;
 	line-height: 1.18;
@@ -668,7 +668,7 @@ body.louver-lightbox-open { overflow: hidden; }
 
 .louver-videos__title {
 	color: var(--template-color, #481800);
-	font-family: var(--elicyon, 'Elicyon', serif);
+	font-family: var(--heading-font);
 	font-size: clamp(38px, 4.5vw, 58px);
 	font-weight: 400;
 	line-height: 1.1;
@@ -710,9 +710,16 @@ body.louver-lightbox-open { overflow: hidden; }
 
 .louver-composition__grid {
 	display: grid;
-	grid-template-columns: minmax(390px, .9fr) minmax(0, 1.1fr);
-	align-items: center;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	align-items: stretch;
 	gap: clamp(36px, 4vw, 64px);
+}
+
+.louver-composition__content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: clamp(420px, 42vw, 560px);
 }
 
 .louver-composition__eyebrow {
@@ -724,12 +731,12 @@ body.louver-lightbox-open { overflow: hidden; }
 }
 
 .louver-composition__title {
-	margin-bottom: 24px;
+	margin-bottom: 18px;
 	color: var(--template-color, #481800);
-	font-family: var(--elicyon, 'Elicyon', serif);
-	font-size: clamp(40px, 4vw, 56px);
+	font-family: var(--heading-font);
+	font-size: clamp(36px, 3vw, 42px);
 	font-weight: 400;
-	line-height: 1.08;
+	line-height: 1.16;
 	text-wrap: balance;
 }
 
@@ -779,8 +786,8 @@ body.louver-lightbox-open { overflow: hidden; }
 
 .louver-composition__image-link {
 	display: block;
-	width: min(100%, 430px);
-	aspect-ratio: 3 / 4;
+	width: 100%;
+	height: clamp(420px, 42vw, 560px);
 	cursor: zoom-in;
 	overflow: hidden;
 }
@@ -819,24 +826,36 @@ body.louver-lightbox-open { overflow: hidden; }
 @media (max-width: 991px) {
 	.louver-composition { padding: 80px 0; }
 	.louver-composition__grid { grid-template-columns: 1fr; gap: 44px; }
-	.louver-composition__title { max-width: 680px; }
+	.louver-composition__content { min-height: auto; }
+	.louver-composition__title {
+		max-width: 680px;
+		font-size: 36px;
+		line-height: 1.18;
+	}
 	.louver-composition__content > p:not(.louver-composition__eyebrow) { max-width: 720px; }
 	.louver-composition__visual { justify-content: center; }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
 	.louver-composition__grid {
-		grid-template-columns: minmax(340px, .9fr) minmax(0, 1.1fr);
 		gap: 32px;
 	}
-
-	.louver-composition__title { font-size: 48px; }
 }
 
 @media (max-width: 575px) {
 	.louver-composition { padding: 65px 0; }
+	.louver-composition__grid { gap: 30px; }
+	.louver-composition__eyebrow { margin-bottom: 10px; }
+	.louver-composition__title {
+		margin-bottom: 14px;
+		font-size: 28px;
+		line-height: 1.22;
+	}
 	.louver-composition__visual { justify-content: center; }
-	.louver-composition__image-link { width: min(100%, 340px); }
+	.louver-composition__image-link {
+		height: auto;
+		aspect-ratio: 4 / 3;
+	}
 	.louver-composition__material { left: 5%; }
 	.louver-composition__callout { width: 48%; font-size: 10px; }
 	.louver-composition__callout--surface { top: 45%; }
@@ -866,7 +885,7 @@ body.louver-lightbox-open { overflow: hidden; }
 .louver-gallery__title {
 	margin-bottom: 14px;
 	color: var(--template-color, #481800);
-	font-family: var(--elicyon, 'Elicyon', serif);
+	font-family: var(--heading-font);
 	font-size: clamp(38px, 5vw, 60px);
 	font-weight: 400;
 	line-height: 1.1;

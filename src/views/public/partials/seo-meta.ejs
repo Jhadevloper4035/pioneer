@@ -1,0 +1,70 @@
+<%
+  const seoData = typeof buildSeo === "function"
+    ? buildSeo({
+        title: typeof defaultTitle !== "undefined" ? defaultTitle : "",
+        description: typeof defaultDescription !== "undefined" ? defaultDescription : "",
+        keywords: typeof defaultKeywords !== "undefined" ? defaultKeywords : [],
+        image: typeof defaultImage !== "undefined" ? defaultImage : "",
+        canonicalPath: typeof defaultCanonicalPath !== "undefined" ? defaultCanonicalPath : "",
+        canonicalUrl: typeof defaultCanonicalUrl !== "undefined" ? defaultCanonicalUrl : "",
+        robots: typeof defaultRobots !== "undefined" ? defaultRobots : "index, follow",
+        ogType: typeof defaultOgType !== "undefined" ? defaultOgType : "website",
+        twitterCard: typeof defaultTwitterCard !== "undefined" ? defaultTwitterCard : "summary_large_image",
+        schemaJson: typeof defaultSchemaJson !== "undefined" ? defaultSchemaJson : []
+      })
+    : {
+        title: typeof defaultTitle !== "undefined" ? defaultTitle : "",
+        description: typeof defaultDescription !== "undefined" ? defaultDescription : "",
+        keywords: typeof defaultKeywords !== "undefined" && Array.isArray(defaultKeywords) ? defaultKeywords : [],
+        canonicalUrl: typeof defaultCanonicalUrl !== "undefined" ? defaultCanonicalUrl : "",
+        robots: typeof defaultRobots !== "undefined" ? defaultRobots : "index, follow",
+        og: {
+          title: typeof defaultTitle !== "undefined" ? defaultTitle : "",
+          description: typeof defaultDescription !== "undefined" ? defaultDescription : "",
+          image: typeof defaultImage !== "undefined" ? defaultImage : "",
+          type: typeof defaultOgType !== "undefined" ? defaultOgType : "website",
+          url: typeof defaultCanonicalUrl !== "undefined" ? defaultCanonicalUrl : ""
+        },
+        twitter: {
+          card: typeof defaultTwitterCard !== "undefined" ? defaultTwitterCard : "summary_large_image",
+          title: typeof defaultTitle !== "undefined" ? defaultTitle : "",
+          description: typeof defaultDescription !== "undefined" ? defaultDescription : "",
+          image: typeof defaultImage !== "undefined" ? defaultImage : ""
+        },
+        schema: typeof defaultSchemaJson !== "undefined" ? defaultSchemaJson : []
+      };
+  const schemaItems = Array.isArray(seoData.schema) ? seoData.schema : [];
+%>
+<title><%= seoData.title %></title>
+<% if (seoData.description) { %>
+  <meta name="description" content="<%= seoData.description %>" />
+<% } %>
+<% if (seoData.keywords && seoData.keywords.length) { %>
+  <meta name="keywords" content="<%= seoData.keywords.join(', ') %>" />
+<% } %>
+<meta name="robots" content="<%= seoData.robots %>" />
+<% if (seoData.canonicalUrl) { %>
+  <link rel="canonical" href="<%= seoData.canonicalUrl %>" />
+<% } %>
+<meta property="og:title" content="<%= seoData.og.title %>" />
+<% if (seoData.og.description) { %>
+  <meta property="og:description" content="<%= seoData.og.description %>" />
+<% } %>
+<meta property="og:type" content="<%= seoData.og.type %>" />
+<% if (seoData.og.url) { %>
+  <meta property="og:url" content="<%= seoData.og.url %>" />
+<% } %>
+<% if (seoData.og.image) { %>
+  <meta property="og:image" content="<%= seoData.og.image %>" />
+<% } %>
+<meta name="twitter:card" content="<%= seoData.twitter.card %>" />
+<meta name="twitter:title" content="<%= seoData.twitter.title %>" />
+<% if (seoData.twitter.description) { %>
+  <meta name="twitter:description" content="<%= seoData.twitter.description %>" />
+<% } %>
+<% if (seoData.twitter.image) { %>
+  <meta name="twitter:image" content="<%= seoData.twitter.image %>" />
+<% } %>
+<% schemaItems.forEach((schemaItem) => { %>
+  <script type="application/ld+json"><%- JSON.stringify(schemaItem) %></script>
+<% }); %>

@@ -1,0 +1,20 @@
+<%- include('../../partials/page-hero', {
+        tag: '(Blog)',
+        title: 'Pioneer journal and insights',
+        text: 'Read practical notes on signage media, PVC processing, decorative films, and industrial product applications.',
+        image: 'assets/images/banner/3.jpeg',
+        buttonText: 'Read Articles',
+        buttonLink: '#blog-list'
+      }) %>
+
+      <section class="journal-section pt-140 pb-140 bg-alt-2" id="blog-list">
+        <div class="container-lg">
+          <div class="row gutter-30">
+            <% blogPosts.forEach((post) => { %>
+              <div class="col-12 col-md-6 col-xl-3 fade-up">
+                <%- include('../../partials/blog-card', { post }) %>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>

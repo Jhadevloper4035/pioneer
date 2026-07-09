@@ -65,7 +65,6 @@
  --------- (2.02) typography styles start ---------
  ==== */
 
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 /* ==== 
  --------- (1.01) mixins start ---------
  ==== */
@@ -79,11 +78,12 @@
  ==== */
 
 :root {
-    --inter: "Inter", sans-serif;
-    --fraunces: "Fraunces", serif;
-    --elicyon: "Elicyon", serif;
+    --inter: "Maison Neue", sans-serif;
+    --fraunces: "Maison Neue", sans-serif;
+    --elicyon: "Maison Neue", sans-serif;
     --maison-neue: "Maison Neue", sans-serif;
-    --template-font: var(--inter);
+    --font-sans: var(--maison-neue);
+    --template-font: var(--maison-neue);
     --heading-font: var(--maison-neue);
     --template-bg: #F5F2EE;
     --template-color: #481800;
@@ -375,86 +375,19 @@ p {
 ============== */
 
 @font-face {
-    font-family: "Elicyon";
-    src: url("../fonts/Elicyon-Regular.woff2") format("woff2"), url("../fonts/Elicyon-Regular.woff") format("woff");
-    font-weight: normal;
+    font-family: "Maison Neue";
+    src: url("../fonts/MaisonNeue-Light.woff2") format("woff2");
+    font-weight: 100 900;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
     font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-Light.woff2") format("woff2"), url("../fonts/MaisonNeue-Light.woff") format("woff");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-Book.woff2") format("woff2"), url("../fonts/MaisonNeue-Book.woff") format("woff");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-Medium.woff2") format("woff2"), url("../fonts/MaisonNeue-Medium.woff") format("woff");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-Demi.woff2") format("woff2"), url("../fonts/MaisonNeue-Demi.woff") format("woff");
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-Bold.woff2") format("woff2"), url("../fonts/MaisonNeue-Bold.woff") format("woff");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-LightItalic.woff2") format("woff2"), url("../fonts/MaisonNeue-LightItalic.woff") format("woff");
-    font-weight: 300;
+    src: url("../fonts/MaisonNeue-LightItalic.woff2") format("woff2");
+    font-weight: 100 900;
     font-style: italic;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-BookItalic.woff2") format("woff2"), url("../fonts/MaisonNeue-BookItalic.woff") format("woff");
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-MediumItalic.woff2") format("woff2"), url("../fonts/MaisonNeue-MediumItalic.woff") format("woff");
-    font-weight: 500;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-DemiItalic.woff2") format("woff2"), url("../fonts/MaisonNeue-DemiItalic.woff") format("woff");
-    font-weight: 600;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Maison Neue";
-    src: url("../fonts/MaisonNeue-BoldItalic.woff2") format("woff2"), url("../fonts/MaisonNeue-BoldItalic.woff") format("woff");
-    font-weight: 700;
-    font-style: italic;
+    font-display: swap;
 }
 
 p,
@@ -1010,15 +943,15 @@ span {
 }
 
 .inter {
-    font-family: var(--inter);
+    font-family: var(--template-font);
 }
 
 .fraunces {
-    font-family: var(--fraunces);
+    font-family: var(--heading-font);
 }
 
 .elicyon {
-    font-family: var(--elicyon);
+    font-family: var(--heading-font);
 }
 
 .maison-neue {
@@ -4340,7 +4273,7 @@ span {
 }
 
 .brand-date span {
-    font-family: var(--fraunces);
+    font-family: var(--heading-font);
     font-style: italic;
 }
 
@@ -4901,7 +4834,7 @@ span {
 
 .hero-two__lang button,
 .hero-two__lang span {
-    font-family: var(--fraunces);
+    font-family: var(--heading-font);
     color: var(--txt-light);
     font-style: italic;
     font-weight: 600;
@@ -5142,7 +5075,7 @@ span {
     height: unset !important;
     margin: unset !important;
     font-size: 20px;
-    font-family: var(--elicyon);
+    font-family: var(--heading-font);
     color: #F5F2EE;
 }
 
@@ -7101,7 +7034,7 @@ span {
 }
 
 .overview__single strong {
-    font-family: var(--fraunces);
+    font-family: var(--heading-font);
     font-style: italic;
     font-weight: 400;
 }
@@ -9053,7 +8986,7 @@ span {
     font-weight: 400;
     top: 0px;
     inset-inline-start: 0px;
-    font-family: var(--inter);
+    font-family: var(--template-font);
     letter-spacing: 1px;
     margin-inline-end: 8px;
     transform: translateX(-100%);
@@ -9637,7 +9570,7 @@ span {
 }
 
 .breadcrumb-cs span {
-    font-family: var(--fraunces);
+    font-family: var(--heading-font);
 }
 
 .breadcrumb-cs span:nth-of-type(1) {
@@ -11162,7 +11095,7 @@ span {
 .testimonial .fraction span {
     font-weight: 500;
     color: var(--txt-light);
-    font-family: var(--fraunces);
+    font-family: var(--heading-font);
 }
 
 .testimonial .fraction .full-slides-number {
@@ -12287,7 +12220,7 @@ span {
 .team-two__lists li .serial {
     font-size: 14px;
     font-weight: 400;
-    font-family: var(--inter);
+    font-family: var(--template-font);
     letter-spacing: 1px;
     transform: translateX(-100%);
     transition: var(--transition);
@@ -13996,7 +13929,7 @@ span {
 
 .main-category-section__title {
     color: var(--template-color);
-    font-family: var(--elicyon);
+    font-family: var(--heading-font);
     font-weight: 300;
     letter-spacing: 0px;
     max-width: 760px;
@@ -14081,7 +14014,7 @@ span {
 
 .main-category-section__content h2 {
     color: var(--white);
-    font-family: var(--elicyon);
+    font-family: var(--heading-font);
     font-weight: 300;
     font-size: 30px;
     line-height: 38px;
@@ -15017,6 +14950,25 @@ span {
 }
 
 /* ==== why choose styles end ==== */
+
+body:not(.home-page) .why-choose .row {
+    justify-content: center;
+    text-align: center;
+}
+
+body:not(.home-page) .why-choose__intro,
+body:not(.home-page) .why-choose__text,
+body:not(.home-page) .decorative-services__header,
+body:not(.home-page) .decorative-services__intro {
+    margin-inline: auto;
+    text-align: center;
+}
+
+@media only screen and (min-width: 1200px) {
+    body:not(.home-page) .why-choose__grid:has(> article:nth-child(5)) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
 
 @keyframes backgroundAnimation {
     0% {
@@ -18821,7 +18773,7 @@ span {
     align-items: baseline;
     color: var(--infra-deep);
     display: flex;
-    font-family: var(--elicyon);
+    font-family: var(--heading-font);
     font-size: 42px;
     font-weight: 300;
     gap: 2px;
@@ -18891,7 +18843,7 @@ span {
 
 .infrastructure-page .louver-story .decorative-services__title {
     color: var(--template-color, #481800);
-    font-family: var(--elicyon, 'Elicyon', serif);
+    font-family: var(--heading-font);
     max-width: none;
 }
 
@@ -18941,7 +18893,7 @@ span {
 
 .infrastructure-page .louver-story .decorative-services__content h3 {
     color: var(--template-color, #481800);
-    font-family: var(--elicyon, 'Elicyon', serif);
+    font-family: var(--heading-font);
     font-size: clamp(28px, 3vw, 42px);
     font-weight: 400;
     letter-spacing: 0;
@@ -19468,6 +19420,45 @@ span {
     border-color: var(--black-2);
 }
 
+.career-openings__empty {
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(72, 24, 0, 0.12);
+    border-radius: 6px;
+    margin: 0 auto;
+    padding: clamp(28px, 4vw, 52px);
+    width: 100%;
+}
+
+.career-openings__grid + .career-openings__empty {
+    margin-top: 48px;
+}
+
+.career-openings__empty-intro {
+    margin: 0 auto 30px;
+    max-width: 680px;
+    text-align: center;
+}
+
+.career-openings__empty-intro h3 {
+    color: var(--black-2);
+    font-size: clamp(2rem, 3vw, 3.25rem);
+    font-weight: 300;
+    line-height: 1.08;
+    margin-bottom: 16px;
+}
+
+.career-openings__empty-intro p {
+    color: var(--txt-light);
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.career-openings__empty .career-application-form {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .career-detail-hero {
     background:
         linear-gradient(90deg, rgba(12, 8, 5, 0.94) 0%, rgba(12, 8, 5, 0.72) 50%, rgba(12, 8, 5, 0.2) 100%),
@@ -19583,6 +19574,7 @@ span {
 
 .career-application-form {
     margin-top: 30px;
+    max-width: 920px;
 }
 
 .career-application-form__field label {
@@ -19597,8 +19589,8 @@ span {
 
 .career-application-form__field input,
 .career-application-form__field textarea {
-    background: #f5f2ee;
-    border: 1px solid rgba(72, 24, 0, 0.12);
+    background: var(--white);
+    border: 1px solid rgba(72, 24, 0, 0.16);
     border-radius: 6px;
     color: var(--black-2);
     font-size: 15px;
@@ -19622,6 +19614,7 @@ span {
 }
 
 .career-application-form__field input[readonly] {
+    background: #f5f2ee;
     color: rgba(72, 24, 0, 0.68);
     cursor: default;
 }

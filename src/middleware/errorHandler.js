@@ -1,4 +1,5 @@
 const AppError = require("../utils/AppError");
+const { renderPublicPage } = require("../services/viewRenderer");
 
 function notFoundHandler(req, res, next) {
   next(new AppError(`Route not found: ${req.method} ${req.originalUrl}`, 404));
@@ -24,9 +25,10 @@ function errorHandler(err, req, res, next) {
   }
 
   if (statusCode === 404 && !wantsJson(req)) {
-    return res.status(404).render("error/404", {
+    res.status(404);
+    return renderPublicPage(req, res, "public/pages/error/404", {
       requestedUrl: req.originalUrl
-    });
+    }).catch(next);
   }
 
   const response = {
@@ -45,7 +47,6 @@ function errorHandler(err, req, res, next) {
 
   return res.status(statusCode).json(response);
 }
-
 
 module.exports = {
   errorHandler,

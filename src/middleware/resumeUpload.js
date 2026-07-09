@@ -1,4 +1,3 @@
-const fs = require("fs");
 const path = require("path");
 
 const MAX_RESUME_SIZE = 5 * 1024 * 1024;
@@ -161,19 +160,14 @@ function resumeUpload(req, res, next) {
         });
       }
 
-      const uploadDir = path.join(process.cwd(), "uploads", "resumes");
       const filename = sanitizeFilename(resume.originalName);
-      const storedPath = path.join(uploadDir, filename);
-
-      await fs.promises.mkdir(uploadDir, { recursive: true });
-      await fs.promises.writeFile(storedPath, resume.buffer);
 
       req.body = fields;
       req.file = {
+        buffer: resume.buffer,
         filename,
         mimetype: resume.mimetype,
         originalName: resume.originalName,
-        path: storedPath,
         size: resume.buffer.length
       };
 

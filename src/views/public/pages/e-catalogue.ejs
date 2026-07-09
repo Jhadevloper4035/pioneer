@@ -1,0 +1,191 @@
+<%- include('../partials/page-hero', {
+        tag: '(E-Catalogue)',
+        title: 'Pioneeer catalogues',
+        text: 'Share your details once and unlock product catalogues for louvers, decorative surfaces, and Pioneer product ranges.',
+        image: 'assets/images/banner/banner-cta.avif',
+        buttonText: 'View Catalogues',
+        buttonLink: '#catalogue-library'
+      }) %>
+
+      <section class="catalogue-section" id="catalogue-library">
+        <div class="container-lg">
+          <div class="row align-items-end gutter-30 catalogue-section__header">
+            <div class="col-12 col-lg-7">
+              <span class="catalogue-section__eyebrow">(Download Library)</span>
+              <h2 class="catalogue-section__title elicyon">Choose the catalogue you need</h2>
+            </div>
+            <div class="col-12 col-lg-5">
+              <p class="catalogue-section__intro">
+                Download links are kept locked until your contact details are submitted.
+                This helps our team follow up with the right product support.
+              </p>
+            </div>
+          </div>
+
+          <div class="row gutter-30">
+            <% catalogues.forEach((catalogue) => { %>
+              <div class="col-12 col-md-6 col-xl-4">
+                <article
+                  class="catalogue-card fade-up"
+                  role="button"
+                  tabindex="0"
+                  data-catalogue-trigger
+                  data-catalogue-title="<%= catalogue.title %>"
+                  data-catalogue-slug="<%= catalogue.slug %>"
+                  data-catalogue-file="<%= catalogue.file %>"
+                >
+                  <div class="catalogue-card__image">
+                    <img src="<%= catalogue.coverImage %>" alt="<%= catalogue.title %>" loading="lazy" />
+                  </div>
+                  <div class="catalogue-card__body">
+                    <span>Catalogue</span>
+                    <h3><%= catalogue.title %></h3>
+                    <p><%= catalogue.description %></p>
+                    <span class="btn-quinary catalogue-card__action">
+                      <i class="ti ti-download"></i>
+                      <span class="btn-animated-text" data-text="Click to Download">Click to Download</span>
+                    </span>
+                  </div>
+                </article>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+
+      <div class="catalogue-modal" id="catalogue-lead-modal" role="dialog" aria-modal="true" aria-labelledby="catalogue-modal-title" hidden>
+        <div class="catalogue-modal__dialog">
+          <button class="catalogue-modal__close" type="button" aria-label="Close catalogue form" data-catalogue-close>
+            &times;
+          </button>
+          <aside class="catalogue-form">
+            <h2 class="elicyon" id="catalogue-modal-title">Unlock catalogue</h2>
+            <p>Share your details once. After submitting, your selected catalogue will download automatically.</p>
+            <div class="catalogue-form__selected">
+              Selected: <strong id="selected-catalogue-title">Catalogue</strong>
+            </div>
+            <form id="catalogue-lead-form">
+              <input id="catalogue-interest" name="interestedCatalogue" type="hidden" />
+              <div class="catalogue-form__grid">
+                <div>
+                  <label for="catalogue-full-name">Full Name *</label>
+                  <input id="catalogue-full-name" name="fullName" type="text" autocomplete="name" required />
+                </div>
+                <div>
+                  <label for="catalogue-email">Email *</label>
+                  <input id="catalogue-email" name="email" type="email" autocomplete="email" required />
+                </div>
+                <div>
+                  <label for="catalogue-phone">Phone *</label>
+                  <input id="catalogue-phone" name="phone" type="tel" autocomplete="tel" required />
+                </div>
+                <div>
+                  <label for="catalogue-company">Company</label>
+                  <input id="catalogue-company" name="company" type="text" autocomplete="organization" />
+                </div>
+                <div>
+                  <label for="catalogue-city">City</label>
+                  <input id="catalogue-city" name="city" type="text" autocomplete="address-level2" />
+                </div>
+                <button class="catalogue-form__submit" type="submit">Submit & Download</button>
+              </div>
+              <p class="catalogue-form__status" id="catalogue-form-status" role="status"></p>
+            </form>
+          </aside>
+        </div>
+      </div>
+    
+    <script>
+      (function () {
+        const triggers = document.querySelectorAll("[data-catalogue-trigger]");
+        const modal = document.getElementById("catalogue-lead-modal");
+        const form = document.getElementById("catalogue-lead-form");
+        const status = document.getElementById("catalogue-form-status");
+        const selectedTitle = document.getElementById("selected-catalogue-title");
+        const selectedInput = document.getElementById("catalogue-interest");
+        const closeButtons = document.querySelectorAll("[data-catalogue-close]");
+        let selectedFile = "";
+        let lastTrigger = null;
+
+        if (!form || !modal) return;
+
+        function openModal(trigger) {
+          lastTrigger = trigger;
+          selectedFile = trigger.dataset.catalogueFile || "";
+          selectedTitle.textContent = trigger.dataset.catalogueTitle || "Catalogue";
+          selectedInput.value = trigger.dataset.catalogueSlug || "";
+          status.textContent = "";
+          modal.removeAttribute("hidden");
+          document.body.classList.add("catalogue-modal-open");
+          document.getElementById("catalogue-full-name").focus();
+        }
+
+        function closeModal() {
+          modal.setAttribute("hidden", "");
+          document.body.classList.remove("catalogue-modal-open");
+          if (lastTrigger) lastTrigger.focus();
+        }
+
+        function downloadCatalogue(file) {
+          if (!file) return;
+
+          const link = document.createElement("a");
+          link.href = file;
+          link.download = "";
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        }
+
+        triggers.forEach((trigger) => {
+          trigger.addEventListener("click", () => openModal(trigger));
+          trigger.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openModal(trigger);
+            }
+          });
+        });
+
+        closeButtons.forEach((button) => {
+          button.addEventListener("click", closeModal);
+        });
+
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) closeModal();
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
+            closeModal();
+          }
+        });
+
+        form.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          status.textContent = "Submitting details...";
+
+          const payload = Object.fromEntries(new FormData(form).entries());
+
+          try {
+            const response = await fetch("/api/e-catalogue-leads", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload)
+            });
+
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok || !data.success) {
+              throw new Error(data.message || "Unable to unlock catalogues right now.");
+            }
+
+            status.textContent = "Thank you. Download is starting...";
+            downloadCatalogue(selectedFile);
+            window.setTimeout(closeModal, 700);
+          } catch (error) {
+            status.textContent = error.message || "Something went wrong. Please try again.";
+          }
+        });
+      })();
+    </script>

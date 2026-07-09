@@ -1,0 +1,152 @@
+<%- include('../../../../partials/page-hero', { tag: category.tag, title: category.title, text: category.text, image:
+  category.image, buttonText: 'View Category' , buttonLink: '#' + (category.anchor || 'category-heading' ) }) %>
+
+
+
+
+
+  <!-- ==== louver composition section start ==== -->
+  <section class="louver-composition" aria-labelledby="louver-composition-title">
+    <div class="container-lg">
+      <div class="louver-composition__grid">
+        <div class="louver-composition__content fade-up">
+          <p class="louver-composition__eyebrow">(Engineered Material)</p>
+          <h2 class="louver-composition__title" id="louver-composition-title">
+            What Is a Pioneer PVC Decorative Film?
+          </h2>
+          <p>
+
+            PVC decorative film is a versatile,
+            durable, and affordable surfacing
+            material made from polyvinyl chloride,
+            widely used to enhance the aesthetic
+            appeal of furniture, walls, and
+            cabinets. It features diverse designs
+            (wood grain, stone, matte, high-gloss,
+            Soft Touch etc) and is applied via
+            vacuum pressing or laminating to
+            surfaces like MDF, plywood, and
+            doors.
+
+          </p>
+        </div>
+
+        <div class="louver-composition__visual fade-up" data-delay="160">
+          <a class="louver-composition__image-link" href="/assets/images/category/pvc-decor-frame.webp"
+            data-lightbox-image aria-label="View full Pioneer PVC decorative film image">
+            <img src="/assets/images/category/pvc-decor-frame.webp"
+              alt="Pioneer PVC decorative film finish for furniture and interior surfaces" loading="lazy" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ==== / louver composition section end ==== -->
+
+
+
+
+
+  <section class="louver-catalog" aria-labelledby="decorative-film-shades-title">
+    <div class="container-lg">
+      <header class="louver-catalog__header">
+        <span class="louver-catalog__eyebrow">Choose your films</span>
+        <h2 class="louver-catalog__title" id="decorative-film-shades-title">
+          PVC Decorative Film Range
+        </h2>
+        <p class="louver-catalog__intro">
+          Browse dummy PVC dDecorative film finishes for furniture, membrane doors, wall panels, and modular interiors.
+        </p>
+      </header>
+
+      <div class="louver-products" aria-live="polite">
+        <% decorativeFilms.forEach((film)=> { %>
+          <%- include('../../../../partials/decorative-film-card', { film, getValue }) %>
+            <% }); %>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==== why choose section start ==== -->
+  <section class="why-choose pt-140 pb-140 template-bg">
+    <div class="container-lg">
+      <div class="row align-items-end gutter-30">
+        <div class="col-12 col-lg-12">
+          <div class="why-choose__intro fade-up">
+            <h2 class="title-animation title-lg-sm elicyon fw-3 mt-12 text-center">
+              Key features and benefits of PVC decorative films
+            </h2>
+          </div>
+        </div>
+        <div class="col-12 col-lg-12">
+          <p class="why-choose__text txt-light fade-up">
+            From raw material sourcing to production, Pioneer combines
+            global technology, skilled technicians, and in-house processes
+            to deliver consistent PVC products at scale.
+          </p>
+        </div>
+      </div>
+      <div class="why-choose__grid mt-80">
+        <article class="why-choose__single fade-up">
+          <span>01</span>
+          <h3>Versatility & Aesthetics</h3>
+          <p>
+            They come in many
+            colors, textures, and patterns, enabling a highend look (like wood, stone, or marble) without
+            the cost of the actual material.
+          </p>
+        </article>
+        <article class="why-choose__single fade-up" data-delay="150">
+          <span>02</span>
+          <h3>Durability</h3>
+          <p>
+            These films are highly resistant to
+            water, heat, corrosion, and impacts.
+
+          </p>
+        </article>
+        <article class="why-choose__single fade-up" data-delay="300">
+          <span>03</span>
+          <h3>Application</h3>
+          <p>
+            Commonly used on furniture
+            (tables, cabinets), kitchen cabinets, doors, and
+            interior wall panels.
+          </p>
+        </article>
+        <article class="why-choose__single fade-up" data-delay="450">
+          <span>04</span>
+          <h3>Installation</h3>
+          <p>
+            used for DIY projects, these films
+            are easy to apply using hot or cold lamination,
+            or simply using self-adhesive backing.
+          </p>
+        </article>
+
+
+        <article class="why-choose__single fade-up" data-delay="450">
+          <span>05</span>
+          <h3>Maintenance</h3>
+          <p>
+            They are easy to clean and
+            maintain, resisting stains and, in some cases,
+            providing, UV resistance.
+          </p>
+        </article>
+
+        <article class="why-choose__single fade-up" data-delay="450">
+          <span>06</span>
+          <h3>Safety</h3>
+          <p>
+            Modern PVC films are often made with
+            environmentally friendly, non-toxic materials.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+  <!-- ==== / why choose section end ==== -->

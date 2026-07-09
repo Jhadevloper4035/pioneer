@@ -3,6 +3,8 @@ const express = require("express");
 const env = require("./config/env");
 const connectDb = require("./config/db");
 const { errorHandler, notFoundHandler } = require("./middleware/errorHandler");
+const { createRateLimiter, securityHeaders } = require("./middleware/security");
+const seoMiddleware = require("./middleware/seoMiddleware");
 const adminApiRoutes = require("./routes/adminApiRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
@@ -16,14 +18,29 @@ const systemRoutes = require("./routes/systemRoutes");
 
 const app = express();
 const publicPath = path.join(__dirname, "..", "public");
+const apiLimiter = createRateLimiter({
+  windowMs: 15 * 60 * 1000,
+  max: 300,
+  message: "Too many requests. Please try again shortly."
+});
+const authLimiter = createRateLimiter({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  message: "Too many authentication attempts. Please try again shortly."
+});
 
+app.set("trust proxy", 1);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(securityHeaders);
+app.use(express.json({ limit: "100kb" }));
+app.use(express.urlencoded({ extended: true, limit: "100kb" }));
 app.use(express.static(publicPath));
 app.use(env.assetRoute, express.static(publicPath));
+app.use(seoMiddleware);
+app.use("/api/auth", authLimiter);
+app.use("/api", apiLimiter);
 app.use("/admin", adminRoutes);
 app.use("/api/admin", adminApiRoutes);
 app.use("/api/auth", authRoutes);

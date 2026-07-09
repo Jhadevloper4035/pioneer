@@ -4,13 +4,14 @@
 
 :root {
   // font family
-  --inter: "Inter", sans-serif;
-  --fraunces: "Fraunces", serif;
-  --elicyon: "Elicyon", serif;
+  --inter: "Maison Neue", sans-serif;
+  --fraunces: "Maison Neue", sans-serif;
+  --elicyon: "Maison Neue", sans-serif;
   --maison-neue: "Maison Neue", sans-serif;
+  --font-sans: var(--maison-neue);
 
   // template default
-  --template-font: var(--inter);
+  --template-font: var(--maison-neue);
   --heading-font: var(--maison-neue);
   --template-bg: #F5F2EE;
   --template-color: #481800;

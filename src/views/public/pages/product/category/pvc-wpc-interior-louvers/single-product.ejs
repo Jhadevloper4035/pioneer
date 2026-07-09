@@ -1,0 +1,438 @@
+<%- include('../../../../partials/page-hero', {
+        tag: '(PVC/WPC Interior Louver Detail)',
+        title: product.name,
+        text: getValue(product, 'summary', 'Explore product dimensions, shades, and application details.'),
+        image: mainImage,
+        buttonText: 'View Details',
+        buttonLink: '#product-title'
+      }) %>
+
+      <section>
+        <div class="container-lg">
+          <div class="row">
+            <div class="col single-product-breadcrumb-conatiner">
+              <nav class="single-product-breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="single-product-breadcrumb__divider">/</span>
+                <a href="/pvc-wpc-interior-louvers">PVC/WPC Interior Louvers</a>
+                <span class="single-product-breadcrumb__divider">/</span>
+                <span id="breadcrumb-product"><%= product.name %></span>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main>  
+        
+        <section class="single-product-hero" aria-labelledby="product-title">
+          <div class="container-lg">
+            <div class="single-product-grid">
+              <div class="single-product-media">
+                <div class="single-product-media-gallery">
+                  <div
+                    class="single-product-thumbs"
+                    aria-label="Product images"
+                  >
+                    <% gallery.forEach((image, index) => { %>
+                      <button
+                        class="single-product-thumb<%= index === 0 ? ' is-active' : '' %>"
+                        type="button"
+                        data-lightbox-image
+                        data-lightbox-disabled
+                        data-lightbox-group="product-detail-gallery"
+                        data-gallery-index="<%= index %>"
+                        aria-label="View <%= product.name %> image <%= index + 1 %>"
+                      >
+                        <img
+                          src="<%= louverThumb(image) %>"
+                          data-full-image="<%= image %>"
+                          alt="<%= product.title %> image <%= index + 1 %>"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </button>
+                    <% }); %>
+                  </div>
+                  <a
+                    class="single-product-main-image"
+                    id="product-main-image-button"
+                    href="<%= mainImage %>"
+                    data-lightbox-image
+                    data-lightbox-proxy="true"
+                    data-lightbox-index="0"
+                    data-lightbox-group="product-detail-gallery"
+                    data-gallery-index="0"
+                    aria-label="Open product gallery"
+                  >
+                    <img
+                      id="product-main-image"
+                      src="<%= louverThumb(mainImage) %>"
+                      alt="<%= product.title %>"
+                      fetchpriority="high"
+                      decoding="async"
+                    />
+                  </a></div>
+              </div>
+
+              <article class="single-product-copy">
+                <h1 class="single-product-title" id="product-title"><%= product.name %></h1>
+                <div class="single-product-meta">
+                  <span>SKU: <strong id="product-sku"><%= product.sku %></strong></span>
+                  <span>Category: <strong id="product-meta-category"><%= product.category %></strong></span>
+                </div>
+
+                <section aria-labelledby="details-title">
+                  <p class="single-product-section-label" id="details-title">
+                    specifications
+                  </p>
+                  <dl class="single-product-details" id="product-details">
+                    <% productInfo.forEach((item) => { %>
+                      <div class="single-product-detail">
+                        <dt><%= getValue(item, "label", "") %></dt>
+                        <dd><%= getValue(item, "value", "") %></dd>
+                      </div>
+                    <% }); %>
+                  </dl>
+                </section>
+
+                <div class="single-product-actions">
+                  <button
+                    class="single-product-enquiry-button"
+                    type="button"
+                    id="open-enquiry-modal"
+                  >
+                    Product enquiry
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="single-product-shade-section"
+          aria-labelledby="shade-title"
+        >
+          <div class="container-lg">
+            <div class="single-product-shade-header">
+              <div>
+                <p class="single-product-section-label">Available shades</p>
+                <h2 class="single-product-shade-title" id="shade-title">
+                  Choose your finish
+                </h2>
+              </div>
+            </div>
+            <div
+              class="single-product-shades"
+              id="shade-options"
+              data-lightbox-gallery="shade-gallery"
+              aria-live="polite"
+            >
+              <% shades.forEach((shade, index) => { %>
+                <a
+                  class="single-product-shade<%= index === 0 ? ' is-selected' : '' %>"
+                  href="<%= getValue(shade, "image", "") %>"
+                  data-lightbox-image
+                  data-shade-name="<%= getValue(shade, "name", "") %>"
+                >
+                  <img
+                    src="<%= getValue(shade, "image", "") %>"
+                    alt="<%= getValue(shade, "name", "") %>"
+                    loading="lazy"
+                  />
+                  <span><%= getValue(shade, "name", "") %></span>
+                </a>
+              <% }); %>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <div
+        class="single-product-modal"
+        id="product-enquiry-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-enquiry-title"
+        hidden
+      >
+        <div class="single-product-modal__backdrop" data-enquiry-close></div>
+        <div class="single-product-modal__dialog">
+          <button
+            class="single-product-modal__close"
+            type="button"
+            data-enquiry-close
+            aria-label="Close enquiry form"
+          >
+            &times;
+          </button>
+          <h2 class="single-product-modal__title" id="product-enquiry-title">
+            Product enquiry
+          </h2>
+          <form id="product-enquiry-form">
+            <div class="single-product-enquiry-grid">
+              <div
+                class="single-product-enquiry-field single-product-enquiry-field--full"
+              >
+                <label for="enquiry-product">Product *</label>
+                <input
+                  id="enquiry-product"
+                  name="product"
+                  type="text"
+                  value="<%= product.title %>"
+                  readonly
+                />
+              </div>
+              <div class="single-product-enquiry-field">
+                <label for="enquiry-name">Name *</label>
+                <input id="enquiry-name" name="name" type="text" required />
+              </div>
+              <div class="single-product-enquiry-field">
+                <label for="enquiry-phone">Phone *</label>
+                <input id="enquiry-phone" name="phone" type="tel" required />
+              </div>
+              <div class="single-product-enquiry-field">
+                <label for="enquiry-email">Email *</label>
+                <input id="enquiry-email" name="email" type="email" required />
+              </div>
+              <div class="single-product-enquiry-field">
+                <label for="enquiry-city">City</label>
+                <input id="enquiry-city" name="city" type="text" />
+              </div>
+              <div
+                class="single-product-enquiry-field single-product-enquiry-field--full"
+              >
+                <label for="enquiry-message">Requirement</label>
+                <textarea
+                  id="enquiry-message"
+                  name="message"
+                  placeholder="Quantity, application area or any other details"
+                ></textarea>
+              </div>
+            </div>
+            <div class="single-product-enquiry-footer">
+              <button class="single-product-enquiry-submit" type="submit">
+                Send enquiry
+              </button>
+              <p
+                class="single-product-enquiry-status"
+                id="product-enquiry-status"
+                aria-live="polite"
+              ></p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div
+        class="single-product-lightbox"
+        id="product-gallery-lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Product image gallery"
+        hidden
+      >
+        <button
+          class="single-product-lightbox__close"
+          type="button"
+          id="close-gallery-lightbox"
+          aria-label="Close product gallery"
+        >
+          &times;
+        </button>
+        <div class="single-product-lightbox__dialog">
+          <div class="swiper" id="product-gallery-swiper">
+            <div class="swiper-wrapper">
+              <% gallery.forEach((image, index) => { %>
+                <div class="swiper-slide">
+                  <img
+                    src="<%= image %>"
+                    alt="<%= product.title %> image <%= index + 1 %>"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              <% }); %>
+            </div>            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+    
+    <script>
+      (function () {
+        const els = {
+          shadeOptions: document.getElementById("shade-options"),
+          selectedShadeName: document.getElementById("selected-shade-name"),
+          galleryThumbs: document.querySelectorAll(".single-product-thumb"),
+          mainImage: document.getElementById("product-main-image"),
+          mainImageButton: document.getElementById("product-main-image-button"),
+          lightbox: document.getElementById("product-gallery-lightbox"),
+          lightboxClose: document.getElementById("close-gallery-lightbox"),
+          copyrightYear: document.getElementById("copyrightYear"),
+          enquiryOpen: document.getElementById("open-enquiry-modal"),
+          enquiryModal: document.getElementById("product-enquiry-modal"),
+          enquiryForm: document.getElementById("product-enquiry-form"),
+          enquiryProduct: document.getElementById("enquiry-product"),
+          enquiryStatus: document.getElementById("product-enquiry-status"),
+        };
+        const productTitle = <%- JSON.stringify(product.title) %>;
+        const scrollLock = window.PioneerScrollLock || {
+          lock() {},
+          unlock() {},
+        };
+        let activeShade = <%- JSON.stringify(defaultShade) %>;
+        let lastFocusedElement = null;
+        let gallerySwiper = null;
+
+        if (els.copyrightYear) {
+          els.copyrightYear.textContent = new Date().getFullYear();
+        }
+
+        const selectShade = (item) => {
+          els.shadeOptions
+            .querySelectorAll(".single-product-shade")
+            .forEach((shade) => shade.classList.remove("is-selected"));
+          item.classList.add("is-selected");
+          activeShade = item.dataset.shadeName || item.textContent.trim();
+          if (els.selectedShadeName) {
+            els.selectedShadeName.textContent = activeShade;
+          }
+        };
+
+        if (els.selectedShadeName) {
+          els.selectedShadeName.textContent = activeShade;
+        }
+        els.shadeOptions
+          .querySelectorAll(".single-product-shade")
+          .forEach((item) =>
+            item.addEventListener("click", () => {
+              selectShade(item);
+            }),
+          );
+
+        const setGalleryImage = (button) => {
+          const index = Number(button.dataset.galleryIndex || 0);
+          const image = button.querySelector("img");
+          if (!image) return;
+
+          els.galleryThumbs.forEach((item) =>
+            item.classList.remove("is-active"),
+          );
+          button.classList.add("is-active");
+          const fullImage = image.dataset.fullImage || image.src;
+          els.mainImageButton.dataset.galleryIndex = String(index);
+          els.mainImageButton.dataset.lightboxIndex = String(index);
+          els.mainImageButton.href = fullImage;
+          els.mainImageButton.classList.add("is-changing");
+
+          window.setTimeout(() => {
+            els.mainImage.onload = () => {
+              els.mainImageButton.classList.remove("is-changing");
+            };
+            els.mainImage.src = image.src;
+            els.mainImage.alt = image.alt;
+            if (els.mainImage.complete) {
+              els.mainImageButton.classList.remove("is-changing");
+            }
+          }, 120);
+        };
+
+        const openGalleryLightbox = (index = 0) => {
+          lastFocusedElement = document.activeElement;
+          els.lightbox.hidden = false;
+          document.body.classList.add("single-product-modal-open");
+          scrollLock.lock();
+
+          if (!gallerySwiper) {
+            gallerySwiper = new Swiper("#product-gallery-swiper", {
+              loop: false,
+              slidesPerView: 1,
+              spaceBetween: 20,
+              navigation: {
+                nextEl: ".single-product-lightbox .swiper-button-next",
+                prevEl: ".single-product-lightbox .swiper-button-prev",
+              },
+              pagination: {
+                el: ".single-product-lightbox .swiper-pagination",
+                clickable: true,
+              },
+            });
+          }
+
+          gallerySwiper.update();
+          gallerySwiper.slideTo(index, 0);
+          els.lightboxClose.focus();
+        };
+
+        const closeGalleryLightbox = () => {
+          els.lightbox.hidden = true;
+          document.body.classList.remove("single-product-modal-open");
+          scrollLock.unlock();
+          if (lastFocusedElement) lastFocusedElement.focus();
+        };
+
+        els.galleryThumbs.forEach((button) => {
+          button.addEventListener("click", () => {
+            setGalleryImage(button);
+          });
+        });
+
+        els.lightboxClose.addEventListener("click", closeGalleryLightbox);
+        els.lightbox.addEventListener("click", (event) => {
+          if (event.target === els.lightbox) closeGalleryLightbox();
+        });
+
+        const openEnquiryModal = () => {
+          lastFocusedElement = document.activeElement;
+          const enquiryProduct = `${productTitle}${activeShade ? ` - ${activeShade}` : ""}`;
+          els.enquiryProduct.value = enquiryProduct;
+          els.enquiryStatus.textContent = "";
+          els.enquiryModal.hidden = false;
+          document.body.classList.add("single-product-modal-open");
+          scrollLock.lock();
+          document.getElementById("enquiry-name").focus();
+        };
+
+        const closeEnquiryModal = () => {
+          els.enquiryModal.hidden = true;
+          document.body.classList.remove("single-product-modal-open");
+          scrollLock.unlock();
+          if (lastFocusedElement) lastFocusedElement.focus();
+        };
+
+        els.enquiryOpen.addEventListener("click", openEnquiryModal);
+        els.enquiryModal
+          .querySelectorAll("[data-enquiry-close]")
+          .forEach((item) => item.addEventListener("click", closeEnquiryModal));
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !els.enquiryModal.hidden) {
+            closeEnquiryModal();
+          }
+          if (event.key === "Escape" && !els.lightbox.hidden) {
+            closeGalleryLightbox();
+          }
+        });
+
+        els.enquiryForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const formData = new FormData(els.enquiryForm);
+          const body = [
+            `Product: ${formData.get("product") || productTitle}`,
+            `Selected shade: ${activeShade || "-"}`,
+            `Name: ${formData.get("name")}`,
+            `Phone: ${formData.get("phone")}`,
+            `Email: ${formData.get("email")}`,
+            `City: ${formData.get("city") || "-"}`,
+            `Requirement: ${formData.get("message") || "-"}`,
+          ].join("\n");
+
+          window.location.href = `mailto:sks@pioneerflex.in?subject=${encodeURIComponent("PVC/WPC Interior Louver Product Enquiry")}&body=${encodeURIComponent(body)}`;
+          els.enquiryStatus.textContent =
+            "Your email app has been opened with the enquiry details.";
+        });
+      })();
+    </script>
