@@ -6521,7 +6521,7 @@ span {
 .pioneer-footer__column h2 {
     color: var(--template-bg);
     font-family: var(--template-font);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1.2;
     text-transform: uppercase;
@@ -6535,7 +6535,7 @@ span {
 .pioneer-footer__column li,
 .pioneer-footer__column a {
     color: rgba(245, 242, 238, 0.86);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.55;
 }
 
@@ -6578,7 +6578,7 @@ span {
 
 .pioneer-footer__bottom p {
     color: rgba(245, 242, 238, 0.88);
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.45;
     margin: 0px;
 }
@@ -6591,7 +6591,7 @@ span {
     padding: 0px 18px;
     border: 1px solid rgba(245, 242, 238, 0.7);
     color: var(--template-bg);
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1;
     text-transform: uppercase;
@@ -18575,8 +18575,13 @@ body:not(.home-page) .decorative-services__intro {
 
 /* === CTA solid/inverse states === */
 .page-wrapper :is(.btn-primary, .btn-secondary, .btn-tertiary, .btn-quaternary, .btn-quinary, .btn-light-2) .btn-animated-text {
+    align-items: center;
     background-color: var(--primary-color);
     border-color: var(--primary-color);
+    display: inline-flex;
+    justify-content: center;
+    overflow: hidden;
+    vertical-align: top;
 }
 
 .page-wrapper :is(.btn-primary, .btn-secondary, .btn-tertiary, .btn-quaternary, .btn-quinary, .btn-light-2) .btn-animated-text span {
@@ -18584,12 +18589,12 @@ body:not(.home-page) .decorative-services__intro {
 }
 
 .page-wrapper :is(.btn-primary, .btn-secondary, .btn-tertiary, .btn-quaternary, .btn-quinary, .btn-light-2):hover .btn-animated-text {
-    background-color: transparent;
-    border-color: var(--white);
+    background-color: var(--white);
+    border-color: var(--primary-color);
 }
 
 .page-wrapper :is(.btn-primary, .btn-secondary, .btn-tertiary, .btn-quaternary, .btn-quinary, .btn-light-2):hover .btn-animated-text span {
-    color: var(--white);
+    color: var(--primary-color);
 }
 
 /* ==== infrastructure page styles start ==== */
@@ -19406,6 +19411,7 @@ body:not(.home-page) .decorative-services__intro {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: var(--white);
+    overflow: hidden;
     min-width: 168px;
     padding: 16px 28px 18px;
     text-align: center;
@@ -19416,8 +19422,12 @@ body:not(.home-page) .decorative-services__intro {
 }
 
 .career-card__link:hover .btn-animated-text {
-    background-color: var(--black-2);
-    border-color: var(--black-2);
+    background-color: var(--white);
+    border-color: var(--primary-color);
+}
+
+.career-card__link:hover .btn-animated-text span {
+    color: var(--primary-color);
 }
 
 .career-openings__empty {
