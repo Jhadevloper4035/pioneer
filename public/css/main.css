@@ -18887,6 +18887,18 @@ body:not(.home-page) .decorative-services__intro {
     width: 100%;
 }
 
+.infrastructure-page .louver-story .decorative-services__media--grid {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.infrastructure-page .louver-story .decorative-services__media--grid img {
+    background: #fff;
+    object-fit: contain;
+    padding: clamp(18px, 3vw, 42px);
+}
+
 .infrastructure-page .louver-story .decorative-services__content {
     border: 0;
     display: flex;
@@ -18987,25 +18999,40 @@ body:not(.home-page) .decorative-services__intro {
 }
 
 .infrastructure-page .infra-gallery .row {
-    --bs-gutter-x: 30px;
-    --bs-gutter-y: 30px;
+    display: grid;
+    gap: clamp(16px, 2vw, 24px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+}
+
+.infrastructure-page .infra-gallery .row > [class*="col-"] {
+    padding: 0;
+    width: auto;
 }
 
 .infrastructure-page .gallery_item {
-    background: var(--infra-image-bg);
-    height: auto;
-    overflow: visible;
+    background: #fff;
+    aspect-ratio: 16 / 9;
+    contain: layout paint;
+    content-visibility: auto;
+    contain-intrinsic-size: 320px 240px;
+    height: 100%;
+    overflow: hidden;
+    padding: clamp(10px, 1vw, 14px);
+    border: none !important;
 }
 
 .infrastructure-page .gallery_item a {
     cursor: zoom-in;
     display: block;
+    height: 100%;
 }
 
 .infrastructure-page .gallery_item img {
     display: block;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
     width: 100%;
 }
 
@@ -19116,6 +19143,10 @@ body:not(.home-page) .decorative-services__intro {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .infrastructure-page .infra-gallery .row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .infra-stat:nth-child(2n),
     .infra-step:nth-child(2n) {
         border-right: 0;
@@ -19195,6 +19226,7 @@ body:not(.home-page) .decorative-services__intro {
 
     .infra-stats,
     .infra-flow__steps,
+    .infrastructure-page .infra-gallery .row,
     .infra-contact-list {
         grid-template-columns: 1fr;
     }

@@ -15,12 +15,10 @@ Set these in the Vercel project:
 - `JWT_ISSUER=pioneer-api`
 - `JWT_AUDIENCE=pioneer-users`
 - `JWT_EXPIRES_IN=1h`
-- `ADMIN_EMAILS=<comma separated admin emails>`
 - `ALLOW_PUBLIC_REGISTRATION=false`
-- `ALLOW_ADMIN_REGISTRATION=false`
 
-Keep both registration flags `false` in production after your first admin user
-exists. Only enable them briefly for a controlled admin bootstrap.
+Keep public registration `false` in production unless users should be able to
+create accounts. Public registration never grants admin access.
 
 ## GitHub Actions secrets
 

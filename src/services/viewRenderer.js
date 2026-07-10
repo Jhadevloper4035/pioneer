@@ -39,7 +39,7 @@ function getPublicLayoutOptions(view, locals) {
     },
     "public/pages/about/infrastructure": {
       title: "Pioneer Infrastructure | Rudrapur Manufacturing Plant",
-      description: "Explore Pioneer Flex infrastructure at the Rudrapur manufacturing plant, including PVC calendars, laminators, foam board lines, knitted fabric, vinyl, and packaging systems.",
+      description: "Explore Pioneer Flex infrastructure at the Rudrapur manufacturing plant, including PVC calendars, extrusion lines, laminators, fabric machinery, coating systems, printing, wrapping, utilities, and packaging systems.",
       image: "/assets/images/infrastructure/banner.jpeg",
       canonicalPath: "/infrastructure"
     },

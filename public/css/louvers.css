@@ -862,6 +862,295 @@ body.louver-lightbox-open { overflow: hidden; }
 	.louver-composition__callout--core { top: 69%; }
 }
 
+/* ---- DOOR SPECS ---- */
+.door-specs {
+	padding: clamp(78px, 8vw, 118px) 0;
+	background:
+		linear-gradient(135deg, rgba(47, 111, 101, .08), transparent 42%),
+		linear-gradient(315deg, rgba(192, 136, 96, .10), transparent 38%),
+		#f8faf8;
+}
+
+.door-specs__shell {
+	padding: clamp(28px, 4vw, 52px);
+	border: 1px solid rgba(47, 111, 101, .16);
+	background: rgba(255, 255, 255, .78);
+	box-shadow: 0 24px 70px rgba(27, 51, 46, .08);
+}
+
+.door-specs__header {
+	max-width: 760px;
+	margin: 0 auto 36px;
+	text-align: center;
+}
+
+.door-specs__eyebrow {
+	margin-bottom: 12px;
+	color: #2f6f65;
+	font-weight: 700;
+	font-size: 12px;
+	letter-spacing: .16em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.door-specs__body {
+	display: grid;
+	grid-template-columns: minmax(0, 1.45fr) minmax(300px, .72fr);
+	align-items: stretch;
+	gap: clamp(34px, 5vw, 76px);
+}
+
+.door-specs__title {
+	max-width: 720px;
+	margin: 0 auto 14px;
+	color: var(--template-color, #481800);
+	font-size: clamp(32px, 4vw, 50px);
+	font-weight: 400;
+	line-height: 1.1;
+	text-align: center;
+}
+
+.door-specs__intro {
+	max-width: 620px;
+	margin: 0 auto;
+	color: #52635f;
+	font-size: 16px;
+	line-height: 1.7;
+	text-align: center;
+}
+
+.door-specs__cards {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 14px;
+	margin: 0 0 30px;
+}
+
+.door-specs__card {
+	min-height: 150px;
+	padding: 20px;
+	border: 1px solid rgba(47, 111, 101, .16);
+	border-top: 4px solid #2f6f65;
+	background: #fff;
+}
+
+.door-specs__card dt {
+	margin-bottom: 14px;
+	color: #2f6f65;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .14em;
+	text-transform: uppercase;
+}
+
+.door-specs__card dd {
+	margin: 0;
+	color: var(--template-color, #481800);
+}
+
+.door-specs__card strong {
+	display: block;
+	margin-bottom: 8px;
+	font-size: clamp(22px, 2.4vw, 30px);
+	font-weight: 600;
+	line-height: 1.1;
+}
+
+.door-specs__card span {
+	display: block;
+	color: #5e625f;
+	font-size: 14px;
+	line-height: 1.55;
+}
+
+.door-specs__sizes {
+	padding-top: 26px;
+	border-top: 1px solid rgba(47, 111, 101, .16);
+}
+
+.door-specs__sizes h3 {
+	margin-bottom: 16px;
+	color: var(--template-color, #481800);
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.door-specs__sizes ul {
+	display: grid;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.door-specs__sizes li {
+	display: grid;
+	grid-template-columns: minmax(150px, .7fr) minmax(190px, 1fr) minmax(160px, .9fr);
+	align-items: center;
+	gap: 16px;
+	padding: 14px 0;
+	border-bottom: 1px solid rgba(47, 111, 101, .12);
+}
+
+.door-specs__sizes li:last-child { border-bottom: 0; }
+
+.door-specs__sizes span {
+	color: #2f6f65;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: .08em;
+	text-transform: uppercase;
+}
+
+.door-specs__sizes strong {
+	color: #1f2523;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.door-specs__sizes em {
+	color: #69736f;
+	font-size: 14px;
+	font-style: normal;
+}
+
+.door-specs__note {
+	display: block;
+	max-width: 720px;
+	margin: 34px auto 0;
+	padding: 12px 16px;
+	border-top: 1px solid rgba(47, 111, 101, .22);
+	border-bottom: 1px solid rgba(47, 111, 101, .22);
+	background: rgba(47, 111, 101, .08);
+	color: #263330;
+	font-size: 16px;
+	line-height: 1.6;
+	text-align: center;
+}
+
+.door-specs__visual {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	min-height: 100%;
+}
+
+.door-specs__visual a {
+	display: block;
+	width: 100%;
+	flex: 1;
+	min-height: 420px;
+	cursor: zoom-in;
+	overflow: hidden;
+	box-shadow: 18px 18px 0 rgba(47, 111, 101, .14);
+}
+
+.door-specs__visual img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.frame-specs {
+	background:
+		linear-gradient(135deg, rgba(192, 136, 96, .10), transparent 40%),
+		linear-gradient(315deg, rgba(47, 111, 101, .08), transparent 36%),
+		#fff;
+}
+
+.frame-specs__body {
+	display: grid;
+	grid-template-columns: minmax(320px, .9fr) minmax(0, 1.1fr);
+	align-items: stretch;
+	gap: clamp(28px, 4vw, 56px);
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.frame-specs__visual a {
+	height: 100%;
+	min-height: 420px;
+	background: #fff;
+	box-shadow: -14px 14px 0 rgba(192, 136, 96, .12);
+}
+
+.frame-specs__visual img {
+	box-sizing: border-box;
+	padding: clamp(10px, 2vw, 22px);
+	object-fit: contain;
+}
+
+.frame-specs__table {
+	display: grid;
+	align-content: stretch;
+	margin: 0;
+	border: 1px solid rgba(47, 111, 101, .18);
+	background: #fff;
+}
+
+.frame-specs__table div {
+	display: grid;
+	grid-template-columns: minmax(170px, .44fr) 1fr;
+	min-height: 140px;
+	border-bottom: 1px solid rgba(47, 111, 101, .16);
+}
+
+.frame-specs__table div:last-child { border-bottom: 0; }
+
+.frame-specs__table dt,
+.frame-specs__table dd {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	padding: 18px 22px;
+}
+
+.frame-specs__table dt {
+	border-right: 1px solid rgba(47, 111, 101, .16);
+	color: #2f6f65;
+	font-size: 17px;
+	font-weight: 800;
+	line-height: 1.15;
+}
+
+.frame-specs__table dd {
+	color: var(--template-color, #481800);
+	font-size: clamp(18px, 2vw, 24px);
+	font-weight: 500;
+	line-height: 1.35;
+}
+
+@media (max-width: 991px) {
+	.door-specs__body,
+	.frame-specs__body { grid-template-columns: 1fr; }
+	.door-specs__visual {
+		max-width: 460px;
+		min-height: 0;
+	}
+	.door-specs__visual a { aspect-ratio: 4 / 5; min-height: 0; }
+}
+
+@media (max-width: 575px) {
+	.door-specs { padding: 64px 0; }
+	.door-specs__shell {
+		padding: 24px 18px;
+	}
+	.door-specs__header { margin-bottom: 28px; }
+	.door-specs__cards,
+	.door-specs__sizes li,
+	.frame-specs__table div {
+		grid-template-columns: 1fr;
+	}
+	.door-specs__sizes li { gap: 6px; }
+	.door-specs__note { font-size: 15px; }
+	.door-specs__visual a { box-shadow: 10px 10px 0 rgba(47, 111, 101, .14); }
+	.frame-specs__visual a { box-shadow: -10px 10px 0 rgba(192, 136, 96, .14); }
+	.frame-specs__table dt { border-right: 0; border-bottom: 1px solid rgba(47, 111, 101, .16); }
+}
+
 /* ---- LOUVER APPLICATION GALLERY ---- */
 .louver-gallery {
 	padding: 110px 0;

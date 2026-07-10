@@ -5,6 +5,11 @@
     <% if (typeof galleryGroup !== "undefined" && galleryGroup) { %>data-lightbox-group="<%= galleryGroup %>"<% } %>
     aria-label="View <%= item.title %>"
   >
-    <img src="<%= item.image %>" alt="<%= item.title %>" />
+    <img
+      src="<%= item.thumb || item.image %>"
+      alt="<%= item.title %>"
+      loading="lazy"
+      decoding="async"
+    />
   </a>
 </div>

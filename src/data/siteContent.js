@@ -39,40 +39,90 @@ const galleryItems = [
 
 const infrastructureGalleryItems = [
   {
-    image: "assets/images/infra/g1.jpg",
-    title: "Pioneer manufacturing infrastructure"
+    image: "assets/images/infra/1.jpeg",
+    title: "Pioneer infrastructure gallery 1"
   },
   {
-    image: "assets/images/infra/g2.jpg",
-    title: "Rudrapur plant production area"
+    image: "assets/images/infra/2.jpg",
+    thumb: "assets/images/infra/thumbs/2.png",
+    title: "Pioneer infrastructure gallery 2"
   },
   {
-    image: "assets/images/infra/g3.jpg",
-    title: "PVC processing machinery"
+    image: "assets/images/infra/2.png",
+    title: "Pioneer infrastructure gallery 3"
   },
   {
-    image: "assets/images/infra/g4.jpg",
-    title: "Automated production line"
+    image: "assets/images/infra/3.png",
+    title: "Pioneer infrastructure gallery 4"
   },
   {
-    image: "assets/images/infra/g5.jpg",
-    title: "Factory machine installation"
+    image: "assets/images/infra/4.jpg",
+    thumb: "assets/images/infra/thumbs/4.png",
+    title: "Pioneer infrastructure gallery 5"
   },
   {
-    image: "assets/images/infra/g6.jpg",
-    title: "Industrial production equipment"
+    image: "assets/images/infra/5.jpg",
+    title: "Pioneer infrastructure gallery 6"
   },
   {
-    image: "assets/images/infra/g7.jpg",
-    title: "Pioneer plant operations"
+    image: "assets/images/infra/6.jpg",
+    title: "Pioneer infrastructure gallery 7"
   },
   {
-    image: "assets/images/infra/g8.jpg",
-    title: "Manufacturing floor detail"
+    image: "assets/images/infra/8.jpg",
+    title: "Pioneer infrastructure gallery 8"
   },
   {
-    image: "assets/images/infra/g9.jpg",
-    title: "Infrastructure machinery"
+    image: "assets/images/infra/9.jpg",
+    thumb: "assets/images/infra/thumbs/9.png",
+    title: "Pioneer infrastructure gallery 9"
+  },
+  {
+    image: "assets/images/infra/10.jpg",
+    thumb: "assets/images/infra/thumbs/10.png",
+    title: "Pioneer infrastructure gallery 10"
+  },
+  {
+    image: "assets/images/infra/11.jpg",
+    thumb: "assets/images/infra/thumbs/11.png",
+    title: "Pioneer infrastructure gallery 11"
+  },
+  {
+    image: "assets/images/infra/12.jpg",
+    thumb: "assets/images/infra/thumbs/12.png",
+    title: "Pioneer infrastructure gallery 12"
+  },
+  {
+    image: "assets/images/infra/13.jpeg",
+    thumb: "assets/images/infra/thumbs/13.png",
+    title: "Pioneer infrastructure gallery 13"
+  },
+  {
+    image: "assets/images/infra/14.jpeg",
+    thumb: "assets/images/infra/thumbs/14.png",
+    title: "Pioneer infrastructure gallery 14"
+  },
+  {
+    image: "assets/images/infra/15.png",
+    title: "Pioneer infrastructure gallery 15"
+  },
+  {
+    image: "assets/images/infra/16.jpeg",
+    thumb: "assets/images/infra/thumbs/16.png",
+    title: "Pioneer infrastructure gallery 16"
+  },
+  {
+    image: "assets/images/infra/17.png",
+    title: "Pioneer infrastructure gallery 17"
+  },
+  {
+    image: "assets/images/infra/18.jpeg",
+    thumb: "assets/images/infra/thumbs/18.png",
+    title: "Pioneer infrastructure gallery 18"
+  },
+  {
+    image: "assets/images/infra/19.jpg",
+    title: "Pioneer infrastructure gallery 19"
   }
 ];
 

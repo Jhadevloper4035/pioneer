@@ -50,13 +50,8 @@ function getMongoUri() {
 const nodeEnv = process.env.NODE_ENV || "development";
 
 const env = {
-  allowAdminRegistration: process.env.ALLOW_ADMIN_REGISTRATION === "true",
   allowPublicRegistration:
     process.env.ALLOW_PUBLIC_REGISTRATION === "true" || nodeEnv !== "production",
-  adminEmails: (process.env.ADMIN_EMAILS || "")
-    .split(",")
-    .map((email) => email.trim().toLowerCase())
-    .filter(Boolean),
   appName: process.env.APP_NAME || "Pioneer",
   assetRoute: process.env.ASSET_ROUTE || "/assets",
   host: process.env.HOST || "127.0.0.1",

@@ -2259,3 +2259,78 @@
           width: 100%;
         }
       }
+
+/* Site-wide main heading scale */
+.title-lg-sm,
+h1.title-animation,
+h2.title-animation,
+.decorative-services__title,
+.main-category-section__title,
+.louver-composition__title,
+.door-specs__title,
+.catalogue-section__title,
+.louver-catalog__title,
+.louver-gallery__title,
+.career-title,
+.infra-title,
+.about-display,
+.about-title,
+.single-product-title,
+.single-product-shade-title,
+.pioneer-page-hero__title,
+.infra-hero h1,
+.about-hero h1,
+.career-detail-hero__content h1 {
+  font-size: 42px !important;
+  line-height: 1.18 !important;
+}
+
+@media (max-width: 1199px) {
+  .title-lg-sm,
+  h1.title-animation,
+  h2.title-animation,
+  .decorative-services__title,
+  .main-category-section__title,
+  .louver-composition__title,
+  .door-specs__title,
+  .catalogue-section__title,
+  .louver-catalog__title,
+  .louver-gallery__title,
+  .career-title,
+  .infra-title,
+  .about-display,
+  .about-title,
+  .single-product-title,
+  .single-product-shade-title,
+  .pioneer-page-hero__title,
+  .infra-hero h1,
+  .about-hero h1,
+  .career-detail-hero__content h1 {
+    font-size: 36px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .title-lg-sm,
+  h1.title-animation,
+  h2.title-animation,
+  .decorative-services__title,
+  .main-category-section__title,
+  .louver-composition__title,
+  .door-specs__title,
+  .catalogue-section__title,
+  .louver-catalog__title,
+  .louver-gallery__title,
+  .career-title,
+  .infra-title,
+  .about-display,
+  .about-title,
+  .single-product-title,
+  .single-product-shade-title,
+  .pioneer-page-hero__title,
+  .infra-hero h1,
+  .about-hero h1,
+  .career-detail-hero__content h1 {
+    font-size: 28px !important;
+  }
+}

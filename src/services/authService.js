@@ -25,10 +25,6 @@ function addMinutes(minutes) {
   return new Date(Date.now() + minutes * 60 * 1000).toISOString();
 }
 
-function getRoles(email) {
-  return env.allowAdminRegistration && env.adminEmails.includes(email) ? ["admin", "user"] : ["user"];
-}
-
 function sanitizeUser(user) {
   if (!user) return null;
 
@@ -78,7 +74,7 @@ async function registerUser(payload) {
       email,
       mobileNumber,
       passwordHash: await hashPassword(payload.password),
-      roles: getRoles(email),
+      roles: ["user"],
       failedLoginAttempts: 0,
       lockedUntil: null,
       lastLoginAt: null
