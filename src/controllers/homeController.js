@@ -4,6 +4,11 @@ const {
   galleryItems,
   infrastructureGalleryItems
 } = require("../data/siteContent");
+const {
+  generateRobotsTxt,
+  generateSitemapXml,
+  getSitemapSections
+} = require("../services/sitemapService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
 function renderHome(req, res, variantOptions = {}) {
@@ -160,6 +165,24 @@ function privacyPolicy(req, res) {
   });
 }
 
+async function sitemap(req, res) {
+  return renderPublicPage(req, res, "public/pages/sitemap", {
+    pageTitle: "Sitemap | Pioneer Flex",
+    pageDescription: "Browse key Pioneer Flex website pages, product categories, company information, catalogues, and contact links.",
+    sitemapSections: await getSitemapSections()
+  });
+}
+
+async function sitemapXml(req, res) {
+  res.type("application/xml");
+  return res.send(await generateSitemapXml(req));
+}
+
+function robotsTxt(req, res) {
+  res.type("text/plain");
+  return res.send(generateRobotsTxt(req));
+}
+
 function indexRedirect(req, res) {
   res.redirect(301, "/");
 }
@@ -174,5 +197,8 @@ module.exports = {
   infrastructure,
   indexRedirect,
   privacyPolicy,
+  robotsTxt,
+  sitemap,
+  sitemapXml,
   termsAndConditions
 };

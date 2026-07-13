@@ -96,7 +96,7 @@ function getPublicLayoutOptions(view, locals) {
       title: `${getValue(product, "title")} | Pioneer Flex`,
       description: getValue(product, "summary", `${getValue(product, "title")} single product detail page with available shades, specifications, and application images.`),
       image: getValue(product, "mainImage"),
-      canonicalPath: `/wpc-louvers-single-product?product=${getValue(product, "slug")}`
+      canonicalPath: `/wpc-louvers/${getValue(product, "slug")}`
     })
     || (post && {
       title: `${post.title} | Blog | Pioneer Flex`,

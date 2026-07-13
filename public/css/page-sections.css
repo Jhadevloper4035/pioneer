@@ -2260,6 +2260,226 @@
         }
       }
 
+/* Sitemap */
+.sitemap-section {
+  background: #f5f2ee;
+  padding: 100px 0;
+}
+
+.sitemap-section__header {
+  margin-bottom: 46px;
+  max-width: 720px;
+}
+
+.sitemap-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sitemap-card {
+  background: #fff;
+  border: 1px solid rgba(72, 24, 0, 0.12);
+  min-height: 100%;
+  padding: 30px;
+}
+
+.sitemap-card__head {
+  align-items: center;
+  border-bottom: 1px solid rgba(72, 24, 0, 0.14);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+}
+
+.sitemap-card h2 {
+  color: var(--template-color);
+  font-family: var(--heading-font);
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.sitemap-card__head span {
+  align-items: center;
+  background: var(--primary-color);
+  color: #fff;
+  display: inline-flex;
+  font-size: 13px;
+  height: 32px;
+  justify-content: center;
+  min-width: 32px;
+}
+
+.sitemap-card li + li {
+  margin-top: 10px;
+}
+
+.sitemap-card a {
+  color: var(--template-color);
+  display: inline-block;
+  line-height: 1.45;
+}
+
+.sitemap-card a:hover {
+  color: var(--primary-color);
+}
+
+@media (max-width: 991px) {
+  .sitemap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575px) {
+  .sitemap-section {
+    padding: 70px 0;
+  }
+
+  .sitemap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sitemap-card {
+    padding: 24px;
+  }
+}
+
+/* Home vertical switcher */
+.vertical-sites {
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  min-height: 560px;
+  overflow: hidden;
+  padding-block: 56px;
+  position: relative;
+  isolation: isolate;
+}
+
+.vertical-sites::before {
+  background: rgba(0, 0, 0, 0.72);
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+.vertical-sites__panel {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.vertical-sites__brand {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-inline: auto;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.vertical-sites__brand img {
+  max-width: 130px;
+  width: 44vw;
+}
+
+.vertical-sites__brand span {
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.vertical-sites__links {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 30px auto 0;
+  max-width: 760px;
+  position: relative;
+}
+
+.vertical-sites__links::before {
+  background: rgba(255, 255, 255, 0.78);
+  content: "";
+  height: 1px;
+  left: 16.66%;
+  position: absolute;
+  right: 16.66%;
+  top: -27px;
+}
+
+.vertical-sites__link {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 24px rgba(10, 30, 45, 0.08);
+  color: #61b4c9;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 62px;
+  justify-content: center;
+  padding: 10px 16px;
+  position: relative;
+  transition: var(--transition);
+}
+
+.vertical-sites__link::before {
+  background: rgba(255, 255, 255, 0.78);
+  content: "";
+  height: 27px;
+  left: 50%;
+  position: absolute;
+  top: -27px;
+  width: 1px;
+}
+
+.vertical-sites__link small {
+  color: var(--txt-light);
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.vertical-sites__link span {
+  color: inherit;
+  font-family: var(--heading-font);
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.vertical-sites__link:hover {
+  border-color: #61b4c9;
+  color: #063b68;
+  transform: translateY(-4px);
+}
+
+@media (max-width: 767px) {
+  .vertical-sites {
+    background-attachment: scroll;
+    min-height: 560px;
+    padding-block: 48px;
+  }
+
+  .vertical-sites__links {
+    grid-template-columns: 1fr;
+    margin-top: 28px;
+    max-width: 360px;
+  }
+
+  .vertical-sites__links::before,
+  .vertical-sites__link::before {
+    content: none;
+  }
+}
+
 /* Site-wide main heading scale */
 .title-lg-sm,
 h1.title-animation,

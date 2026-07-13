@@ -13,6 +13,9 @@ router.get(["/career", "/careers", "/career.html"], asyncHandler(homeController.
 router.get("/career/:slug", asyncHandler(homeController.careerOpening));
 router.get(["/terms-and-conditions", "/terms", "/terms.html"], asyncHandler(homeController.termsAndConditions));
 router.get(["/privacy-policy", "/privacy", "/privacy.html"], asyncHandler(homeController.privacyPolicy));
+router.get(["/sitemap", "/sitemap.html"], asyncHandler(homeController.sitemap));
+router.get("/sitemap.xml", asyncHandler(homeController.sitemapXml));
+router.get("/robots.txt", homeController.robotsTxt);
 router.get(["/index", "/index.php"], homeController.indexRedirect);
 
 module.exports = router;
