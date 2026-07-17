@@ -1,7 +1,7 @@
 <% const hasCategoryGrid=typeof showCategoryGrid !=="undefined" ? showCategoryGrid : true; const
   hasDecorativeZigzag=typeof showDecorativeZigzag !=="undefined" ? showDecorativeZigzag : false; const
   productCtaTarget="#products" ; const productCategoryLinks={ decorativeFilms: "/pvc-decorative-film" ,
-  interiorLouvers: "/pvc-wpc-interior-louvers" , doorsFrames: "/wpc-doors-and-frames" , baffles: "/pvc-wpc-baffles" };
+  interiorLouvers: "/pvc-wpc-interior-louvers" , doors: "/wpc-doors" , frames: "/wpc-door-frames" , baffles: "/pvc-wpc-baffles" };
   const verticalSites=[ { title: "Signage" , href: "https://pioneerflex.in/" , label: "Large format media" }, {
   title: "Decorative" , href: "/" , label: "Interior surfaces" }, { title: "PVC Tapes" ,
   href: "https://pioneertapes.in/" , label: "Adhesive tapes" } ]; %>
@@ -116,7 +116,7 @@
       <img src="assets/images/banner/pvc-decorative-firms.avif"
         alt="Interior finished with Pioneer PVC decorative films" class="active-bg" />
       <img src="assets/images/banner/pvc-wpc-interior-bg.jpeg" alt="Pioneer PVC WPC wall panel and louver interior" />
-      <img src="assets/images/banner/wpc-doors-bg.jpeg" alt="Pioneer WPC Doors and Frames interior application" />
+      <img src="assets/images/banner/wpc-doors-bg.jpeg" alt="Pioneer WPC Doors interior application" />
       <img src="assets/images/banner/baffles-bg.jpeg" alt="Pioneer PVC WPC baffle screen application" />
     </div>
   </section>
@@ -145,13 +145,23 @@
             <span>View Category</span>
           </div>
         </a>
-        <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.doorsFrames %>" data-delay="200"
-          aria-label="View WPC Doors and Frames category">
+        <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.doors %>" data-delay="200"
+          aria-label="View WPC Doors category">
           <img src="assets/images/banner/pvc-door-frame.jpeg"
-            alt="Interior application for Pioneer WPC Doors and Frames" />
+            alt="Interior application for Pioneer WPC Doors" />
           <div class="main-category-section__content">
             <p>Stable door systems</p>
-            <h2>WPC Doors and Frames</h2>
+            <h2>WPC Doors</h2>
+            <span>View Category</span>
+          </div>
+        </a>
+        <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.frames %>" data-delay="250"
+          aria-label="View WPC Door Frames category">
+          <img src="assets/images/projects/wpc-door-frame.jpeg"
+            alt="Pioneer WPC door frame interior application" />
+          <div class="main-category-section__content">
+            <p>Moisture-resistant frames</p>
+            <h2>WPC Door Frames</h2>
             <span>View Category</span>
           </div>
         </a>
@@ -453,8 +463,11 @@
                     <option value="PVC/WPC Interior Louvers">
                       PVC/WPC Interior Louvers
                     </option>
-                    <option value="WPC Doors and Frames">
-                      WPC Doors and Frames
+                    <option value="WPC Doors">
+                      WPC Doors
+                    </option>
+                    <option value="WPC Door Frames">
+                      WPC Door Frames
                     </option>
                     <option value="PVC/WPC Baffles">
                       PVC/WPC Baffles

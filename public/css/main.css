@@ -3522,7 +3522,7 @@ span {
 
 .header .navbar__sub-menu .active>a {
     padding-inline-start: 40px;
-    color: var(--template-color);
+    color: #ffffff;
 }
 
 .header .navbar__sub-menu .active>a::before {

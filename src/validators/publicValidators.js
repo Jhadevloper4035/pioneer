@@ -4,6 +4,8 @@ const handleValidation = require("./handleValidation");
 const productCategoryValues = new Set([
   "PVC Decorative Films",
   "PVC/WPC Interior Louvers",
+  "WPC Doors",
+  "WPC Door Frames",
   "WPC Doors and Frames",
   "PVC/WPC Baffles"
 ]);

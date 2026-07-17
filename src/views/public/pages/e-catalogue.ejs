@@ -10,11 +10,11 @@
       <section class="catalogue-section" id="catalogue-library">
         <div class="container-lg">
           <div class="row align-items-end gutter-30 catalogue-section__header">
-            <div class="col-12 col-lg-7">
+            <div class="col-12">
               <span class="catalogue-section__eyebrow">(Download Library)</span>
               <h2 class="catalogue-section__title elicyon">Choose the catalogue you need</h2>
             </div>
-            <div class="col-12 col-lg-5">
+            <div class="col-12">
               <p class="catalogue-section__intro">
                 Download links are kept locked until your contact details are submitted.
                 This helps our team follow up with the right product support.
@@ -22,7 +22,7 @@
             </div>
           </div>
 
-          <div class="row gutter-30">
+          <div class="row gutter-30 justify-content-center">
             <% catalogues.forEach((catalogue) => { %>
               <div class="col-12 col-md-6 col-xl-4">
                 <article
@@ -40,10 +40,9 @@
                   <div class="catalogue-card__body">
                     <span>Catalogue</span>
                     <h3><%= catalogue.title %></h3>
-                    <p><%= catalogue.description %></p>
                     <span class="btn-quinary catalogue-card__action">
                       <i class="ti ti-download"></i>
-                      <span class="btn-animated-text" data-text="Click to Download">Click to Download</span>
+                      <span>Click to Download</span>
                     </span>
                   </div>
                 </article>
@@ -53,7 +52,7 @@
         </div>
       </section>
 
-      <div class="catalogue-modal" id="catalogue-lead-modal" role="dialog" aria-modal="true" aria-labelledby="catalogue-modal-title" hidden>
+      <div class="catalogue-modal" id="catalogue-lead-modal" role="dialog" aria-modal="true" aria-labelledby="catalogue-modal-title" data-lenis-prevent hidden>
         <div class="catalogue-modal__dialog">
           <button class="catalogue-modal__close" type="button" aria-label="Close catalogue form" data-catalogue-close>
             &times;
@@ -69,23 +68,19 @@
               <div class="catalogue-form__grid">
                 <div>
                   <label for="catalogue-full-name">Full Name *</label>
-                  <input id="catalogue-full-name" name="fullName" type="text" autocomplete="name" required />
+                  <input id="catalogue-full-name" name="fullName" type="text" autocomplete="name" placeholder="Enter your full name" required />
                 </div>
                 <div>
                   <label for="catalogue-email">Email *</label>
-                  <input id="catalogue-email" name="email" type="email" autocomplete="email" required />
+                  <input id="catalogue-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required />
                 </div>
                 <div>
                   <label for="catalogue-phone">Phone *</label>
-                  <input id="catalogue-phone" name="phone" type="tel" autocomplete="tel" required />
-                </div>
-                <div>
-                  <label for="catalogue-company">Company</label>
-                  <input id="catalogue-company" name="company" type="text" autocomplete="organization" />
+                  <input id="catalogue-phone" name="phone" type="tel" autocomplete="tel" placeholder="Enter phone number" required />
                 </div>
                 <div>
                   <label for="catalogue-city">City</label>
-                  <input id="catalogue-city" name="city" type="text" autocomplete="address-level2" />
+                  <input id="catalogue-city" name="city" type="text" autocomplete="address-level2" placeholder="City" />
                 </div>
                 <button class="catalogue-form__submit" type="submit">Submit & Download</button>
               </div>
@@ -116,6 +111,7 @@
           selectedInput.value = trigger.dataset.catalogueSlug || "";
           status.textContent = "";
           modal.removeAttribute("hidden");
+          modal.querySelector(".catalogue-modal__dialog").scrollTop = 0;
           document.body.classList.add("catalogue-modal-open");
           document.getElementById("catalogue-full-name").focus();
         }
@@ -130,7 +126,7 @@
           if (!file) return;
 
           const link = document.createElement("a");
-          link.href = file;
+          link.href = new URL(file, window.location.origin).href;
           link.download = "";
           document.body.appendChild(link);
           link.click();

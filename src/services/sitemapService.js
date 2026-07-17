@@ -23,7 +23,8 @@ const staticSections = [
     links: [
       { label: "PVC Decorative Films", href: "/pvc-decorative-film", changefreq: "weekly", priority: 0.9 },
       { label: "PVC/WPC Interior Louvers", href: "/pvc-wpc-interior-louvers", changefreq: "weekly", priority: 0.9 },
-      { label: "WPC Doors and Frames", href: "/wpc-doors-and-frames", changefreq: "weekly", priority: 0.8 },
+      { label: "WPC Doors", href: "/wpc-doors", changefreq: "weekly", priority: 0.8 },
+      { label: "WPC Door Frames", href: "/wpc-door-frames", changefreq: "weekly", priority: 0.8 },
       { label: "PVC/WPC Baffles", href: "/pvc-wpc-baffles", changefreq: "weekly", priority: 0.8 }
     ]
   },

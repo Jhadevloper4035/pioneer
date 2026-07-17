@@ -30,12 +30,19 @@ const categoryPages = {
     image: "/assets/images/category/pvc-decor-frame.webp",
     anchor: "category-heading"
   },
-  "wpc-doors-and-frames": {
-    title: "WPC Doors and Frames",
-    tag: "(WPC Doors and Frames)",
-    text: "Durable WPC doors and frames developed for moisture-resistant, termite-resistant interior fitment.",
-    image: "/assets/images/category/pvc-door-frame.jpeg",
-    anchor: "category-heading"
+  "wpc-doors": {
+    title: "WPC Doors",
+    tag: "(WPC Doors)",
+    text: "Durable WPC doors developed for moisture-resistant, termite-resistant interior fitment.",
+    image: "/assets/images/projects/wpc-doors.jpeg",
+    anchor: "wpc-doors-title"
+  },
+  "wpc-door-frames": {
+    title: "WPC Door Frames",
+    tag: "(WPC Door Frames)",
+    text: "Stable WPC door frames for moisture-resistant, termite-resistant interior fitment.",
+    image: "/assets/images/projects/wpc-door-frame.jpeg",
+    anchor: "wpc-frames-title"
   },
   "pvc-wpc-baffles": {
     title: "PVC/WPC Baffles",
@@ -117,7 +124,9 @@ function showCategory(categoryKey) {
 module.exports = {
   listDecorativeFilms: showCategory("pvc-decorative-films"),
   listLouvers,
-  listWpcDoorsAndFrames: showCategory("wpc-doors-and-frames"),
+  listWpcDoors: showCategory("wpc-doors"),
+  listWpcDoorFrames: showCategory("wpc-door-frames"),
+  listWpcDoorsAndFrames: (req, res) => res.redirect(301, "/wpc-doors"),
   listPvcWpcBaffles: showCategory("pvc-wpc-baffles"),
   showLouver
 };

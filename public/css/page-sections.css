@@ -504,6 +504,7 @@
 
       .catalogue-section__header {
         margin-bottom: 48px;
+        text-align: center;
       }
 
       .catalogue-section__title {
@@ -518,7 +519,8 @@
         color: #77695f;
         font-size: 15px;
         line-height: 1.8;
-        margin: 0;
+        margin: 0 auto;
+        max-width: 680px;
       }
 
       .catalogue-card {
@@ -559,6 +561,7 @@
 
       .catalogue-card__body {
         padding: 26px;
+        text-align: center;
       }
 
       .catalogue-card__body span {
@@ -599,10 +602,10 @@
         display: inline-flex;
         gap: 10px;
         justify-content: center;
-        line-height: 1;
-        min-height: 42px;
+        line-height: 1.2;
+        min-height: 46px;
         min-width: 218px;
-        padding: 0 18px;
+        padding: 12px 22px;
         pointer-events: none;
         transition: background-color .3s ease, border-color .3s ease, color .3s ease;
       }
@@ -616,23 +619,13 @@
         transition: color .3s ease;
       }
 
-      .catalogue-card__action .btn-animated-text {
-        background: transparent !important;
-        border: 0 !important;
-        border-radius: 0;
-        display: inline-flex;
-        line-height: 1;
-        padding: 0;
-        transform: translateY(1px);
-        width: auto;
-      }
-
-      .catalogue-card__action .btn-animated-text span {
+      .catalogue-card__action span {
         color: #fff;
         font-size: 11px;
         font-weight: 600;
-        letter-spacing: .2em;
-        line-height: 1;
+        letter-spacing: .16em;
+        line-height: 1.2;
+        text-transform: uppercase;
       }
 
       .catalogue-card:hover .catalogue-card__action,
@@ -643,48 +636,57 @@
 
       .catalogue-card:hover .catalogue-card__action i,
       .catalogue-card:focus-visible .catalogue-card__action i,
-      .catalogue-card:hover .catalogue-card__action .btn-animated-text span,
-      .catalogue-card:focus-visible .catalogue-card__action .btn-animated-text span {
+      .catalogue-card:hover .catalogue-card__action span,
+      .catalogue-card:focus-visible .catalogue-card__action span {
         color: #fff;
       }
 
       .catalogue-form {
-        background: #221711;
-        border-radius: 8px;
-        box-shadow: 0 28px 60px rgba(45, 25, 12, .18);
-        color: #fff;
-        padding: 36px;
+        background: #fff;
+        border: 1px solid rgba(72, 24, 0, .08);
+        border-radius: 0;
+        box-shadow: 0 30px 80px rgba(30, 18, 11, .18);
+        color: #221711;
+        margin: 0 auto;
+        max-width: 600px;
+        padding: clamp(34px, 5vw, 58px);
+        text-align: center;
       }
 
       .catalogue-form h2 {
-        color: #fff;
-        font-size: 30px;
+        color: #33231d;
+        font-size: clamp(2rem, 4vw, 2.8rem);
         font-weight: 400;
-        margin: 0 0 10px;
+        line-height: 1.1;
+        margin: 0 54px 16px;
       }
 
       .catalogue-form p {
-        color: rgba(255, 255, 255, .68);
-        font-size: 13px;
-        line-height: 1.7;
-        margin: 0 0 24px;
+        color: #766b66;
+        font-size: 15px;
+        line-height: 1.55;
+        margin: 0 auto 30px;
+        max-width: 420px;
       }
 
       .catalogue-form label {
-        color: rgba(255, 255, 255, .78);
+        color: #4f443f;
         display: block;
-        font-size: 12px;
-        margin-bottom: 7px;
+        font-size: 15px;
+        font-weight: 500;
+        margin-bottom: 9px;
+        text-align: left;
       }
 
       .catalogue-form input,
       .catalogue-form select {
-        background: rgba(255, 255, 255, .08);
-        border: 1px solid rgba(255, 255, 255, .18);
-        color: #fff;
-        font-size: 14px;
+        background: #fff;
+        border: 0;
+        border-bottom: 1px solid rgba(72, 24, 0, .22);
+        color: #221711;
+        font-size: 16px;
         min-height: 46px;
-        padding: 0 13px;
+        padding: 0;
         width: 100%;
       }
 
@@ -692,31 +694,46 @@
         color: #221711;
       }
 
+      .catalogue-form input::placeholder {
+        color: #b9b1ad;
+      }
+
       .catalogue-form input:focus,
       .catalogue-form select:focus {
         border-color: #c08860;
-        outline: 2px solid rgba(192, 136, 96, .2);
+        outline: 0;
       }
 
       .catalogue-form__grid {
         display: grid;
-        gap: 15px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px 34px;
+        margin: 0 auto;
+        max-width: 920px;
       }
 
       .catalogue-form__submit {
-        background: #c08860;
+        align-items: center;
+        background: #56b878;
+        border-radius: 999px;
         border: 0;
         color: #fff;
+        display: inline-flex;
         font-size: 12px;
+        justify-content: center;
         letter-spacing: .12em;
-        min-height: 48px;
-        padding: 0 22px;
+        justify-self: center;
+        margin-top: 18px;
+        min-height: 54px;
+        max-width: 360px;
+        padding: 0 28px;
         text-transform: uppercase;
         width: 100%;
+        grid-column: 1 / -1;
       }
 
       .catalogue-form__status {
-        color: rgba(255, 255, 255, .72);
+        color: #766b66;
         font-size: 12px;
         line-height: 1.6;
         margin: 14px 0 0;
@@ -733,43 +750,47 @@
         display: flex;
         inset: 0;
         justify-content: center;
-        padding: 24px;
+        padding: 18px;
         position: fixed;
         z-index: 9999;
       }
 
       .catalogue-modal__dialog {
-        max-height: calc(100vh - 48px);
-        max-width: 520px;
-        overflow: auto;
+        max-height: calc(100vh - 36px);
+        max-width: min(600px, calc(100vw - 36px));
+        overflow-y: auto;
+        overscroll-behavior: contain;
         position: relative;
+        -webkit-overflow-scrolling: touch;
         width: 100%;
       }
 
       .catalogue-modal__close {
         align-items: center;
-        background: rgba(255, 255, 255, .1);
-        border: 1px solid rgba(255, 255, 255, .18);
-        color: #fff;
+        background: transparent;
+        border: 0;
+        color: #c9c2bd;
         display: flex;
-        font-size: 20px;
-        height: 42px;
+        font-size: 34px;
+        height: 52px;
         justify-content: center;
         position: absolute;
-        right: 18px;
-        top: 18px;
-        width: 42px;
+        right: 0;
+        top: 0;
+        width: 60px;
         z-index: 2;
       }
 
       .catalogue-form__selected {
-        background: rgba(192, 136, 96, .14);
-        border: 1px solid rgba(192, 136, 96, .28);
-        color: #f4d6bd;
-        font-size: 13px;
+        background: #f8f4ef;
+        border: 0;
+        color: #766b66;
+        font-size: 14px;
         line-height: 1.5;
-        margin-bottom: 18px;
-        padding: 12px 14px;
+        margin: 0 auto 30px;
+        max-width: 520px;
+        padding: 14px 18px;
+        text-align: center;
       }
 
       body.catalogue-modal-open {
@@ -784,8 +805,26 @@
       }
 
       @media (max-width: 575px) {
+        .catalogue-modal {
+          padding: 12px;
+        }
+
+        .catalogue-modal__dialog {
+          max-height: calc(100vh - 24px);
+          max-width: calc(100vw - 24px);
+        }
+
         .catalogue-form {
-          padding: 28px 22px;
+          min-height: 0;
+          padding: 34px 20px 24px;
+        }
+
+        .catalogue-form__grid {
+          grid-template-columns: 1fr;
+        }
+
+        .catalogue-form h2 {
+          margin-right: 48px;
         }
       }
 

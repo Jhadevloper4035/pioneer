@@ -9,6 +9,7 @@ const routes = require("./routes");
 
 const app = express();
 const publicPath = path.join(__dirname, "..", "public");
+const uploadsPath = path.join(__dirname, "..", "uploads");
 const apiLimiter = createRateLimiter({
   windowMs: 15 * 60 * 1000,
   max: 300,
@@ -29,6 +30,7 @@ app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: true, limit: "100kb" }));
 app.use(express.static(publicPath));
 app.use(env.assetRoute, express.static(publicPath));
+app.use("/uploads", express.static(uploadsPath));
 app.use(seoMiddleware);
 app.use("/api/auth", authLimiter);
 app.use("/api", apiLimiter);

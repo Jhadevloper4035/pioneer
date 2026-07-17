@@ -21,10 +21,11 @@ router.get(
   asyncHandler(productController.listLouvers)
 );
 
-router.get(
-  ["/wpc-doors-and-frames", "/wpc-doors-and-frames.php"],
-  asyncHandler(productController.listWpcDoorsAndFrames)
-);
+router.get(["/wpc-doors", "/wpc-doors.php"], asyncHandler(productController.listWpcDoors));
+
+router.get(["/wpc-door-frames", "/wpc-door-frames.php"], asyncHandler(productController.listWpcDoorFrames));
+
+router.get(["/wpc-doors-and-frames", "/wpc-doors-and-frames.php"], productController.listWpcDoorsAndFrames);
 
 router.get(
   ["/pvc-wpc-baffles", "/pvc-wpc-baffles.php"],
