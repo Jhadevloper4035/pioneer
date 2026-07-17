@@ -13965,6 +13965,7 @@ span {
     overflow: hidden;
     isolation: isolate;
     border: 1px solid rgba(192, 136, 96, 0.55);
+    border-radius: 18px;
     background-color: #060504;
     box-shadow: var(--shadow);
     max-height: 380px;
@@ -14034,6 +14035,7 @@ span {
     padding: 11px 22px 12px;
     position: relative;
     border: 1px solid rgba(245, 242, 238, 0.82);
+    border-radius: 8px;
     background-color: rgba(6, 5, 4, 0.55);
     transition: var(--transition);
 }
