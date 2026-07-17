@@ -410,6 +410,182 @@ body.louver-modal-open { overflow: hidden; }
 	transition: transform .45s ease;
 }
 
+.decorative-film-products {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 28px 22px;
+}
+
+.decorative-film-card {
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+	background: #fff;
+	border: 1px solid rgba(72, 24, 0, .1);
+	box-shadow: 0 12px 34px rgba(72, 24, 0, .08);
+	font-family: var(--heading-font, 'Maison Neue', sans-serif);
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity .65s ease, transform .65s ease, box-shadow .35s ease;
+	transition-delay: var(--card-delay, 0ms);
+}
+
+.decorative-film-card:nth-child(4n + 1) { --card-delay: 0ms; }
+.decorative-film-card:nth-child(4n + 2) { --card-delay: 120ms; }
+.decorative-film-card:nth-child(4n + 3) { --card-delay: 240ms; }
+.decorative-film-card:nth-child(4n + 4) { --card-delay: 360ms; }
+.decorative-film-card.is-visible { opacity: 1; transform: translateY(0); }
+
+.decorative-film-card:hover,
+.decorative-film-card.is-visible:hover {
+	transform: translateY(-7px);
+	box-shadow: 0 20px 44px rgba(72, 24, 0, .14);
+}
+
+.decorative-film-card__visual {
+	position: relative;
+	display: flex;
+	min-height: 450px;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	padding: 0;
+	background: #fff;
+}
+
+.decorative-film-card__image-link {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.decorative-film-card__image {
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	filter: none;
+	transition: transform .45s ease;
+}
+
+.decorative-film-card:hover .decorative-film-card__image { transform: scale(1.045); }
+
+.decorative-film-card__name {
+	margin: 0;
+	padding: 12px 16px 10px;
+	background: #ebe7e3;
+	color: var(--template-color, #481800);
+	font-family: inherit;
+	font-size: 22px;
+	font-weight: 400;
+	line-height: 1.15;
+}
+
+.decorative-film-specs {
+	padding: 105px 0;
+	background:
+		linear-gradient(135deg, rgba(72, 24, 0, .05), rgba(192, 136, 96, .11)),
+		#f8f4ef;
+}
+
+.decorative-film-specs__shell {
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+	gap: 56px;
+	align-items: center;
+	padding: clamp(32px, 5vw, 58px);
+	border: 1px solid rgba(72, 24, 0, .1);
+	border-radius: 18px;
+	background: rgba(255, 255, 255, .82);
+	box-shadow: 0 22px 60px rgba(72, 24, 0, .08);
+}
+
+.decorative-film-specs__eyebrow {
+	margin-bottom: 10px;
+	color: var(--primary-color, #c08860);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+}
+
+.decorative-film-specs__title {
+	margin: 0 0 28px;
+	color: var(--template-color, #481800);
+	font-size: clamp(2.4rem, 5vw, 4.6rem);
+	font-weight: 400;
+	line-height: 1.04;
+}
+
+.decorative-film-specs__list {
+	display: grid;
+	gap: 0;
+	margin: 0;
+}
+
+.decorative-film-specs__list div {
+	display: grid;
+	grid-template-columns: 180px minmax(0, 1fr);
+	gap: 24px;
+	padding: 14px 0;
+	border-bottom: 1px solid rgba(72, 24, 0, .12);
+}
+
+.decorative-film-specs__list dt {
+	color: var(--template-color, #481800);
+	font-family: var(--heading-font, 'Maison Neue', sans-serif);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+
+.decorative-film-specs__list dd {
+	margin: 0;
+	color: #4f443f;
+	font-size: 16px;
+	line-height: 1.55;
+}
+
+.decorative-film-specs__note {
+	display: block;
+	grid-column: 1 / -1;
+	max-width: 720px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 12px 16px;
+	border-top: 1px solid rgba(192, 136, 96, .28);
+	border-bottom: 1px solid rgba(192, 136, 96, .28);
+	background: rgba(192, 136, 96, .1);
+	color: #4f443f;
+	font-size: 16px;
+	line-height: 1.55;
+	text-align: center;
+}
+
+.decorative-film-specs__visual a {
+	display: block;
+	overflow: hidden;
+	border-radius: 18px;
+	background: #fff;
+	box-shadow: 18px 18px 0 rgba(192, 136, 96, .16);
+}
+
+.decorative-film-specs__visual img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	transition: transform .45s ease;
+}
+
+.decorative-film-specs__visual a:hover img {
+	transform: scale(1.035);
+}
+
 .louver-image-lightbox[hidden] { display: none; }
 
 .louver-image-lightbox {
@@ -1299,20 +1475,35 @@ body.louver-lightbox-open { overflow: hidden; }
 	text-align: center;
 }
 
-@media (max-width: 1199px) { .louver-products { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 1199px) {
+	.louver-products { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.decorative-film-products { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 @media (prefers-reduced-motion: reduce) {
 	.louver-card { opacity: 1; transform: none; transition: box-shadow .35s ease; }
+	.decorative-film-card { opacity: 1; transform: none; transition: box-shadow .35s ease; }
 }
 @media (max-width: 991px) {
 	.louver-catalog { padding: 80px 0 90px; }
 	.louver-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.decorative-film-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.decorative-film-specs { padding: 80px 0; }
+	.decorative-film-specs__shell { grid-template-columns: 1fr; gap: 40px; }
+	.decorative-film-specs__visual { max-width: 560px; }
 }
 @media (max-width: 575px) {
 	.louvers-hero { padding-top: 140px; }
 	.louver-catalog { padding: 65px 0 75px; }
 	.louver-catalog__header { margin-bottom: 34px; }
 	.louver-products { grid-template-columns: 1fr; gap: 22px; }
+	.decorative-film-products { grid-template-columns: 1fr; gap: 22px; }
 	.louver-card__visual { height: 245px; }
+	.decorative-film-card__visual { height: 245px; }
+	.decorative-film-specs { padding: 64px 0; }
+	.decorative-film-specs__shell { padding: 26px 18px 32px; border-radius: 14px; }
+	.decorative-film-specs__list div { grid-template-columns: 1fr; gap: 5px; padding: 13px 0; }
+	.decorative-film-specs__list dd { font-size: 15px; }
+	.decorative-film-specs__visual a { box-shadow: 10px 10px 0 rgba(192, 136, 96, .16); }
 	.louver-enquiry-modal { padding: 12px; }
 	.louver-enquiry-modal__dialog { max-height: calc(100vh - 24px); padding: 34px 20px 24px; }
 	.louver-enquiry-form__grid { grid-template-columns: 1fr; }

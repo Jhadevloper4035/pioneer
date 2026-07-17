@@ -33,7 +33,7 @@
 
         <div class="louver-composition__visual fade-up" data-delay="160">
           <a class="louver-composition__image-link" href="/assets/images/category/pvc-decor-frame.webp"
-            data-lightbox-image aria-label="View full Pioneer PVC decorative film image">
+            data-lightbox-image data-lightbox-group="decorative-film-gallery" aria-label="View full Pioneer PVC decorative film image">
             <img src="/assets/images/category/pvc-decor-frame.webp"
               alt="Pioneer PVC decorative film finish for furniture and interior surfaces" loading="lazy" />
           </a>
@@ -44,6 +44,52 @@
   <!-- ==== / louver composition section end ==== -->
 
 
+  <section class="decorative-film-specs" aria-labelledby="decorative-film-specs-title">
+    <div class="container-lg">
+      <div class="decorative-film-specs__shell">
+        <div class="decorative-film-specs__content fade-up">
+          <p class="decorative-film-specs__eyebrow">Product specification</p>
+          <h2 class="decorative-film-specs__title elicyon" id="decorative-film-specs-title">
+            PVC Decorative Films
+          </h2>
+          <dl class="decorative-film-specs__list">
+            <div>
+              <dt>Thickness</dt>
+              <dd>120 micron onwards</dd>
+            </div>
+            <div>
+              <dt>Width</dt>
+              <dd>850 mm, 1000 mm and 1250 mm</dd>
+            </div>
+            <div>
+              <dt>Length</dt>
+              <dd>200 m, 300 m</dd>
+            </div>
+            <div>
+              <dt>Surface</dt>
+              <dd>Smooth, embossed, 3D and high gloss</dd>
+            </div>
+            <div>
+              <dt>Colour</dt>
+              <dd>Wooden, marble, solid, metallic, sparkle and more</dd>
+            </div>
+            <div>
+              <dt>Application</dt>
+              <dd>Doors, furniture, cabinets and wood profiles</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="decorative-film-specs__visual fade-up" data-delay="160">
+          <a href="/assets/images/category/pvc-decorative-fir.png" data-lightbox-image data-lightbox-group="decorative-film-gallery" aria-label="View PVC decorative film roll image">
+            <img src="/assets/images/category/pvc-decorative-fir.png" alt="Pioneer PVC decorative film roll with wood finish" loading="lazy" />
+          </a>
+        </div>
+
+        <p class="decorative-film-specs__note">Length is customisable.</p>
+      </div>
+    </div>
+  </section>
 
 
 
@@ -59,14 +105,9 @@
         </p>
       </header>
 
-      <div class="louver-products" aria-live="polite">
-        <% decorativeFilms.forEach((film)=> { %>
-          <%- include('../../../../partials/decorative-film-card', { film, getValue }) %>
-            <% }); %>
-      </div>
+      <%- include('../../../../partials/decorative-film-products', { decorativeFilms, getValue }) %>
     </div>
   </section>
-
 
 
   <!-- ==== why choose section start ==== -->

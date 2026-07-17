@@ -1,0 +1,24 @@
+<div class="decorative-film-products" aria-live="polite">
+  <% decorativeFilms.forEach((film)=> { %>
+    <article class="decorative-film-card is-visible">
+      <div class="decorative-film-card__visual">
+        <a
+          class="decorative-film-card__image-link"
+          href="<%= getValue(film, "image", "") %>"
+          data-lightbox-image
+          data-lightbox-group="decorative-film-gallery"
+          aria-label="View <%= getValue(film, "name", "PVC Decorative Film") %> image"
+        >
+          <img
+            class="decorative-film-card__image"
+            src="<%= getValue(film, "image", "") %>"
+            alt="<%= getValue(film, "name", "PVC Decorative Film") %> PVC decorative film finish"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+      </div>
+      <h3 class="decorative-film-card__name"><%= getValue(film, "name", "PVC Decorative Film") %></h3>
+    </article>
+  <% }); %>
+</div>

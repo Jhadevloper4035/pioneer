@@ -59,7 +59,6 @@ async function startServer() {
 }
 
 
-
 if (require.main === module) {
   startServer().catch((error) => {
     console.error("Failed to start server", error);
