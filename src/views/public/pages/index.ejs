@@ -128,7 +128,7 @@
       <div class="main-category-section__grid mt-60">
         <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.decorativeFilms %>"
           aria-label="View PVC Decorative Films category">
-          <img src="assets/images/banner/pvc-wpc-interior-lovers.jpeg"
+          <img src="assets/images/category/pvc-wpc-interior-lovers.jpeg"
             alt="Interior finished with Pioneer PVC decorative films" />
           <div class="main-category-section__content">
             <p>Furniture &amp; membrane finishes</p>
@@ -138,7 +138,7 @@
         </a>
         <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.interiorLouvers %>"
           data-delay="100" aria-label="View PVC WPC Interior Louvers category">
-          <img src="assets/images/banner/pvc-decor-frame.jpeg" alt="Interior with Pioneer PVC WPC interior louvers" />
+          <img src="assets/images/category/pvc-decor-films.jpeg" alt="Interior with Pioneer PVC WPC interior louvers" />
           <div class="main-category-section__content">
             <p>Interior louvers</p>
             <h2>PVC/WPC Interior Louvers</h2>
@@ -147,7 +147,7 @@
         </a>
         <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.doors %>" data-delay="200"
           aria-label="View WPC Doors category">
-          <img src="assets/images/banner/pvc-door-frame.jpeg"
+          <img src="assets/images/category/pvc-door-frame.jpeg"
             alt="Interior application for Pioneer WPC Doors" />
           <div class="main-category-section__content">
             <p>Stable door systems</p>
@@ -155,7 +155,7 @@
             <span>View Category</span>
           </div>
         </a>
-        <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.frames %>" data-delay="250"
+        <!-- <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.frames %>" data-delay="250"
           aria-label="View WPC Door Frames category">
           <img src="assets/images/projects/wpc-door-frame.jpeg"
             alt="Pioneer WPC door frame interior application" />
@@ -164,10 +164,10 @@
             <h2>WPC Door Frames</h2>
             <span>View Category</span>
           </div>
-        </a>
+        </a> -->
         <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.baffles %>" data-delay="300"
           aria-label="View PVC WPC Baffles category">
-          <img src="assets/images/banner/baffles.jpeg" alt="Pioneer PVC WPC baffle screen application" />
+          <img src="assets/images/category/baffles.jpeg" alt="Pioneer PVC WPC baffle screen application" />
           <div class="main-category-section__content">
             <p>Ceiling &amp; screen systems</p>
             <h2>PVC/WPC Baffles</h2>
@@ -212,9 +212,9 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-8">
           <div class="about-three__header mb-80">
             <h2 class="title-animation text-center title-lg-sm fw-5 elicyon">
-              Where
+              Where innovation
               <!-- <span class="line"></span> -->
-              <span class="text-uppercase">PVC innovation</span>
+              <!-- <span class="text-uppercase">PVC innovation</span> -->
               meets manufacturing strength
             </h2>
             <p class="mt-30 title-animation text-center txt-light">
@@ -317,7 +317,7 @@
         </article>
         <article class="why-choose__single1 fade-up" data-delay="150">
           <div>
-            <img src="assets/images/infrastructure/calendar.jpg"
+            <img src="assets/images/infra/18.jpeg"
               alt="PVC calendering machinery used in Pioneer processing" />
           </div>
           <h3>Processing</h3>
@@ -439,82 +439,67 @@
               Make an Inquiry
             </h2>
           </div>
-          <form class="quote-maker__form fade-up mt-80" action="#" method="post">
+          <form class="quote-maker__form fade-up mt-80" action="/api/enquiries" method="post" data-enquiry-form>
             <div class="quote-maker__grid">
               <div class="quote-maker__field">
-                <input type="text" name="quote-name" id="quoteName" placeholder="Name *" required />
+                <input type="text" name="name" id="quoteName" placeholder="Name *" required />
               </div>
               <div class="quote-maker__field">
-                <input type="tel" name="quote-mobile" id="quoteMobile" placeholder="Mobile *" required />
+                <input type="tel" name="phone" id="quoteMobile" placeholder="Mobile *" required />
               </div>
               <div class="quote-maker__field">
-                <input type="email" name="quote-email" id="quoteEmail" placeholder="Email *" required />
+                <input type="email" name="email" id="quoteEmail" placeholder="Email *" required />
               </div>
               <div class="quote-maker__field">
-                <input type="text" name="quote-city" id="quoteCity" placeholder="City *" required />
+                <input type="text" name="city" id="quoteCity" placeholder="City *" required />
               </div>
               <div class="quote-maker__stack">
                 <div class="quote-maker__field">
                   <label for="quoteProduct">Select Product *</label>
-                  <select name="quote-product" id="quoteProduct" required>
-                    <option value="PVC Decorative Films">
-                      PVC Decorative Films
-                    </option>
-                    <option value="PVC/WPC Interior Louvers">
-                      PVC/WPC Interior Louvers
-                    </option>
-                    <option value="WPC Doors">
-                      WPC Doors
-                    </option>
-                    <option value="WPC Door Frames">
-                      WPC Door Frames
-                    </option>
-                    <option value="PVC/WPC Baffles">
-                      PVC/WPC Baffles
-                    </option>
+                  <select name="product" id="quoteProduct" required>
+                    <% enquiryFormOptions.productCategories.forEach((product) => { %>
+                      <option value="<%= product %>"><%= product %></option>
+                    <% }); %>
                   </select>
                 </div>
                 <div class="quote-maker__split">
                   <div class="quote-maker__field">
                     <label for="quoteQuantity">Approximate Quantity Required *</label>
-                    <select name="quote-quantity" id="quoteQuantity" required>
-                      <option value="100-500">100-500</option>
-                      <option value="500-1000">500-1000</option>
-                      <option value="1000+">1000+</option>
+                    <select name="quantity" id="quoteQuantity" required>
+                      <% enquiryFormOptions.quantities.forEach((quantity) => { %>
+                        <option value="<%= quantity %>"><%= quantity %></option>
+                      <% }); %>
                     </select>
                   </div>
                   <div class="quote-maker__field">
                     <label for="quoteUnit">Unit *</label>
-                    <select name="quote-unit" id="quoteUnit" required>
+                    <select name="unit" id="quoteUnit" required>
                       <option value="">Select</option>
-                      <option value="Sq. Ft.">Sq. Ft.</option>
-                      <option value="Sq. M.">Sq. M.</option>
-                      <option value="Pieces">Pieces</option>
+                      <% enquiryFormOptions.units.forEach((unit) => { %>
+                        <option value="<%= unit %>"><%= unit %></option>
+                      <% }); %>
                     </select>
                   </div>
                 </div>
                 <div class="quote-maker__field">
                   <label for="quoteApplication">Application *</label>
-                  <select name="quote-application" id="quoteApplication" required>
+                  <select name="application" id="quoteApplication" required>
                     <option value="">Select an option</option>
-                    <option value="Signage">Signage</option>
-                    <option value="Furniture / Home Decor">
-                      Furniture / Home Decor
-                    </option>
-                    <option value="Industrial">Industrial</option>
-                    <option value="Distribution">Distribution</option>
-                    <option value="Export">Export</option>
+                    <% enquiryFormOptions.applications.forEach((application) => { %>
+                      <option value="<%= application %>"><%= application %></option>
+                    <% }); %>
                   </select>
                 </div>
               </div>
               <div class="quote-maker__field quote-maker__field--textarea">
-                <textarea name="quote-comments" id="quoteComments" placeholder="Comments"></textarea>
+                <textarea name="comments" id="quoteComments" placeholder="Comments"></textarea>
               </div>
             </div>
             <div class="quote-maker__cta text-center mt-80">
               <button type="submit" class="btn-primary" aria-label="Send quote request" title="Send quote request">
                 <span class="btn-animated-text" data-text="Send">Send</span>
               </button>
+              <p class="quote-maker__status mt-20" role="status" data-enquiry-status></p>
             </div>
           </form>
         </div>
@@ -522,6 +507,36 @@
     </div>
   </section>
   <!-- ==== / quote form section end ==== -->
+
+  <script>
+    (() => {
+      const form = document.querySelector("[data-enquiry-form]");
+      const status = document.querySelector("[data-enquiry-status]");
+      if (!form || !status) return;
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        status.textContent = "Submitting enquiry...";
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+          });
+          const data = await response.json().catch(() => ({}));
+
+          if (!response.ok || !data.success) {
+            throw new Error(data.message || "Unable to submit enquiry right now.");
+          }
+
+          window.location.href = "/thank-you";
+        } catch (error) {
+          status.textContent = error.message || "Something went wrong. Please try again.";
+        }
+      });
+    })();
+  </script>
 
   <!-- ==== journal section start ==== -->
   <section class="journal-section pt-140 pb-140 template-bg">

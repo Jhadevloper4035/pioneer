@@ -1,0 +1,34 @@
+{
+  "productCategories": [
+    "PVC Decorative Films",
+    "PVC/WPC Interior Louvers",
+    "WPC Doors",
+    "WPC Door Frames",
+    "PVC/WPC Baffles"
+  ],
+  "validProducts": [
+    "PVC Decorative Films",
+    "PVC/WPC Interior Louvers",
+    "WPC Doors",
+    "WPC Door Frames",
+    "WPC Doors and Frames",
+    "PVC/WPC Baffles"
+  ],
+  "quantities": [
+    "100-500",
+    "500-1000",
+    "1000+"
+  ],
+  "units": [
+    "Sq. Ft.",
+    "Sq. M.",
+    "Pieces"
+  ],
+  "applications": [
+    "Signage",
+    "Furniture / Home Decor",
+    "Industrial",
+    "Distribution",
+    "Export"
+  ]
+}

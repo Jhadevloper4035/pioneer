@@ -1,5 +1,6 @@
 const AppError = require("../utils/AppError");
 const { renderPublicPage } = require("../services/viewRenderer");
+const { logger } = require("../config/logger");
 
 function notFoundHandler(req, res, next) {
   next(new AppError(`Route not found: ${req.method} ${req.originalUrl}`, 404));
@@ -21,7 +22,7 @@ function errorHandler(err, req, res, next) {
   const message = isOperational ? err.message : "Internal server error";
 
   if (!isOperational) {
-    console.error(err);
+    logger.error({ err, method: req.method, url: req.originalUrl }, "Unhandled request error");
   }
 
   if (statusCode === 404 && !wantsJson(req)) {

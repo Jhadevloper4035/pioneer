@@ -4,6 +4,7 @@ const {
   galleryItems,
   infrastructureGalleryItems
 } = require("../data/siteContent");
+const enquiryFormOptions = require("../data/enquiryFormOptions.json");
 const {
   generateRobotsTxt,
   generateSitemapXml,
@@ -14,6 +15,7 @@ const { renderPublicPage } = require("../services/viewRenderer");
 function renderHome(req, res, variantOptions = {}) {
   return renderPublicPage(req, res, "public/pages/index", {
     blogPosts,
+    enquiryFormOptions,
     galleryItems,
     ...variantOptions
   });
@@ -165,6 +167,13 @@ function privacyPolicy(req, res) {
   });
 }
 
+function thankYou(req, res) {
+  return renderPublicPage(req, res, "public/pages/thank-you", {
+    pageTitle: "Thank You | Pioneer Flex",
+    pageDescription: "Thank you for submitting your details to Pioneer Flex."
+  });
+}
+
 async function sitemap(req, res) {
   return renderPublicPage(req, res, "public/pages/sitemap", {
     pageTitle: "Sitemap | Pioneer Flex",
@@ -200,5 +209,6 @@ module.exports = {
   robotsTxt,
   sitemap,
   sitemapXml,
+  thankYou,
   termsAndConditions
 };

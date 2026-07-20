@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const env = require("./env");
+const { logger } = require("./logger");
 
 mongoose.set("strictQuery", true);
 mongoose.set("bufferCommands", false);
@@ -14,7 +15,7 @@ async function connectDb() {
     serverSelectionTimeoutMS: 5000
   });
 
-  console.log("MongoDB connected");
+  logger.info("MongoDB connected");
   return mongoose.connection;
 }
 

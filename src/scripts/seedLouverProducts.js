@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
 const connectDb = require("../config/db");
+const { logger } = require("../config/logger");
 const LouverProduct = require("../models/LouverProduct");
-const products = require("../data/louverProductsSeed");
+const products = require("../data/louverProductsSeed.json");
 const slugify = require("../utils/slugify");
 
 async function seedLouverProducts() {
@@ -23,12 +24,12 @@ async function seedLouverProducts() {
     );
   }
 
-  console.log(`Seeded ${products.length} louver products`);
+  logger.info({ count: products.length }, "Seeded louver products");
 }
 
 seedLouverProducts()
   .catch((error) => {
-    console.error("Failed to seed louver products", error);
+    logger.error({ err: error }, "Failed to seed louver products");
     process.exitCode = 1;
   })
   .finally(async () => {

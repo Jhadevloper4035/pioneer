@@ -2,7 +2,7 @@
         tag: '(PVC/WPC Interior Louver Detail)',
         title: product.name,
         text: getValue(product, 'summary', 'Explore product dimensions, shades, and application details.'),
-        image: mainImage,
+        image: '/assets/images/banner/pvc-wpc-interior-bg.jpeg',
         buttonText: 'View Details',
         buttonLink: '#product-title'
       }) %>
@@ -171,7 +171,7 @@
           <h2 class="single-product-modal__title" id="product-enquiry-title">
             Product enquiry
           </h2>
-          <form id="product-enquiry-form">
+          <form id="product-enquiry-form" action="/api/product-enquiries" method="post">
             <div class="single-product-enquiry-grid">
               <div
                 class="single-product-enquiry-field single-product-enquiry-field--full"
@@ -417,22 +417,27 @@
           }
         });
 
-        els.enquiryForm.addEventListener("submit", (event) => {
+        els.enquiryForm.addEventListener("submit", async (event) => {
           event.preventDefault();
-          const formData = new FormData(els.enquiryForm);
-          const body = [
-            `Product: ${formData.get("product") || productTitle}`,
-            `Selected shade: ${activeShade || "-"}`,
-            `Name: ${formData.get("name")}`,
-            `Phone: ${formData.get("phone")}`,
-            `Email: ${formData.get("email")}`,
-            `City: ${formData.get("city") || "-"}`,
-            `Requirement: ${formData.get("message") || "-"}`,
-          ].join("\n");
+          els.enquiryStatus.textContent = "Submitting enquiry...";
 
-          window.location.href = `mailto:sks@pioneerflex.in?subject=${encodeURIComponent("PVC/WPC Interior Louver Product Enquiry")}&body=${encodeURIComponent(body)}`;
-          els.enquiryStatus.textContent =
-            "Your email app has been opened with the enquiry details.";
+          try {
+            const response = await fetch(els.enquiryForm.action, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(Object.fromEntries(new FormData(els.enquiryForm).entries())),
+            });
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok || !data.success) {
+              throw new Error(data.message || "Unable to submit enquiry right now.");
+            }
+
+            window.location.href = "/thank-you";
+          } catch (error) {
+            els.enquiryStatus.textContent =
+              error.message || "Something went wrong. Please try again.";
+          }
         });
       })();
     </script>

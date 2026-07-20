@@ -1,14 +1,11 @@
 const { body } = require("express-validator");
+const enquiryFormOptions = require("../data/enquiryFormOptions.json");
 const handleValidation = require("./handleValidation");
 
-const productCategoryValues = new Set([
-  "PVC Decorative Films",
-  "PVC/WPC Interior Louvers",
-  "WPC Doors",
-  "WPC Door Frames",
-  "WPC Doors and Frames",
-  "PVC/WPC Baffles"
-]);
+const productCategoryValues = new Set(enquiryFormOptions.validProducts);
+const quantityValues = new Set(enquiryFormOptions.quantities);
+const unitValues = new Set(enquiryFormOptions.units);
+const applicationValues = new Set(enquiryFormOptions.applications);
 
 const contactValidator = [
   body("name")
@@ -23,7 +20,14 @@ const contactValidator = [
     .withMessage("Email is required")
     .isEmail()
     .withMessage("Email must be valid")
+    .isLength({ max: 120 })
+    .withMessage("Email must be no more than 120 characters")
     .normalizeEmail(),
+  body("phone")
+    .optional({ checkFalsy: true })
+    .trim()
+    .isLength({ min: 6, max: 40 })
+    .withMessage("Phone must be between 6 and 40 characters"),
   body("message")
     .trim()
     .notEmpty()
@@ -35,6 +39,107 @@ const contactValidator = [
     .customSanitizer((value) => (Array.isArray(value) ? value : [value]))
     .custom((values) => values.every((value) => productCategoryValues.has(value)))
     .withMessage("Please select valid product categories"),
+  handleValidation
+];
+
+const enquiryValidator = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Name is required")
+    .isLength({ min: 2, max: 100 })
+    .withMessage("Name must be between 2 and 100 characters"),
+  body("phone")
+    .trim()
+    .notEmpty()
+    .withMessage("Mobile is required")
+    .isLength({ min: 6, max: 40 })
+    .withMessage("Mobile must be between 6 and 40 characters"),
+  body("email")
+    .trim()
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Email must be valid")
+    .isLength({ max: 120 })
+    .withMessage("Email must be no more than 120 characters")
+    .normalizeEmail(),
+  body("city")
+    .trim()
+    .notEmpty()
+    .withMessage("City is required")
+    .isLength({ max: 80 })
+    .withMessage("City must be no more than 80 characters"),
+  body("product")
+    .trim()
+    .notEmpty()
+    .withMessage("Product is required")
+    .custom((value) => productCategoryValues.has(value))
+    .withMessage("Please select a valid product"),
+  body("quantity")
+    .trim()
+    .notEmpty()
+    .withMessage("Quantity is required")
+    .custom((value) => quantityValues.has(value))
+    .withMessage("Please select a valid quantity"),
+  body("unit")
+    .trim()
+    .notEmpty()
+    .withMessage("Unit is required")
+    .custom((value) => unitValues.has(value))
+    .withMessage("Please select a valid unit"),
+  body("application")
+    .trim()
+    .notEmpty()
+    .withMessage("Application is required")
+    .custom((value) => applicationValues.has(value))
+    .withMessage("Please select a valid application"),
+  body("comments")
+    .optional({ checkFalsy: true })
+    .trim()
+    .isLength({ max: 1000 })
+    .withMessage("Comments must be no more than 1000 characters"),
+  handleValidation
+];
+
+const productEnquiryValidator = [
+  body("product")
+    .trim()
+    .notEmpty()
+    .withMessage("Product is required")
+    .isLength({ max: 160 })
+    .withMessage("Product must be no more than 160 characters"),
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Name is required")
+    .isLength({ min: 2, max: 100 })
+    .withMessage("Name must be between 2 and 100 characters"),
+  body("phone")
+    .trim()
+    .notEmpty()
+    .withMessage("Phone is required")
+    .isLength({ min: 6, max: 40 })
+    .withMessage("Phone must be between 6 and 40 characters"),
+  body("email")
+    .trim()
+    .notEmpty()
+    .withMessage("Email is required")
+    .isEmail()
+    .withMessage("Email must be valid")
+    .isLength({ max: 120 })
+    .withMessage("Email must be no more than 120 characters")
+    .normalizeEmail(),
+  body("city")
+    .optional({ checkFalsy: true })
+    .trim()
+    .isLength({ max: 80 })
+    .withMessage("City must be no more than 80 characters"),
+  body("message")
+    .optional({ checkFalsy: true })
+    .trim()
+    .isLength({ max: 1000 })
+    .withMessage("Requirement must be no more than 1000 characters"),
   handleValidation
 ];
 
@@ -80,5 +185,7 @@ const catalogueLeadValidator = [
 
 module.exports = {
   catalogueLeadValidator,
-  contactValidator
+  contactValidator,
+  enquiryValidator,
+  productEnquiryValidator
 };

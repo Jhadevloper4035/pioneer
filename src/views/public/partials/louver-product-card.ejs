@@ -28,12 +28,6 @@
       <div class="louver-card__spec"><dt>No. of flutes</dt><dd><%= getValue(specs, "no_of_flutes", "-") %></dd></div>
       <div class="louver-card__spec"><dt>Approx. weight</dt><dd><%= getValue(specs, "approx_weight_per_panel_kg", "-") %> kg</dd></div>
     </dl>
-    <div class="louver-card__price">
-      <span class="louver-card__price-symbol">₹</span>
-      <strong><%= getValue(specs, "price_per_panel_inr", "-") %></strong>
-      <small>per panel</small>
-    </div>
-    <p class="louver-card__note">Taxes, freight and installation extra.</p>
     <a class="louver-card__enquiry" href="<%= productUrl %>">View details</a>
   </div>
 </article>

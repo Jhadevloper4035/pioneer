@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const env = require("./config/env");
 const connectDb = require("./config/db");
+const { logger, requestLogger } = require("./config/logger");
 const { errorHandler, notFoundHandler } = require("./middleware/errorHandler");
 const { createRateLimiter, securityHeaders } = require("./middleware/security");
 const seoMiddleware = require("./middleware/seoMiddleware");
@@ -25,6 +26,7 @@ app.set("trust proxy", 1);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(requestLogger);
 app.use(securityHeaders);
 app.use(express.json({ limit: "100kb" }));
 app.use(express.urlencoded({ extended: true, limit: "100kb" }));
@@ -40,22 +42,14 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 async function startServer() {
-  try {
-    await connectDb();
-  } catch (error) {
-    if (env.nodeEnv === "production") {
-      throw error;
-    }
-
-    console.warn(`MongoDB unavailable. Starting ${env.appName} without database: ${error.message}`);
-  }
+  await connectDb();
 
   const server = app.listen(env.port, env.host, () => {
-    console.log(`${env.appName} running at http://${env.host}:${env.port}`);
+    logger.info({ host: env.host, port: env.port }, `${env.appName} running`);
   });
 
   server.on("error", (error) => {
-    console.error(`Failed to listen on ${env.host}:${env.port}`, error);
+    logger.fatal({ err: error, host: env.host, port: env.port }, "Failed to listen");
     process.exit(1);
   });
 }
@@ -63,7 +57,7 @@ async function startServer() {
 
 if (require.main === module) {
   startServer().catch((error) => {
-    console.error("Failed to start server", error);
+    logger.fatal({ err: error }, "Failed to start server");
     process.exit(1);
   });
 }

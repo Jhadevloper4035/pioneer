@@ -31,8 +31,7 @@ const louverProductSchema = new mongoose.Schema(
       height_mm: Number,
       length_mm: Number,
       no_of_flutes: mongoose.Schema.Types.Mixed,
-      approx_weight_per_panel_kg: Number,
-      price_per_panel_inr: Number
+      approx_weight_per_panel_kg: Number
     },
     active: {
       type: Boolean,

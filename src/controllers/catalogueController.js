@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const catalogues = require("../data/catalogues");
-const CatalogueLead = require("../models/CatalogueLead");
+const catalogues = require("../data/catalogues.json");
+const Enquiry = require("../models/Enquiry");
 const { renderPublicPage } = require("../services/viewRenderer");
 
 function eCatalogue(req, res) {
@@ -15,13 +15,14 @@ async function submitCatalogueLead(req, res) {
     });
   }
 
-  const lead = await CatalogueLead.create({
-    fullName: req.body.fullName,
+  const enquiry = await Enquiry.create({
+    source: "catalogue",
+    name: req.body.fullName,
     email: req.body.email,
     phone: req.body.phone,
     company: req.body.company,
     city: req.body.city,
-    interestedCatalogue: req.body.interestedCatalogue,
+    product: req.body.interestedCatalogue,
     ipAddress: req.ip,
     userAgent: req.get("user-agent")
   });
@@ -30,7 +31,7 @@ async function submitCatalogueLead(req, res) {
     success: true,
     message: "Catalogue downloads unlocked",
     data: {
-      id: lead._id,
+      id: enquiry._id,
       catalogues
     }
   });

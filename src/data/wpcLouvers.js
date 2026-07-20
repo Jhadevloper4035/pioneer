@@ -1,10 +1,20 @@
 const fs = require("fs");
 const path = require("path");
-const louverProductsSeed = require("./louverProductsSeed");
+const louverProductsSeed = require("./louverProductsSeed.json");
+const { logger } = require("../config/logger");
 const slugify = require("../utils/slugify");
 
 const publicDir = path.join(__dirname, "..", "..", "public");
 const customDataPath = path.join(__dirname, "wpc-louvers.json");
+
+function publicAssetUrl(assetPath) {
+  const cleanPath = String(assetPath || "");
+  if (!cleanPath || cleanPath.startsWith("/") || /^[a-z]+:/i.test(cleanPath)) {
+    return cleanPath;
+  }
+
+  return `/${cleanPath}`;
+}
 
 const shadeLibrary = [
   ["Andhra Teak", "andhra-teak.jpg"],
@@ -20,25 +30,25 @@ const shadeLibrary = [
   ["Dark Grey Marble", "dark-grey-marble.jpg"]
 ].map(([name, file]) => ({
   name,
-  image: `assets/images/shades/${file}`
+  image: publicAssetUrl(`assets/images/shades/${file}`)
 }));
 
 const applicationLibrary = [
   {
     name: "Feature Walls",
-    image: "assets/images/wpc-louvers/1.jpeg"
+    image: publicAssetUrl("assets/images/wpc-louvers/1.jpeg")
   },
   {
     name: "TV Backdrops",
-    image: "assets/images/wpc-louvers/2.jpeg"
+    image: publicAssetUrl("assets/images/wpc-louvers/2.jpeg")
   },
   {
     name: "Ceilings",
-    image: "assets/images/wpc-louvers/3.jpeg"
+    image: publicAssetUrl("assets/images/wpc-louvers/3.jpeg")
   },
   {
     name: "Commercial Interiors",
-    image: "assets/images/wpc-louvers/4.jpeg"
+    image: publicAssetUrl("assets/images/wpc-louvers/4.jpeg")
   }
 ];
 
@@ -61,14 +71,14 @@ function getValue(source, key, fallback = null) {
 }
 
 function assetToPublicPath(assetPath) {
-  return String(assetPath || "").replace(/^assets\//, "");
+  return String(assetPath || "").replace(/^\/?assets\//, "");
 }
 
 function louverThumb(assetPath) {
   const cleanPath = String(assetPath || "");
   const parsed = path.parse(assetToPublicPath(cleanPath));
 
-  if (!parsed.dir || !parsed.name) return cleanPath;
+  if (!parsed.dir || !parsed.name) return publicAssetUrl(cleanPath);
 
   const thumbAsset = path.posix.join(
     "assets",
@@ -78,7 +88,7 @@ function louverThumb(assetPath) {
   );
   const thumbFile = path.join(publicDir, assetToPublicPath(thumbAsset));
 
-  return fs.existsSync(thumbFile) ? thumbAsset : cleanPath;
+  return fs.existsSync(thumbFile) ? publicAssetUrl(thumbAsset) : publicAssetUrl(cleanPath);
 }
 
 function readCustomData() {
@@ -88,7 +98,7 @@ function readCustomData() {
     const parsed = JSON.parse(fs.readFileSync(customDataPath, "utf8"));
     return parsed && typeof parsed === "object" ? parsed : null;
   } catch (error) {
-    console.warn(`Unable to read ${customDataPath}: ${error.message}`);
+    logger.warn({ err: error, path: customDataPath }, "Unable to read custom WPC louvers data");
     return null;
   }
 }
@@ -98,13 +108,20 @@ function normalizeProduct(product, index, data) {
   const fallbackName = `PVC/WPC Interior Louver ${getValue(specs, "width_mm", index + 1)} x ${getValue(specs, "height_mm", "-")} mm`;
   const name = getValue(product, "name", fallbackName);
   const slug = getValue(product, "slug", slugify(name));
-  const mainImage = getValue(product, "mainImage", getValue(product, "image", ""));
-  const applications = getValue(product, "applications", data.applicationLibrary);
+  const mainImage = publicAssetUrl(getValue(product, "mainImage", getValue(product, "image", "")));
+  const applications = getValue(product, "applications", data.applicationLibrary).map((application) => ({
+    ...application,
+    image: publicAssetUrl(getValue(application, "image", ""))
+  }));
   const gallery = getValue(
     product,
     "gallery",
     [mainImage, ...applications.map((application) => application.image)].filter(Boolean)
-  );
+  ).map(publicAssetUrl);
+  const availableShades = getValue(product, "availableShades", data.shadeLibrary).map((shade) => ({
+    ...shade,
+    image: publicAssetUrl(getValue(shade, "image", ""))
+  }));
 
   return {
     ...product,
@@ -113,9 +130,9 @@ function normalizeProduct(product, index, data) {
     sku: getValue(product, "sku", `WPC-${slug.replace(/-/g, "").toUpperCase()}`),
     title: getValue(product, "title", `PVC/WPC Interior Louvers ${name}`),
     category: getValue(product, "category", "PVC/WPC Interior Louvers"),
-    image: getValue(product, "image", mainImage),
+    image: publicAssetUrl(getValue(product, "image", mainImage)),
     mainImage,
-    availableShades: getValue(product, "availableShades", data.shadeLibrary),
+    availableShades,
     applications,
     gallery,
     productInformation: getValue(product, "productInformation", [
@@ -126,10 +143,6 @@ function normalizeProduct(product, index, data) {
       {
         label: "Approx. Weight",
         value: `${getValue(specs, "approx_weight_per_panel_kg", "-")} kg per panel`
-      },
-      {
-        label: "Price",
-        value: `${getValue(specs, "price_per_panel_inr", "-")} INR per panel`
       }
     ])
   };

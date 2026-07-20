@@ -68,7 +68,7 @@
                 </div>
               </div>
 
-              <form action="/api/contact" class="pt-4" method="post">
+              <form action="/api/contact" class="pt-4" method="post" data-contact-form>
                 <div class="row g-4">
                   <div class="col-md-6 contact-field">
                     <label for="contact-name">Your Name</label>
@@ -94,26 +94,12 @@
                       <details>
                         <summary data-product-picker-summary>Select Product Categories</summary>
                         <div class="contact-product-picker__menu" role="group" aria-labelledby="product-category-label">
-                          <label class="contact-product-picker__option">
-                            <input name="productCategories" type="checkbox" value="PVC Decorative Films">
-                            <span>PVC Decorative Films</span>
-                          </label>
-                          <label class="contact-product-picker__option">
-                            <input name="productCategories" type="checkbox" value="PVC/WPC Interior Louvers">
-                            <span>PVC/WPC Interior Louvers</span>
-                          </label>
-                          <label class="contact-product-picker__option">
-                            <input name="productCategories" type="checkbox" value="WPC Doors">
-                            <span>WPC Doors</span>
-                          </label>
-                          <label class="contact-product-picker__option">
-                            <input name="productCategories" type="checkbox" value="WPC Door Frames">
-                            <span>WPC Door Frames</span>
-                          </label>
-                          <label class="contact-product-picker__option">
-                            <input name="productCategories" type="checkbox" value="PVC/WPC Baffles">
-                            <span>PVC/WPC Baffles</span>
-                          </label>
+                          <% enquiryFormOptions.productCategories.forEach((product) => { %>
+                            <label class="contact-product-picker__option">
+                              <input name="productCategories" type="checkbox" value="<%= product %>">
+                              <span><%= product %></span>
+                            </label>
+                          <% }); %>
                         </div>
                       </details>
                     </div>
@@ -131,6 +117,7 @@
                       <button type="submit" class="btn-quinary contact-submit">
                         <span class="btn-animated-text" data-text="Submit Now">Submit Now</span>
                       </button>
+                      <p class="contact-form-status mt-3" role="status" data-contact-status></p>
                     </div>
                   </div>
                 </div>
@@ -209,6 +196,41 @@
       document.addEventListener("click", (event) => {
         if (!details.open || picker.contains(event.target)) return;
         details.removeAttribute("open");
+      });
+
+      const form = document.querySelector("[data-contact-form]");
+      const status = document.querySelector("[data-contact-status]");
+      if (!form || !status) return;
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        status.textContent = "Submitting enquiry...";
+
+        const payload = {};
+        new FormData(form).forEach((value, key) => {
+          if (payload[key]) {
+            payload[key] = Array.isArray(payload[key]) ? [...payload[key], value] : [payload[key], value];
+            return;
+          }
+          payload[key] = value;
+        });
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          const data = await response.json().catch(() => ({}));
+
+          if (!response.ok || !data.success) {
+            throw new Error(data.message || "Unable to submit enquiry right now.");
+          }
+
+          window.location.href = "/thank-you";
+        } catch (error) {
+          status.textContent = error.message || "Something went wrong. Please try again.";
+        }
       });
     })();
   </script>

@@ -192,9 +192,7 @@
                 throw new Error(result.message || "Please check the form and try again.");
               }
 
-              form.reset();
-              status.textContent = result.message || "Profile submitted successfully.";
-              status.className = "career-application-form__status is-success";
+              window.location.href = "/thank-you";
             } catch (error) {
               status.textContent = error.message || "Unable to submit your profile right now.";
               status.className = "career-application-form__status is-error";
