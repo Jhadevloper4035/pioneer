@@ -1,9 +1,23 @@
 const mongoose = require("mongoose");
-const catalogues = require("../data/catalogues.json");
+const catalogueSeed = require("../data/catalogues.json");
+const Catalogue = require("../models/Catalogue");
 const Enquiry = require("../models/Enquiry");
 const { renderPublicPage } = require("../services/viewRenderer");
 
-function eCatalogue(req, res) {
+async function getCatalogues() {
+  if (mongoose.connection.readyState !== 1) {
+    return catalogueSeed;
+  }
+
+  const catalogues = await Catalogue.find({ active: true })
+    .sort({ order: 1, title: 1 })
+    .lean();
+
+  return catalogues.length ? catalogues : catalogueSeed;
+}
+
+async function eCatalogue(req, res) {
+  const catalogues = await getCatalogues();
   return renderPublicPage(req, res, "public/pages/e-catalogue", { catalogues });
 }
 
@@ -32,7 +46,7 @@ async function submitCatalogueLead(req, res) {
     message: "Catalogue downloads unlocked",
     data: {
       id: enquiry._id,
-      catalogues
+      catalogues: await getCatalogues()
     }
   });
 }

@@ -1,11 +1,13 @@
 const env = require("../config/env");
-const { getLouverData } = require("../data/wpcLouvers");
 const { renderPublicPage } = require("../services/viewRenderer");
+const { getLouverProducts } = require("../services/louverService");
 
-function diagnostic(req, res) {
+async function diagnostic(req, res) {
+  const products = await getLouverProducts();
+
   return renderPublicPage(req, res, "public/pages/pioneer-diagnostic", {
     nodeVersion: process.version,
-    productsLoaded: getLouverData().products.length
+    productsLoaded: products.length
   });
 }
 

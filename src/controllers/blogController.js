@@ -1,11 +1,13 @@
-const { blogPosts } = require("../data/siteContent");
+const { getBlogPosts } = require("../services/contentService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
-function blog(req, res) {
+async function blog(req, res) {
+  const blogPosts = await getBlogPosts();
   return renderPublicPage(req, res, "public/pages/blog/all-blog-page", { blogPosts });
 }
 
-function singleBlog(req, res) {
+async function singleBlog(req, res) {
+  const blogPosts = await getBlogPosts();
   const post = blogPosts.find((item) => item.slug === req.params.slug);
 
   if (!post) {

@@ -1,7 +1,8 @@
-const { galleryItems } = require("../data/siteContent");
+const { getGalleryItems } = require("../services/contentService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
-function gallery(req, res) {
+async function gallery(req, res) {
+  const galleryItems = await getGalleryItems();
   return renderPublicPage(req, res, "public/pages/gallery", { galleryItems });
 }
 

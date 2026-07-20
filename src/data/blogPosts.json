@@ -1,0 +1,30 @@
+[
+  {
+    "slug": "pvc-decorative-films",
+    "category": "PVC Decorative Films",
+    "title": "PVC decorative films for furniture, doors, and modular interiors",
+    "image": "assets/images/blog/1.jpeg",
+    "alt": "PVC decorative film being applied on a wood finish surface"
+  },
+  {
+    "slug": "pvc-wpc-interior-louvers",
+    "category": "PVC/WPC Interior Louvers",
+    "title": "PVC/WPC interior louvers for feature walls and commercial interiors",
+    "image": "assets/images/blog/2.webp",
+    "alt": "PVC WPC interior louvers installed on an interior wall"
+  },
+  {
+    "slug": "wpc-doors-and-frames",
+    "category": "WPC Doors and Frames",
+    "title": "WPC doors and frames built for moisture-resistant interior fitment",
+    "image": "assets/images/blog/3.avif",
+    "alt": "WPC door and frame installed in a modern interior"
+  },
+  {
+    "slug": "pvc-wpc-baffles",
+    "category": "PVC/WPC Baffles",
+    "title": "PVC/WPC baffles for linear screens, facades, and ceilings",
+    "image": "assets/images/blog/3.jpeg",
+    "alt": "PVC WPC baffle screen used on an exterior facade"
+  }
+]

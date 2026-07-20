@@ -1,0 +1,78 @@
+[
+  {
+    "slug": "sales-executive",
+    "title": "Sales Executive",
+    "department": "Sales",
+    "location": "Rudrapur / Field Sales",
+    "type": "Full Time",
+    "experience": "2-5 Years",
+    "summary": "Build dealer, architect, contractor, and project relationships for Pioneer product categories across interior and decorative material markets.",
+    "responsibilities": [
+      "Develop new customer relationships for PVC Decorative Films, PVC/WPC Interior Louvers, WPC Doors and Frames, and PVC/WPC Baffles.",
+      "Coordinate product samples, catalogues, quotations, follow-ups, and site requirement discussions.",
+      "Maintain regular market feedback on product demand, pricing, applications, and competitor activity."
+    ],
+    "requirements": [
+      "Experience in building materials, interior products, laminates, panels, doors, profiles, or related sales.",
+      "Comfortable with field visits, customer meetings, follow-ups, and basic reporting.",
+      "Strong communication skills in Hindi and English."
+    ]
+  },
+  {
+    "slug": "production-supervisor",
+    "title": "Production Supervisor",
+    "department": "Manufacturing",
+    "location": "Rudrapur Plant",
+    "type": "Full Time",
+    "experience": "3-6 Years",
+    "summary": "Support daily production planning, line coordination, and shop-floor discipline for PVC and WPC processing operations.",
+    "responsibilities": [
+      "Coordinate shift output, manpower allocation, machine readiness, and production documentation.",
+      "Work with quality and dispatch teams to maintain batch consistency and timely movement.",
+      "Escalate maintenance, safety, material, and process concerns to plant leadership."
+    ],
+    "requirements": [
+      "Experience in PVC, plastic processing, lamination, coating, extrusion, or allied manufacturing.",
+      "Ability to read production plans and maintain daily reports.",
+      "Practical understanding of safety, housekeeping, and line discipline."
+    ]
+  },
+  {
+    "slug": "quality-control-executive",
+    "title": "Quality Control Executive",
+    "department": "Quality",
+    "location": "Rudrapur Plant",
+    "type": "Full Time",
+    "experience": "2-4 Years",
+    "summary": "Inspect incoming materials, in-process output, and finished products for finish, durability, printability, and dispatch readiness.",
+    "responsibilities": [
+      "Check raw material, coating, lamination, finishing, and converted product quality parameters.",
+      "Maintain inspection records, batch observations, and corrective action follow-ups.",
+      "Coordinate with production teams to reduce repeat defects and improve process consistency."
+    ],
+    "requirements": [
+      "Quality experience in PVC, WPC, plastic, decorative surfaces, films, panels, or allied materials.",
+      "Comfortable with visual inspection, basic measuring tools, and production documentation.",
+      "Detail-oriented working style with clear reporting habits."
+    ]
+  },
+  {
+    "slug": "sales-and-marketing-intern",
+    "title": "Sales & Marketing Intern",
+    "department": "Internship",
+    "location": "Rudrapur / Remote Support",
+    "type": "Internship",
+    "experience": "Freshers",
+    "summary": "Assist the Pioneer team with catalogue coordination, customer research, lead follow-up, and product communication support.",
+    "responsibilities": [
+      "Prepare lead lists, customer records, sample follow-ups, and catalogue sharing updates.",
+      "Support social, product, and market research for Pioneer product categories.",
+      "Coordinate with sales and office teams for day-to-day communication tasks."
+    ],
+    "requirements": [
+      "Graduate or pursuing studies in business, marketing, communication, or a related field.",
+      "Good phone, email, and documentation skills.",
+      "Interest in interior products, decorative materials, and B2B sales."
+    ]
+  }
+]

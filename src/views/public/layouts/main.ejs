@@ -4,16 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="/assets/images/favicon.webp" type="image/x-icon" />
-    <link rel="icon" href="/assets/images/favicon.webp" type="image/x-icon" />
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Pioneer" />
+    <link rel="manifest" href="/images/favicon/site.webmanifest" />
     
     <%
       const seoDefaults = typeof pageSeo !== "undefined" ? pageSeo : {};
     %>
     <%- include('../partials/seo-meta', {
-      defaultTitle: seoDefaults.title || 'Pioneer Flex | PVC Processing, Signage, Decorative Films & Industrial Products',
-      defaultDescription: seoDefaults.description || 'Pioneer Polyleathers is a leading PVC processing company offering signage products, decorative films, PVC tapes, and industrial laminated products.',
-      defaultKeywords: seoDefaults.keywords || ['pvc processing', 'flex banner', 'signage', 'pvc films', 'decorative laminates', 'pvc tapes', 'industrial products'],
+      defaultTitle: seoDefaults.title || 'Pioneer Decor | Home Decor, Decorative Films, Louvers & WPC Products',
+      defaultDescription: seoDefaults.description || 'Pioneer Decor manufactures home decor and interior products including decorative films, PVC/WPC interior louvers, WPC doors and frames, and PVC/WPC baffles.',
+      defaultKeywords: seoDefaults.keywords || ['home decor products', 'decorative films', 'interior louvers', 'wpc doors', 'wpc door frames', 'pvc wpc baffles', 'interior surfaces'],
       defaultImage: seoDefaults.image || '/assets/images/banner/banner1.webp',
       defaultCanonicalPath: seoDefaults.canonicalPath || '',
       defaultRobots: seoDefaults.robots || 'index, follow'

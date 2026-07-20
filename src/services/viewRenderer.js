@@ -25,63 +25,63 @@ function getPublicLayoutOptions(view, locals) {
 
   const seoByView = {
     "public/pages/index": {
-      title: "Pioneer Flex | PVC Processing, Signage, Decorative Films & Industrial Products",
-      description: "Pioneer Polyleathers is a leading PVC processing company offering signage products, decorative films, PVC tapes, and industrial laminated products.",
-      keywords: ["pvc processing", "flex banner", "signage", "pvc films", "decorative laminates", "pvc tapes", "industrial products"],
+      title: "Pioneer Decor | Home Decor, Decorative Films, Louvers & WPC Products",
+      description: "Pioneer Decor manufactures home decor and interior products including PVC decorative films, PVC/WPC interior louvers, WPC doors and frames, and PVC/WPC baffles.",
+      keywords: ["home decor products", "decorative films", "interior louvers", "wpc doors", "wpc door frames", "pvc wpc baffles", "interior surfaces"],
       image: "/assets/images/banner/banner1.webp",
       canonicalPath: "/"
     },
     "public/pages/about/about-company": {
-      title: "About Pioneer Flex | Decorative PVC, WPC & Signage Materials",
-      description: "Pioneer Flex manufactures PVC decorative films, PVC/WPC interior louvers, WPC doors and frames, PVC/WPC baffles, signage media, tapes, and industrial laminated products with a Make in India manufacturing focus.",
+      title: "About Pioneer Decor | Home Decor & Interior Products",
+      description: "Pioneer Decor manufactures PVC decorative films, PVC/WPC interior louvers, WPC doors and frames, and PVC/WPC baffles with a Make in India manufacturing focus.",
       image: "/assets/images/banner/about-us.avif",
       canonicalPath: "/about-company"
     },
     "public/pages/about/infrastructure": {
       title: "Pioneer Infrastructure | Rudrapur Manufacturing Plant",
-      description: "Explore Pioneer Flex infrastructure at the Rudrapur manufacturing plant, including PVC calendars, extrusion lines, laminators, fabric machinery, coating systems, printing, wrapping, utilities, and packaging systems.",
+      description: "Explore Pioneer Decor infrastructure at the Rudrapur manufacturing plant, including PVC film lines, extrusion lines, laminators, printing, wrapping, utilities, and packaging systems for interior products.",
       image: "/assets/images/infrastructure/banner.jpeg",
       canonicalPath: "/infrastructure"
     },
     "public/pages/blog/all-blog-page": {
-      title: "Blog | Pioneer Flex",
-      description: "Read Pioneer Flex notes on signage media, PVC processing, decorative films, and PVC tape applications.",
+      title: "Blog | Pioneer Decor",
+      description: "Read Pioneer Decor notes on home decor materials, decorative films, interior louvers, WPC doors, frames, and baffles.",
       image: "/assets/images/banner/3.jpeg",
       canonicalPath: "/blog"
     },
     "public/pages/career/all-career-page": {
-      title: "Career | Pioneer Flex",
-      description: "Explore current openings at Pioneer Flex across sales, manufacturing, quality, and internship roles.",
+      title: "Career | Pioneer Decor",
+      description: "Explore current openings at Pioneer Decor across sales, manufacturing, quality, and internship roles.",
       image: "/assets/images/infrastructure/banner.jpeg",
       canonicalPath: "/career"
     },
     "public/pages/contact-us": {
-      title: "Contact Pioneer Flex | Product Enquiries",
-      description: "Contact Pioneer Flex for PVC decorative films, PVC/WPC interior louvers, WPC doors and frames, PVC/WPC baffles, catalogues, samples, and product enquiries.",
+      title: "Contact Pioneer Decor | Product Enquiries",
+      description: "Contact Pioneer Decor for PVC decorative films, PVC/WPC interior louvers, WPC doors and frames, PVC/WPC baffles, catalogues, samples, and product enquiries.",
       image: "/assets/images/banner/4.jpeg",
       canonicalPath: "/contact-us"
     },
     "public/pages/e-catalogue": {
-      title: "E-Catalogue | Pioneer Flex",
-      description: "Download Pioneer Flex product catalogues after sharing your contact information.",
+      title: "E-Catalogue | Pioneer Decor",
+      description: "Download Pioneer Decor product catalogues after sharing your contact information.",
       image: "/assets/images/banner/banner-cta.avif",
       canonicalPath: "/e-catalogue"
     },
     "public/pages/error/404": {
-      title: "Page Not Found | Pioneer Flex",
-      description: "The requested Pioneer Flex page could not be found.",
+      title: "Page Not Found | Pioneer Decor",
+      description: "The requested Pioneer Decor page could not be found.",
       image: "/assets/images/banner/3.jpeg",
       robots: "noindex, nofollow"
     },
     "public/pages/gallery": {
-      title: "Gallery | Pioneer Flex",
-      description: "Explore Pioneer Flex product applications across signage, decor, tapes, and industrial PVC laminated solutions.",
+      title: "Gallery | Pioneer Decor",
+      description: "Explore Pioneer Decor product applications across decorative films, interior louvers, WPC doors, frames, and baffles.",
       image: "/assets/images/banner/5.jpeg",
       canonicalPath: "/gallery"
     },
     "public/pages/pioneer-diagnostic": {
       title: "Pioneer Diagnostic",
-      description: "Pioneer Flex diagnostic status page.",
+      description: "Pioneer Decor diagnostic status page.",
       robots: "noindex, nofollow"
     }
   };
@@ -93,30 +93,30 @@ function getPublicLayoutOptions(view, locals) {
   const product = locals.product;
   const pageSeo = locals.pageSeo
     || (product && {
-      title: `${getValue(product, "title")} | Pioneer Flex`,
+      title: `${getValue(product, "title")} | Pioneer Decor`,
       description: getValue(product, "summary", `${getValue(product, "title")} single product detail page with available shades, specifications, and application images.`),
       image: getValue(product, "mainImage"),
       canonicalPath: `/wpc-louvers/${getValue(product, "slug")}`
     })
     || (post && {
-      title: `${post.title} | Blog | Pioneer Flex`,
+      title: `${post.title} | Blog | Pioneer Decor`,
       description: post.title,
       image: `/${post.image}`,
       canonicalPath: `/blog/${post.slug}`
     })
     || (opening && {
-      title: `${opening.title} | Career | Pioneer Flex`,
-      description: `View the ${opening.title} opening at Pioneer Flex and submit your application with resume.`,
+      title: `${opening.title} | Career | Pioneer Decor`,
+      description: `View the ${opening.title} opening at Pioneer Decor and submit your application with resume.`,
       image: "/assets/images/infrastructure/banner.jpeg",
       canonicalPath: `/career/${opening.slug}`
     })
     || (category && {
-      title: `${category.title} | Pioneer Flex`,
+      title: `${category.title} | Pioneer Decor`,
       description: category.text,
       image: category.image
     })
     || (page && {
-      title: getValue(page, "title", "PVC/WPC Interior Louvers | Pioneer Flex"),
+      title: getValue(page, "title", "PVC/WPC Interior Louvers | Pioneer Decor"),
       description: getValue(page, "description", "Pioneer PVC/WPC Interior Louvers premium wall cladding profiles."),
       keywords: ["pvc wpc interior louvers", "wpc louvers", "pvc louvers", "decorative louvers", "pioneer flex"],
       image: "/assets/images/wpc-louvers/1.jpeg",

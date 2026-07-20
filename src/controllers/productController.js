@@ -1,26 +1,16 @@
 const mongoose = require("mongoose");
-const { decorativeFilms } = require("../data/decorativeFilms");
+const decorativeFilmsSeed = require("../data/decorativeFilms.json");
 const { renderPublicPage } = require("../services/viewRenderer");
+const AppError = require("../utils/AppError");
 const {
-  getLouverData,
   getLouverProduct,
+  getLouverProducts,
+  getLouverShades,
   getValue,
+  louverPage,
   louverThumb
-} = require("../data/wpcLouvers");
-const LouverProduct = require("../models/LouverProduct");
-
-const fallbackProduct = {
-  slug: "not-found",
-  name: "Product Not Found",
-  title: "Product Not Found",
-  sku: "-",
-  category: "PVC/WPC Interior Louvers",
-  mainImage: "assets/images/products/product-1.png",
-  gallery: ["assets/images/products/product-1.png"],
-  availableShades: [],
-  applications: [],
-  productInformation: []
-};
+} = require("../services/louverService");
+const DecorativeFilm = require("../models/DecorativeFilm");
 
 const categoryPages = {
   "pvc-decorative-films": {
@@ -53,24 +43,24 @@ const categoryPages = {
   }
 };
 
-async function getProducts() {
+async function getDecorativeFilms() {
   if (mongoose.connection.readyState !== 1) {
-    return null;
+    return decorativeFilmsSeed;
   }
 
-  const products = await LouverProduct.find({ active: true })
-    .sort({ order: 1, productId: 1 })
+  const films = await DecorativeFilm.find({ active: true })
+    .sort({ order: 1, name: 1 })
     .lean();
 
-  return products.length ? products : null;
+  return films.length ? films : decorativeFilmsSeed;
 }
 
 async function listLouvers(req, res) {
-  const data = getLouverData(await getProducts());
+  const products = await getLouverProducts();
 
   return renderPublicPage(req, res, "public/pages/product/category/pvc-wpc-interior-louvers/all-product", {
-    page: data.page,
-    products: data.products,
+    page: louverPage,
+    products,
     getValue,
     louverThumb
   });
@@ -78,24 +68,14 @@ async function listLouvers(req, res) {
 
 async function showLouver(req, res) {
   const slug = req.params.product || req.query.product || "wpc-louvers";
-  const product = getLouverProduct(slug, await getProducts());
+  const product = await getLouverProduct(slug);
 
   if (!product) {
-    res.status(404);
-    return renderPublicPage(req, res, "public/pages/product/category/pvc-wpc-interior-louvers/single-product", {
-      product: fallbackProduct,
-      gallery: fallbackProduct.gallery,
-      shades: [],
-      productInfo: [],
-      defaultShade: "",
-      mainImage: fallbackProduct.mainImage,
-      getValue,
-      louverThumb
-    });
+    throw new AppError("Louver product not found", 404);
   }
 
   const gallery = getValue(product, "gallery", [getValue(product, "mainImage", "")]);
-  const shades = getValue(product, "availableShades", []);
+  const shades = await getLouverShades();
 
   return renderPublicPage(req, res, "public/pages/product/category/pvc-wpc-interior-louvers/single-product", {
     product,
@@ -110,12 +90,12 @@ async function showLouver(req, res) {
 }
 
 function showCategory(categoryKey) {
-  return (req, res) => {
+  return async (req, res) => {
     const category = categoryPages[categoryKey];
 
     return renderPublicPage(req, res, `public/pages/product/category/${categoryKey}/all-product`, {
       category,
-      decorativeFilms: categoryKey === "pvc-decorative-films" ? decorativeFilms : [],
+      decorativeFilms: categoryKey === "pvc-decorative-films" ? await getDecorativeFilms() : [],
       getValue
     });
   };

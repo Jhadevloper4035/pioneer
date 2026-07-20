@@ -1,10 +1,10 @@
-const {
-  blogPosts,
-  careerOpenings,
-  galleryItems,
-  infrastructureGalleryItems
-} = require("../data/siteContent");
 const enquiryFormOptions = require("../data/enquiryFormOptions.json");
+const {
+  getBlogPosts,
+  getCareerOpenings,
+  getGalleryItems,
+  getInfrastructureGalleryItems
+} = require("../services/contentService");
 const {
   generateRobotsTxt,
   generateSitemapXml,
@@ -12,7 +12,12 @@ const {
 } = require("../services/sitemapService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
-function renderHome(req, res, variantOptions = {}) {
+async function renderHome(req, res, variantOptions = {}) {
+  const [blogPosts, galleryItems] = await Promise.all([
+    getBlogPosts(),
+    getGalleryItems()
+  ]);
+
   return renderPublicPage(req, res, "public/pages/index", {
     blogPosts,
     enquiryFormOptions,
@@ -49,15 +54,18 @@ function aboutCompany(req, res) {
   return renderPublicPage(req, res, "public/pages/about/about-company");
 }
 
-function infrastructure(req, res) {
-  return renderPublicPage(req, res, "public/pages/about/infrastructure", { galleryItems: infrastructureGalleryItems });
+async function infrastructure(req, res) {
+  const galleryItems = await getInfrastructureGalleryItems();
+  return renderPublicPage(req, res, "public/pages/about/infrastructure", { galleryItems });
 }
 
-function career(req, res) {
+async function career(req, res) {
+  const careerOpenings = await getCareerOpenings();
   return renderPublicPage(req, res, "public/pages/career/all-career-page", { careerOpenings });
 }
 
-function careerOpening(req, res) {
+async function careerOpening(req, res) {
+  const careerOpenings = await getCareerOpenings();
   const opening = careerOpenings.find((item) => item.slug === req.params.slug);
 
   if (!opening) {
@@ -69,19 +77,19 @@ function careerOpening(req, res) {
 
 function termsAndConditions(req, res) {
   return renderPublicPage(req, res, "public/pages/legal-page", {
-    pageTitle: "Terms & Conditions | Pioneer Flex",
+    pageTitle: "Terms & Conditions | Pioneer Decor",
     pageDescription:
-      "Read the website terms and conditions for Pioneer Flex product information, enquiries, catalogues, and website use.",
+      "Read the website terms and conditions for Pioneer Decor product information, enquiries, catalogues, and website use.",
     hero: {
       tag: "(Legal)",
       title: "Terms & Conditions",
-      text: "Guidelines for using the Pioneer Flex website, product information, enquiries, and catalogue resources."
+      text: "Guidelines for using the Pioneer Decor website, product information, enquiries, and catalogue resources."
     },
     sections: [
       {
         title: "Website Use",
         body: [
-          "This website is provided for general information about Pioneer Flex products, infrastructure, catalogues, and contact channels.",
+          "This website is provided for general information about Pioneer Decor products, infrastructure, catalogues, and contact channels.",
           "By using this website, you agree to use the content only for lawful enquiry, evaluation, and business communication purposes."
         ]
       },
@@ -89,28 +97,28 @@ function termsAndConditions(req, res) {
         title: "Product Information",
         body: [
           "Product images, shades, dimensions, specifications, and application notes are indicative and may vary by batch, screen display, installation condition, or project requirement.",
-          "Final suitability should be confirmed through samples, technical discussion, and written commercial confirmation from Pioneer Flex."
+          "Final suitability should be confirmed through samples, technical discussion, and written commercial confirmation from Pioneer Decor."
         ]
       },
       {
         title: "Quotations & Orders",
         body: [
           "Website enquiries do not create a confirmed order, supply commitment, price lock, or delivery obligation.",
-          "Prices, taxes, freight, availability, lead times, and order terms are confirmed separately by the Pioneer Flex team."
+          "Prices, taxes, freight, availability, lead times, and order terms are confirmed separately by the Pioneer Decor team."
         ]
       },
       {
         title: "Intellectual Property",
         body: [
-          "The Pioneer Flex name, website content, product visuals, catalogues, graphics, and layout are owned by or licensed to Pioneer Flex.",
+          "The Pioneer Decor name, website content, product visuals, catalogues, graphics, and layout are owned by or licensed to Pioneer Decor.",
           "Content from this website may not be copied, republished, modified, or used commercially without prior written permission."
         ]
       },
       {
         title: "Limitation",
         body: [
-          "Pioneer Flex works to keep website information useful and current, but does not guarantee that all content is complete, error-free, or suitable for every project condition.",
-          "For project-critical decisions, please contact Pioneer Flex directly for the latest technical and commercial details."
+          "Pioneer Decor works to keep website information useful and current, but does not guarantee that all content is complete, error-free, or suitable for every project condition.",
+          "For project-critical decisions, please contact Pioneer Decor directly for the latest technical and commercial details."
         ]
       }
     ]
@@ -119,19 +127,19 @@ function termsAndConditions(req, res) {
 
 function privacyPolicy(req, res) {
   return renderPublicPage(req, res, "public/pages/legal-page", {
-    pageTitle: "Privacy Policy | Pioneer Flex",
+    pageTitle: "Privacy Policy | Pioneer Decor",
     pageDescription:
-      "Learn how Pioneer Flex handles website enquiry, catalogue, and contact information submitted through the website.",
+      "Learn how Pioneer Decor handles website enquiry, catalogue, and contact information submitted through the website.",
     hero: {
       tag: "(Legal)",
       title: "Privacy Policy",
-      text: "How Pioneer Flex handles information shared through enquiry forms, catalogue access, and contact requests."
+      text: "How Pioneer Decor handles information shared through enquiry forms, catalogue access, and contact requests."
     },
     sections: [
       {
         title: "Information We Collect",
         body: [
-          "When you submit a form, request a catalogue, or contact Pioneer Flex, we may collect details such as your name, phone number, email address, company, city, product interest, and message.",
+          "When you submit a form, request a catalogue, or contact Pioneer Decor, we may collect details such as your name, phone number, email address, company, city, product interest, and message.",
           "Basic technical information may also be processed to help maintain website performance and security."
         ]
       },
@@ -145,7 +153,7 @@ function privacyPolicy(req, res) {
       {
         title: "Sharing",
         body: [
-          "Information may be shared with authorised Pioneer Flex team members, service providers, or business partners only where needed to respond to your request or support operations.",
+          "Information may be shared with authorised Pioneer Decor team members, service providers, or business partners only where needed to respond to your request or support operations.",
           "We do not sell submitted enquiry information as a standalone product."
         ]
       },
@@ -159,7 +167,7 @@ function privacyPolicy(req, res) {
       {
         title: "Contact",
         body: [
-          "For privacy-related questions or correction requests, contact Pioneer Flex through the website contact form or email sks@pioneerflex.in.",
+          "For privacy-related questions or correction requests, contact Pioneer Decor through the website contact form or email sks@pioneerflex.in.",
           "We may update this policy as website features, business processes, or legal requirements evolve."
         ]
       }
@@ -169,15 +177,15 @@ function privacyPolicy(req, res) {
 
 function thankYou(req, res) {
   return renderPublicPage(req, res, "public/pages/thank-you", {
-    pageTitle: "Thank You | Pioneer Flex",
-    pageDescription: "Thank you for submitting your details to Pioneer Flex."
+    pageTitle: "Thank You | Pioneer Decor",
+    pageDescription: "Thank you for submitting your details to Pioneer Decor."
   });
 }
 
 async function sitemap(req, res) {
   return renderPublicPage(req, res, "public/pages/sitemap", {
-    pageTitle: "Sitemap | Pioneer Flex",
-    pageDescription: "Browse key Pioneer Flex website pages, product categories, company information, catalogues, and contact links.",
+    pageTitle: "Sitemap | Pioneer Decor",
+    pageDescription: "Browse key Pioneer Decor website pages, product categories, company information, catalogues, and contact links.",
     sitemapSections: await getSitemapSections()
   });
 }

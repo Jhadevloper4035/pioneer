@@ -1,17 +1,19 @@
 <%- include('../partials/page-hero', {
         tag: '(Thank You)',
-        title: 'Thank you',
-        text: 'Your submission has been received. Our team will contact you soon.',
-        image: 'assets/images/banner/1.jpeg',
-        buttonText: 'Back to Home',
-        buttonLink: '/'
+        title: 'Thank You',
+        text: 'Thank you for your submission.',
+        image: 'assets/images/banner/1.jpeg'
       }) %>
 
-      <main class="legal-section">
+      <main class="legal-section thank-you-section">
         <div class="container-lg">
-          <div class="legal-card">
-            <h2>We have received your details.</h2>
-            <p>Our team will review your enquiry and get back to you shortly.</p>
+          <div class="legal-card thank-you-card">
+            <span class="thank-you-card__icon" aria-hidden="true">✓</span>
+            <h2>Thank You</h2>
+            <p>
+              Thank you for your submission. Our team has received your details
+              and will contact you within 24 hours.
+            </p>
             <a class="btn-quinary mt-4" href="/">
               <span class="btn-animated-text" data-text="Back to Home">Back to Home</span>
             </a>

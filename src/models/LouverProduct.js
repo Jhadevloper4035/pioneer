@@ -26,6 +26,43 @@ const louverProductSchema = new mongoose.Schema(
       required: true,
       trim: true
     },
+    mainImage: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 160
+    },
+    sku: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 80
+    },
+    category: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 120
+    },
+    summary: {
+      type: String,
+      trim: true,
+      maxlength: 400
+    },
+    gallery: [{ type: String, trim: true }],
+    applications: [{
+      name: { type: String, trim: true, maxlength: 120 },
+      image: { type: String, trim: true }
+    }],
+    productInformation: [{
+      label: { type: String, trim: true, maxlength: 80 },
+      value: { type: String, trim: true, maxlength: 120 }
+    }],
     specifications: {
       width_mm: Number,
       height_mm: Number,

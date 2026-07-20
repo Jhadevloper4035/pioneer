@@ -1,10 +1,8 @@
 const { Readable } = require("stream");
-const mongoose = require("mongoose");
 const { SitemapStream, streamToPromise } = require("sitemap");
 const env = require("../config/env");
-const { careerOpenings, blogPosts } = require("../data/siteContent");
-const { getLouverData } = require("../data/wpcLouvers");
-const LouverProduct = require("../models/LouverProduct");
+const { getBlogPosts, getCareerOpenings } = require("./contentService");
+const { getLouverProducts } = require("./louverService");
 
 const staticSections = [
   {
@@ -45,20 +43,12 @@ function getSiteUrl(req) {
   return `${req.protocol}://${req.get("host")}`.replace(/\/+$/, "");
 }
 
-async function getLouverProducts() {
-  if (mongoose.connection.readyState === 1) {
-    const products = await LouverProduct.find({ active: true })
-      .sort({ order: 1, productId: 1 })
-      .lean();
-
-    if (products.length) return getLouverData(products).products;
-  }
-
-  return getLouverData().products;
-}
-
 async function getSitemapSections() {
-  const louverProducts = await getLouverProducts();
+  const [louverProducts, blogPosts, careerOpenings] = await Promise.all([
+    getLouverProducts(),
+    getBlogPosts(),
+    getCareerOpenings()
+  ]);
 
   return [
     staticSections[0],

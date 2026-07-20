@@ -18636,7 +18636,7 @@ body:not(.home-page) .decorative-services__intro {
     align-items: end;
     background:
         linear-gradient(90deg, rgba(16, 10, 6, .92) 0%, rgba(16, 10, 6, .58) 48%, rgba(16, 10, 6, .2) 100%),
-        url("../images/infrastructure/banner.png") center / cover no-repeat;
+        url("../images/infrastructure/banner.jpg") center / cover no-repeat;
     display: flex;
     min-height: clamp(560px, 76vh, 720px);
     padding: 140px 0 68px;
