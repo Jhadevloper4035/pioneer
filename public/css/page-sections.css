@@ -1797,7 +1797,7 @@
         align-items: end;
         background:
           linear-gradient(90deg, rgba(16, 10, 6, .92) 0%, rgba(16, 10, 6, .58) 48%, rgba(16, 10, 6, .2) 100%),
-          url("assets/images/banner/about-us.avif") center / cover no-repeat;
+          url("../images/banner/5.jpeg") center / cover no-repeat;
         display: flex;
         min-height: clamp(560px, 76vh, 720px);
         padding: 140px 0 68px;
@@ -2080,17 +2080,15 @@
       }
 
       .about-large-image {
-        background: var(--about-deep);
+        background:
+          linear-gradient(90deg, rgba(16, 10, 6, .7) 0%, rgba(16, 10, 6, .4) 48%, rgba(16, 10, 6, .16) 100%),
+          url("../images/banner/team.jpg") center / cover fixed no-repeat;
         min-height: clamp(520px, 70vw, 820px);
         position: relative;
       }
 
       .about-large-image img {
-        display: block;
-        height: clamp(520px, 70vw, 820px);
-        object-fit: cover;
-        opacity: .86;
-        width: 100%;
+        display: none;
       }
 
       .about-large-image__caption {
@@ -2327,8 +2325,8 @@
           aspect-ratio: 4 / 4.8;
         }
 
-        .about-large-image,
-        .about-large-image img {
+        .about-large-image {
+          background-attachment: scroll;
           min-height: 620px;
         }
 
