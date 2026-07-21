@@ -6,6 +6,7 @@ const {
   normalizePageSlug,
   upsertSeoPage
 } = require("../services/seoService");
+const { getSiteSetting } = require("../services/siteSettingService");
 const { listUsers } = require("../services/userRepository");
 
 async function users(req, res) {
@@ -46,12 +47,13 @@ async function seoPage(req, res) {
 }
 
 async function saveSeoPage(req, res) {
+  const messages = await getSiteSetting("responseMessages");
   const slug = normalizePageSlug(req.body.slug || req.query.slug);
   const page = await upsertSeoPage(slug, req.body);
 
   res.status(200).json({
     success: true,
-    message: "SEO page saved",
+    message: messages.adminApi.seoPageSaved,
     data: {
       page
     }
@@ -59,12 +61,13 @@ async function saveSeoPage(req, res) {
 }
 
 async function removeSeoPage(req, res) {
+  const messages = await getSiteSetting("responseMessages");
   const slug = normalizePageSlug(req.query.slug);
   const page = await deleteSeoPage(slug);
 
   res.status(200).json({
     success: true,
-    message: "SEO page deleted",
+    message: messages.adminApi.seoPageDeleted,
     data: {
       page
     }

@@ -7,7 +7,6 @@
     "check": "node --check src/server.js && node --check api/index.js && node --check public/js/main.js",
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "seed": "node src/scripts/seedDatabase.js",
     "vercel-build": "npm run check"
   },
   "dependencies": {

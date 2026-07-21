@@ -4,7 +4,7 @@ const asyncHandler = require("../utils/asyncHandler");
 
 const router = express.Router();
 
-router.get(["/blog", "/blog-default"], asyncHandler(blogController.blog));
+router.get("/blog", asyncHandler(blogController.blog));
 router.get("/blog/:slug", asyncHandler(blogController.singleBlog));
 
 module.exports = router;

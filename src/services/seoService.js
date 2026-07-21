@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const env = require("../config/env");
 const SeoPage = require("../models/SeoPage");
 
@@ -111,7 +110,6 @@ function buildSeoMeta(req, seoRecord = {}, fallback = {}) {
 }
 
 async function findSeoPageBySlug(slug) {
-  if (mongoose.connection.readyState !== 1) return null;
   return SeoPage.findOne({ slug: normalizePageSlug(slug), active: true }).lean();
 }
 

@@ -1,11 +1,15 @@
-<%- include('../../../../partials/page-hero', {
-        tag: '(PVC/WPC Interior Louver Detail)',
-        title: product.name,
-        text: getValue(product, 'summary', 'Explore product dimensions, shades, and application details.'),
-        image: '/assets/images/banner/pvc-wpc-interior-bg.jpeg',
-        buttonText: 'View Details',
-        buttonLink: '#product-title'
-      }) %>
+<section class="pioneer-page-hero" style="--page-hero-image: url('/assets/images/banner/pvc-wpc-interior-bg.jpeg');">
+  <div class="container-lg">
+    <div class="pioneer-page-hero__content fade-up">
+      <span class="pioneer-page-hero__tag">(PVC/WPC Interior Louver Detail)</span>
+      <h1 class="pioneer-page-hero__title elicyon"><%= product.name %></h1>
+      <p class="pioneer-page-hero__text"><%= getValue(product, 'summary', 'Explore product dimensions, shades, and application details.') %></p>
+      <a class="btn-quinary pioneer-page-hero__button" href="#product-title">
+        <span class="btn-animated-text" data-text="View Details">View Details</span>
+      </a>
+    </div>
+  </div>
+</section>
 
       <section>
         <div class="container-lg">

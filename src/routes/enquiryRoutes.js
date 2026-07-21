@@ -10,7 +10,7 @@ const {
 
 const router = express.Router();
 
-router.get(["/contact-us", "/contact-us.php"], asyncHandler(enquiryController.contact));
+router.get("/contact-us", asyncHandler(enquiryController.contact));
 router.post("/api/contact", contactValidator, asyncHandler(enquiryController.submitContact));
 router.post("/api/enquiries", enquiryValidator, asyncHandler(enquiryController.submitEnquiry));
 router.post(

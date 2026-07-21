@@ -1,11 +1,18 @@
-<%- include('../partials/page-hero', {
-        tag: hero.tag,
-        title: hero.title,
-        text: hero.text,
-        image: 'assets/images/infrastructure/banner.jpg',
-        buttonText: 'Contact Us',
-        buttonLink: '/contact-us'
-      }) %>
+<% const legalHero = typeof hero !== "undefined" && hero ? hero : { tag: "", title: "", text: "" }; %>
+<section class="pioneer-page-hero" style="--page-hero-image: url('assets/images/infrastructure/banner.jpg');">
+  <div class="container-lg">
+    <div class="pioneer-page-hero__content fade-up">
+      <span class="pioneer-page-hero__tag"><%= legalHero.tag %></span>
+      <h1 class="pioneer-page-hero__title elicyon"><%= legalHero.title %></h1>
+      <% if (legalHero.text) { %>
+        <p class="pioneer-page-hero__text"><%= legalHero.text %></p>
+      <% } %>
+      <a class="btn-quinary pioneer-page-hero__button" href="/contact-us">
+        <span class="btn-animated-text" data-text="Contact Us">Contact Us</span>
+      </a>
+    </div>
+  </div>
+</section>
 
       <main class="legal-section">
         <div class="container-lg">

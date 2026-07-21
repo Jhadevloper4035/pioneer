@@ -1,10 +1,14 @@
-const mongoose = require("mongoose");
-const enquiryFormOptions = require("../data/enquiryFormOptions.json");
 const CareerApplication = require("../models/CareerApplication");
 const Enquiry = require("../models/Enquiry");
+const { getSiteSetting } = require("../services/siteSettingService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
-function contact(req, res) {
+const emptyEnquiryFormOptions = {
+  productCategories: []
+};
+
+async function contact(req, res) {
+  const enquiryFormOptions = await getSiteSetting("enquiryFormOptions", emptyEnquiryFormOptions);
   return renderPublicPage(req, res, "public/pages/contact-us", { enquiryFormOptions });
 }
 
@@ -14,13 +18,7 @@ function normalizeProductCategories(value) {
 }
 
 async function createEnquiry(req, res, source, fields) {
-  if (mongoose.connection.readyState !== 1) {
-    return res.status(503).json({
-      success: false,
-      message: "Enquiry form is temporarily unavailable. Please try again shortly."
-    });
-  }
-
+  const messages = await getSiteSetting("responseMessages");
   const enquiry = await Enquiry.create({
     source,
     ...fields,
@@ -30,7 +28,7 @@ async function createEnquiry(req, res, source, fields) {
 
   return res.status(201).json({
     success: true,
-    message: "Enquiry submitted successfully. Our team will contact you soon.",
+    message: messages.enquiry.success,
     data: {
       id: enquiry._id
     }
@@ -72,7 +70,13 @@ function submitProductEnquiry(req, res) {
   });
 }
 
+function wantsJson(req) {
+  const accept = req.get("accept") || "";
+  return req.xhr || (accept.includes("application/json") && !accept.includes("text/html"));
+}
+
 async function submitCareerApplication(req, res) {
+  const messages = await getSiteSetting("responseMessages");
   const { role, name, email, phone, experience, city, message } = req.body;
   const requiredFields = { role, name, email, phone, experience, city };
   const missingField = Object.entries(requiredFields).find(([, value]) => !value || !String(value).trim());
@@ -80,21 +84,14 @@ async function submitCareerApplication(req, res) {
   if (missingField) {
     return res.status(400).json({
       success: false,
-      message: "Please complete all required application details."
+      message: messages.careerApplication.missingDetails
     });
   }
 
   if (!req.file?.buffer) {
     return res.status(400).json({
       success: false,
-      message: "Please upload your resume."
-    });
-  }
-
-  if (mongoose.connection.readyState !== 1) {
-    return res.status(503).json({
-      success: false,
-      message: "Career applications are temporarily unavailable. Please try again shortly."
+      message: messages.careerApplication.missingResume
     });
   }
 
@@ -117,9 +114,13 @@ async function submitCareerApplication(req, res) {
     userAgent: req.get("user-agent")
   });
 
+  if (!wantsJson(req)) {
+    return res.redirect(303, "/thank-you");
+  }
+
   return res.status(201).json({
     success: true,
-    message: "Application submitted successfully. Our team will review your profile and connect soon.",
+    message: messages.careerApplication.success,
     data: {
       id: application._id,
       role,

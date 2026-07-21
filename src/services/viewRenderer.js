@@ -46,7 +46,7 @@ function getPublicLayoutOptions(view, locals) {
     "public/pages/blog/all-blog-page": {
       title: "Blog | Pioneer Decor",
       description: "Read Pioneer Decor notes on home decor materials, decorative films, interior louvers, WPC doors, frames, and baffles.",
-      image: "/assets/images/banner/3.jpeg",
+      image: "/assets/images/banner/5.jpeg",
       canonicalPath: "/blog"
     },
     "public/pages/career/all-career-page": {
@@ -70,7 +70,7 @@ function getPublicLayoutOptions(view, locals) {
     "public/pages/error/404": {
       title: "Page Not Found | Pioneer Decor",
       description: "The requested Pioneer Decor page could not be found.",
-      image: "/assets/images/banner/3.jpeg",
+      image: "/assets/images/banner/5.jpeg",
       robots: "noindex, nofollow"
     },
     "public/pages/gallery": {
@@ -125,7 +125,7 @@ function getPublicLayoutOptions(view, locals) {
     || (locals.pageTitle && {
       title: locals.pageTitle,
       description: locals.pageDescription,
-      image: "/assets/images/banner/3.jpeg"
+      image: "/assets/images/banner/5.jpeg"
     })
     || seoByView[view];
 

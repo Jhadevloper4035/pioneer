@@ -3,14 +3,18 @@
     %>
     
 
-      <%- include('../../partials/page-hero', {
-        tag: '(Career)',
-        title: 'Build your future with Pioneer',
-        text: 'Join a manufacturing-led team working across PVC Decorative Films, PVC/WPC Interior Louvers, WPC Doors and Frames, and PVC/WPC Baffles.',
-        image: 'assets/images/infrastructure/banner.jpeg',
-        buttonText: 'Current Openings',
-        buttonLink: '#current-openings'
-      }) %>
+      <section class="pioneer-page-hero" style="--page-hero-image: url('/assets/images/infrastructure/banner.jpeg');">
+        <div class="container-lg">
+          <div class="pioneer-page-hero__content fade-up">
+            <span class="pioneer-page-hero__tag">(Career)</span>
+            <h1 class="pioneer-page-hero__title elicyon">Build your future with Pioneer</h1>
+            <p class="pioneer-page-hero__text">Join a manufacturing-led team working across PVC Decorative Films, PVC/WPC Interior Louvers, WPC Doors and Frames, and PVC/WPC Baffles.</p>
+            <a class="btn-quinary pioneer-page-hero__button" href="#current-openings">
+              <span class="btn-animated-text" data-text="Current Openings">Current Openings</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
       <section class="career-intro pt-140 pb-100 bg-alt-2">
         <div class="container-lg">

@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const mongoose = require("mongoose");
 const LouverProduct = require("../models/LouverProduct");
 const LouverShade = require("../models/LouverShade");
 
@@ -68,8 +67,6 @@ function normalizeShade(shade) {
 }
 
 async function getLouverProducts() {
-  if (mongoose.connection.readyState !== 1) return [];
-
   const products = await LouverProduct.find({ active: true })
     .sort({ order: 1, productId: 1 })
     .lean();
@@ -78,8 +75,6 @@ async function getLouverProducts() {
 }
 
 async function getLouverShades() {
-  if (mongoose.connection.readyState !== 1) return [];
-
   const shades = await LouverShade.find({ active: true })
     .sort({ order: 1, name: 1 })
     .lean();
@@ -88,8 +83,6 @@ async function getLouverShades() {
 }
 
 async function getLouverProduct(slug) {
-  if (mongoose.connection.readyState !== 1) return null;
-
   const product = await LouverProduct.findOne({ active: true, slug }).lean();
   return product ? normalizeProduct(product) : null;
 }

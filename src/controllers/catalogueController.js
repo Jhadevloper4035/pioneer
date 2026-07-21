@@ -1,19 +1,12 @@
-const mongoose = require("mongoose");
-const catalogueSeed = require("../data/catalogues.json");
 const Catalogue = require("../models/Catalogue");
 const Enquiry = require("../models/Enquiry");
+const { getSiteSetting } = require("../services/siteSettingService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
 async function getCatalogues() {
-  if (mongoose.connection.readyState !== 1) {
-    return catalogueSeed;
-  }
-
-  const catalogues = await Catalogue.find({ active: true })
+  return Catalogue.find({ active: true })
     .sort({ order: 1, title: 1 })
     .lean();
-
-  return catalogues.length ? catalogues : catalogueSeed;
 }
 
 async function eCatalogue(req, res) {
@@ -22,13 +15,7 @@ async function eCatalogue(req, res) {
 }
 
 async function submitCatalogueLead(req, res) {
-  if (mongoose.connection.readyState !== 1) {
-    return res.status(503).json({
-      success: false,
-      message: "Catalogue form is temporarily unavailable. Please try again shortly."
-    });
-  }
-
+  const messages = await getSiteSetting("responseMessages");
   const enquiry = await Enquiry.create({
     source: "catalogue",
     name: req.body.fullName,
@@ -43,7 +30,7 @@ async function submitCatalogueLead(req, res) {
 
   return res.status(201).json({
     success: true,
-    message: "Catalogue downloads unlocked",
+    message: messages.catalogue.downloadsUnlocked,
     data: {
       id: enquiry._id,
       catalogues: await getCatalogues()

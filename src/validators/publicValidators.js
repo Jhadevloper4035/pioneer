@@ -1,11 +1,5 @@
 const { body } = require("express-validator");
-const enquiryFormOptions = require("../data/enquiryFormOptions.json");
 const handleValidation = require("./handleValidation");
-
-const productCategoryValues = new Set(enquiryFormOptions.validProducts);
-const quantityValues = new Set(enquiryFormOptions.quantities);
-const unitValues = new Set(enquiryFormOptions.units);
-const applicationValues = new Set(enquiryFormOptions.applications);
 
 const contactValidator = [
   body("name")
@@ -37,7 +31,7 @@ const contactValidator = [
   body("productCategories")
     .optional({ checkFalsy: true })
     .customSanitizer((value) => (Array.isArray(value) ? value : [value]))
-    .custom((values) => values.every((value) => productCategoryValues.has(value)))
+    .custom((values) => values.every((value) => String(value).length <= 120))
     .withMessage("Please select valid product categories"),
   handleValidation
 ];
@@ -74,25 +68,25 @@ const enquiryValidator = [
     .trim()
     .notEmpty()
     .withMessage("Product is required")
-    .custom((value) => productCategoryValues.has(value))
+    .isLength({ max: 120 })
     .withMessage("Please select a valid product"),
   body("quantity")
     .trim()
     .notEmpty()
     .withMessage("Quantity is required")
-    .custom((value) => quantityValues.has(value))
+    .isLength({ max: 40 })
     .withMessage("Please select a valid quantity"),
   body("unit")
     .trim()
     .notEmpty()
     .withMessage("Unit is required")
-    .custom((value) => unitValues.has(value))
+    .isLength({ max: 40 })
     .withMessage("Please select a valid unit"),
   body("application")
     .trim()
     .notEmpty()
     .withMessage("Application is required")
-    .custom((value) => applicationValues.has(value))
+    .isLength({ max: 120 })
     .withMessage("Please select a valid application"),
   body("comments")
     .optional({ checkFalsy: true })

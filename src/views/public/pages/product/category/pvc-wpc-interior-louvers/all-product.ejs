@@ -1,11 +1,15 @@
-<%- include('../../../../partials/page-hero', {
-        tag: '(PVC/WPC Interior Louvers)',
-        title: 'PVC/WPC Interior Louvers',
-        text: 'Premium wall louver profiles crafted for feature walls, partitions, retail interiors, and decorative cladding.',
-        image: '/assets/images/banner/pvc-wpc-interior-bg.jpeg',
-        buttonText: 'View Profiles',
-        buttonLink: '#product-container'
-      }) %>
+<section class="pioneer-page-hero" style="--page-hero-image: url('/assets/images/banner/pvc-wpc-interior-bg.jpeg');">
+  <div class="container-lg">
+    <div class="pioneer-page-hero__content fade-up">
+      <span class="pioneer-page-hero__tag">(PVC/WPC Interior Louvers)</span>
+      <h1 class="pioneer-page-hero__title elicyon">PVC/WPC Interior Louvers</h1>
+      <p class="pioneer-page-hero__text">Premium wall louver profiles crafted for feature walls, partitions, retail interiors, and decorative cladding.</p>
+      <a class="btn-quinary pioneer-page-hero__button" href="#product-container">
+        <span class="btn-animated-text" data-text="View Profiles">View Profiles</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- ==== louver composition section start ==== -->
 <section class="louver-composition" aria-labelledby="louver-composition-title">
@@ -33,7 +37,7 @@
 
       <div class="louver-composition__visual fade-up" data-delay="160">
         <a class="louver-composition__image-link" href="assets/images/wpc-louvers/app2.avif" data-lightbox-image aria-label="View full Pioneer PVC WPC interior louver profile image">
-          <img src="<%= louverThumb("assets/images/wpc-louvers/app2.avif") %>" alt="Pioneer PVC WPC interior louver showing decorative laminate and composite core" loading="lazy" />
+          <img src="<%= louverThumb("assets/images/category/pvc-louvers.png") %>" alt="Pioneer PVC WPC interior louver showing decorative laminate and composite core" loading="lazy" />
         </a>
       </div>
     </div>

@@ -1,11 +1,15 @@
-<%- include('../../../../partials/page-hero', {
-        tag: category.tag,
-        title: category.title,
-        text: category.text,
-        image: category.image,
-        buttonText: 'View Category',
-        buttonLink: '#' + (category.anchor || 'category-heading')
-      }) %>
+<section class="pioneer-page-hero" style="--page-hero-image: url('<%= category.image || "/assets/images/banner/banner1.webp" %>');">
+  <div class="container-lg">
+    <div class="pioneer-page-hero__content fade-up">
+      <span class="pioneer-page-hero__tag"><%= category.tag %></span>
+      <h1 class="pioneer-page-hero__title elicyon"><%= category.title %></h1>
+      <p class="pioneer-page-hero__text"><%= category.text %></p>
+      <a class="btn-quinary pioneer-page-hero__button" href="#<%= category.anchor || 'category-heading' %>">
+        <span class="btn-animated-text" data-text="View Category">View Category</span>
+      </a>
+    </div>
+  </div>
+</section>
       <section class="pt-120 pb-120 bg-alt-2">
         <div class="container-lg text-center">
           <p class="section__content-sub-title">(Product Category)</p>

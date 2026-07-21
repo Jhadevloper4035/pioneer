@@ -1,5 +1,63 @@
 /* Extracted from legacy page heads during layout cleanup. */
 
+.pioneer-page-hero {
+  align-items: flex-end;
+  background:
+    linear-gradient(90deg, rgba(12, 8, 5, .94) 0%, rgba(12, 8, 5, .72) 46%, rgba(12, 8, 5, .26) 100%),
+    var(--page-hero-image) center / cover no-repeat;
+  box-sizing: border-box;
+  display: flex;
+  min-height: clamp(560px, 78vh, 760px);
+  overflow: hidden;
+  padding-top: 132px;
+  position: relative;
+}
+
+.pioneer-page-hero__content {
+  max-width: 760px;
+  padding: 0 0 88px;
+}
+
+.pioneer-page-hero__tag {
+  color: #c08860;
+  display: block;
+  font-size: 12px;
+  letter-spacing: .28em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.pioneer-page-hero__title {
+  color: #fff;
+  font-size: clamp(3.2rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1.02;
+  margin: 0;
+}
+
+.pioneer-page-hero__text {
+  color: rgba(255, 255, 255, .72);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 24px 0 0;
+  max-width: 580px;
+}
+
+.pioneer-page-hero__button {
+  margin-top: 34px;
+}
+
+@media (max-width: 575px) {
+  .pioneer-page-hero {
+    min-height: 520px;
+    padding-top: 112px;
+  }
+
+  .pioneer-page-hero__content {
+    padding-bottom: 54px;
+  }
+}
+
 /* src/views/public/pages/legal-page.ejs */
 .legal-section {
         background: #f5f2ee;
@@ -881,7 +939,7 @@
         align-items: flex-end;
         background:
           linear-gradient(90deg, rgba(14, 8, 5, .92) 0%, rgba(14, 8, 5, .74) 48%, rgba(14, 8, 5, .28) 100%),
-          url("/assets/images/banner/3.jpeg") center / cover no-repeat;
+          url("/assets/images/banner/5.jpeg") center / cover no-repeat;
         display: flex;
         min-height: clamp(560px, 76vh, 760px);
         padding: 132px 0 86px;

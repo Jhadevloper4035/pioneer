@@ -1,11 +1,15 @@
-<%- include('../../partials/page-hero', {
-        tag: '(' + post.category + ')',
-        title: post.title,
-        text: 'Pioneer Decor product insight for practical interior, decorative, and manufacturing applications.',
-        image: '/' + post.image,
-        buttonText: 'Back to Blog',
-        buttonLink: '/blog'
-      }) %>
+<section class="pioneer-page-hero" style="--page-hero-image: url('<%= post.image ? "/" + post.image : "/assets/images/banner/banner1.webp" %>');">
+  <div class="container-lg">
+    <div class="pioneer-page-hero__content fade-up">
+      <span class="pioneer-page-hero__tag">(<%= post.category %>)</span>
+      <h1 class="pioneer-page-hero__title elicyon"><%= post.title %></h1>
+      <p class="pioneer-page-hero__text">Pioneer Decor product insight for practical interior, decorative, and manufacturing applications.</p>
+      <a class="btn-quinary pioneer-page-hero__button" href="/blog">
+        <span class="btn-animated-text" data-text="Back to Blog">Back to Blog</span>
+      </a>
+    </div>
+  </div>
+</section>
 
       <article class="journal-section pt-140 pb-100 bg-alt-2">
         <div class="container-lg">

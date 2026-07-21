@@ -1,5 +1,15 @@
-<%- include('../../../../partials/page-hero', { tag: category.tag, title: category.title, text: category.text, image:
-  category.image, buttonText: 'View Category' , buttonLink: '#' + (category.anchor || 'category-heading' ) }) %>
+<section class="pioneer-page-hero" style="--page-hero-image: url('<%= category.image || "/assets/images/banner/banner1.webp" %>');">
+  <div class="container-lg">
+    <div class="pioneer-page-hero__content fade-up">
+      <span class="pioneer-page-hero__tag"><%= category.tag %></span>
+      <h1 class="pioneer-page-hero__title elicyon"><%= category.title %></h1>
+      <p class="pioneer-page-hero__text"><%= category.text %></p>
+      <a class="btn-quinary pioneer-page-hero__button" href="#<%= category.anchor || 'category-heading' %>">
+        <span class="btn-animated-text" data-text="View Category">View Category</span>
+      </a>
+    </div>
+  </div>
+</section>
 
 
 
@@ -32,10 +42,10 @@
         </div>
 
         <div class="louver-composition__visual fade-up" data-delay="160">
-          <a class="louver-composition__image-link" href="/assets/images/category/pvc-decor-frame.webp"
+          <a class="louver-composition__image-link" href="/assets/images/category/decorative-films.avif"
             data-lightbox-image data-lightbox-group="decorative-film-gallery"
             aria-label="View full Pioneer PVC decorative film image">
-            <img src="/assets/images/category/pvc-decor-frame.webp"
+            <img src="/assets/images/category/decorative-films.avif"
               alt="Pioneer PVC decorative film finish for furniture and interior surfaces" loading="lazy" />
           </a>
         </div>
