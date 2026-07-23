@@ -145,7 +145,7 @@
         </a>
         <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.doors %>" data-delay="200"
           aria-label="View WPC Doors category">
-          <img src="assets/images/banner/wpc-doors.png"
+          <img src="assets/images/category/wpc-doors.png"
             alt="Interior application for Pioneer WPC Doors" />
           <div class="main-category-section__content">
             <p>Stable door systems</p>
@@ -177,27 +177,6 @@
   </section>
   <!-- ==== / product category showcase end ==== -->
 
-  <section class="vertical-sites" data-background="assets/images/banner/banner1.webp"
-    aria-label="Pioneer vertical websites">
-    <div class="container-lg">
-      <div class="vertical-sites__panel fade-up">
-        <div class="vertical-sites__brand">
-          <img src="assets/images/logo/logo.png" alt="Pioneer" />
-          <span>Flex</span>
-        </div>
-        <div class="vertical-sites__links">
-          <% verticalSites.forEach((site)=> { %>
-            <a class="vertical-sites__link" href="<%= site.href %>" <%- site.href.startsWith("http")
-              ? 'target="_blank" rel="noopener"' : "" %>>
-              <span>
-                <%= site.title %>
-              </span>
-            </a>
-            <% }) %>
-        </div>
-      </div>
-    </div>
-  </section>
 
 
   <!-- ==== about section start ==== -->

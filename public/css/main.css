@@ -13917,7 +13917,7 @@ span {
 /* ==== main category styles start ==== */
 .main-category-section {
     overflow: hidden;
-    background-color: var(--secondary-color);
+    background-color: var(--white);
 }
 
 .main-category-section + .decorative-services {
@@ -13955,6 +13955,12 @@ span {
 @media only screen and (min-width: 1100px) {
     .main-category-section__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .main-category-section__item:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc((100% - 30px) / 2);
     }
 }
 
