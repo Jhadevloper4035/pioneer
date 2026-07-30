@@ -12,6 +12,18 @@ function stripGalleryType(items) {
   return items.map(({ type, ...item }) => item);
 }
 
+const hiddenInfrastructureGalleryImages = new Set([
+  "paper-tube-packaging.jpg",
+  "solvent-recovery-plant.png",
+  "solvent-recovery-plant.webp"
+]);
+
+function isVisibleInfrastructureGalleryItem(item) {
+  return ![item.image, item.thumb].some((image) =>
+    hiddenInfrastructureGalleryImages.has(String(image || "").split(/[\\/]/).pop().toLowerCase())
+  );
+}
+
 async function getBlogPosts() {
   return getList(BlogPost);
 }
@@ -27,7 +39,7 @@ async function getGalleryItems() {
 async function getInfrastructureGalleryItems() {
   return stripGalleryType(
     await getList(GalleryItem, { type: "infrastructure" })
-  );
+  ).filter(isVisibleInfrastructureGalleryItem);
 }
 
 async function getSiteContent() {

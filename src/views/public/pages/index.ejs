@@ -17,26 +17,6 @@
                 <div class="swiper-slide">
                   <div class="hero-three__single">
                     <h2 class="title-lg elicyon txt-light-fix">
-                      PVC Decorative
-                    </h2>
-                    <h3 class="title-lg-sm fw-3 txt-light-fix">
-                      films for modern interiors.
-                    </h3>
-                    <p class="txt-light-fix mt-30">
-                      Premium decorative film finishes for furniture,
-                      modular kitchens, wardrobes, counters, and membrane
-                      door applications.
-                    </p>
-                    <div class="hero-three__cta">
-                      <a class="btn-quinary" href="<%= productCtaTarget %>">
-                        <span class="btn-animated-text" data-text="View Products">View Products</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="hero-three__single">
-                    <h2 class="title-lg elicyon txt-light-fix">
                       PVC/WPC Interior
                     </h2>
                     <h3 class="title-lg-sm fw-3 txt-light-fix">
@@ -60,12 +40,33 @@
                       WPC Doors
                     </h2>
                     <h3 class="title-lg-sm fw-3 txt-light-fix">
-                      and frames built for stability.
+                      built for modern interiors.
                     </h3>
                     <p class="txt-light-fix mt-30">
-                      Moisture-resistant WPC frames made for dependable
-                      fitment in homes, offices, hotels, showrooms, and
-                      institutional projects.
+                      Moisture-resistant WPC doors made for dependable
+                      use in homes, offices, hotels, showrooms, and
+                      institutional spaces.
+                    </p>
+                    <div class="hero-three__cta">
+                      <a class="btn-quinary" href="<%= productCtaTarget %>">
+                        <span class="btn-animated-text" data-text="View Products">View Products</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="hero-three__single">
+                    <h2 class="title-lg elicyon txt-light-fix">
+                      WPC Door
+                    </h2>
+                    <h3 class="title-lg-sm fw-3 txt-light-fix">
+                      frames built for stability.
+                    </h3>
+                    <p class="txt-light-fix mt-30">
+                      Moisture-resistant WPC frames made for accurate
+                      fitment, clean edges, and long-lasting interior
+                      door installations.
                     </p>
                     <div class="hero-three__cta">
                       <a class="btn-quinary" href="<%= productCtaTarget %>">
@@ -96,6 +97,27 @@
                   </div>
                 </div>
 
+                <div class="swiper-slide">
+                  <div class="hero-three__single">
+                    <h2 class="title-lg elicyon txt-light-fix">
+                      PVC Decorative
+                    </h2>
+                    <h3 class="title-lg-sm fw-3 txt-light-fix">
+                      films for modern interiors.
+                    </h3>
+                    <p class="txt-light-fix mt-30">
+                      Premium decorative film finishes for furniture,
+                      modular kitchens, wardrobes, counters, and membrane
+                      door applications.
+                    </p>
+                    <div class="hero-three__cta">
+                      <a class="btn-quinary" href="<%= productCtaTarget %>">
+                        <span class="btn-animated-text" data-text="View Products">View Products</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
             <div class="slider-navigation">
@@ -111,11 +133,12 @@
       </div>
     </div>
     <div class="hero-three-bg">
-      <img src="assets/images/banner/pvc-decorative-firms.avif"
-        alt="Interior finished with Pioneer PVC decorative films" class="active-bg" />
-      <img src="assets/images/banner/pvc-wpc-interior-bg.jpeg" alt="Pioneer PVC WPC wall panel and louver interior" />
+      <img src="assets/images/banner/pvc-wpc-interior-bg.jpeg" alt="Pioneer PVC WPC wall panel and louver interior" class="active-bg" />
       <img src="assets/images/banner/wpc-doors-bg.jpeg" alt="Pioneer WPC Doors interior application" />
+      <img src="assets/images/banner/pvc-door-frame.jpeg" alt="Pioneer WPC door frame interior application" />
       <img src="assets/images/banner/baffles-bg.jpeg" alt="Pioneer PVC WPC baffle screen application" />
+      <img src="assets/images/banner/pvc-decorative-firms.avif"
+        alt="Interior finished with Pioneer PVC decorative films" />
     </div>
   </section>
   <!-- ==== / hero section end ==== -->
@@ -124,18 +147,8 @@
     <div class="container-lg">
 
       <div class="main-category-section__grid mt-60">
-        <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.decorativeFilms %>"
-          aria-label="View PVC Decorative Films category">
-          <img src="assets/images/category/pvc-decor-films.jpeg"
-            alt="Interior finished with Pioneer PVC decorative films" />
-          <div class="main-category-section__content">
-            <p>Furniture &amp; membrane finishes</p>
-            <h2>PVC Decorative Films</h2>
-            <span>View Category</span>
-          </div>
-        </a>
         <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.interiorLouvers %>"
-          data-delay="100" aria-label="View PVC WPC Interior Louvers category">
+          aria-label="View PVC WPC Interior Louvers category">
           <img src="assets/images/category/pvc-wpc-interior-lovers.jpeg" alt="Interior with Pioneer PVC WPC interior louvers" />
           <div class="main-category-section__content">
             <p>Interior louvers</p>
@@ -143,7 +156,7 @@
             <span>View Category</span>
           </div>
         </a>
-        <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.doors %>" data-delay="200"
+        <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.doors %>" data-delay="100"
           aria-label="View WPC Doors category">
           <img src="assets/images/category/wpc-doors.png"
             alt="Interior application for Pioneer WPC Doors" />
@@ -153,7 +166,7 @@
             <span>View Category</span>
           </div>
         </a>
-         <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.frames %>" data-delay="250"
+         <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.frames %>" data-delay="200"
           aria-label="View WPC Door Frames category">
           <img src="assets/images/category/pvc-door-frame.jpeg"
             alt="Pioneer WPC door frame interior application" />
@@ -172,6 +185,16 @@
             <span>Know More</span>
           </div>
         </a>
+        <a class="main-category-section__item fade-up" href="<%= productCategoryLinks.decorativeFilms %>" data-delay="400"
+          aria-label="View PVC Decorative Films category">
+          <img src="assets/images/category/pvc-decor-films.jpeg"
+            alt="Interior finished with Pioneer PVC decorative films" />
+          <div class="main-category-section__content">
+            <p>Furniture &amp; membrane finishes</p>
+            <h2>PVC Decorative Films</h2>
+            <span>View Category</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -186,14 +209,13 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-8">
           <div class="about-three__header mb-80">
             <h2 class="title-animation text-center title-lg-sm fw-5 elicyon">
-              Where innovation
+              Where manufacturing strength
               <!-- <span class="line"></span> -->
-              <!-- <span class="text-uppercase">PVC innovation</span> -->
-              meets manufacturing strength
+              meets modern decor
             </h2>
             <p class="mt-30 title-animation text-center txt-light">
               Pioneer Décor is a home decor and interior-products vertical of Pioneer Polyleathers (P) Limited.
-              Since 2008, Pioneer has used its PVC and WPC manufacturing experience to build decorative films,
+              Pioneer uses its PVC and WPC manufacturing experience to build decorative films,
               interior louvers, WPC doors, frames, and baffles for modern spaces.
             </p>
           </div>
