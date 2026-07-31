@@ -1,0 +1,373 @@
+{
+  "products": [
+    {
+      "slug": "24-mm",
+      "image": "/assets/images/products/thumbs/product-1.jpg",
+      "name": "24 MM",
+      "variants": [
+        {
+          "name": "24 MM",
+          "image": "/assets/images/products/thumbs/product-1.jpg"
+        },
+        {
+          "name": "AMD-23-RED",
+          "image": "/images/products/louvers/24-mm/AMD-23-RED.png"
+        },
+        {
+          "name": "Andhra-Teak-APS",
+          "image": "/images/products/louvers/24-mm/Andhra-Teak-APS.png"
+        },
+        {
+          "name": "Andhra-Teak-JS",
+          "image": "/images/products/louvers/24-mm/Andhra-Teak-JS.png"
+        },
+        {
+          "name": "Baby-Pink",
+          "image": "/images/products/louvers/24-mm/Baby-Pink.png"
+        },
+        {
+          "name": "Bleached-Walnut",
+          "image": "/images/products/louvers/24-mm/Bleached-Walnut.png"
+        },
+        {
+          "name": "Blonde-Wood",
+          "image": "/images/products/louvers/24-mm/Blonde-Wood.png"
+        },
+        {
+          "name": "Brown-Wall-Nut",
+          "image": "/images/products/louvers/24-mm/Brown-Wall-Nut.png"
+        },
+        {
+          "name": "Dark-Beach",
+          "image": "/images/products/louvers/24-mm/Dark-Beach.png"
+        },
+        {
+          "name": "Dark-Grey",
+          "image": "/images/products/louvers/24-mm/Dark-Grey.png"
+        },
+        {
+          "name": "Dark-Knotty-Pine",
+          "image": "/images/products/louvers/24-mm/Dark-Knotty-Pine.png"
+        },
+        {
+          "name": "Golden-Teak",
+          "image": "/images/products/louvers/24-mm/Golden-Teak.png"
+        },
+        {
+          "name": "Grey-Marble",
+          "image": "/images/products/louvers/24-mm/Grey-Marble.png"
+        },
+        {
+          "name": "Pamely",
+          "image": "/images/products/louvers/24-mm/Pamely.png"
+        },
+        {
+          "name": "Pastel-Cream",
+          "image": "/images/products/louvers/24-mm/Pastel-Cream.png"
+        },
+        {
+          "name": "Pastel-Yellow",
+          "image": "/images/products/louvers/24-mm/Pastel-Yellow.png"
+        },
+        {
+          "name": "PRA-5128",
+          "image": "/images/products/louvers/24-mm/PRA-5128.png"
+        },
+        {
+          "name": "Red-Wood",
+          "image": "/images/products/louvers/24-mm/Red-Wood.png"
+        },
+        {
+          "name": "Rosewood",
+          "image": "/images/products/louvers/24-mm/Rosewood.png"
+        },
+        {
+          "name": "Solid-Green",
+          "image": "/images/products/louvers/24-mm/Solid-Green.png"
+        },
+        {
+          "name": "Statuario-Marble",
+          "image": "/images/products/louvers/24-mm/Statuario-Marble.png"
+        },
+        {
+          "name": "White",
+          "image": "/images/products/louvers/24-mm/White.png"
+        }
+      ]
+    },
+    {
+      "slug": "8-mm-solid",
+      "image": "/assets/images/products/thumbs/product-2.jpg",
+      "name": "8 MM Solid",
+      "variants": [
+        {
+          "name": "8 MM Solid",
+          "image": "/assets/images/products/thumbs/product-2.jpg"
+        },
+        {
+          "name": "Amd-23-Yellow",
+          "image": "/images/products/louvers/8-mm/Amd-23-Yellow.png"
+        },
+        {
+          "name": "Andhra-Teak-Aps",
+          "image": "/images/products/louvers/8-mm/Andhra-Teak-Aps.png"
+        },
+        {
+          "name": "Knotty-Pine-Dark",
+          "image": "/images/products/louvers/8-mm/Knotty-Pine-Dark.png"
+        },
+        {
+          "name": "Knotty-Pine-Lite",
+          "image": "/images/products/louvers/8-mm/Knotty-Pine-Lite.png"
+        },
+        {
+          "name": "Pastel-Cream",
+          "image": "/images/products/louvers/8-mm/Pastel-Cream.png"
+        },
+        {
+          "name": "Pcr-115",
+          "image": "/images/products/louvers/8-mm/Pcr-115.png"
+        },
+        {
+          "name": "Smokey-Grey",
+          "image": "/images/products/louvers/8-mm/Smokey-Grey.png"
+        },
+        {
+          "name": "White-Matte",
+          "image": "/images/products/louvers/8-mm/White-Matte.png"
+        },
+        {
+          "name": "White-Statuario",
+          "image": "/images/products/louvers/8-mm/White-Statuario.png"
+        }
+      ]
+    },
+    {
+      "slug": "17-mm",
+      "image": "/assets/images/products/thumbs/product-3.jpg",
+      "name": "17 MM",
+      "variants": [
+        {
+          "name": "17 MM",
+          "image": "/assets/images/products/thumbs/product-3.jpg"
+        },
+        {
+          "name": "Amd-23-Red",
+          "image": "/images/products/louvers/17-mm/Amd-23-Red.png"
+        },
+        {
+          "name": "Black-Matte",
+          "image": "/images/products/louvers/17-mm/Black-Matte.png"
+        },
+        {
+          "name": "Brown-Walnut",
+          "image": "/images/products/louvers/17-mm/Brown-Walnut.png"
+        },
+        {
+          "name": "Knotty-Pine-Dk",
+          "image": "/images/products/louvers/17-mm/Knotty-Pine-Dk.png"
+        },
+        {
+          "name": "Knotty-Pine-Lt",
+          "image": "/images/products/louvers/17-mm/Knotty-Pine-Lt.png"
+        },
+        {
+          "name": "Olive-Green",
+          "image": "/images/products/louvers/17-mm/Olive-Green.png"
+        },
+        {
+          "name": "Pamely",
+          "image": "/images/products/louvers/17-mm/Pamely.png"
+        },
+        {
+          "name": "Pastel-Cream",
+          "image": "/images/products/louvers/17-mm/Pastel-Cream.png"
+        },
+        {
+          "name": "Rose-Wood",
+          "image": "/images/products/louvers/17-mm/Rose-Wood.png"
+        },
+        {
+          "name": "Sky-Blue",
+          "image": "/images/products/louvers/17-mm/Sky-Blue.png"
+        },
+        {
+          "name": "Solid-Grey",
+          "image": "/images/products/louvers/17-mm/Solid-Grey.png"
+        },
+        {
+          "name": "Statuario-Marble",
+          "image": "/images/products/louvers/17-mm/Statuario-Marble.png"
+        }
+      ]
+    },
+    {
+      "slug": "12-mm-old",
+      "image": "/assets/images/products/thumbs/product-4.jpg",
+      "name": "12 MM Old",
+      "variants": [
+        {
+          "name": "12 MM Old",
+          "image": "/assets/images/products/thumbs/product-4.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "9-inch-flat",
+      "image": "/assets/images/products/thumbs/product-5.jpg",
+      "name": "9 Inch Flat",
+      "variants": [
+        {
+          "name": "9 Inch Flat",
+          "image": "/assets/images/products/thumbs/product-5.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "12-mm-pencile",
+      "image": "/assets/images/products/thumbs/product-6.jpg",
+      "name": "12 MM Pencile",
+      "variants": [
+        {
+          "name": "12 MM Pencile",
+          "image": "/assets/images/products/thumbs/product-6.jpg"
+        },
+        {
+          "name": "Amd-23-Yellow",
+          "image": "/images/products/louvers/12-mm-pencil/Amd-23-Yellow.png"
+        },
+        {
+          "name": "Andhra-Teak-Jsp",
+          "image": "/images/products/louvers/12-mm-pencil/Andhra-Teak-Jsp.png"
+        },
+        {
+          "name": "Brown-Walnut",
+          "image": "/images/products/louvers/12-mm-pencil/Brown-Walnut.png"
+        },
+        {
+          "name": "Knotty-Pine-Lite",
+          "image": "/images/products/louvers/12-mm-pencil/Knotty-Pine-Lite.png"
+        },
+        {
+          "name": "Olive-Green",
+          "image": "/images/products/louvers/12-mm-pencil/Olive-Green.png"
+        },
+        {
+          "name": "Pastel-Cream",
+          "image": "/images/products/louvers/12-mm-pencil/Pastel-Cream.png"
+        },
+        {
+          "name": "Solid-Grey",
+          "image": "/images/products/louvers/12-mm-pencil/Solid-Grey.png"
+        }
+      ]
+    },
+    {
+      "slug": "8-mm-8flute",
+      "image": "/assets/images/products/thumbs/product-7.jpg",
+      "name": "8 MM 8Flute",
+      "variants": [
+        {
+          "name": "8 MM 8Flute",
+          "image": "/assets/images/products/thumbs/product-7.jpg"
+        },
+        {
+          "name": "Amd-23-Yellow",
+          "image": "/images/products/louvers/8-mm/Amd-23-Yellow.png"
+        },
+        {
+          "name": "Andhra-Teak-Aps",
+          "image": "/images/products/louvers/8-mm/Andhra-Teak-Aps.png"
+        },
+        {
+          "name": "Knotty-Pine-Dark",
+          "image": "/images/products/louvers/8-mm/Knotty-Pine-Dark.png"
+        },
+        {
+          "name": "Knotty-Pine-Lite",
+          "image": "/images/products/louvers/8-mm/Knotty-Pine-Lite.png"
+        },
+        {
+          "name": "Pastel-Cream",
+          "image": "/images/products/louvers/8-mm/Pastel-Cream.png"
+        },
+        {
+          "name": "Pcr-115",
+          "image": "/images/products/louvers/8-mm/Pcr-115.png"
+        },
+        {
+          "name": "Smokey-Grey",
+          "image": "/images/products/louvers/8-mm/Smokey-Grey.png"
+        },
+        {
+          "name": "White-Matte",
+          "image": "/images/products/louvers/8-mm/White-Matte.png"
+        },
+        {
+          "name": "White-Statuario",
+          "image": "/images/products/louvers/8-mm/White-Statuario.png"
+        }
+      ]
+    },
+    {
+      "slug": "12mm-half-round",
+      "image": "/assets/images/products/thumbs/product-8.jpg",
+      "name": "12MM Half Round",
+      "variants": [
+        {
+          "name": "12MM Half Round",
+          "image": "/assets/images/products/thumbs/product-8.jpg"
+        },
+        {
+          "name": "Mehandi",
+          "image": "/images/products/louvers/12-mm-half-round/Mehandi.png"
+        },
+        {
+          "name": "Pastel-Cream",
+          "image": "/images/products/louvers/12-mm-half-round/Pastel-Cream.png"
+        }
+      ]
+    },
+    {
+      "slug": "14-mm-flat",
+      "image": "/assets/images/products/thumbs/product-9.jpg",
+      "name": "14 MM Flat",
+      "variants": [
+        {
+          "name": "14 MM Flat",
+          "image": "/assets/images/products/thumbs/product-9.jpg"
+        },
+        {
+          "name": "Mehandi",
+          "image": "/images/products/louvers/14-mm/Mehandi.png"
+        },
+        {
+          "name": "Pastel-Peach",
+          "image": "/images/products/louvers/14-mm/Pastel-Peach.png"
+        }
+      ]
+    },
+    {
+      "slug": "15-mm-heart",
+      "image": "/assets/images/products/thumbs/product-10.jpg",
+      "name": "15 MM Heart",
+      "variants": [
+        {
+          "name": "15 MM Heart",
+          "image": "/assets/images/products/thumbs/product-10.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "16mm-zigzag",
+      "image": "/assets/images/products/thumbs/product-11.jpg",
+      "name": "16MM ZigZag",
+      "variants": [
+        {
+          "name": "16MM ZigZag",
+          "image": "/assets/images/products/thumbs/product-11.jpg"
+        }
+      ]
+    }
+  ]
+}

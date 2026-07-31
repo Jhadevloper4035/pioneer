@@ -400,6 +400,14 @@ body.louver-modal-open { overflow: hidden; }
 .louver-card__image-link:hover::after,
 .louver-card__image-link:focus-visible::after { opacity: 1; transform: translateY(0); }
 
+.louver-card__image-link--disabled {
+	cursor: default;
+}
+
+.louver-card__image-link--disabled::after {
+	display: none;
+}
+
 .louver-card__image {
 	position: relative;
 	z-index: 1;
@@ -1453,6 +1461,15 @@ body.louver-lightbox-open { overflow: hidden; }
 	min-height: 46px;
 	margin-top: auto;
 	padding: 10px 16px;
+}
+
+.louver-card__enquiry--disabled,
+.louver-card__enquiry--disabled:hover {
+	border-color: #cfc4bd;
+	background: #cfc4bd;
+	color: #fff;
+	cursor: not-allowed;
+	pointer-events: none;
 }
 
 .louver-products__status {

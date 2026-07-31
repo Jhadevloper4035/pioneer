@@ -1,14 +1,19 @@
 <%
   const specs = getValue(product, "specifications", {});
   const productUrl = `/wpc-louvers/${product.slug}`;
+  const hasVariants = getValue(product, "hasVariants", true);
 %>
 <article class="louver-card is-visible">
   <div class="louver-card__visual">
-    <a
-      class="louver-card__image-link"
-      href="<%= productUrl %>"
-      aria-label="View <%= product.name %>"
-    >
+    <% if (hasVariants) { %>
+      <a
+        class="louver-card__image-link"
+        href="<%= productUrl %>"
+        aria-label="View <%= product.name %>"
+      >
+    <% } else { %>
+      <span class="louver-card__image-link louver-card__image-link--disabled" aria-hidden="true">
+    <% } %>
       <img
         class="louver-card__image"
         src="<%= louverThumb(getValue(product, "image", "")) %>"
@@ -16,7 +21,11 @@
         loading="lazy"
         decoding="async"
       />
-    </a>
+    <% if (hasVariants) { %>
+      </a>
+    <% } else { %>
+      </span>
+    <% } %>
   </div>
   <h3 class="louver-card__name"><%= product.name %></h3>
   <div class="louver-card__body">
@@ -26,8 +35,11 @@
       <div class="louver-card__spec"><dt>Height</dt><dd><%= getValue(specs, "height_mm", "-") %> mm</dd></div>
       <div class="louver-card__spec"><dt>Length</dt><dd><%= getValue(specs, "length_mm", "-") %> mm</dd></div>
       <div class="louver-card__spec"><dt>No. of flutes</dt><dd><%= getValue(specs, "no_of_flutes", "-") %></dd></div>
-      <div class="louver-card__spec"><dt>Approx. weight</dt><dd><%= getValue(specs, "approx_weight_per_panel_kg", "-") %> kg</dd></div>
     </dl>
-    <a class="louver-card__enquiry" href="<%= productUrl %>">View details</a>
+    <% if (hasVariants) { %>
+      <a class="louver-card__enquiry" href="<%= productUrl %>">View details</a>
+    <% } else { %>
+      <span class="louver-card__enquiry louver-card__enquiry--disabled" aria-disabled="true">Unavailable</span>
+    <% } %>
   </div>
 </article>

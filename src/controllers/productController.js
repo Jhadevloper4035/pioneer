@@ -54,14 +54,15 @@ async function showLouver(req, res) {
     throw new AppError(messages.product.louverNotFound, 404);
   }
 
+  const shades = await getLouverShades(product);
   const gallery = getValue(product, "gallery", [getValue(product, "mainImage", "")]);
-  const shades = await getLouverShades();
 
   return renderPublicPage(req, res, "public/pages/product/category/pvc-wpc-interior-louvers/single-product", {
     product,
     gallery,
     shades,
-    productInfo: getValue(product, "productInformation", []),
+    productInfo: getValue(product, "productInformation", [])
+      .filter((item) => !/^approx\.?\s+weight$/i.test(getValue(item, "label", ""))),
     defaultShade: getValue(getValue(shades, 0, {}), "name", ""),
     mainImage: getValue(gallery, 0, getValue(product, "mainImage", "")),
     getValue,
