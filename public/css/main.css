@@ -18688,6 +18688,40 @@ body:not(.home-page) .decorative-services__intro {
     margin-top: 36px;
 }
 
+.infrastructure-page .infra-video__intro {
+    margin: 0 auto 32px;
+    max-width: 700px;
+    text-align: center;
+}
+
+.infrastructure-page .infra-video__intro .infra-kicker {
+    margin-bottom: 12px;
+}
+
+.infrastructure-page .infra-video__intro p {
+    color: var(--infra-muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 16px auto 0;
+    max-width: 540px;
+}
+
+.infrastructure-page .infra-video .home-video__frame {
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.infrastructure-page .infra-video .home-video__frame video {
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+}
+
+.infrastructure-page .infra-video__cta {
+    display: flex;
+    margin: 28px auto 0;
+    width: fit-content;
+}
+
 .infra-btn {
     align-items: center;
     background: #fff;
@@ -19108,6 +19142,11 @@ body:not(.home-page) .decorative-services__intro {
 }
 
 @media (max-width: 991px) {
+    .infrastructure-page .container-lg {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
     .infra-hero {
         min-height: 560px;
         padding: 126px 0 52px;
@@ -19164,6 +19203,16 @@ body:not(.home-page) .decorative-services__intro {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
+    .infrastructure-page .infra-gallery .row > [class*="col-"] {
+        min-width: 0;
+    }
+
+    .infrastructure-page .gallery_item {
+        height: auto;
+        margin-bottom: 0;
+        padding: 0;
+    }
+
     .infra-stat:nth-child(2n),
     .infra-step:nth-child(2n) {
         border-right: 0;
@@ -19173,11 +19222,43 @@ body:not(.home-page) .decorative-services__intro {
 @media (max-width: 767px) {
     .infrastructure-page {
         max-width: 100vw;
+        text-align: center;
     }
 
     .infrastructure-page .container-lg {
         max-width: 100%;
         overflow: hidden;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+    }
+
+    .infrastructure-page .infra-hero__content,
+    .infrastructure-page .infra-editorial,
+    .infrastructure-page .louver-story .decorative-services__content,
+    .infrastructure-page .infra-contact {
+        text-align: center;
+    }
+
+    .infrastructure-page .infra-hero__actions,
+    .infrastructure-page .infra-breadcrumb {
+        justify-content: center;
+    }
+
+    .infrastructure-page .infra-video {
+        padding-bottom: 64px !important;
+        padding-top: 64px !important;
+    }
+
+    .infrastructure-page .infra-video__intro {
+        margin-bottom: 24px;
+    }
+
+    .infrastructure-page .infra-video__intro p {
+        font-size: 15px;
+    }
+
+    .infrastructure-page .infra-video__cta {
         width: 100%;
     }
 
