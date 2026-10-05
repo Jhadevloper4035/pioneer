@@ -33,6 +33,10 @@ app.use(express.urlencoded({ extended: true, limit: "100kb" }));
 app.use(express.static(publicPath));
 app.use(env.assetRoute, express.static(publicPath));
 app.use("/uploads", express.static(uploadsPath));
+app.use((req, res, next) => {
+  res.locals.recaptchaSiteKey = env.recaptcha.siteKey;
+  next();
+});
 app.use(seoMiddleware);
 app.use("/api/auth", authLimiter);
 app.use("/api", apiLimiter);

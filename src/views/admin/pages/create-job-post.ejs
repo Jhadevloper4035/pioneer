@@ -1,0 +1,56 @@
+          <%
+            const editing = Boolean(jobPost);
+            const responsibilities = jobPost?.responsibilities || [];
+            const requirements = jobPost?.requirements || [];
+          %>
+          <section class="card shadow-sm">
+            <div class="card-body p-4">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+              <div><h2 class="h4 mb-1"><%= editing ? "Edit job post" : "Create job post" %></h2><p class="text-secondary mb-0">Active posts appear on the public careers page.</p></div>
+              <a class="btn btn-outline-secondary" href="/admin/job-posts">Back to job list</a>
+            </div>
+            <form class="row g-3" data-job-post-form data-job-post-id="<%= jobPost ? jobPost._id : "" %>">
+              <div class="col-md-6"><label class="form-label" for="job-title">Job title</label><input class="form-control" id="job-title" name="title" required maxlength="140" placeholder="Sales Executive" value="<%= jobPost?.title || "" %>"></div>
+              <div class="col-md-6"><label class="form-label" for="job-department">Department</label><input class="form-control" id="job-department" name="department" required maxlength="80" placeholder="Sales" value="<%= jobPost?.department || "" %>"></div>
+              <div class="col-md-6"><label class="form-label" for="job-location">Location</label><input class="form-control" id="job-location" name="location" required maxlength="120" placeholder="Noida" value="<%= jobPost?.location || "" %>"></div>
+              <div class="col-md-6"><label class="form-label" for="job-type">Job type</label><input class="form-control" id="job-type" name="type" required maxlength="80" placeholder="Full time" value="<%= jobPost?.type || "" %>"></div>
+              <div class="col-md-6"><label class="form-label" for="job-experience">Experience</label><input class="form-control" id="job-experience" name="experience" required maxlength="80" placeholder="2-4 years" value="<%= jobPost?.experience || "" %>"></div>
+              <div class="col-md-6"><label class="form-label" for="job-order">Display order</label><input class="form-control" id="job-order" name="order" type="number" min="0" value="<%= jobPost?.order || 0 %>"></div>
+              <div class="col-12"><label class="form-label" for="job-summary">Summary</label><textarea class="form-control" id="job-summary" name="summary" required maxlength="400" rows="3" placeholder="Short description shown on the careers page"><%= jobPost?.summary || "" %></textarea></div>
+              <div class="col-12"><label class="form-label" for="job-responsibilities">Responsibilities (one per line)</label><textarea class="form-control" id="job-responsibilities" name="responsibilities" rows="4" placeholder="Manage dealer relationships"><%= responsibilities.join("\n") %></textarea></div>
+              <div class="col-12"><label class="form-label" for="job-requirements">Requirements (one per line)</label><textarea class="form-control" id="job-requirements" name="requirements" rows="4" placeholder="Bachelor's degree"><%= requirements.join("\n") %></textarea></div>
+              <div class="col-md-6"><label class="form-label" for="job-active">Publish now</label><select class="form-select" id="job-active" name="active"><option value="true" <%= jobPost?.active !== false ? "selected" : "" %>>Active</option><option value="false" <%= jobPost?.active === false ? "selected" : "" %>>Draft</option></select></div>
+              <div class="col-12 d-flex align-items-center gap-3"><button class="btn btn-primary" type="submit"><%= editing ? "Save changes" : "Create job post" %></button><p class="small mb-0 admin-status" data-job-post-status aria-live="polite"></p></div>
+            </form>
+            </div>
+          </section>
+
+          <script>
+            (() => {
+              const form = document.querySelector("[data-job-post-form]");
+              const status = document.querySelector("[data-job-post-status]");
+              form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const id = form.dataset.jobPostId;
+                const button = form.querySelector("button[type='submit']");
+                status.textContent = id ? "Saving changes..." : "Creating job post...";
+                status.classList.remove("is-error");
+                button.disabled = true;
+
+                try {
+                  const response = await fetch(id ? `/api/admin/job-posts/${id}` : "/api/admin/job-posts", {
+                    method: id ? "PUT" : "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+                  });
+                  const result = await response.json().catch(() => ({}));
+                  if (!response.ok || !result.success) throw new Error(result.message || "Unable to save job post.");
+                  window.location.href = "/admin/job-posts";
+                } catch (error) {
+                  status.textContent = error.message || "Unable to save job post.";
+                  status.classList.add("is-error");
+                  button.disabled = false;
+                }
+              });
+            })();
+          </script>

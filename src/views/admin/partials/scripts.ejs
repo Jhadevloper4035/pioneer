@@ -1,3 +1,4 @@
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <script>
       (() => {
         const statusNodes = document.querySelectorAll("[data-admin-status]");
@@ -81,7 +82,8 @@
                 method: "POST",
                 body: JSON.stringify({
                   email: loginForm.email.value,
-                  password: loginForm.password.value
+                  password: loginForm.password.value,
+                  recaptchaToken: loginForm.recaptchaToken.value
                 })
               });
               const user = payload.data.user;
@@ -96,26 +98,6 @@
             }
           });
         }
-
-        const loadDashboard = async () => {
-          const nodes = {
-            total: document.querySelector("[data-metric-total-users]"),
-            admins: document.querySelector("[data-metric-admin-users]"),
-            regular: document.querySelector("[data-metric-regular-users]")
-          };
-
-          if (!nodes.total) return;
-
-          try {
-            const payload = await requestJson("/api/admin/users");
-            const users = payload.data.users;
-            nodes.total.textContent = users.length;
-            nodes.admins.textContent = users.filter((user) => user.roles.includes("admin")).length;
-            nodes.regular.textContent = users.filter((user) => !user.roles.includes("admin")).length;
-          } catch (error) {
-            setStatus(error.message, true);
-          }
-        };
 
         const loadUsers = async () => {
           const tableBody = document.querySelector("[data-admin-users]");
@@ -140,10 +122,10 @@
 
         requireAdmin().then((user) => {
           if (!user) return;
-          loadDashboard();
           loadUsers();
         });
       })();
     </script>
+    <%- include('../../public/partials/recaptcha') %>
   </body>
 </html>

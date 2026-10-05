@@ -1,0 +1,29 @@
+          <section class="card shadow-sm">
+            <div class="card-body p-4">
+              <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 mb-4">
+                <div>
+                  <div class="d-flex flex-wrap gap-2 mb-2">
+                    <span class="badge text-bg-light border"><%= jobPost.department %></span>
+                    <span class="badge text-bg-light border"><%= jobPost.type %></span>
+                    <span class="badge <%= jobPost.active ? "text-bg-success" : "text-bg-secondary" %>"><%= jobPost.active ? "Active" : "Draft" %></span>
+                  </div>
+                  <h2 class="h3 mb-1"><%= jobPost.title %></h2>
+                  <p class="text-secondary mb-0"><%= jobPost.location %> · <%= jobPost.experience %></p>
+                </div>
+                <div class="d-flex flex-wrap align-items-start gap-2">
+                  <a class="btn btn-outline-secondary" href="/admin/job-posts">Back to job posts</a>
+                  <a class="btn btn-outline-primary" href="/admin/job-posts/create?edit=<%= jobPost._id %>">Edit</a>
+                  <% if (jobPost.active) { %><a class="btn btn-primary" href="/career/<%= jobPost.slug %>" target="_blank" rel="noopener">View public</a><% } %>
+                </div>
+              </div>
+
+              <div class="row g-4">
+                <div class="col-lg-8">
+                  <section class="mb-4"><h3 class="h5 border-bottom pb-2">Job summary</h3><p class="mb-0"><%= jobPost.summary %></p></section>
+                  <section class="mb-4"><h3 class="h5 border-bottom pb-2">Responsibilities</h3><% if (jobPost.responsibilities?.length) { %><ul class="mb-0 ps-3"><% jobPost.responsibilities.forEach((item) => { %><li class="mb-2"><%= item %></li><% }) %></ul><% } else { %><p class="text-secondary mb-0">No responsibilities added.</p><% } %></section>
+                  <section><h3 class="h5 border-bottom pb-2">Requirements</h3><% if (jobPost.requirements?.length) { %><ul class="mb-0 ps-3"><% jobPost.requirements.forEach((item) => { %><li class="mb-2"><%= item %></li><% }) %></ul><% } else { %><p class="text-secondary mb-0">No requirements added.</p><% } %></section>
+                </div>
+                <aside class="col-lg-4"><div class="card bg-light border-0"><div class="card-body"><h3 class="h6 text-uppercase text-secondary">Job information</h3><dl class="row mb-0 small"><dt class="col-5 text-secondary">Department</dt><dd class="col-7"><%= jobPost.department %></dd><dt class="col-5 text-secondary">Location</dt><dd class="col-7"><%= jobPost.location %></dd><dt class="col-5 text-secondary">Type</dt><dd class="col-7"><%= jobPost.type %></dd><dt class="col-5 text-secondary">Experience</dt><dd class="col-7"><%= jobPost.experience %></dd><dt class="col-5 text-secondary">Display order</dt><dd class="col-7"><%= jobPost.order %></dd><dt class="col-5 text-secondary">Created</dt><dd class="col-7"><%= jobPost.createdAt.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) %></dd><dt class="col-5 text-secondary">Updated</dt><dd class="col-7 mb-0"><%= jobPost.updatedAt.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) %></dd></dl></div></div></aside>
+              </div>
+            </div>
+          </section>

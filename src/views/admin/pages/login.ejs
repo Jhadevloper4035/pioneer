@@ -1,14 +1,17 @@
-    <main class="admin-login-page">
-      <section class="admin-section">
-        <h1><%= appName %> Admin</h1>
-        <form class="admin-form" data-admin-login-form>
-          <div class="admin-field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required />
+    <main class="container min-vh-100 d-flex align-items-center py-4">
+      <div class="row justify-content-center w-100">
+      <section class="col-12 col-sm-10 col-md-7 col-lg-5">
+        <div class="card shadow-sm">
+        <div class="card-body p-4">
+        <h1 class="h3 mb-4"><%= appName %> Admin</h1>
+        <form data-admin-login-form data-recaptcha-action="admin_login">
+          <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-control" id="email" name="email" type="email" autocomplete="email" required />
           </div>
-          <div class="admin-field">
-            <label for="password">Password</label>
-            <input
+          <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control"
               id="password"
               name="password"
               type="password"
@@ -16,8 +19,11 @@
               required
             />
           </div>
-          <button class="admin-button" type="submit">Login</button>
-          <p class="admin-status" data-admin-status aria-live="polite"></p>
+          <button class="btn btn-primary w-100" type="submit">Login</button>
+          <p class="small admin-status mt-3 mb-0" data-admin-status aria-live="polite"></p>
         </form>
+        </div>
+        </div>
       </section>
+      </div>
     </main>

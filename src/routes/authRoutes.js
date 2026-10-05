@@ -1,6 +1,7 @@
 const express = require("express");
 const authController = require("../controllers/authController");
 const authenticate = require("../middleware/authenticate");
+const verifyRecaptcha = require("../middleware/verifyRecaptcha");
 const asyncHandler = require("../utils/asyncHandler");
 const {
   loginValidator,
@@ -9,8 +10,8 @@ const {
 
 const router = express.Router();
 
-router.post("/register", registerValidator, asyncHandler(authController.register));
-router.post("/login", loginValidator, asyncHandler(authController.login));
+router.post("/register", registerValidator, verifyRecaptcha("register"), asyncHandler(authController.register));
+router.post("/login", loginValidator, verifyRecaptcha("admin_login"), asyncHandler(authController.login));
 router.post("/logout", authController.logout);
 router.get("/me", authenticate, asyncHandler(authController.me));
 

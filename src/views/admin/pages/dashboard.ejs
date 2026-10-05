@@ -1,15 +1,18 @@
-          <div class="admin-grid">
-            <section class="metric">
-              <span>Total users</span>
-              <strong data-metric-total-users>0</strong>
-            </section>
-            <section class="metric">
-              <span>Admins</span>
-              <strong data-metric-admin-users>0</strong>
-            </section>
-            <section class="metric">
-              <span>Regular users</span>
-              <strong data-metric-regular-users>0</strong>
-            </section>
+          <section class="card dashboard-welcome border-0 shadow-sm mb-4">
+            <div class="card-body p-4 d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+              <div><p class="text-uppercase small fw-semibold mb-2">Pioneer Decor administration</p><h2 class="h3 mb-1">Overview</h2><p class="mb-0 text-secondary">Review new customer enquiries and job applications from one place.</p></div>
+              <div class="d-flex flex-wrap gap-2"><a class="btn btn-primary" href="/admin/enquiries">View enquiries</a><a class="btn btn-outline-primary" href="/admin/job-posts/create">Create job post</a></div>
+            </div>
+          </section>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-4"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/enquiries"><div class="card-body"><p class="text-secondary mb-2">Contact enquiries</p><strong class="display-6"><%= totals.enquiries %></strong><span class="d-block small mt-2">View all enquiries →</span></div></a></div>
+            <div class="col-md-4"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/job-enquiries"><div class="card-body"><p class="text-secondary mb-2">Job applications</p><strong class="display-6"><%= totals.applications %></strong><span class="d-block small mt-2">View all applications →</span></div></a></div>
+            <div class="col-md-4"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/job-posts"><div class="card-body"><p class="text-secondary mb-2">Active job posts</p><strong class="display-6"><%= totals.activeJobPosts %></strong><span class="d-block small mt-2">Manage job posts →</span></div></a></div>
           </div>
-          <p class="admin-status" data-admin-status aria-live="polite"></p>
+
+          <div class="row g-4">
+            <div class="col-xl-6"><section class="card h-100 shadow-sm"><div class="card-header bg-white d-flex align-items-center justify-content-between py-3"><div><h2 class="h5 mb-1">Recent contact enquiries</h2><p class="small text-secondary mb-0">Latest customer requests</p></div><a class="btn btn-sm btn-outline-primary" href="/admin/enquiries">View all</a></div><div class="list-group list-group-flush"><% if (!recentEnquiries.length) { %><p class="text-secondary p-4 mb-0">No contact enquiries yet.</p><% } %><% recentEnquiries.forEach((enquiry) => { %><article class="list-group-item py-3"><div class="d-flex justify-content-between gap-3"><div><strong><%= enquiry.name %></strong><p class="small text-secondary mb-1"><%= enquiry.email %><% if (enquiry.phone) { %> · <%= enquiry.phone %><% } %></p><span class="small"><%= enquiry.product || enquiry.city || "General enquiry" %></span></div><time class="small text-secondary text-end flex-shrink-0" datetime="<%= enquiry.createdAt.toISOString() %>"><%= enquiry.createdAt.toLocaleDateString("en-IN", { day: "numeric", month: "short" }) %></time></div></article><% }) %></div></section></div>
+            <div class="col-xl-6"><section class="card h-100 shadow-sm"><div class="card-header bg-white d-flex align-items-center justify-content-between py-3"><div><h2 class="h5 mb-1">Recent job applications</h2><p class="small text-secondary mb-0">Latest candidate submissions</p></div><a class="btn btn-sm btn-outline-primary" href="/admin/job-enquiries">View all</a></div><div class="list-group list-group-flush"><% if (!recentApplications.length) { %><p class="text-secondary p-4 mb-0">No job applications yet.</p><% } %><% recentApplications.forEach((application) => { %><article class="list-group-item py-3"><div class="d-flex justify-content-between gap-3"><div><strong><%= application.name %></strong><p class="small text-secondary mb-1"><%= application.email %><% if (application.phone) { %> · <%= application.phone %><% } %></p><span class="small"><%= application.role %><% if (application.city) { %> · <%= application.city %><% } %></span></div><time class="small text-secondary text-end flex-shrink-0" datetime="<%= application.createdAt.toISOString() %>"><%= application.createdAt.toLocaleDateString("en-IN", { day: "numeric", month: "short" }) %></time></div></article><% }) %></div></section></div>
+          </div>
+          <p class="small admin-status mt-3" data-admin-status aria-live="polite"></p>

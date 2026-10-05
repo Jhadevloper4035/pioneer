@@ -1,5 +1,6 @@
 const CareerApplication = require("../models/CareerApplication");
 const Enquiry = require("../models/Enquiry");
+const { notifyEnquiry, notifyJobApplication } = require("../services/leadNotificationService");
 const { getSiteSetting } = require("../services/siteSettingService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
@@ -25,6 +26,7 @@ async function createEnquiry(req, res, source, fields) {
     ipAddress: req.ip,
     userAgent: req.get("user-agent")
   });
+  await notifyEnquiry(enquiry);
 
   return res.status(201).json({
     success: true,
@@ -113,6 +115,7 @@ async function submitCareerApplication(req, res) {
     ipAddress: req.ip,
     userAgent: req.get("user-agent")
   });
+  await notifyJobApplication(application);
 
   if (!wantsJson(req)) {
     return res.redirect(303, "/thank-you");

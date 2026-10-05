@@ -1,0 +1,40 @@
+<% if (recaptchaSiteKey) { %>
+  <script src="https://www.google.com/recaptcha/api.js?render=<%= recaptchaSiteKey %>"></script>
+  <script>
+    (() => {
+      const siteKey = <%- JSON.stringify(recaptchaSiteKey) %>;
+
+      document.addEventListener("submit", async (event) => {
+        const form = event.target;
+        const action = form?.dataset?.recaptchaAction;
+        if (!action) return;
+
+        if (form.dataset.recaptchaVerified === "true") {
+          delete form.dataset.recaptchaVerified;
+          return;
+        }
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        try {
+          await new Promise((resolve) => grecaptcha.ready(resolve));
+          const token = await grecaptcha.execute(siteKey, { action });
+          let input = form.elements.recaptchaToken;
+          if (!input) {
+            input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "recaptchaToken";
+            form.append(input);
+          }
+          input.value = token;
+          form.dataset.recaptchaVerified = "true";
+          form.requestSubmit();
+        } catch (error) {
+          const status = form.querySelector("[role='status'], [aria-live]");
+          if (status) status.textContent = "Verification failed. Please try again.";
+        }
+      }, true);
+    })();
+  </script>
+<% } %>

@@ -1,0 +1,183 @@
+          <%
+            const sourceLabels = {
+              catalogue: "Catalogue",
+              career: "Career application",
+              contact: "Contact",
+              homepage: "Homepage",
+              product: "Product"
+            };
+            const hasSourceFilter = sourceOptions.length > 1;
+          %>
+          <section class="card shadow-sm">
+            <div class="card-body">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+              <div>
+                <h2 class="h4 mb-1"><%= sectionTitle %></h2>
+                <p class="text-secondary mb-0" data-enquiry-filter-status data-item-label="<%= itemLabel %>"><%= enquiries.length %> <%= enquiries.length === 1 ? itemLabelSingular : itemLabel %> collected.</p>
+              </div>
+              <button class="btn btn-primary" type="button" data-export-enquiries data-export-filename="<%= exportFilename %>" <%= enquiries.length ? "" : "disabled" %>>Export CSV</button>
+            </div>
+            <form class="row g-3 mb-4" data-enquiry-filters>
+              <div class="col-12 col-lg-4"><label class="form-label" for="enquiry-search">Search</label><input class="form-control" id="enquiry-search" type="search" name="search" placeholder="Name, email, phone, product or city" autocomplete="off"></div>
+              <% if (hasSourceFilter) { %>
+                <div class="col-12 col-sm-6 col-lg-2"><label class="form-label" for="enquiry-source">Source</label><select class="form-select" id="enquiry-source" name="source">
+                    <option value="">All sources</option>
+                    <% sourceOptions.forEach((source) => { %>
+                      <option value="<%= source.value %>"><%= source.label %></option>
+                    <% }); %>
+                  </select></div>
+              <% } %>
+              <div class="col-12 col-sm-6 col-lg-2"><label class="form-label" for="enquiry-from">From date</label><input class="form-control" id="enquiry-from" type="date" name="from"></div>
+              <div class="col-12 col-sm-6 col-lg-2"><label class="form-label" for="enquiry-to">To date</label><input class="form-control" id="enquiry-to" type="date" name="to"></div>
+              <div class="col-12 col-sm-6 col-lg-2 d-flex align-items-end"><button class="btn btn-outline-secondary w-100" type="reset">Clear filters</button></div>
+            </form>
+            <div class="table-responsive admin-table-scroll">
+              <table class="table table-hover align-top mb-0">
+                <thead>
+                  <tr>
+                    <th>Received</th>
+                    <% if (hasSourceFilter) { %><th>Source</th><% } %>
+                    <th><%= personLabel %></th>
+                    <th>Product / requirement</th>
+                    <th>Location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (!enquiries.length) { %>
+                    <tr><td colspan="<%= hasSourceFilter ? 5 : 4 %>"><%= emptyMessage %></td></tr>
+                  <% } %>
+                  <% enquiries.forEach((enquiry) => { %>
+                    <% const product = enquiry.product || enquiry.productCategories?.join(", ") || "—"; %>
+                    <% const details = [enquiry.quantity, enquiry.unit, enquiry.application, enquiry.message, enquiry.comments].filter(Boolean).join(" · "); %>
+                    <% const location = [enquiry.company, enquiry.city].filter(Boolean).join(" · ") || "—"; %>
+                    <% const searchText = [enquiry.source, enquiry.name, enquiry.email, enquiry.phone, product, details, location].filter(Boolean).join(" ").toLowerCase(); %>
+                    <tr
+                      data-enquiry-row
+                      data-date="<%= enquiry.createdAt.toISOString().slice(0, 10) %>"
+                      data-details="<%= details %>"
+                      data-email="<%= enquiry.email %>"
+                      data-location="<%= location %>"
+                      data-name="<%= enquiry.name %>"
+                      data-phone="<%= enquiry.phone || "" %>"
+                      data-product="<%= product %>"
+                      data-received="<%= enquiry.createdAt.toISOString() %>"
+                      data-search="<%= searchText %>"
+                      data-source="<%= enquiry.source %>"
+                      data-source-label="<%= sourceLabels[enquiry.source] || enquiry.source %>"
+                    >
+                      <td><%= enquiry.createdAt.toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }) %></td>
+                      <% if (hasSourceFilter) { %><td><%= sourceLabels[enquiry.source] || enquiry.source %></td><% } %>
+                      <td>
+                        <strong><%= enquiry.name %></strong><br>
+                        <%= enquiry.email %><br>
+                        <%= enquiry.phone || "—" %>
+                      </td>
+                      <td>
+                        <%= product %>
+                        <% if (enquiry.quantity || enquiry.application) { %>
+                          <br><small><%= [enquiry.quantity, enquiry.unit, enquiry.application].filter(Boolean).join(" · ") %></small>
+                        <% } %>
+                        <% if (enquiry.message || enquiry.comments) { %>
+                          <br><%= enquiry.message || enquiry.comments %>
+                        <% } %>
+                      </td>
+                      <td><%= location %></td>
+                    </tr>
+                  <% }); %>
+                  <tr data-no-filter-results hidden><td colspan="<%= hasSourceFilter ? 5 : 4 %>">No <%= itemLabel %> match these filters.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mt-3" data-enquiry-pagination-wrap hidden>
+              <p class="small text-secondary mb-0" data-enquiry-page-status></p>
+              <nav aria-label="Enquiry pages"><ul class="pagination pagination-sm mb-0" data-enquiry-pagination></ul></nav>
+            </div>
+            </div>
+          </section>
+          <script>
+            (() => {
+              const filters = document.querySelector("[data-enquiry-filters]");
+              if (!filters) return;
+
+              const rows = [...document.querySelectorAll("[data-enquiry-row]")];
+              const exportButton = document.querySelector("[data-export-enquiries]");
+              const noResults = document.querySelector("[data-no-filter-results]");
+              const status = document.querySelector("[data-enquiry-filter-status]");
+              const pageStatus = document.querySelector("[data-enquiry-page-status]");
+              const pagination = document.querySelector("[data-enquiry-pagination]");
+              const paginationWrap = document.querySelector("[data-enquiry-pagination-wrap]");
+              const rowsPerPage = 10;
+              let currentPage = 1;
+
+              const getFilteredRows = () => {
+                const query = filters.search.value.trim().toLowerCase();
+                const source = filters.source?.value || "";
+                const from = filters.from.value;
+                const to = filters.to.value;
+                return rows.filter((row) => (!query || row.dataset.search.includes(query))
+                  && (!source || row.dataset.source === source)
+                  && (!from || row.dataset.date >= from)
+                  && (!to || row.dataset.date <= to));
+              };
+
+              const renderRows = () => {
+                const filteredRows = getFilteredRows();
+                const totalPages = Math.max(1, Math.ceil(filteredRows.length / rowsPerPage));
+                currentPage = Math.min(currentPage, totalPages);
+                const start = (currentPage - 1) * rowsPerPage;
+                const pageRows = filteredRows.slice(start, start + rowsPerPage);
+
+                rows.forEach((row) => { row.hidden = !pageRows.includes(row); });
+                if (noResults) noResults.hidden = filteredRows.length !== 0 || rows.length === 0;
+                if (status) status.textContent = `Showing ${filteredRows.length} of ${rows.length} ${status.dataset.itemLabel}.`;
+                if (pageStatus) pageStatus.textContent = filteredRows.length ? `Showing ${start + 1}–${start + pageRows.length} of ${filteredRows.length}` : "";
+                if (exportButton) exportButton.disabled = filteredRows.length === 0;
+                if (paginationWrap) paginationWrap.hidden = filteredRows.length === 0;
+                if (pagination) {
+                  pagination.innerHTML = Array.from({ length: totalPages }, (_, index) => {
+                    const page = index + 1;
+                    return `<li class="page-item${page === currentPage ? " active" : ""}"><button class="page-link" type="button" data-enquiry-page="${page}"${page === currentPage ? " aria-current=\"page\"" : ""}>${page}</button></li>`;
+                  }).join("");
+                }
+              };
+
+              const csvValue = (value) => {
+                const text = String(value ?? "");
+                const safeText = /^[=+\-@]/.test(text) ? `'${text}` : text;
+                return `"${safeText.replaceAll("\"", "\"\"")}"`;
+              };
+
+              exportButton?.addEventListener("click", () => {
+                const columns = ["Received", "Source", "Name", "Email", "Phone", "Product", "Details", "Location"];
+                const csvRows = getFilteredRows()
+                  .map((row) => [
+                    row.dataset.received,
+                    row.dataset.sourceLabel,
+                    row.dataset.name,
+                    row.dataset.email,
+                    row.dataset.phone,
+                    row.dataset.product,
+                    row.dataset.details,
+                    row.dataset.location
+                  ].map(csvValue).join(","));
+                const blob = new Blob([[columns.map(csvValue).join(","), ...csvRows].join("\n")], { type: "text/csv;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = exportButton.dataset.exportFilename;
+                link.click();
+                URL.revokeObjectURL(url);
+              });
+
+              filters.addEventListener("input", () => { currentPage = 1; renderRows(); });
+              filters.addEventListener("change", () => { currentPage = 1; renderRows(); });
+              filters.addEventListener("reset", () => setTimeout(() => { currentPage = 1; renderRows(); }));
+              pagination?.addEventListener("click", (event) => {
+                const button = event.target.closest("[data-enquiry-page]");
+                if (!button) return;
+                currentPage = Number(button.dataset.enquiryPage);
+                renderRows();
+              });
+              renderRows();
+            })();
+          </script>

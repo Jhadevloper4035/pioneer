@@ -5,7 +5,12 @@
       "src": "api/index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": "src/views/**"
+        "includeFiles": [
+          "src/views/**",
+          "src/data/**",
+          "public/images/products/thumbs/**",
+          "public/images/products/louvers/**"
+        ]
       }
     },
     {

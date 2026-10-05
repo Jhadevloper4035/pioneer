@@ -1,0 +1,91 @@
+          <%
+            const departments = [...new Set(jobPosts.map((jobPost) => jobPost.department).filter(Boolean))].sort();
+            const locations = [...new Set(jobPosts.map((jobPost) => jobPost.location).filter(Boolean))].sort();
+          %>
+          <section class="card shadow-sm">
+            <div class="card-body">
+            <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+              <div><h2 class="h4 mb-1">All job posts</h2><p class="text-secondary mb-0"><%= jobPosts.length %> post<%= jobPosts.length === 1 ? "" : "s" %></p></div>
+              <a class="btn btn-primary" href="/admin/job-posts/create">Create job post</a>
+            </div>
+            <% if (!jobPosts.length) { %><p class="text-secondary">No job posts yet.</p><% } %>
+            <form class="row g-3 mb-3" data-job-post-filters>
+              <div class="col-12 col-lg-4"><label class="form-label" for="job-search">Search</label><input class="form-control" id="job-search" type="search" name="search" placeholder="Title, department or location" autocomplete="off"></div>
+              <div class="col-6 col-lg-2"><label class="form-label" for="job-status">Status</label><select class="form-select" id="job-status" name="status"><option value="">All statuses</option><option value="active">Active</option><option value="draft">Draft</option></select></div>
+              <div class="col-6 col-lg-2"><label class="form-label" for="job-department">Department</label><select class="form-select" id="job-department" name="department"><option value="">All departments</option><% departments.forEach((department) => { %><option value="<%= department %>"><%= department %></option><% }) %></select></div>
+              <div class="col-6 col-lg-2"><label class="form-label" for="job-location">Location</label><select class="form-select" id="job-location" name="location"><option value="">All locations</option><% locations.forEach((location) => { %><option value="<%= location %>"><%= location %></option><% }) %></select></div>
+              <div class="col-6 col-lg-2 d-flex align-items-end"><button class="btn btn-outline-secondary w-100" type="reset">Clear filters</button></div>
+            </form>
+            <p class="small text-secondary" data-job-post-filter-status aria-live="polite"></p>
+            <p class="text-secondary" data-no-job-post-results hidden>No job posts match these filters.</p>
+            <div class="row g-3">
+              <% jobPosts.forEach((jobPost) => { %>
+                <% const searchText = [jobPost.title, jobPost.department, jobPost.location, jobPost.type, jobPost.experience, jobPost.summary].filter(Boolean).join(" ").toLowerCase(); %>
+                <div class="col-md-6 col-xl-4" data-job-post-card data-department="<%= jobPost.department.toLowerCase() %>" data-location="<%= jobPost.location.toLowerCase() %>" data-search="<%= searchText %>" data-status="<%= jobPost.active ? "active" : "draft" %>">
+                <article class="card h-100">
+                  <div class="card-body d-flex flex-column gap-3">
+                  <div>
+                    <div class="d-flex flex-wrap gap-2 mb-2"><span class="badge text-bg-light border"><%= jobPost.department %></span><span class="badge text-bg-light border"><%= jobPost.type %></span><span class="badge <%= jobPost.active ? "text-bg-success" : "text-bg-secondary" %>"><%= jobPost.active ? "Active" : "Draft" %></span></div>
+                    <h3 class="h5 mb-0"><%= jobPost.title %></h3>
+                  </div>
+                  <p class="card-text"><%= jobPost.summary %></p>
+                  <div class="d-flex flex-wrap gap-2"><span class="badge text-bg-light border"><%= jobPost.location %></span><span class="badge text-bg-light border"><%= jobPost.experience %></span></div>
+                  <div class="d-flex flex-wrap gap-2 mt-auto">
+                    <a class="btn btn-outline-secondary btn-sm" href="/admin/job-posts/<%= jobPost._id %>">Read details</a>
+                    <% if (jobPost.active) { %><a class="btn btn-outline-secondary btn-sm" href="/career/<%= jobPost.slug %>" target="_blank" rel="noopener">View public</a><% } %>
+                    <a class="btn btn-outline-primary btn-sm" href="/admin/job-posts/create?edit=<%= jobPost._id %>">Edit</a>
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-delete-job-post data-job-post-id="<%= jobPost._id %>" data-job-post-title="<%= jobPost.title %>">Delete</button>
+                  </div>
+                  </div></article></div>
+              <% }); %>
+            </div>
+            </div>
+          </section>
+
+          <script>
+            (() => {
+              const filters = document.querySelector("[data-job-post-filters]");
+              const cards = [...document.querySelectorAll("[data-job-post-card]")];
+              const filterStatus = document.querySelector("[data-job-post-filter-status]");
+              const noResults = document.querySelector("[data-no-job-post-results]");
+
+              const applyFilters = () => {
+                const query = filters.elements.search.value.trim().toLowerCase();
+                const statusValue = filters.elements.status.value;
+                const department = filters.elements.department.value.toLowerCase();
+                const location = filters.elements.location.value.toLowerCase();
+                let visible = 0;
+
+                cards.forEach((card) => {
+                  const matches = (!query || card.dataset.search.includes(query))
+                    && (!statusValue || card.dataset.status === statusValue)
+                    && (!department || card.dataset.department === department)
+                    && (!location || card.dataset.location === location);
+                  card.hidden = !matches;
+                  if (matches) visible += 1;
+                });
+
+                filterStatus.textContent = `Showing ${visible} of ${cards.length} job posts.`;
+                noResults.hidden = visible !== 0 || cards.length === 0;
+              };
+
+              filters.addEventListener("input", applyFilters);
+              filters.addEventListener("change", applyFilters);
+              filters.addEventListener("reset", () => setTimeout(applyFilters));
+
+              document.querySelectorAll("[data-delete-job-post]").forEach((button) => {
+                button.addEventListener("click", async () => {
+                  if (!window.confirm(`Delete ${button.dataset.jobPostTitle}? This cannot be undone.`)) return;
+                  const response = await fetch(`/api/admin/job-posts/${button.dataset.jobPostId}`, { method: "DELETE" });
+                  const result = await response.json().catch(() => ({}));
+                  if (!response.ok || !result.success) {
+                    window.alert(result.message || "Unable to delete job post.");
+                    return;
+                  }
+                  window.location.reload();
+                });
+              });
+
+              applyFilters();
+            })();
+          </script>

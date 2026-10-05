@@ -1,4 +1,7 @@
 const { sanitizeUser } = require("../services/authService");
+const CareerOpening = require("../models/CareerOpening");
+const AppError = require("../utils/AppError");
+const slugify = require("../utils/slugify");
 const {
   deleteSeoPage,
   getSeoPage,
@@ -8,6 +11,97 @@ const {
 } = require("../services/seoService");
 const { getSiteSetting } = require("../services/siteSettingService");
 const { listUsers } = require("../services/userRepository");
+
+function listItems(value) {
+  return String(value || "")
+    .split(/\r?\n/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+function jobPostValues(body) {
+  return {
+    title: body.title,
+    department: body.department,
+    location: body.location,
+    type: body.type,
+    experience: body.experience,
+    summary: body.summary,
+    responsibilities: listItems(body.responsibilities),
+    requirements: listItems(body.requirements),
+    active: body.active !== false,
+    order: body.order || 0
+  };
+}
+
+async function uniqueJobSlug(title, id) {
+  const slug = slugify(title, "job");
+  const duplicate = await CareerOpening.exists(id ? { slug, _id: { $ne: id } } : { slug });
+
+  if (duplicate) {
+    throw new AppError("A job post with this title already exists", 409);
+  }
+
+  return slug;
+}
+
+async function createJobPost(req, res) {
+  const jobPost = await CareerOpening.create({
+    ...jobPostValues(req.body),
+    slug: await uniqueJobSlug(req.body.title)
+  });
+
+  res.status(201).json({
+    success: true,
+    message: "Job post created",
+    data: { jobPost }
+  });
+}
+
+async function updateJobPost(req, res) {
+  const jobPost = await CareerOpening.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        ...jobPostValues(req.body),
+        slug: await uniqueJobSlug(req.body.title, req.params.id)
+      }
+    },
+    { new: true, runValidators: true }
+  ).lean();
+
+  if (!jobPost) {
+    throw new AppError("Job post not found", 404);
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "Job post updated",
+    data: { jobPost }
+  });
+}
+
+async function deleteJobPost(req, res) {
+  const jobPost = await CareerOpening.findByIdAndDelete(req.params.id).lean();
+
+  if (!jobPost) {
+    throw new AppError("Job post not found", 404);
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "Job post deleted"
+  });
+}
+
+async function jobPosts(req, res) {
+  const jobPosts = await CareerOpening.find().sort({ createdAt: -1 }).lean();
+
+  res.status(200).json({
+    success: true,
+    data: { jobPosts }
+  });
+}
 
 async function users(req, res) {
   const users = (await listUsers()).map(sanitizeUser);
@@ -75,9 +169,13 @@ async function removeSeoPage(req, res) {
 }
 
 module.exports = {
+  createJobPost,
+  deleteJobPost,
+  jobPosts,
   removeSeoPage,
   saveSeoPage,
   seoPage,
   seoPages,
+  updateJobPost,
   users
 };

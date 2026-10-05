@@ -94,6 +94,12 @@ function jsonProduct(product, index) {
   const variants = getJsonVariants(product);
   const gallery = variants.length ? variants.map((variant) => variant.image) : [product.image].filter(Boolean);
   const specifications = getValue(product, "specifications", {});
+  const louverSpecifications = {
+    width_mm: getValue(specifications, "width_mm", parseMmSize(product)),
+    height_mm: getValue(specifications, "height_mm", "-"),
+    length_mm: getValue(specifications, "length_mm", "-"),
+    no_of_flutes: getValue(specifications, "no_of_flutes", "-")
+  };
 
   return normalizeProduct({
     productId: getValue(product, "productId", 9000 + index),
@@ -108,16 +114,15 @@ function jsonProduct(product, index) {
     gallery,
     productInformation: getValue(product, "productInformation", [
       { label: "Profile", value: product.name },
+      { label: "Width", value: `${louverSpecifications.width_mm} mm` },
+      { label: "Height", value: `${louverSpecifications.height_mm} mm` },
+      { label: "Length", value: `${louverSpecifications.length_mm} mm` },
+      { label: "No. of flutes", value: String(louverSpecifications.no_of_flutes) },
       { label: "Available finishes", value: String(variants.length) }
     ]),
-    specifications: {
-      width_mm: getValue(specifications, "width_mm", parseMmSize(product)),
-      height_mm: getValue(specifications, "height_mm", "-"),
-      length_mm: getValue(specifications, "length_mm", "-"),
-      no_of_flutes: getValue(specifications, "no_of_flutes", "-")
-    },
+    specifications: louverSpecifications,
     order: getValue(product, "order", index),
-    hasVariants: variants.length > 1,
+    serialNumber: index + 1,
     variants
   });
 }

@@ -39,6 +39,7 @@ Thumbs.db
 *.swo
 .vercel
 .env*
+!.env.example
 
 # MindexAI
 .mindexai/

@@ -1,5 +1,6 @@
 const Catalogue = require("../models/Catalogue");
 const Enquiry = require("../models/Enquiry");
+const { notifyEnquiry } = require("../services/leadNotificationService");
 const { getSiteSetting } = require("../services/siteSettingService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
@@ -27,6 +28,7 @@ async function submitCatalogueLead(req, res) {
     ipAddress: req.ip,
     userAgent: req.get("user-agent")
   });
+  await notifyEnquiry(enquiry);
 
   return res.status(201).json({
     success: true,

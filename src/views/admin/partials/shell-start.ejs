@@ -1,16 +1,46 @@
   <body>
-    <div class="admin-shell">
-      <aside class="admin-sidebar">
-        <a class="admin-brand" href="/admin/dashboard"><%= appName %> Admin</a>
-        <nav class="admin-nav" aria-label="Admin navigation">
-          <a href="/admin/dashboard">Dashboard</a>
-          <a href="/admin/users">Users</a>
-          <button type="button" data-admin-logout>Logout</button>
+    <nav class="navbar navbar-dark admin-mobile-navbar d-lg-none px-3">
+      <a class="navbar-brand admin-mobile-brand" href="/admin/dashboard">
+        <img src="/assets/images/logo/logo-white.png" alt="Pioneer Decor" />
+        <span>Admin</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar" aria-controls="adminSidebar" aria-label="Open navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+    <div class="admin-shell d-lg-flex">
+      <aside class="admin-sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="adminSidebar" aria-label="Pioneer Decor admin navigation">
+        <div class="offcanvas-header d-lg-none">
+          <a class="admin-mobile-brand" href="/admin/dashboard">
+            <img src="/assets/images/logo/logo-white.png" alt="Pioneer Decor" />
+            <span>Admin</span>
+          </a>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-3">
+        <a class="admin-brand" href="/admin/dashboard">
+          <img src="/assets/images/logo/logo-white.png" alt="Pioneer Decor" />
+        </a>
+        <nav class="admin-nav nav nav-pills flex-column gap-1" aria-label="Admin navigation">
+          <br>
+          <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+          <a class="nav-link" href="/admin/enquiries">Contact enquiries</a>
+          <a class="nav-link" href="/admin/job-enquiries">Job applications</a>
+          <div class="admin-nav-group">
+            <button class="admin-nav-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#jobPostsSubmenu" aria-expanded="true" aria-controls="jobPostsSubmenu">Manage Job Posts</button>
+            <ul class="admin-nav-submenu collapse show" id="jobPostsSubmenu">
+              <li><a class="nav-link" href="/admin/job-posts">All Job Posts</a></li>
+              <li><a class="nav-link" href="/admin/job-posts/create">Create New Job</a></li>
+            </ul>
+          </div>
+          <a class="nav-link" href="/admin/users">Users</a>
+          <button class="nav-link" type="button" data-admin-logout>Logout</button>
         </nav>
+        </div>
       </aside>
       <main class="admin-main">
-        <header class="admin-topbar">
+        <header class="admin-topbar d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-1 gap-sm-3 px-3 px-lg-4">
           <h1><%= pageTitle %></h1>
-          <span class="muted" data-admin-user></span>
+          <span class="small text-secondary text-sm-end text-break" data-admin-user></span>
         </header>
         <div class="admin-content">

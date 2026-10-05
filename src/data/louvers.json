@@ -4,6 +4,7 @@
       "slug": "24-mm",
       "image": "/assets/images/products/thumbs/product-1.jpg",
       "name": "24 MM",
+      "specifications": { "width_mm": 162, "height_mm": 24, "length_mm": 2900, "no_of_flutes": 4 },
       "variants": [
         {
           "name": "24 MM",
@@ -99,6 +100,7 @@
       "slug": "8-mm-solid",
       "image": "/assets/images/products/thumbs/product-2.jpg",
       "name": "8 MM Solid",
+      "specifications": { "width_mm": 152, "height_mm": 8, "length_mm": 2900, "no_of_flutes": 7 },
       "variants": [
         {
           "name": "8 MM Solid",
@@ -146,6 +148,7 @@
       "slug": "17-mm",
       "image": "/assets/images/products/thumbs/product-3.jpg",
       "name": "17 MM",
+      "specifications": { "width_mm": 160, "height_mm": 17, "length_mm": 2900, "no_of_flutes": 8 },
       "variants": [
         {
           "name": "17 MM",
@@ -205,6 +208,7 @@
       "slug": "12-mm-old",
       "image": "/assets/images/products/thumbs/product-4.jpg",
       "name": "12 MM Old",
+      "specifications": { "width_mm": 196, "height_mm": 12, "length_mm": 2900, "no_of_flutes": 3 },
       "variants": [
         {
           "name": "12 MM Old",
@@ -216,6 +220,7 @@
       "slug": "9-inch-flat",
       "image": "/assets/images/products/thumbs/product-5.jpg",
       "name": "9 Inch Flat",
+      "specifications": { "width_mm": 230, "height_mm": 10, "length_mm": 2900, "no_of_flutes": 9 },
       "variants": [
         {
           "name": "9 Inch Flat",
@@ -227,6 +232,7 @@
       "slug": "12-mm-pencile",
       "image": "/assets/images/products/thumbs/product-6.jpg",
       "name": "12 MM Pencile",
+      "specifications": { "width_mm": 160, "height_mm": 12, "length_mm": 2900, "no_of_flutes": 11 },
       "variants": [
         {
           "name": "12 MM Pencile",
@@ -266,6 +272,7 @@
       "slug": "8-mm-8flute",
       "image": "/assets/images/products/thumbs/product-7.jpg",
       "name": "8 MM 8Flute",
+      "specifications": { "width_mm": 183, "height_mm": 9, "length_mm": 2900, "no_of_flutes": 8 },
       "variants": [
         {
           "name": "8 MM 8Flute",
@@ -313,6 +320,7 @@
       "slug": "12mm-half-round",
       "image": "/assets/images/products/thumbs/product-8.jpg",
       "name": "12MM Half Round",
+      "specifications": { "width_mm": 156, "height_mm": 12, "length_mm": 2900, "no_of_flutes": 10 },
       "variants": [
         {
           "name": "12MM Half Round",
@@ -332,6 +340,7 @@
       "slug": "14-mm-flat",
       "image": "/assets/images/products/thumbs/product-9.jpg",
       "name": "14 MM Flat",
+      "specifications": { "width_mm": 216, "height_mm": 14, "length_mm": 2900, "no_of_flutes": 2 },
       "variants": [
         {
           "name": "14 MM Flat",
@@ -351,6 +360,7 @@
       "slug": "15-mm-heart",
       "image": "/assets/images/products/thumbs/product-10.jpg",
       "name": "15 MM Heart",
+      "specifications": { "width_mm": 155, "height_mm": 15, "length_mm": 2900, "no_of_flutes": "Wave" },
       "variants": [
         {
           "name": "15 MM Heart",
@@ -362,6 +372,7 @@
       "slug": "16mm-zigzag",
       "image": "/assets/images/products/thumbs/product-11.jpg",
       "name": "16MM ZigZag",
+      "specifications": { "width_mm": 180, "height_mm": 16, "length_mm": 2900, "no_of_flutes": "Zigzag" },
       "variants": [
         {
           "name": "16MM ZigZag",
