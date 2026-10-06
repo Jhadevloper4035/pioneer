@@ -423,6 +423,83 @@
   text-transform: uppercase;
 }
 
+.career-resume-dropzone {
+  align-items: center;
+  background: #f5f2ee;
+  border: 1px dashed rgba(72, 24, 0, 0.34);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  min-height: 154px;
+  padding: 24px;
+  position: relative;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.career-resume-dropzone:hover,
+.career-resume-dropzone:focus-within,
+.career-resume-dropzone.is-dragging {
+  background: var(--white);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(192, 136, 96, 0.14);
+}
+
+.career-resume-dropzone__input {
+  cursor: pointer;
+  height: 100% !important;
+  inset: 0;
+  opacity: 0;
+  padding: 0 !important;
+  position: absolute;
+  width: 100% !important;
+}
+
+.career-resume-dropzone strong {
+  color: var(--black-2);
+  font-size: 15px;
+}
+
+.career-resume-dropzone > span,
+.career-resume-dropzone__progress {
+  color: rgba(72, 24, 0, 0.62);
+  font-size: 13px;
+}
+
+.career-resume-dropzone__file {
+  font-size: 13px;
+  margin: 8px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.career-resume-dropzone__file.is-ready {
+  color: rgba(72, 24, 0, 0.76);
+}
+
+.career-resume-dropzone__file.is-success {
+  color: #2d6b3f;
+}
+
+.career-resume-dropzone__file.is-error {
+  color: #a33a2b;
+}
+
+.career-resume-dropzone__progress {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 4px;
+  width: min(100%, 380px);
+}
+
+.career-resume-dropzone__progress progress {
+  accent-color: var(--primary-color);
+  width: 120px;
+}
+
 .career-application-form__field textarea {
   min-height: 140px;
   resize: vertical;
