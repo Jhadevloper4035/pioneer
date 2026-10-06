@@ -6,9 +6,11 @@
           </section>
 
           <div class="row g-4 mb-4">
-            <div class="col-md-4"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/enquiries"><div class="card-body"><p class="text-secondary mb-2">Contact enquiries</p><strong class="display-6"><%= totals.enquiries %></strong><span class="d-block small mt-2">View all enquiries →</span></div></a></div>
-            <div class="col-md-4"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/job-enquiries"><div class="card-body"><p class="text-secondary mb-2">Job applications</p><strong class="display-6"><%= totals.applications %></strong><span class="d-block small mt-2">View all applications →</span></div></a></div>
-            <div class="col-md-4"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/job-posts"><div class="card-body"><p class="text-secondary mb-2">Active job posts</p><strong class="display-6"><%= totals.activeJobPosts %></strong><span class="d-block small mt-2">Manage job posts →</span></div></a></div>
+            <div class="col-sm-6 col-xl"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/enquiries"><div class="card-body"><p class="text-secondary mb-2">Contact enquiries</p><strong class="display-6"><%= totals.enquiries %></strong><span class="d-block small mt-2">View all enquiries →</span></div></a></div>
+            <div class="col-sm-6 col-xl"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/job-enquiries"><div class="card-body"><p class="text-secondary mb-2">Job applications</p><strong class="display-6"><%= totals.applications %></strong><span class="d-block small mt-2">View all applications →</span></div></a></div>
+            <div class="col-sm-6 col-xl"><a class="card h-100 shadow-sm text-decoration-none dashboard-stat" href="/admin/job-posts"><div class="card-body"><p class="text-secondary mb-2">Active job posts</p><strong class="display-6"><%= totals.activeJobPosts %></strong><span class="d-block small mt-2">Manage job posts →</span></div></a></div>
+            <div class="col-sm-6 col-xl"><div class="card h-100 shadow-sm dashboard-stat"><div class="card-body"><p class="text-secondary mb-2">Emails sent</p><strong class="display-6"><%= totals.emailSent %></strong><span class="d-block small mt-2">Accepted by SMTP</span></div></div></div>
+            <div class="col-sm-6 col-xl"><div class="card h-100 shadow-sm dashboard-stat"><div class="card-body"><p class="text-secondary mb-2">Emails failed</p><strong class="display-6"><%= totals.emailFailed %></strong><span class="d-block small mt-2">SMTP delivery unsuccessful</span></div></div></div>
           </div>
 
           <div class="row g-4">

@@ -16,6 +16,10 @@ const careerApplicationSchema = new mongoose.Schema(
       mimetype: { type: String, required: true, trim: true },
       size: { type: Number, required: true }
     },
+    emailNotification: {
+      status: { type: String, enum: ["sent", "failed"] },
+      attemptedAt: Date
+    },
     ipAddress: String,
     userAgent: String
   },

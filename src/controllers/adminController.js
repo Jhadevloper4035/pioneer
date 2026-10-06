@@ -7,6 +7,15 @@ const AppError = require("../utils/AppError");
 const { getSiteSetting } = require("../services/siteSettingService");
 const { renderAdminPageWithLayout } = require("../services/viewRenderer");
 
+async function emailNotificationCount(status) {
+  const [enquiries, applications] = await Promise.all([
+    Enquiry.countDocuments({ "emailNotification.status": status }),
+    CareerApplication.countDocuments({ "emailNotification.status": status })
+  ]);
+
+  return enquiries + applications;
+}
+
 function redirectAdmin(req, res) {
   res.redirect("/admin/dashboard");
 }
@@ -26,11 +35,13 @@ function renderAdminPage(view, titleKey, options = {}) {
 const renderAdminLogin = renderAdminPage("login", "login", { useAdminShell: false });
 
 async function renderAdminDashboard(req, res) {
-  const [adminPages, enquiryCount, applicationCount, activeJobPostCount, recentEnquiries, recentApplications] = await Promise.all([
+  const [adminPages, enquiryCount, applicationCount, activeJobPostCount, emailSentCount, emailFailedCount, recentEnquiries, recentApplications] = await Promise.all([
     getSiteSetting("adminPages"),
     Enquiry.countDocuments(),
     CareerApplication.countDocuments(),
     CareerOpening.countDocuments({ active: true }),
+    emailNotificationCount("sent"),
+    emailNotificationCount("failed"),
     Enquiry.find().select("name email phone product city source createdAt").sort({ createdAt: -1 }).limit(5).lean(),
     CareerApplication.find().select("name email phone role city experience createdAt").sort({ createdAt: -1 }).limit(5).lean()
   ]);
@@ -43,6 +54,8 @@ async function renderAdminDashboard(req, res) {
     totals: {
       activeJobPosts: activeJobPostCount,
       applications: applicationCount,
+      emailFailed: emailFailedCount,
+      emailSent: emailSentCount,
       enquiries: enquiryCount
     }
   });

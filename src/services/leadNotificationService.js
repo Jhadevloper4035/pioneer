@@ -42,31 +42,57 @@ function buildLeadEmail({ title, fields, attachments = [] }) {
   };
 }
 
-async function notifyLead({ id, title, fields, attachments }) {
+async function recordNotificationStatus(lead, status) {
+  try {
+    await lead.updateOne({
+      $set: {
+        emailNotification: {
+          status,
+          attemptedAt: new Date()
+        }
+      }
+    });
+  } catch (error) {
+    logger.error({ err: error, leadId: String(lead._id) }, "Could not record lead email notification status");
+  }
+}
+
+async function notifyLead({ lead, title, fields, attachments }) {
+  const leadId = String(lead._id);
   const mailer = getTransporter();
   if (!mailer) {
-    logger.warn({ leadId: String(id), type: title }, "Lead saved but SMTP is not configured");
+    await recordNotificationStatus(lead, "failed");
+    logger.warn({ leadId, type: title }, "Lead saved but SMTP is not configured");
     return false;
   }
 
   try {
     const message = buildLeadEmail({ title, fields, attachments });
-    await mailer.sendMail({
+    const result = await mailer.sendMail({
       from: env.smtp.from,
       to: leadRecipients,
       ...message
     });
-    logger.info({ leadId: String(id), type: title }, "Lead notification email sent");
+
+    if (!result.accepted?.length || result.rejected?.length) {
+      await recordNotificationStatus(lead, "failed");
+      logger.warn({ leadId, type: title }, "Lead notification email was rejected by SMTP");
+      return false;
+    }
+
+    await recordNotificationStatus(lead, "sent");
+    logger.info({ leadId, type: title }, "Lead notification email sent");
     return true;
   } catch (error) {
-    logger.error({ err: error, leadId: String(id), type: title }, "Lead saved but notification email failed");
+    await recordNotificationStatus(lead, "failed");
+    logger.error({ err: error, leadId, type: title }, "Lead saved but notification email failed");
     return false;
   }
 }
 
 function notifyEnquiry(enquiry) {
   return notifyLead({
-    id: enquiry._id,
+    lead: enquiry,
     title: "New enquiry",
     fields: {
       Source: enquiry.source,
@@ -91,7 +117,7 @@ function notifyJobApplication(application) {
   const resume = application.resume;
 
   return notifyLead({
-    id: application._id,
+    lead: application,
     title: "New job application",
     fields: {
       Role: application.role,

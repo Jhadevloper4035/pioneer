@@ -19,6 +19,10 @@ const enquirySchema = new mongoose.Schema(
     application: { type: String, trim: true, maxlength: 80 },
     message: { type: String, trim: true, maxlength: 1000 },
     comments: { type: String, trim: true, maxlength: 1000 },
+    emailNotification: {
+      status: { type: String, enum: ["sent", "failed"] },
+      attemptedAt: Date
+    },
     ipAddress: String,
     userAgent: String
   },
