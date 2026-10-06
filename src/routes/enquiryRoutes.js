@@ -12,6 +12,7 @@ const {
 const router = express.Router();
 
 router.get("/contact-us", asyncHandler(enquiryController.contact));
+router.get("/resume/:token", asyncHandler(enquiryController.downloadPublicCareerResume));
 router.post("/api/contact", contactValidator, verifyRecaptcha("contact"), asyncHandler(enquiryController.submitContact));
 router.post("/api/enquiries", enquiryValidator, verifyRecaptcha("homepage_enquiry"), asyncHandler(enquiryController.submitEnquiry));
 router.post(

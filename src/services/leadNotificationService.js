@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const env = require("../config/env");
 const { logger } = require("../config/logger");
+const { createResumeDownloadLink } = require("./careerResumeService");
 
 const leadRecipients = ["sks@pioneerflex.in", "decor@pioneerflex.in"];
 let transporter;
@@ -27,9 +28,12 @@ function getTransporter() {
   return transporter;
 }
 
-function buildLeadEmail({ title, fields, attachments = [] }) {
+function buildLeadEmail({ title, fields, attachments = [], downloadUrl = "" }) {
   const entries = Object.entries(fields).filter(([, value]) => value !== undefined && value !== null && value !== "");
-  const text = entries.map(([label, value]) => `${label}: ${value}`).join("\n");
+  const text = [
+    ...entries.map(([label, value]) => `${label}: ${value}`),
+    ...(downloadUrl ? [`Download resume: ${downloadUrl}`] : [])
+  ].join("\n");
   const html = entries
     .map(([label, value]) => `<tr><th align="left" style="padding:8px;border:1px solid #ddd">${escapeHtml(label)}</th><td style="padding:8px;border:1px solid #ddd">${escapeHtml(value)}</td></tr>`)
     .join("");
@@ -37,7 +41,7 @@ function buildLeadEmail({ title, fields, attachments = [] }) {
   return {
     subject: `Pioneer Decor: ${title}`,
     text: `${title}\n\n${text}`,
-    html: `<h2>${escapeHtml(title)}</h2><table cellspacing="0" cellpadding="0" style="border-collapse:collapse">${html}</table>`,
+    html: `<h2>${escapeHtml(title)}</h2><table cellspacing="0" cellpadding="0" style="border-collapse:collapse">${html}</table>${downloadUrl ? `<p><a href="${escapeHtml(downloadUrl)}">Download resume</a> (available for 7 days)</p>` : ""}`,
     attachments: attachments.filter((attachment) => attachment?.content)
   };
 }
@@ -57,7 +61,7 @@ async function recordNotificationStatus(lead, status) {
   }
 }
 
-async function notifyLead({ lead, title, fields, attachments }) {
+async function notifyLead({ lead, title, fields, attachments, downloadUrl }) {
   const leadId = String(lead._id);
   const mailer = getTransporter();
   if (!mailer) {
@@ -67,7 +71,7 @@ async function notifyLead({ lead, title, fields, attachments }) {
   }
 
   try {
-    const message = buildLeadEmail({ title, fields, attachments });
+    const message = buildLeadEmail({ title, fields, attachments, downloadUrl });
     const result = await mailer.sendMail({
       from: env.smtp.from,
       to: leadRecipients,
@@ -130,6 +134,7 @@ function notifyJobApplication(application) {
       Resume: resume?.originalName,
       Received: application.createdAt?.toISOString?.()
     },
+    downloadUrl: resume?.data ? createResumeDownloadLink(application._id) : "",
     attachments: resume?.data
       ? [{
           filename: resume.originalName || resume.filename || "resume",

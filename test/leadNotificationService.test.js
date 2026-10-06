@@ -7,6 +7,7 @@ const resume = Buffer.from("resume content");
 const message = buildLeadEmail({
   title: "New job application",
   fields: { Name: "Asha", Resume: "asha-resume.pdf" },
+  downloadUrl: "https://pioneerdecor.in/resume/token",
   attachments: [{
     filename: "asha-resume.pdf",
     content: resume,
@@ -17,6 +18,8 @@ const message = buildLeadEmail({
 async function run() {
   assert.match(message.text, /Name: Asha/);
   assert.match(message.html, /asha-resume\.pdf/);
+  assert.match(message.html, /href="https:\/\/pioneerdecor\.in\/resume\/token"/);
+  assert.match(message.text, /Download resume: https:\/\/pioneerdecor\.in\/resume\/token/);
   assert.deepEqual(message.attachments, [{
     filename: "asha-resume.pdf",
     content: resume,

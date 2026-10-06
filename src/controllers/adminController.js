@@ -5,6 +5,7 @@ const CareerOpening = require("../models/CareerOpening");
 const Enquiry = require("../models/Enquiry");
 const AppError = require("../utils/AppError");
 const { getSiteSetting } = require("../services/siteSettingService");
+const { sendCareerResume } = require("../services/careerResumeService");
 const { renderAdminPageWithLayout } = require("../services/viewRenderer");
 
 async function emailNotificationCount(status) {
@@ -103,7 +104,12 @@ async function renderAdminJobEnquiries(req, res) {
     product: `Job application — ${application.role}`,
     application: `Experience: ${application.experience}`,
     message: application.message,
-    comments: application.resume?.originalName ? `Resume: ${application.resume.originalName}` : "",
+    resume: application.resume?.filename
+      ? {
+          filename: application.resume.originalName || application.resume.filename,
+          url: `/admin/job-enquiries/${application._id}/resume`
+        }
+      : null,
     createdAt: application.createdAt
   }));
 
@@ -118,6 +124,14 @@ async function renderAdminJobEnquiries(req, res) {
     sectionTitle: "Job applications",
     sourceOptions: []
   });
+}
+
+async function downloadCareerResume(req, res) {
+  if (!mongoose.isObjectIdOrHexString(req.params.id)) {
+    throw new AppError("Invalid job application id", 400);
+  }
+
+  return sendCareerResume(res, req.params.id);
 }
 
 async function renderAdminJobPosts(req, res) {
@@ -170,6 +184,7 @@ module.exports = {
   redirectAdmin,
   renderAdminDashboard,
   renderAdminCreateJobPost,
+  downloadCareerResume,
   renderAdminEnquiries,
   renderAdminJobEnquiries,
   renderAdminJobPostDetail,

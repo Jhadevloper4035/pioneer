@@ -50,7 +50,7 @@
                     <% const product = enquiry.product || enquiry.productCategories?.join(", ") || "—"; %>
                     <% const details = [enquiry.quantity, enquiry.unit, enquiry.application, enquiry.message, enquiry.comments].filter(Boolean).join(" · "); %>
                     <% const location = [enquiry.company, enquiry.city].filter(Boolean).join(" · ") || "—"; %>
-                    <% const searchText = [enquiry.source, enquiry.name, enquiry.email, enquiry.phone, product, details, location].filter(Boolean).join(" ").toLowerCase(); %>
+                    <% const searchText = [enquiry.source, enquiry.name, enquiry.email, enquiry.phone, product, details, location, enquiry.resume?.filename].filter(Boolean).join(" ").toLowerCase(); %>
                     <tr
                       data-enquiry-row
                       data-date="<%= enquiry.createdAt.toISOString().slice(0, 10) %>"
@@ -79,6 +79,9 @@
                         <% } %>
                         <% if (enquiry.message || enquiry.comments) { %>
                           <br><%= enquiry.message || enquiry.comments %>
+                        <% } %>
+                        <% if (enquiry.resume) { %>
+                          <br><a class="btn btn-sm btn-outline-primary mt-2" href="<%= enquiry.resume.url %>" download>Download resume: <%= enquiry.resume.filename %></a>
                         <% } %>
                       </td>
                       <td><%= location %></td>

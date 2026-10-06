@@ -1,6 +1,7 @@
 const CareerApplication = require("../models/CareerApplication");
 const Enquiry = require("../models/Enquiry");
 const { notifyEnquiry, notifyJobApplication } = require("../services/leadNotificationService");
+const { resumeIdFromLink, sendCareerResume } = require("../services/careerResumeService");
 const { getSiteSetting } = require("../services/siteSettingService");
 const { renderPublicPage } = require("../services/viewRenderer");
 
@@ -70,6 +71,10 @@ function submitProductEnquiry(req, res) {
     product: req.body.product,
     message: req.body.message
   });
+}
+
+async function downloadPublicCareerResume(req, res) {
+  return sendCareerResume(res, resumeIdFromLink(req.params.token));
 }
 
 function wantsJson(req) {
@@ -146,6 +151,7 @@ async function submitCareerApplication(req, res) {
 
 module.exports = {
   contact,
+  downloadPublicCareerResume,
   submitCareerApplication,
   submitContact,
   submitEnquiry,

@@ -7,7 +7,7 @@
     "build": "npm run check && npm test",
     "check": "node --check src/server.js && node --check api/index.js && node --check public/js/main.js",
     "start": "node src/server.js",
-    "test": "node test/leadNotificationService.test.js && node test/louverSpecifications.test.js && node test/recaptchaMiddleware.test.js && node test/productionConfig.test.js",
+    "test": "node test/leadNotificationService.test.js && node test/louverSpecifications.test.js && node test/recaptchaMiddleware.test.js && node test/productionConfig.test.js && node test/adminResumeDownload.test.js",
     "dev": "nodemon src/server.js",
     "vercel-build": "npm run build"
   },
